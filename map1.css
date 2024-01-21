@@ -1,0 +1,116 @@
+#map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80vh;
+    height: 85vh;
+    border: solid 1px black;
+    margin: auto;
+    margin-top: 1%;
+    z-index: 99;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #c4b494;
+}
+
+header {
+    background-color: rgb(87, 62, 62);
+    padding: 10px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    color: white;
+    font-weight: bold;
+    padding-left: 60%;
+    font-size: 18px;
+}
+
+.panel {
+    display: flex;
+    padding-right: 40%;
+}
+
+.panel a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px; /* Adjust the margin as needed */
+    font-size: 16px;
+}
+
+.panel a:hover {
+    background-color: rgb(84, 35, 35);
+}
+
+.panel a:last-child {
+    margin-right: 0; /* Remove margin from the last link */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    color: white;
+    background-color: rgb(87, 62, 62);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(87, 62, 62);
+    min-width: 150px;
+    z-index: 100;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-right: 0;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(84, 35, 35);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.left-aligned-list {
+    padding: 0;
+    margin-left: 14px;
+}
+
+.fullscreen-icon { background-image: url(ikony/icon-fullscreen.svg); background-size:26px 52px; }
+.fullscreen-icon.leaflet-fullscreen-on { background-position:0 -26px; }
+.leaflet-touch .fullscreen-icon { background-position: 2px 2px; }
+.leaflet-touch .fullscreen-icon.leaflet-fullscreen-on { background-position: 2px -24px; }
+/* one selector per rule as explained here : http://www.sitepoint.com/html5-full-screen-api/ */
+.leaflet-container:-webkit-full-screen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-container:-ms-fullscreen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-container:full-screen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-container:fullscreen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-pseudo-fullscreen { position: fixed !important; width: 100% !important; height: 100% !important; top: 0px !important; left: 0px !important; z-index: 99999; }
+
+/*don't show up the minimum bounding rectangle around feature after clicking on them*/
+path.leaflet-interactive:focus {
+    outline: none;
+}
