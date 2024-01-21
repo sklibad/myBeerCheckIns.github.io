@@ -271,6 +271,7 @@ div#profilestatscontainer table.pstable {
     border-spacing: 4px;
     border-collapse: separate;
     width: 100%;
+    margin-top: 5px;
 }
 
 div#profilestatscontainer table.friends-table {
@@ -285,7 +286,7 @@ div#profilestatscontainer table.pstable th, table.friends-table th {
     text-align: center
 }
 
-div#profilestatscontainer table.pstable td, th, table.friends-table th, td {
+div#profilestatscontainer table.pstable th, td, table.friends-table th, td {
     background-color: #f0eae5;
     white-space: nowrap;
     vertical-align: top
@@ -300,10 +301,9 @@ div#profilestatscontainer table.friends-table th {
     border: 2px solid rgb(87, 62, 62);
 }
 
-div#profilestatscontainer table.friends-table td {
+div#profilestatscontainer table.friends-table td, table.pstable td, th {
     padding: auto;
-    border: 0.5px solid rgb(87, 62, 62);
-
+    border: 1px solid rgb(87, 62, 62);
 }
 
 div#profilestatscontainer table.pstable td.allow-wrap,div#profilestatscontainer table.pstable th.allow-wrap, div#profilestatscontainer table.friends-table td.allow-wrap,div#profilestatscontainer table.friends-table th.allow-wrap {
@@ -320,11 +320,12 @@ div#profilestatscontainer table.pstable-small {
     border-collapse: separate;
     width: 100%;
     font-size: 9px;
-    padding: 0
+    padding: 0;
+    margin-top: 5px;
 }
 
 div#profilestatscontainer table.pstable-small td, th {
-    background-color: #e0d3c5;
+    background-color: #f0eae5;
     padding: 0 1px;
     margin-top: 5px;
     white-space: nowrap;
