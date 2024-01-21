@@ -1,0 +1,528 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Montserrat-Black', sans-serif;
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    background-color: #c4b494;
+}
+
+header {
+  background-color: rgb(87, 62, 62);
+  padding: 10px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-text {
+  color: white;
+  font-weight: bold;
+  padding-left: 60%;
+  font-size: 18px;
+}
+
+.panel {
+  display: flex;
+  padding-right: 40%;
+}
+
+.panel a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin-right: 10px; /* Adjust the margin as needed */
+  font-size: 16px;
+}
+
+.panel a:hover {
+  background-color: rgb(84, 35, 35);
+}
+
+.panel a:last-child {
+  margin-right: 0; /* Remove margin from the last link */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  color: white;
+  background-color: rgb(87, 62, 62);
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(87, 62, 62);
+  min-width: 150px;
+  z-index: 1000;
+
+}
+
+.dropdown-content a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-right: 0;
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(84, 35, 35);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* Use 100% of the viewport height */
+}
+
+#filter-panel {
+    width: 200px;
+    padding: 20px;
+    padding-top: 0px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background-color: rgb(238, 231, 212);
+    text-align: center;
+    overflow-y: auto;
+    margin-left: 1%;
+    margin-right: 10px;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column; /* Make children stack vertically */
+    align-items: left; /* Center children horizontally */
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* Add other styling if needed */
+}
+
+.checkbox-pair {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Optional: Add margin between filter groups */
+}
+
+.checkbox-pair input[type="checkbox"] {
+    /* Adjust margin as needed to control the left spacing */
+    margin-left: 5px;
+    margin-right: 5px; /* Optional: Add margin between checkbox and label */
+}
+
+/* Optional: Center labels vertically */
+.checkbox-pair label {
+    display: block;
+    text-align: left;
+}
+
+.date-filters {
+  display: flex;
+  align-items: left; /* Center items vertically */
+  margin: 0 20px 0 20px; /* Add margin for spacing between groups */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox-pair label {
+    margin-top: 1.5px;
+
+}
+
+.checkbox-pair input {
+    cursor: pointer;
+}
+
+#lager-checkbox {
+  margin-left: -13px;
+  margin-right: 36px;
+}
+
+#ale-checkbox {
+  margin-left: -32px;
+  margin-right: 14px;
+}
+
+#ipa-checkbox {
+  margin-left: 13px;
+}
+
+button#reset-filters {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+button#reset-filters, button#apply-filters {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.filter-group {
+  margin-bottom: 5px;
+}
+
+#map-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+}
+
+#map {
+  flex: 1;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+  margin: 17px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 1px;
+  z-index: 999;
+}
+
+  
+  [slider] {
+    position: relative;
+    height: 14px;
+    border-radius: 10px;
+    text-align: left;
+    margin: 25px 0 25px 0;
+  }
+  
+  [slider] > div {
+    position: absolute;
+    left: 13px;
+    right: 15px;
+    height: 14px;
+  }
+  
+  [slider] > div > [inverse-left] {
+    position: absolute;
+    left: 0;
+    height: 14px;
+    border-radius: 10px;
+    background-color: #CCC;
+    margin: 0 7px;
+  }
+  
+  [slider] > div > [inverse-right] {
+    position: absolute;
+    right: 0;
+    height: 14px;
+    border-radius: 10px;
+    background-color: #CCC;
+    margin: 0 7px;
+  }
+  
+  [slider] > div > [range] {
+    position: absolute;
+    left: 0;
+    height: 14px;
+    border-radius: 14px;
+    background-color: #1ABC9C;
+  }
+  
+  [slider] > div > [thumb] {
+    position: absolute;
+    top: -7px;
+    z-index: 2;
+    height: 28px;
+    width: 28px;
+    text-align: left;
+    margin-left: -11px;
+    /*cursor: pointer;*/
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    background-color: #FFF;
+    border-radius: 50%;
+    outline: none;
+  }
+  
+  [slider] > input[type=range] {
+    position: absolute;
+    pointer-events: none;
+    z-index: 3;
+    height: 14px;
+    top: -2px;
+    width: 100%;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+  }
+  
+  div[slider] > input[type=range]::-ms-track {
+    background: transparent;
+    color: transparent;
+  }
+  
+  div[slider] > input[type=range]::-moz-range-track {
+    -moz-appearance: none;
+    background: transparent;
+    color: transparent;
+  }
+  
+  div[slider] > input[type=range]:focus::-webkit-slider-runnable-track {
+    background: transparent;
+    border: transparent;
+  }
+  
+  div[slider] > input[type=range]:focus {
+    outline: none;
+  }
+  
+  div[slider] > input[type=range]::-ms-thumb {
+    pointer-events: all;
+    width: 28px;
+    height: 28px;
+    border-radius: 0px;
+    border: 0 none;
+    background: red;
+  }
+  
+  div[slider] > input[type=range]::-moz-range-thumb {
+    pointer-events: all;
+    width: 28px;
+    height: 28px;
+    border-radius: 0px;
+    border: 0 none;
+    background: red;
+  }
+  
+  div[slider] > input[type=range]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 28px;
+    height: 28px;
+    border-radius: 0px;
+    border: 0 none;
+    background: red;
+    -webkit-appearance: none;
+  }
+  
+  div[slider] > input[type=range]::-ms-fill-lower {
+    background: transparent;
+    border: 0 none;
+  }
+  
+  div[slider] > input[type=range]::-ms-fill-upper {
+    background: transparent;
+    border: 0 none;
+  }
+  
+  div[slider] > input[type=range]::-ms-tooltip {
+    display: none;
+  }
+  
+  [slider] > div > [sign] {
+    opacity: 0;
+    position: absolute;
+    margin-left: -11px;
+    top: -39px;
+    z-index:3;
+    background-color: #1ABC9C;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    -webkit-border-radius: 28px;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  [slider] > div > [sign]:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    border-radius: 16px;
+    top: 19px;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top-width: 16px;
+    border-top-style: solid;
+    border-top-color: #1ABC9C;
+  }
+  
+  [slider] > div > [sign] > span {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 28px;
+  }
+  
+  [slider]:hover > div > [sign] {
+    opacity: 1;
+  }
+
+#contentBox {
+  max-height: calc(100vh - 88px); /* Adjust the padding values as needed */
+  overflow-y: auto;
+  width: 320px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  border-radius: 10px;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  background-color: rgb(238, 231, 212);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 14px;
+  margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.box-item.same-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-item.same-row2 {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#checkinPhoto {
+    width: 70%;
+    max-width: 350px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.box-item {
+    display: none;
+}
+
+#bottle {
+    max-height: 400px;
+    margin-top: 130px;
+    filter: contrast(60%);
+}
+
+.rating-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.friend-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.filled {
+    background-color: #FFD700;
+}
+
+.popup-container {
+    max-width: 600px;
+    width: auto;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.popup-header,
+.popup-footer {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    position: sticky;
+    height: 30px;
+}
+
+.popup-footer {
+    margin-top: 10px;
+}
+
+.popup-content {
+    max-height: 200px;
+    max-width: 600px;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+.left-aligned-list {
+    padding: 0;
+    margin-left: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #959494;
+    border-radius: 10px;
+}
+
+
+a.box-content {
+  outline-color: transparent;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+a.box-content:visited {
+  color: blue;
+}
+
+a.box-content:focus,
+a.box-content:hover {
+  border-bottom: 1px solid;
+}
+
+a.box-content:active {
+  color: red;
+}

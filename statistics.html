@@ -1,0 +1,2422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stats.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="stats_data.js" type="text/javascript"></script>
+    <title>MyBeerCheckIns - Homepage</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">MyBeerCheckIns</span>
+            </div>
+            <div class="panel">
+                <a href="index.html">Home</a>
+                <a href="beer_terminology.html">Beerminology</a>
+                <a href="map4.html">Check-in Map</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Cartograms</button>
+                    <div class="dropdown-content">
+                        <a href="map1.html">Prague</a>
+                        <a href="map2.html">Czech Republic</a>
+                        <a href="map3.html">World</a>
+                    </div>
+                </div>
+                <a href="statistics.html">Statistics</a>
+            </div>
+        </div>
+    </header>
+    <div id = "profilestatscontainer">
+        <div class="module">
+            <div class="header">
+                <span>Beer style / Rating chart</span>
+            </div>
+            <table class="pstable">
+                <tbody>
+                    <tr>
+                        <th colspan="2" rowspan="2"></th>
+                        <th colspan="20">Rating</th>
+                        <th rowspan="2"></th>
+                    </tr>
+                    <tr>
+                        <th>0.25</th>
+                        <th>0.50</th>
+                        <th>0.75</th>
+                        <th>1.00</th>
+                        <th>1.25</th>
+                        <th>1.50</th>
+                        <th>1.75</th>
+                        <th>2.00</th>
+                        <th>2.25</th>
+                        <th>2.50</th>
+                        <th>2.75</th>
+                        <th>3.00</th>
+                        <th>3.25</th>
+                        <th>3.50</th>
+                        <th>3.75</th>
+                        <th>4.00</th>
+                        <th>4.25</th>
+                        <th>4.50</th>
+                        <th>4.75</th>
+                        <th>5.00</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="6" class="align-center-vertically">Beer style</th>
+                        <th>Lager</th>
+                        <td id = "lager_0,25" class="align-center"></td>
+                        <td id = "lager_0,50" class="align-center"></td>
+                        <td id = "lager_0,75" class="align-center"></td>
+                        <td id = "lager_1,00" class="align-center"></td>
+                        <td id = "lager_1,25" class="align-center"></td>
+                        <td id = "lager_1,50" class="align-center"></td>
+                        <td id = "lager_1,75" class="align-center"></td>
+                        <td id = "lager_2,00" class="align-center"></td>
+                        <td id = "lager_2,25" class="align-center"></td>
+                        <td id = "lager_2,50" class="align-center"></td>
+                        <td id = "lager_2,75" class="align-center"></td>
+                        <td id = "lager_3,00" class="align-center"></td>
+                        <td id = "lager_3,25" class="align-center"></td>
+                        <td id = "lager_3,50" class="align-center"></td>
+                        <td id = "lager_3,75" class="align-center"></td>
+                        <td id = "lager_4,00" class="align-center"></td>
+                        <td id = "lager_4,25" class="align-center"></td>
+                        <td id = "lager_4,50" class="align-center"></td>
+                        <td id = "lager_4,75" class="align-center"></td>
+                        <td id = "lager_5,00" class="align-center"></td>
+                        <th id = "lager"></th>
+                    </tr>
+                    <tr>
+                        <th>Ale (APA)</th>
+                        <td id = "ale_0,25" class="align-center"></td>
+                        <td id = "ale_0,50" class="align-center"></td>
+                        <td id = "ale_0,75" class="align-center"></td>
+                        <td id = "ale_1,00" class="align-center"></td>
+                        <td id = "ale_1,25" class="align-center"></td>
+                        <td id = "ale_1,50" class="align-center"></td>
+                        <td id = "ale_1,75" class="align-center"></td>
+                        <td id = "ale_2,00" class="align-center"></td>
+                        <td id = "ale_2,25" class="align-center"></td>
+                        <td id = "ale_2,50" class="align-center"></td>
+                        <td id = "ale_2,75" class="align-center"></td>
+                        <td id = "ale_3,00" class="align-center"></td>
+                        <td id = "ale_3,25" class="align-center"></td>
+                        <td id = "ale_3,50" class="align-center"></td>
+                        <td id = "ale_3,75" class="align-center"></td>
+                        <td id = "ale_4,00" class="align-center"></td>
+                        <td id = "ale_4,25" class="align-center"></td>
+                        <td id = "ale_4,50" class="align-center"></td>
+                        <td id = "ale_4,75" class="align-center"></td>
+                        <td id = "ale_5,00" class="align-center"></td>
+                        <th id = "ale"></th>
+                    </tr>
+                    <tr>
+                        <th>IPA</th>
+                        <td id = "ipa_0,25" class="align-center"></td>
+                        <td id = "ipa_0,50" class="align-center"></td>
+                        <td id = "ipa_0,75" class="align-center"></td>
+                        <td id = "ipa_1,00" class="align-center"></td>
+                        <td id = "ipa_1,25" class="align-center"></td>
+                        <td id = "ipa_1,50" class="align-center"></td>
+                        <td id = "ipa_1,75" class="align-center"></td>
+                        <td id = "ipa_2,00" class="align-center"></td>
+                        <td id = "ipa_2,25" class="align-center"></td>
+                        <td id = "ipa_2,50" class="align-center"></td>
+                        <td id = "ipa_2,75" class="align-center"></td>
+                        <td id = "ipa_3,00" class="align-center"></td>
+                        <td id = "ipa_3,25" class="align-center"></td>
+                        <td id = "ipa_3,50" class="align-center"></td>
+                        <td id = "ipa_3,75" class="align-center"></td>
+                        <td id = "ipa_4,00" class="align-center"></td>
+                        <td id = "ipa_4,25" class="align-center"></td>
+                        <td id = "ipa_4,50" class="align-center"></td>
+                        <td id = "ipa_4,75" class="align-center"></td>
+                        <td id = "ipa_5,00" class="align-center"></td>
+                        <th id = "ipa"></th>
+                    </tr>
+                    <tr>
+                        <th>Sour</th>
+                        <td id = "sour_0,25" class="align-center"></td>
+                        <td id = "sour_0,50" class="align-center"></td>
+                        <td id = "sour_0,75" class="align-center"></td>
+                        <td id = "sour_1,00" class="align-center"></td>
+                        <td id = "sour_1,25" class="align-center"></td>
+                        <td id = "sour_1,50" class="align-center"></td>
+                        <td id = "sour_1,75" class="align-center"></td>
+                        <td id = "sour_2,00" class="align-center"></td>
+                        <td id = "sour_2,25" class="align-center"></td>
+                        <td id = "sour_2,50" class="align-center"></td>
+                        <td id = "sour_2,75" class="align-center"></td>
+                        <td id = "sour_3,00" class="align-center"></td>
+                        <td id = "sour_3,25" class="align-center"></td>
+                        <td id = "sour_3,50" class="align-center"></td>
+                        <td id = "sour_3,75" class="align-center"></td>
+                        <td id = "sour_4,00" class="align-center"></td>
+                        <td id = "sour_4,25" class="align-center"></td>
+                        <td id = "sour_4,50" class="align-center"></td>
+                        <td id = "sour_4,75" class="align-center"></td>
+                        <td id = "sour_5,00" class="align-center"></td>
+                        <th id = "sour"></th>
+                    </tr>
+                    <tr>
+                        <th>Stout/Porter</th>
+                        <td id = "stout_0,25" class="align-center"></td>
+                        <td id = "stout_0,50" class="align-center"></td>
+                        <td id = "stout_0,75" class="align-center"></td>
+                        <td id = "stout_1,00" class="align-center"></td>
+                        <td id = "stout_1,25" class="align-center"></td>
+                        <td id = "stout_1,50" class="align-center"></td>
+                        <td id = "stout_1,75" class="align-center"></td>
+                        <td id = "stout_2,00" class="align-center"></td>
+                        <td id = "stout_2,25" class="align-center"></td>
+                        <td id = "stout_2,50" class="align-center"></td>
+                        <td id = "stout_2,75" class="align-center"></td>
+                        <td id = "stout_3,00" class="align-center"></td>
+                        <td id = "stout_3,25" class="align-center"></td>
+                        <td id = "stout_3,50" class="align-center"></td>
+                        <td id = "stout_3,75" class="align-center"></td>
+                        <td id = "stout_4,00" class="align-center"></td>
+                        <td id = "stout_4,25" class="align-center"></td>
+                        <td id = "stout_4,50" class="align-center"></td>
+                        <td id = "stout_4,75" class="align-center"></td>
+                        <td id = "stout_5,00" class="align-center"></td>
+                        <th id = "stout"></th>
+                    </tr>
+                    <tr>
+                        <th>Other</th>
+                        <td id = "other_0,25" class="align-center"></td>
+                        <td id = "other_0,50" class="align-center"></td>
+                        <td id = "other_0,75" class="align-center"></td>
+                        <td id = "other_1,00" class="align-center"></td>
+                        <td id = "other_1,25" class="align-center"></td>
+                        <td id = "other_1,50" class="align-center"></td>
+                        <td id = "other_1,75" class="align-center"></td>
+                        <td id = "other_2,00" class="align-center"></td>
+                        <td id = "other_2,25" class="align-center"></td>
+                        <td id = "other_2,50" class="align-center"></td>
+                        <td id = "other_2,75" class="align-center"></td>
+                        <td id = "other_3,00" class="align-center"></td>
+                        <td id = "other_3,25" class="align-center"></td>
+                        <td id = "other_3,50" class="align-center"></td>
+                        <td id = "other_3,75" class="align-center"></td>
+                        <td id = "other_4,00" class="align-center"></td>
+                        <td id = "other_4,25" class="align-center"></td>
+                        <td id = "other_4,50" class="align-center"></td>
+                        <td id = "other_4,75" class="align-center"></td>
+                        <td id = "other_5,00" class="align-center"></td>
+                        <th id = "other"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th id = "0,25"></th>
+                        <th id = "0,50"></th>
+                        <th id = "0,75"></th>
+                        <th id = "1,00"></th>
+                        <th id = "1,25"></th>
+                        <th id = "1,50"></th>
+                        <th id = "1,75"></th>
+                        <th id = "2,00"></th>
+                        <th id = "2,25"></th>
+                        <th id = "2,50"></th>
+                        <th id = "2,75"></th>
+                        <th id = "3,00"></th>
+                        <th id = "3,25"></th>
+                        <th id = "3,50"></th>
+                        <th id = "3,75"></th>
+                        <th id = "4,00"></th>
+                        <th id = "4,25"></th>
+                        <th id = "4,50"></th>
+                        <th id = "4,75"></th>
+                        <th id = "5,00"></th>
+                        <th></th>
+                    </tr>
+            </table>
+        </div>
+        <div class="module">
+            <div class="header">
+                <span>Beers by check-in date</span>
+            </div>
+            <table class="pstable-small">
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
+                        <th>13</th>
+                        <th>14</th>
+                        <th>15</th>
+                        <th>16</th>
+                        <th>17</th>
+                        <th>18</th>
+                        <th>19</th>
+                        <th>20</th>
+                        <th>21</th>
+                        <th>22</th>
+                        <th>23</th>
+                        <th>24</th>
+                        <th>25</th>
+                        <th>26</th>
+                        <th>27</th>
+                        <th>28</th>
+                        <th>29</th>
+                        <th>30</th>
+                        <th>31</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Jan</th>
+                        <td id = "Jan_1"></td>
+                        <td id = "Jan_2"></td>
+                        <td id = "Jan_3"></td>
+                        <td id = "Jan_4"></td>
+                        <td id = "Jan_5"></td>
+                        <td id = "Jan_6"></td>
+                        <td id = "Jan_7"></td>
+                        <td id = "Jan_8"></td>
+                        <td id = "Jan_9"></td>
+                        <td id = "Jan_10"></td>
+                        <td id = "Jan_11"></td>
+                        <td id = "Jan_12"></td>
+                        <td id = "Jan_13"></td>
+                        <td id = "Jan_14"></td>
+                        <td id = "Jan_15"></td>
+                        <td id = "Jan_16"></td>
+                        <td id = "Jan_17"></td>
+                        <td id = "Jan_18"></td>
+                        <td id = "Jan_19"></td>
+                        <td id = "Jan_20"></td>
+                        <td id = "Jan_21"></td>
+                        <td id = "Jan_22"></td>
+                        <td id = "Jan_23"></td>
+                        <td id = "Jan_24"></td>
+                        <td id = "Jan_25"></td>
+                        <td id = "Jan_26"></td>
+                        <td id = "Jan_27"></td>
+                        <td id = "Jan_28"></td>
+                        <td id = "Jan_29"></td>
+                        <td id = "Jan_30"></td>
+                        <td id = "Jan_31"></td>
+                        <td id = "Jan"></td>
+                    </tr>
+                    <tr>
+                        <th>Feb</th>
+                        <td id = "Feb_1"></td>
+                        <td id = "Feb_2"></td>
+                        <td id = "Feb_3"></td>
+                        <td id = "Feb_4"></td>
+                        <td id = "Feb_5"></td>
+                        <td id = "Feb_6"></td>
+                        <td id = "Feb_7"></td>
+                        <td id = "Feb_8"></td>
+                        <td id = "Feb_9"></td>
+                        <td id = "Feb_10"></td>
+                        <td id = "Feb_11"></td>
+                        <td id = "Feb_12"></td>
+                        <td id = "Feb_13"></td>
+                        <td id = "Feb_14"></td>
+                        <td id = "Feb_15"></td>
+                        <td id = "Feb_16"></td>
+                        <td id = "Feb_17"></td>
+                        <td id = "Feb_18"></td>
+                        <td id = "Feb_19"></td>
+                        <td id = "Feb_20"></td>
+                        <td id = "Feb_21"></td>
+                        <td id = "Feb_22"></td>
+                        <td id = "Feb_23"></td>
+                        <td id = "Feb_24"></td>
+                        <td id = "Feb_25"></td>
+                        <td id = "Feb_26"></td>
+                        <td id = "Feb_27"></td>
+                        <td id = "Feb_28"></td>
+                        <td id = "Feb_29"></td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td id = "Feb"></td>
+                    </tr>
+                    <tr>
+                        <th>Mar</th>
+                        <td id = "Mar_1"></td>
+                        <td id = "Mar_2"></td>
+                        <td id = "Mar_3"></td>
+                        <td id = "Mar_4"></td>
+                        <td id = "Mar_5"></td>
+                        <td id = "Mar_6"></td>
+                        <td id = "Mar_7"></td>
+                        <td id = "Mar_8"></td>
+                        <td id = "Mar_9"></td>
+                        <td id = "Mar_10"></td>
+                        <td id = "Mar_11"></td>
+                        <td id = "Mar_12"></td>
+                        <td id = "Mar_13"></td>
+                        <td id = "Mar_14"></td>
+                        <td id = "Mar_15"></td>
+                        <td id = "Mar_16"></td>
+                        <td id = "Mar_17"></td>
+                        <td id = "Mar_18"></td>
+                        <td id = "Mar_19"></td>
+                        <td id = "Mar_20"></td>
+                        <td id = "Mar_21"></td>
+                        <td id = "Mar_22"></td>
+                        <td id = "Mar_23"></td>
+                        <td id = "Mar_24"></td>
+                        <td id = "Mar_25"></td>
+                        <td id = "Mar_26"></td>
+                        <td id = "Mar_27"></td>
+                        <td id = "Mar_28"></td>
+                        <td id = "Mar_29"></td>
+                        <td id = "Mar_30"></td>
+                        <td id = "Mar_31"></td>
+                        <td id = "Mar"></td>
+                    </tr>
+                    <tr>
+                        <th>Apr</th>
+                        <td id = "Apr_1"></td>
+                        <td id = "Apr_2"></td>
+                        <td id = "Apr_3"></td>
+                        <td id = "Apr_4"></td>
+                        <td id = "Apr_5"></td>
+                        <td id = "Apr_6"></td>
+                        <td id = "Apr_7"></td>
+                        <td id = "Apr_8"></td>
+                        <td id = "Apr_9"></td>
+                        <td id = "Apr_10"></td>
+                        <td id = "Apr_11"></td>
+                        <td id = "Apr_12"></td>
+                        <td id = "Apr_13"></td>
+                        <td id = "Apr_14"></td>
+                        <td id = "Apr_15"></td>
+                        <td id = "Apr_16"></td>
+                        <td id = "Apr_17"></td>
+                        <td id = "Apr_18"></td>
+                        <td id = "Apr_19"></td>
+                        <td id = "Apr_20"></td>
+                        <td id = "Apr_21"></td>
+                        <td id = "Apr_22"></td>
+                        <td id = "Apr_23"></td>
+                        <td id = "Apr_24"></td>
+                        <td id = "Apr_25"></td>
+                        <td id = "Apr_26"></td>
+                        <td id = "Apr_27"></td>
+                        <td id = "Apr_28"></td>
+                        <td id = "Apr_29"></td>
+                        <td id = "Apr_30"></td>
+                        <td>X</td>
+                        <td id = "Apr"></td>
+                    </tr>
+                    <tr>
+                        <th>May</th>
+                        <td id = "May_1"></td>
+                        <td id = "May_2"></td>
+                        <td id = "May_3"></td>
+                        <td id = "May_4"></td>
+                        <td id = "May_5"></td>
+                        <td id = "May_6"></td>
+                        <td id = "May_7"></td>
+                        <td id = "May_8"></td>
+                        <td id = "May_9"></td>
+                        <td id = "May_10"></td>
+                        <td id = "May_11"></td>
+                        <td id = "May_12"></td>
+                        <td id = "May_13"></td>
+                        <td id = "May_14"></td>
+                        <td id = "May_15"></td>
+                        <td id = "May_16"></td>
+                        <td id = "May_17"></td>
+                        <td id = "May_18"></td>
+                        <td id = "May_19"></td>
+                        <td id = "May_20"></td>
+                        <td id = "May_21"></td>
+                        <td id = "May_22"></td>
+                        <td id = "May_23"></td>
+                        <td id = "May_24"></td>
+                        <td id = "May_25"></td>
+                        <td id = "May_26"></td>
+                        <td id = "May_27"></td>
+                        <td id = "May_28"></td>
+                        <td id = "May_29"></td>
+                        <td id = "May_30"></td>
+                        <td id = "May_31"></td>
+                        <td id = "May"></td>
+                    </tr>
+                    <tr>
+                        <th>Jun</th>
+                        <td id = "Jun_1"></td>
+                        <td id = "Jun_2"></td>
+                        <td id = "Jun_3"></td>
+                        <td id = "Jun_4"></td>
+                        <td id = "Jun_5"></td>
+                        <td id = "Jun_6"></td>
+                        <td id = "Jun_7"></td>
+                        <td id = "Jun_8"></td>
+                        <td id = "Jun_9"></td>
+                        <td id = "Jun_10"></td>
+                        <td id = "Jun_11"></td>
+                        <td id = "Jun_12"></td>
+                        <td id = "Jun_13"></td>
+                        <td id = "Jun_14"></td>
+                        <td id = "Jun_15"></td>
+                        <td id = "Jun_16"></td>
+                        <td id = "Jun_17"></td>
+                        <td id = "Jun_18"></td>
+                        <td id = "Jun_19"></td>
+                        <td id = "Jun_20"></td>
+                        <td id = "Jun_21"></td>
+                        <td id = "Jun_22"></td>
+                        <td id = "Jun_23"></td>
+                        <td id = "Jun_24"></td>
+                        <td id = "Jun_25"></td>
+                        <td id = "Jun_26"></td>
+                        <td id = "Jun_27"></td>
+                        <td id = "Jun_28"></td>
+                        <td id = "Jun_29"></td>
+                        <td id = "Jun_30"></td>
+                        <td>X</td>
+                        <td id = "Jun"></td>
+                    </tr>
+                    <tr>
+                        <th>Jul</th>
+                        <td id = "Jul_1"></td>
+                        <td id = "Jul_2"></td>
+                        <td id = "Jul_3"></td>
+                        <td id = "Jul_4"></td>
+                        <td id = "Jul_5"></td>
+                        <td id = "Jul_6"></td>
+                        <td id = "Jul_7"></td>
+                        <td id = "Jul_8"></td>
+                        <td id = "Jul_9"></td>
+                        <td id = "Jul_10"></td>
+                        <td id = "Jul_11"></td>
+                        <td id = "Jul_12"></td>
+                        <td id = "Jul_13"></td>
+                        <td id = "Jul_14"></td>
+                        <td id = "Jul_15"></td>
+                        <td id = "Jul_16"></td>
+                        <td id = "Jul_17"></td>
+                        <td id = "Jul_18"></td>
+                        <td id = "Jul_19"></td>
+                        <td id = "Jul_20"></td>
+                        <td id = "Jul_21"></td>
+                        <td id = "Jul_22"></td>
+                        <td id = "Jul_23"></td>
+                        <td id = "Jul_24"></td>
+                        <td id = "Jul_25"></td>
+                        <td id = "Jul_26"></td>
+                        <td id = "Jul_27"></td>
+                        <td id = "Jul_28"></td>
+                        <td id = "Jul_29"></td>
+                        <td id = "Jul_30"></td>
+                        <td id = "Jul_31"></td>
+                        <td id = "Jul"></td>
+                    </tr>
+                    <tr>
+                        <th>Aug</th>
+                        <td id = "Aug_1"></td>
+                        <td id = "Aug_2"></td>
+                        <td id = "Aug_3"></td>
+                        <td id = "Aug_4"></td>
+                        <td id = "Aug_5"></td>
+                        <td id = "Aug_6"></td>
+                        <td id = "Aug_7"></td>
+                        <td id = "Aug_8"></td>
+                        <td id = "Aug_9"></td>
+                        <td id = "Aug_10"></td>
+                        <td id = "Aug_11"></td>
+                        <td id = "Aug_12"></td>
+                        <td id = "Aug_13"></td>
+                        <td id = "Aug_14"></td>
+                        <td id = "Aug_15"></td>
+                        <td id = "Aug_16"></td>
+                        <td id = "Aug_17"></td>
+                        <td id = "Aug_18"></td>
+                        <td id = "Aug_19"></td>
+                        <td id = "Aug_20"></td>
+                        <td id = "Aug_21"></td>
+                        <td id = "Aug_22"></td>
+                        <td id = "Aug_23"></td>
+                        <td id = "Aug_24"></td>
+                        <td id = "Aug_25"></td>
+                        <td id = "Aug_26"></td>
+                        <td id = "Aug_27"></td>
+                        <td id = "Aug_28"></td>
+                        <td id = "Aug_29"></td>
+                        <td id = "Aug_30"></td>
+                        <td id = "Aug_31"></td>
+                        <td id = "Aug"></td>
+                    </tr>
+                    <tr>
+                        <th>Sep</th>
+                        <td id = "Sep_1"></td>
+                        <td id = "Sep_2"></td>
+                        <td id = "Sep_3"></td>
+                        <td id = "Sep_4"></td>
+                        <td id = "Sep_5"></td>
+                        <td id = "Sep_6"></td>
+                        <td id = "Sep_7"></td>
+                        <td id = "Sep_8"></td>
+                        <td id = "Sep_9"></td>
+                        <td id = "Sep_10"></td>
+                        <td id = "Sep_11"></td>
+                        <td id = "Sep_12"></td>
+                        <td id = "Sep_13"></td>
+                        <td id = "Sep_14"></td>
+                        <td id = "Sep_15"></td>
+                        <td id = "Sep_16"></td>
+                        <td id = "Sep_17"></td>
+                        <td id = "Sep_18"></td>
+                        <td id = "Sep_19"></td>
+                        <td id = "Sep_20"></td>
+                        <td id = "Sep_21"></td>
+                        <td id = "Sep_22"></td>
+                        <td id = "Sep_23"></td>
+                        <td id = "Sep_24"></td>
+                        <td id = "Sep_25"></td>
+                        <td id = "Sep_26"></td>
+                        <td id = "Sep_27"></td>
+                        <td id = "Sep_28"></td>
+                        <td id = "Sep_29"></td>
+                        <td id = "Sep_30"></td>
+                        <td>X</td>
+                        <td id = "Sep"></td>
+                    </tr>
+                    <tr>
+                        <th>Oct</th>
+                        <td id = "Oct_1"></td>
+                        <td id = "Oct_2"></td>
+                        <td id = "Oct_3"></td>
+                        <td id = "Oct_4"></td>
+                        <td id = "Oct_5"></td>
+                        <td id = "Oct_6"></td>
+                        <td id = "Oct_7"></td>
+                        <td id = "Oct_8"></td>
+                        <td id = "Oct_9"></td>
+                        <td id = "Oct_10"></td>
+                        <td id = "Oct_11"></td>
+                        <td id = "Oct_12"></td>
+                        <td id = "Oct_13"></td>
+                        <td id = "Oct_14"></td>
+                        <td id = "Oct_15"></td>
+                        <td id = "Oct_16"></td>
+                        <td id = "Oct_17"></td>
+                        <td id = "Oct_18"></td>
+                        <td id = "Oct_19"></td>
+                        <td id = "Oct_20"></td>
+                        <td id = "Oct_21"></td>
+                        <td id = "Oct_22"></td>
+                        <td id = "Oct_23"></td>
+                        <td id = "Oct_24"></td>
+                        <td id = "Oct_25"></td>
+                        <td id = "Oct_26"></td>
+                        <td id = "Oct_27"></td>
+                        <td id = "Oct_28"></td>
+                        <td id = "Oct_29"></td>
+                        <td id = "Oct_30"></td>
+                        <td id = "Oct_31"></td>
+                        <td id = "Oct"></td>
+                    </tr>
+                    <tr>
+                        <th>Nov</th>
+                        <td id = "Nov_1"></td>
+                        <td id = "Nov_2"></td>
+                        <td id = "Nov_3"></td>
+                        <td id = "Nov_4"></td>
+                        <td id = "Nov_5"></td>
+                        <td id = "Nov_6"></td>
+                        <td id = "Nov_7"></td>
+                        <td id = "Nov_8"></td>
+                        <td id = "Nov_9"></td>
+                        <td id = "Nov_10"></td>
+                        <td id = "Nov_11"></td>
+                        <td id = "Nov_12"></td>
+                        <td id = "Nov_13"></td>
+                        <td id = "Nov_14"></td>
+                        <td id = "Nov_15"></td>
+                        <td id = "Nov_16"></td>
+                        <td id = "Nov_17"></td>
+                        <td id = "Nov_18"></td>
+                        <td id = "Nov_19"></td>
+                        <td id = "Nov_20"></td>
+                        <td id = "Nov_21"></td>
+                        <td id = "Nov_22"></td>
+                        <td id = "Nov_23"></td>
+                        <td id = "Nov_24"></td>
+                        <td id = "Nov_25"></td>
+                        <td id = "Nov_26"></td>
+                        <td id = "Nov_27"></td>
+                        <td id = "Nov_28"></td>
+                        <td id = "Nov_29"></td>
+                        <td id = "Nov_30"></td>
+                        <td>X</td>
+                        <td id = "Nov"></td>
+                    </tr>
+                    <tr>
+                        <th>Dec</th>
+                        <td id = "Dec_1"></td>
+                        <td id = "Dec_2"></td>
+                        <td id = "Dec_3"></td>
+                        <td id = "Dec_4"></td>
+                        <td id = "Dec_5"></td>
+                        <td id = "Dec_6"></td>
+                        <td id = "Dec_7"></td>
+                        <td id = "Dec_8"></td>
+                        <td id = "Dec_9"></td>
+                        <td id = "Dec_10"></td>
+                        <td id = "Dec_11"></td>
+                        <td id = "Dec_12"></td>
+                        <td id = "Dec_13"></td>
+                        <td id = "Dec_14"></td>
+                        <td id = "Dec_15"></td>
+                        <td id = "Dec_16"></td>
+                        <td id = "Dec_17"></td>
+                        <td id = "Dec_18"></td>
+                        <td id = "Dec_19"></td>
+                        <td id = "Dec_20"></td>
+                        <td id = "Dec_21"></td>
+                        <td id = "Dec_22"></td>
+                        <td id = "Dec_23"></td>
+                        <td id = "Dec_24"></td>
+                        <td id = "Dec_25"></td>
+                        <td id = "Dec_26"></td>
+                        <td id = "Dec_27"></td>
+                        <td id = "Dec_28"></td>
+                        <td id = "Dec_29"></td>
+                        <td id = "Dec_30"></td>
+                        <td id = "Dec_31"></td>
+                        <td id = "Dec"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td id = "1"></td>
+                        <td id = "2"></td>
+                        <td id = "3"></td>
+                        <td id = "4"></td>
+                        <td id = "5"></td>
+                        <td id = "6"></td>
+                        <td id = "7"></td>
+                        <td id = "8"></td>
+                        <td id = "9"></td>
+                        <td id = "10"></td>
+                        <td id = "11"></td>
+                        <td id = "12"></td>
+                        <td id = "13"></td>
+                        <td id = "14"></td>
+                        <td id = "15"></td>
+                        <td id = "16"></td>
+                        <td id = "17"></td>
+                        <td id = "18"></td>
+                        <td id = "19"></td>
+                        <td id = "20"></td>
+                        <td id = "21"></td>
+                        <td id = "22"></td>
+                        <td id = "23"></td>
+                        <td id = "24"></td>
+                        <td id = "25"></td>
+                        <td id = "26"></td>
+                        <td id = "27"></td>
+                        <td id = "28"></td>
+                        <td id = "29"></td>
+                        <td id = "30"></td>
+                        <td id = "31"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="display:none">
+        <div>
+            <div class="header">
+                <span>Wind rose diagram by check-ins (venues)</span>
+            </div>
+            <table id="freq" class = "pstable">
+                <tr>
+                    <th colspan="9" class="hdr">Table of Frequencies (percent)</th>
+                </tr>
+                <tr>
+                    <th class="freq">Direction</th>
+                    <th class="freq">Lager</th>
+                    <th class="freq">Ale (APA)</th>
+                    <th class="freq">IPA</th>
+                    <th class="freq">Sour</th>
+                    <th class="freq">Porter/Stout</th>
+                    <th class="freq">Other</th>
+                </tr>
+                <tr>
+                    <td class="dir">N</td>
+                    <td id = "lager_N" class="data"></td>
+                    <td id = "ale_N" class="data"></td>
+                    <td id = "ipa_N" class="data"></td>
+                    <td id = "sour_N" class="data"></td>
+                    <td id = "stout_N" class="data"></td>
+                    <td id = "other_N" class="data"></td>
+                </tr>        
+                <tr>
+                    <td class="dir">NNE</td>
+                    <td id = "lager_NNE" class="data"></td>
+                    <td id = "ale_NNE" class="data"></td>
+                    <td id = "ipa_NNE" class="data"></td>
+                    <td id = "sour_NNE" class="data"></td>
+                    <td id = "stout_NNE" class="data"></td>
+                    <td id = "other_NNE" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">NE</td>
+                    <td id = "lager_NE" class="data"></td>
+                    <td id = "ale_NE" class="data"></td>
+                    <td id = "ipa_NE" class="data"></td>
+                    <td id = "sour_NE" class="data"></td>
+                    <td id = "stout_NE" class="data"></td>
+                    <td id = "other_NE" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">ENE</td>
+                    <td id = "lager_ENE" class="data"></td>
+                    <td id = "ale_ENE" class="data"></td>
+                    <td id = "ipa_ENE" class="data"></td>
+                    <td id = "sour_ENE" class="data"></td>
+                    <td id = "stout_ENE" class="data"></td>
+                    <td id = "other_ENE" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">E</td>
+                    <td id = "lager_E" class="data"></td>
+                    <td id = "ale_E" class="data"></td>
+                    <td id = "ipa_E" class="data"></td>
+                    <td id = "sour_E" class="data"></td>
+                    <td id = "stout_E" class="data"></td>
+                    <td id = "other_E" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">ESE</td>
+                    <td id = "lager_ESE" class="data"></td>
+                    <td id = "ale_ESE" class="data"></td>
+                    <td id = "ipa_ESE" class="data"></td>
+                    <td id = "sour_ESE" class="data"></td>
+                    <td id = "stout_ESE" class="data"></td>
+                    <td id = "other_ESE" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">SE</td>
+                    <td id = "lager_SE" class="data"></td>
+                    <td id = "ale_SE" class="data"></td>
+                    <td id = "ipa_SE" class="data"></td>
+                    <td id = "sour_SE" class="data"></td>
+                    <td id = "stout_SE" class="data"></td>
+                    <td id = "other_SE" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">SSE</td>
+                    <td id = "lager_SSE" class="data"></td>
+                    <td id = "ale_SSE" class="data"></td>
+                    <td id = "ipa_SSE" class="data"></td>
+                    <td id = "sour_SSE" class="data"></td>
+                    <td id = "stout_SSE" class="data"></td>
+                    <td id = "other_SSE" class="data"></td>
+                </tr>
+                <tr nowrap>
+                    <td class="dir">S</td>
+                    <td id = "lager_S" class="data"></td>
+                    <td id = "ale_S" class="data"></td>
+                    <td id = "ipa_S" class="data"></td>
+                    <td id = "sour_S" class="data"></td>
+                    <td id = "stout_S" class="data"></td>
+                    <td id = "other_S" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">SSW</td>
+                    <td id = "lager_SSW" class="data"></td>
+                    <td id = "ale_SSW" class="data"></td>
+                    <td id = "ipa_SSW" class="data"></td>
+                    <td id = "sour_SSW" class="data"></td>
+                    <td id = "stout_SSW" class="data"></td>
+                    <td id = "other_SSW" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">SW</td>
+                    <td id = "lager_SW" class="data"></td>
+                    <td id = "ale_SW" class="data"></td>
+                    <td id = "ipa_SW" class="data"></td>
+                    <td id = "sour_SW" class="data"></td>
+                    <td id = "stout_SW" class="data"></td>
+                    <td id = "other_SW" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">WSW</td>
+                    <td id = "lager_WSW" class="data"></td>
+                    <td id = "ale_WSW" class="data"></td>
+                    <td id = "ipa_WSW" class="data"></td>
+                    <td id = "sour_WSW" class="data"></td>
+                    <td id = "stout_WSW" class="data"></td>
+                    <td id = "other_WSW" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">W</td>
+                    <td id = "lager_W" class="data"></td>
+                    <td id = "ale_W" class="data"></td>
+                    <td id = "ipa_W" class="data"></td>
+                    <td id = "sour_W" class="data"></td>
+                    <td id = "stout_W" class="data"></td>
+                    <td id = "other_W" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">WNW</td>
+                    <td id = "lager_WNW" class="data"></td>
+                    <td id = "ale_WNW" class="data"></td>
+                    <td id = "ipa_WNW" class="data"></td>
+                    <td id = "sour_WNW" class="data"></td>
+                    <td id = "stout_WNW" class="data"></td>
+                    <td id = "other_WNW" class="data"></td>
+                </tr>
+                <tr>
+                    <td class="dir">NW</td>
+                    <td id = "lager_NW" class="data"></td>
+                    <td id = "ale_NW" class="data"></td>
+                    <td id = "ipa_NW" class="data"></td>
+                    <td id = "sour_NW" class="data"></td>
+                    <td id = "stout_NW" class="data"></td>
+                    <td id = "other_NW" class="data"></td>
+                </tr>        
+                <tr>
+                    <td class="dir">NNW</td>
+                    <td id = "lager_NNW" class="data"></td>
+                    <td id = "ale_NNW" class="data"></td>
+                    <td id = "ipa_NNW" class="data"></td>
+                    <td id = "sour_NNW" class="data"></td>
+                    <td id = "stout_NNW" class="data"></td>
+                    <td id = "other_NNW" class="data"></td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <div class = "module">
+            <div class="header">
+                <span>Wind rose diagram by check-ins (venues)</span>
+            </div>
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+        </figure>
+        <div class="module">
+            <div class="header">
+                <span>Best rated beers</span>
+            </div>
+            <table class="friends-table">
+                <tbody>
+                    <tr>
+                        <th>Rating</th>
+                        <th>Beer</th>
+                        <th>Beer style</th>
+                        <th>IBU</th>
+                        <th>ABV</th>
+                        <th>Brewery</th>
+                        <th>Country</th>
+                        <th>Venue</th>
+                    </tr>
+                    <tr>
+                        <td id = "rating_1" class="align-center"></td>
+                        <td id = "beer_1" class="align-center"></td>
+                        <td id = "beer-style_1" class="align-center"></td>
+                        <td id = "ibu_1" class="align-center"></td>
+                        <td id = "abv_1" class="align-center"></td>
+                        <td id = "brewery_1" class="align-center"></td>
+                        <td id = "country_1" class="align-center"></td>
+                        <td id = "venue_1" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_2" class="align-center"></td>
+                        <td id = "beer_2" class="align-center"></td>
+                        <td id = "beer-style_2" class="align-center"></td>
+                        <td id = "ibu_2" class="align-center"></td>
+                        <td id = "abv_2" class="align-center"></td>
+                        <td id = "brewery_2" class="align-center"></td>
+                        <td id = "country_2" class="align-center"></td>
+                        <td id = "venue_2" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_3" class="align-center"></td>
+                        <td id = "beer_3" class="align-center"></td>
+                        <td id = "beer-style_3" class="align-center"></td>
+                        <td id = "ibu_3" class="align-center"></td>
+                        <td id = "abv_3" class="align-center"></td>
+                        <td id = "brewery_3" class="align-center"></td>
+                        <td id = "country_3" class="align-center"></td>
+                        <td id = "venue_3" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_4" class="align-center"></td>
+                        <td id = "beer_4" class="align-center"></td>
+                        <td id = "beer-style_4" class="align-center"></td>
+                        <td id = "ibu_4" class="align-center"></td>
+                        <td id = "abv_4" class="align-center"></td>
+                        <td id = "brewery_4" class="align-center"></td>
+                        <td id = "country_4" class="align-center"></td>
+                        <td id = "venue_4" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_5" class="align-center"></td>
+                        <td id = "beer_5" class="align-center"></td>
+                        <td id = "beer-style_5" class="align-center"></td>
+                        <td id = "ibu_5" class="align-center"></td>
+                        <td id = "abv_5" class="align-center"></td>
+                        <td id = "brewery_5" class="align-center"></td>
+                        <td id = "country_5" class="align-center"></td>
+                        <td id = "venue_5" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_6" class="align-center"></td>
+                        <td id = "beer_6" class="align-center"></td>
+                        <td id = "beer-style_6" class="align-center"></td>
+                        <td id = "ibu_6" class="align-center"></td>
+                        <td id = "abv_6" class="align-center"></td>
+                        <td id = "brewery_6" class="align-center"></td>
+                        <td id = "country_6" class="align-center"></td>
+                        <td id = "venue_6" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_7" class="align-center"></td>
+                        <td id = "beer_7" class="align-center"></td>
+                        <td id = "beer-style_7" class="align-center"></td>
+                        <td id = "ibu_7" class="align-center"></td>
+                        <td id = "abv_7" class="align-center"></td>
+                        <td id = "brewery_7" class="align-center"></td>
+                        <td id = "country_7" class="align-center"></td>
+                        <td id = "venue_7" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_8" class="align-center"></td>
+                        <td id = "beer_8" class="align-center"></td>
+                        <td id = "beer-style_8" class="align-center"></td>
+                        <td id = "ibu_8" class="align-center"></td>
+                        <td id = "abv_8" class="align-center"></td>
+                        <td id = "brewery_8" class="align-center"></td>
+                        <td id = "country_8" class="align-center"></td>
+                        <td id = "venue_8" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_9" class="align-center"></td>
+                        <td id = "beer_9" class="align-center"></td>
+                        <td id = "beer-style_9" class="align-center"></td>
+                        <td id = "ibu_9" class="align-center"></td>
+                        <td id = "abv_9" class="align-center"></td>
+                        <td id = "brewery_9" class="align-center"></td>
+                        <td id = "country_9" class="align-center"></td>
+                        <td id = "venue_9" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_10" class="align-center"></td>
+                        <td id = "beer_10" class="align-center"></td>
+                        <td id = "beer-style_10" class="align-center"></td>
+                        <td id = "ibu_10" class="align-center"></td>
+                        <td id = "abv_10" class="align-center"></td>
+                        <td id = "brewery_10" class="align-center"></td>
+                        <td id = "country_10" class="align-center"></td>
+                        <td id = "venue_10" class="align-center"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="module">
+            <div class="header">
+                <span>Worst rated beers</span>
+            </div>
+            <table class="friends-table">
+                <tbody>
+                    <tr>
+                        <th>Rating</th>
+                        <th>Beer</th>
+                        <th>Beer style</th>
+                        <th>IBU</th>
+                        <th>ABV</th>
+                        <th>Brewery</th>
+                        <th>Country</th>
+                        <th>Venue</th>
+                    </tr>
+                    <tr>
+                        <td id = "rating_1_worst" class="align-center"></td>
+                        <td id = "beer_1_worst" class="align-center"></td>
+                        <td id = "beer-style_1_worst" class="align-center"></td>
+                        <td id = "ibu_1_worst" class="align-center"></td>
+                        <td id = "abv_1_worst" class="align-center"></td>
+                        <td id = "brewery_1_worst" class="align-center"></td>
+                        <td id = "country_1_worst" class="align-center"></td>
+                        <td id = "venue_1_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_2_worst" class="align-center"></td>
+                        <td id = "beer_2_worst" class="align-center"></td>
+                        <td id = "beer-style_2_worst" class="align-center"></td>
+                        <td id = "ibu_2_worst" class="align-center"></td>
+                        <td id = "abv_2_worst" class="align-center"></td>
+                        <td id = "brewery_2_worst" class="align-center"></td>
+                        <td id = "country_2_worst" class="align-center"></td>
+                        <td id = "venue_2_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_3_worst" class="align-center"></td>
+                        <td id = "beer_3_worst" class="align-center"></td>
+                        <td id = "beer-style_3_worst" class="align-center"></td>
+                        <td id = "ibu_3_worst" class="align-center"></td>
+                        <td id = "abv_3_worst" class="align-center"></td>
+                        <td id = "brewery_3_worst" class="align-center"></td>
+                        <td id = "country_3_worst" class="align-center"></td>
+                        <td id = "venue_3_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_4_worst" class="align-center"></td>
+                        <td id = "beer_4_worst" class="align-center"></td>
+                        <td id = "beer-style_4_worst" class="align-center"></td>
+                        <td id = "ibu_4_worst" class="align-center"></td>
+                        <td id = "abv_4_worst" class="align-center"></td>
+                        <td id = "brewery_4_worst" class="align-center"></td>
+                        <td id = "country_4_worst" class="align-center"></td>
+                        <td id = "venue_4_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_5_worst" class="align-center"></td>
+                        <td id = "beer_5_worst" class="align-center"></td>
+                        <td id = "beer-style_5_worst" class="align-center"></td>
+                        <td id = "ibu_5_worst" class="align-center"></td>
+                        <td id = "abv_5_worst" class="align-center"></td>
+                        <td id = "brewery_5_worst" class="align-center"></td>
+                        <td id = "country_5_worst" class="align-center"></td>
+                        <td id = "venue_5_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_6_worst" class="align-center"></td>
+                        <td id = "beer_6_worst" class="align-center"></td>
+                        <td id = "beer-style_6_worst" class="align-center"></td>
+                        <td id = "ibu_6_worst" class="align-center"></td>
+                        <td id = "abv_6_worst" class="align-center"></td>
+                        <td id = "brewery_6_worst" class="align-center"></td>
+                        <td id = "country_6_worst" class="align-center"></td>
+                        <td id = "venue_6_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_7_worst" class="align-center"></td>
+                        <td id = "beer_7_worst" class="align-center"></td>
+                        <td id = "beer-style_7_worst" class="align-center"></td>
+                        <td id = "ibu_7_worst" class="align-center"></td>
+                        <td id = "abv_7_worst" class="align-center"></td>
+                        <td id = "brewery_7_worst" class="align-center"></td>
+                        <td id = "country_7_worst" class="align-center"></td>
+                        <td id = "venue_7_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_8_worst" class="align-center"></td>
+                        <td id = "beer_8_worst" class="align-center"></td>
+                        <td id = "beer-style_8_worst" class="align-center"></td>
+                        <td id = "ibu_8_worst" class="align-center"></td>
+                        <td id = "abv_8_worst" class="align-center"></td>
+                        <td id = "brewery_8_worst" class="align-center"></td>
+                        <td id = "country_8_worst" class="align-center"></td>
+                        <td id = "venue_8_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_9_worst" class="align-center"></td>
+                        <td id = "beer_9_worst" class="align-center"></td>
+                        <td id = "beer-style_9_worst" class="align-center"></td>
+                        <td id = "ibu_9_worst" class="align-center"></td>
+                        <td id = "abv_9_worst" class="align-center"></td>
+                        <td id = "brewery_9_worst" class="align-center"></td>
+                        <td id = "country_9_worst" class="align-center"></td>
+                        <td id = "venue_9_worst" class="align-center"></td>
+                    </tr>
+                    <tr>
+                        <td id = "rating_10_worst" class="align-center"></td>
+                        <td id = "beer_10_worst" class="align-center"></td>
+                        <td id = "beer-style_10_worst" class="align-center"></td>
+                        <td id = "ibu_10_worst" class="align-center"></td>
+                        <td id = "abv_10_worst" class="align-center"></td>
+                        <td id = "brewery_10_worst" class="align-center"></td>
+                        <td id = "country_10_worst" class="align-center"></td>
+                        <td id = "venue_10_worst" class="align-center"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="module">
+            <div class="header">
+                    <span>Venues</span>
+            </div>
+            <div class = "align-tables">
+                <table class="friends-table">
+                    <tbody>
+                        <tr>
+                            <th class = "table-headline" colspan="3" class="table-header">Number of check-ins</th>
+                        </tr>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Venue</th>
+                            <th>Total beers</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</d>
+                            <td id = "venue1" class="align-center"></td>
+                            <td id = "total-beers1" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</d>
+                            <td id = "venue2" class="align-center"></td>
+                            <td id = "total-beers2" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</d>
+                            <td id = "venue3" class="align-center"></td>
+                            <td id = "total-beers3" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</d>
+                            <td id = "venue4" class="align-center"></td>
+                            <td id = "total-beers4" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</d>
+                            <td id = "venue5" class="align-center"></td>
+                            <td id = "total-beers5" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</d>
+                            <td id = "venue6" class="align-center"></td>
+                            <td id = "total-beers6" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</d>
+                            <td id = "venue7" class="align-center"></td>
+                            <td id = "total-beers7" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</d>
+                            <td id = "venue8" class="align-center"></td>
+                            <td id = "total-beers8" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</d>
+                            <td id = "venue9" class="align-center"></td>
+                            <td id = "total-beers9" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</d>
+                            <td id = "venue10" class="align-center"></td>
+                            <td id = "total-beers10" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Venue</th>
+                            <th>Average rating</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</d>
+                            <td id = "venue1A" class="align-center"></td>
+                            <td id = "avg1" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</d>
+                            <td id = "venue2A" class="align-center"></td>
+                            <td id = "avg2" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</d>
+                            <td id = "venue3A" class="align-center"></td>
+                            <td id = "avg3" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</d>
+                            <td id = "venue4A" class="align-center"></td>
+                            <td id = "avg4" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</d>
+                            <td id = "venue5A" class="align-center"></td>
+                            <td id = "avg5" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</d>
+                            <td id = "venue6A" class="align-center"></td>
+                            <td id = "avg6" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</d>
+                            <td id = "venue7A" class="align-center"></td>
+                            <td id = "avg7" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</d>
+                            <td id = "venue8A" class="align-center"></td>
+                            <td id = "avg8" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</d>
+                            <td id = "venue9A" class="align-center"></td>
+                            <td id = "avg9" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</d>
+                            <td id = "venue10A" class="align-center"></td>
+                            <td id = "avg10" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="module">
+            <div class="header">
+                <span>Breweries</span>
+            </div>
+            <div class = "align-tables">
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Number of check-ins</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Brewery</th>
+                            <th>Total beers</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</d>
+                            <td id = "brewery1" class="align-center"></td>
+                            <td id = "total-beers1A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</d>
+                            <td id = "brewery2" class="align-center"></td>
+                            <td id = "total-beers2A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</d>
+                            <td id = "brewery3" class="align-center"></td>
+                            <td id = "total-beers3A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</d>
+                            <td id = "brewery4" class="align-center"></td>
+                            <td id = "total-beers4A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</d>
+                            <td id = "brewery5" class="align-center"></td>
+                            <td id = "total-beers5A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</d>
+                            <td id = "brewery6" class="align-center"></td>
+                            <td id = "total-beers6A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</d>
+                            <td id = "brewery7" class="align-center"></td>
+                            <td id = "total-beers7A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</d>
+                            <td id = "brewery8" class="align-center"></td>
+                            <td id = "total-beers8A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</d>
+                            <td id = "brewery9" class="align-center"></td>
+                            <td id = "total-beers9A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</d>
+                            <td id = "brewery10" class="align-center"></td>
+                            <td id = "total-beers10A" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Brewery</th>
+                            <th>Average rating</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</d>
+                            <td id = "brewery1A" class="align-center"></td>
+                            <td id = "avg1A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</d>
+                            <td id = "brewery2A" class="align-center"></td>
+                            <td id = "avg2A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</d>
+                            <td id = "brewery3A" class="align-center"></td>
+                            <td id = "avg3A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</d>
+                            <td id = "brewery4A" class="align-center"></td>
+                            <td id = "avg4A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</d>
+                            <td id = "brewery5A" class="align-center"></td>
+                            <td id = "avg5A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</d>
+                            <td id = "brewery6A" class="align-center"></td>
+                            <td id = "avg6A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</d>
+                            <td id = "brewery7A" class="align-center"></td>
+                            <td id = "avg7A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</d>
+                            <td id = "brewery8A" class="align-center"></td>
+                            <td id = "avg8A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</d>
+                            <td id = "brewery9A" class="align-center"></td>
+                            <td id = "avg9A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</d>
+                            <td id = "brewery10A" class="align-center"></td>
+                            <td id = "avg10A" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="module">
+            <div class="header">
+                <span>Beer styles</span>
+            </div>
+            <div class = "align-tables">
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Number of check-ins</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Beer style</th>
+                            <th>Total beers</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</d>
+                            <td id = "beer-style1" class="align-center"></td>
+                            <td id = "total-beers1B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</d>
+                            <td id = "beer-style2" class="align-center"></td>
+                            <td id = "total-beers2B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</d>
+                            <td id = "beer-style3" class="align-center"></td>
+                            <td id = "total-beers3B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</d>
+                            <td id = "beer-style4" class="align-center"></td>
+                            <td id = "total-beers4B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</d>
+                            <td id = "beer-style5" class="align-center"></td>
+                            <td id = "total-beers5B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</d>
+                            <td id = "beer-style6" class="align-center"></td>
+                            <td id = "total-beers6B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</d>
+                            <td id = "beer-style7" class="align-center"></td>
+                            <td id = "total-beers7B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</d>
+                            <td id = "beer-style8" class="align-center"></td>
+                            <td id = "total-beers8B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</d>
+                            <td id = "beer-style9" class="align-center"></td>
+                            <td id = "total-beers9B" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</d>
+                            <td id = "beer-style10" class="align-center"></td>
+                            <td id = "total-beers10B" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                    <table class="friends-table">
+                        <tbody>
+                            <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Beer style</th>
+                                <th>Average rating</th>
+                            </tr>
+                            <tr>
+                                <td class="align-center">1.</d>
+                                <td id = "beer-style1A" class="align-center"></td>
+                                <td id = "avg1B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">2.</d>
+                                <td id = "beer-style2A" class="align-center"></td>
+                                <td id = "avg2B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">3.</d>
+                                <td id = "beer-style3A" class="align-center"></td>
+                                <td id = "avg3B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">4.</d>
+                                <td id = "beer-style4A" class="align-center"></td>
+                                <td id = "avg4B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">5.</d>
+                                <td id = "beer-style5A" class="align-center"></td>
+                                <td id = "avg5B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">6.</d>
+                                <td id = "beer-style6A" class="align-center"></td>
+                                <td id = "avg6B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">7.</d>
+                                <td id = "beer-style7A" class="align-center"></td>
+                                <td id = "avg7B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">8.</d>
+                                <td id = "beer-style8A" class="align-center"></td>
+                                <td id = "avg8B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">9.</d>
+                                <td id = "beer-style9A" class="align-center"></td>
+                                <td id = "avg9B" class="align-center"></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">10.</d>
+                                <td id = "beer-style10A" class="align-center"></td>
+                                <td id = "avg10B" class="align-center"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </table>
+            </div>
+        </div>
+        <div class="module">
+            <div class="header">
+                <span>Friends</span>
+            </div>
+            <div class = "align-tables">
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Number of check-ins</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Friend</th>
+                            <th>Total beers</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</d>
+                            <td id = "name1" class="align-center"></td>
+                            <td id = "total1" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</d>
+                            <td id = "name2" class="align-center"></td>
+                            <td id = "total2" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</d>
+                            <td id = "name3" class="align-center"></td>
+                            <td id = "total3" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</d>
+                            <td id = "name4" class="align-center"></td>
+                            <td id = "total4" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</d>
+                            <td id = "name5" class="align-center"></td>
+                            <td id = "total5" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</d>
+                            <td id = "name6" class="align-center"></td>
+                            <td id = "total6" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</d>
+                            <td id = "name7" class="align-center"></td>
+                            <td id = "total7" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</d>
+                            <td id = "name8" class="align-center"></td>
+                            <td id = "total8" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</d>
+                            <td id = "name9" class="align-center"></td>
+                            <td id = "total9" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</d>
+                            <td id = "name10" class="align-center"></td>
+                            <td id = "total10" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">11.</d>
+                            <td id = "name11" class="align-center"></td>
+                            <td id = "total11" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">12.</d>
+                            <td id = "name12" class="align-center"></td>
+                            <td id = "total12" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">13.</d>
+                            <td id = "name13" class="align-center"></td>
+                            <td id = "total13" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">14.</d>
+                            <td id = "name14" class="align-center"></td>
+                            <td id = "total14" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">15.</d>
+                            <td id = "name15" class="align-center"></td>
+                            <td id = "total15" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">16.</d>
+                            <td id = "name16" class="align-center"></td>
+                            <td id = "total16" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Average beer rating</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Friend</th>
+                            <th>Average rating</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</d>
+                            <td id = "name1A" class="align-center"></td>
+                            <td id = "avg1C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</d>
+                            <td id = "name2A" class="align-center"></td>
+                            <td id = "avg2C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</d>
+                            <td id = "name3A" class="align-center"></td>
+                            <td id = "avg3C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</d>
+                            <td id = "name4A" class="align-center"></td>
+                            <td id = "avg4C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</d>
+                            <td id = "name5A" class="align-center"></td>
+                            <td id = "avg5C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</d>
+                            <td id = "name6A" class="align-center"></td>
+                            <td id = "avg6C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</d>
+                            <td id = "name7A" class="align-center"></td>
+                            <td id = "avg7C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</d>
+                            <td id = "name8A" class="align-center"></td>
+                            <td id = "avg8C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</d>
+                            <td id = "name9A" class="align-center"></td>
+                            <td id = "avg9C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</d>
+                            <td id = "name10A" class="align-center"></td>
+                            <td id = "avg10C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">11.</d>
+                            <td id = "name11A" class="align-center"></td>
+                            <td id = "avg11C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">12.</d>
+                            <td id = "name12A" class="align-center"></td>
+                            <td id = "avg12C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">13.</d>
+                            <td id = "name13A" class="align-center"></td>
+                            <td id = "avg13C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">14.</d>
+                            <td id = "name14A" class="align-center"></td>
+                            <td id = "avg14C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">15.</d>
+                            <td id = "name15A" class="align-center"></td>
+                            <td id = "avg15C" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">16.</d>
+                            <td id = "name16A" class="align-center"></td>
+                            <td id = "avg16C" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+<script>
+    var beerStyleRating = {
+        "lager_0,25": 0, "lager_0,50": 0, "lager_0,75": 0, "lager_1,00": 0,
+        "lager_1,25": 0, "lager_1,50": 0, "lager_1,75": 0, "lager_2,00": 0,
+        "lager_2,25": 0, "lager_2,50": 0, "lager_2,75": 0, "lager_3,00": 0,
+        "lager_3,25": 0, "lager_3,50": 0, "lager_3,75": 0, "lager_4,00": 0,
+        "lager_4,25": 0, "lager_4,50": 0, "lager_4,75": 0, "lager_5,00": 0,
+        "ale_0,25": 0, "ale_0,50": 0, "ale_0,75": 0, "ale_1,00": 0,
+        "ale_1,25": 0, "ale_1,50": 0, "ale_1,75": 0, "ale_2,00": 0,
+        "ale_2,25": 0, "ale_2,50": 0, "ale_2,75": 0, "ale_3,00": 0,
+        "ale_3,25": 0, "ale_3,50": 0, "ale_3,75": 0, "ale_4,00": 0,
+        "ale_4,25": 0, "ale_4,50": 0, "ale_4,75": 0, "ale_5,00": 0,
+        "ipa_0,25": 0, "ipa_0,50": 0, "ipa_0,75": 0, "ipa_1,00": 0,
+        "ipa_1,25": 0, "ipa_1,50": 0, "ipa_1,75": 0, "ipa_2,00": 0,
+        "ipa_2,25": 0, "ipa_2,50": 0, "ipa_2,75": 0, "ipa_3,00": 0,
+        "ipa_3,25": 0, "ipa_3,50": 0, "ipa_3,75": 0, "ipa_4,00": 0,
+        "ipa_4,25": 0, "ipa_4,50": 0, "ipa_4,75": 0, "ipa_5,00": 0,
+        "sour_0,25": 0, "sour_0,50": 0, "sour_0,75": 0, "sour_1,00": 0,
+        "sour_1,25": 0, "sour_1,50": 0, "sour_1,75": 0, "sour_2,00": 0,
+        "sour_2,25": 0, "sour_2,50": 0, "sour_2,75": 0, "sour_3,00": 0,
+        "sour_3,25": 0, "sour_3,50": 0, "sour_3,75": 0, "sour_4,00": 0,
+        "sour_4,25": 0, "sour_4,50": 0, "sour_4,75": 0, "sour_5,00": 0,
+        "stout_0,25": 0, "stout_0,50": 0, "stout_0,75": 0, "stout_1,00": 0,
+        "stout_1,25": 0, "stout_1,50": 0, "stout_1,75": 0, "stout_2,00": 0,
+        "stout_2,25": 0, "stout_2,50": 0, "stout_2,75": 0, "stout_3,00": 0,
+        "stout_3,25": 0, "stout_3,50": 0, "stout_3,75": 0, "stout_4,00": 0,
+        "stout_4,25": 0, "stout_4,50": 0, "stout_4,75": 0, "stout_5,00": 0,
+        "other_0,25": 0, "other_0,50": 0, "other_0,75": 0, "other_1,00": 0,
+        "other_1,25": 0, "other_1,50": 0, "other_1,75": 0, "other_2,00": 0,
+        "other_2,25": 0, "other_2,50": 0, "other_2,75": 0, "other_3,00": 0,
+        "other_3,25": 0, "other_3,50": 0, "other_3,75": 0, "other_4,00": 0,
+        "other_4,25": 0, "other_4,50": 0, "other_4,75": 0, "other_5,00": 0,
+        "lager": 0, "ale": 0, "ipa": 0, "sour": 0, "stout": 0, "other" : 0,
+        "0,25": 0, "0,50": 0, "0,75": 0, "1,00": 0,
+        "1,25": 0, "1,50": 0, "1,75": 0, "2,00": 0, 
+        "2,25": 0, "2,50": 0, "2,75": 0, "3,00": 0, 
+        "3,25": 0, "3,50": 0, "3,75": 0, "4,00": 0,
+        "4,25": 0, "4,50": 0, "4,75": 0, "5,00": 0, 
+    };
+
+    function getColorAtPos(value, min, max){
+        const normalizedValue = (value - min) / (max - min);
+        color1 = [200, 50, 0]
+        color2 = [20, 200, 0]
+        color1Multiplier = normalizedValue;
+        color2Multiplier = 1-normalizedValue;
+        finalRGB = [];
+        for(i =0;i<=2;i++){ 
+            finalRGB.push(parseInt((color1[i] * color1Multiplier) + (color2[i] * color2Multiplier)))
+        }
+        return finalRGB
+    }
+
+    for (let i = 0; i < data.length; i++){
+        let beer = data[i];
+        let beerStyle = beer.Beer_style;
+
+        if (beerStyle.includes("Lager") || beerStyle.includes("Pilsner")){
+            beerStyle = "lager";
+        } else if (beerStyle.includes("Ale")){
+            beerStyle = "ale";
+        } else if (beerStyle.includes("IPA")){
+            beerStyle = "ipa";
+        } else if (beerStyle.includes("Sour")){
+            beerStyle = "sour";
+        } else if (beerStyle.includes("Stout") || beerStyle.includes("Porter")){
+            beerStyle = "stout";
+        } else {
+            beerStyle = "other";
+        }
+
+        let rating = beer.Rating;
+        
+        let key = beerStyle + "_" + rating
+
+        beerStyleRating[key] += 1;
+        beerStyleRating[beerStyle] += 1;
+        beerStyleRating[rating] += 1;
+    }
+
+    const filteredBSR = Object.keys(beerStyleRating).filter(key => key.includes("_"));
+    const minBSR = Math.min(...filteredBSR.map(key => beerStyleRating[key]));
+    const maxBSR = Math.max(...filteredBSR.map(key => beerStyleRating[key]));
+
+    for (let key in beerStyleRating) {
+        var element = document.getElementById(key);
+        element.innerText = beerStyleRating[key];
+        if (key.includes("_")){
+            element.style.color = "#FFFFFF";
+            if (beerStyleRating[key] === 0){
+                var rgbColor = "grey";
+            } else {
+                let rgbList = getColorAtPos(beerStyleRating[key], minBSR, maxBSR);
+                var rgbColor = `rgb(${rgbList[0]}, ${rgbList[1]}, ${rgbList[2]})`;
+            }
+            element.style.backgroundColor = rgbColor;
+        }  
+    }
+
+    var checkInDates = {
+        "Jan_1": 0, "Jan_2": 0, "Jan_3": 0, "Jan_4": 0, "Jan_5": 0, "Jan_6": 0, "Jan_7": 0, "Jan_8": 0, "Jan_9": 0, "Jan_10": 0,
+        "Jan_11": 0, "Jan_12": 0, "Jan_13": 0, "Jan_14": 0, "Jan_15": 0, "Jan_16": 0, "Jan_17": 0, "Jan_18": 0, "Jan_19": 0, "Jan_20": 0,
+        "Jan_21": 0, "Jan_22": 0, "Jan_23": 0, "Jan_24": 0, "Jan_25": 0, "Jan_26": 0, "Jan_27": 0, "Jan_28": 0, "Jan_29": 0, "Jan_30": 0, "Jan_31": 0,
+        "Feb_1": 0, "Feb_2": 0, "Feb_3": 0, "Feb_4": 0, "Feb_5": 0, "Feb_6": 0, "Feb_7": 0, "Feb_8": 0, "Feb_9": 0, "Feb_10": 0,
+        "Feb_11": 0, "Feb_12": 0, "Feb_13": 0, "Feb_14": 0, "Feb_15": 0, "Feb_16": 0, "Feb_17": 0, "Feb_18": 0, "Feb_19": 0, "Feb_20": 0,
+        "Feb_21": 0, "Feb_22": 0, "Feb_23": 0, "Feb_24": 0, "Feb_25": 0, "Feb_26": 0, "Feb_27": 0, "Feb_28": 0, "Feb_29": 0,
+        "Mar_1": 0, "Mar_2": 0, "Mar_3": 0, "Mar_4": 0, "Mar_5": 0, "Mar_6": 0, "Mar_7": 0, "Mar_8": 0, "Mar_9": 0, "Mar_10": 0,
+        "Mar_11": 0, "Mar_12": 0, "Mar_13": 0, "Mar_14": 0, "Mar_15": 0, "Mar_16": 0, "Mar_17": 0, "Mar_18": 0, "Mar_19": 0, "Mar_20": 0,
+        "Mar_21": 0, "Mar_22": 0, "Mar_23": 0, "Mar_24": 0, "Mar_25": 0, "Mar_26": 0, "Mar_27": 0, "Mar_28": 0, "Mar_29": 0, "Mar_30": 0, "Mar_31": 0,
+        "Apr_1": 0, "Apr_2": 0, "Apr_3": 0, "Apr_4": 0, "Apr_5": 0, "Apr_6": 0, "Apr_7": 0, "Apr_8": 0, "Apr_9": 0, "Apr_10": 0,
+        "Apr_11": 0, "Apr_12": 0, "Apr_13": 0, "Apr_14": 0, "Apr_15": 0, "Apr_16": 0, "Apr_17": 0, "Apr_18": 0, "Apr_19": 0, "Apr_20": 0,
+        "Apr_21": 0, "Apr_22": 0, "Apr_23": 0, "Apr_24": 0, "Apr_25": 0, "Apr_26": 0, "Apr_27": 0, "Apr_28": 0, "Apr_29": 0, "Apr_30": 0,
+        "May_1": 0, "May_2": 0, "May_3": 0, "May_4": 0, "May_5": 0, "May_6": 0, "May_7": 0, "May_8": 0, "May_9": 0, "May_10": 0,
+        "May_11": 0, "May_12": 0, "May_13": 0, "May_14": 0, "May_15": 0, "May_16": 0, "May_17": 0, "May_18": 0, "May_19": 0, "May_20": 0,
+        "May_21": 0, "May_22": 0, "May_23": 0, "May_24": 0, "May_25": 0, "May_26": 0, "May_27": 0, "May_28": 0, "May_29": 0, "May_30": 0, "May_31": 0,
+        "Jun_1": 0, "Jun_2": 0, "Jun_3": 0, "Jun_4": 0, "Jun_5": 0, "Jun_6": 0, "Jun_7": 0, "Jun_8": 0, "Jun_9": 0, "Jun_10": 0,
+        "Jun_11": 0, "Jun_12": 0, "Jun_13": 0, "Jun_14": 0, "Jun_15": 0, "Jun_16": 0, "Jun_17": 0, "Jun_18": 0, "Jun_19": 0, "Jun_20": 0,
+        "Jun_21": 0, "Jun_22": 0, "Jun_23": 0, "Jun_24": 0, "Jun_25": 0, "Jun_26": 0, "Jun_27": 0, "Jun_28": 0, "Jun_29": 0, "Jun_30": 0,
+        "Jul_1": 0, "Jul_2": 0, "Jul_3": 0, "Jul_4": 0, "Jul_5": 0, "Jul_6": 0, "Jul_7": 0, "Jul_8": 0, "Jul_9": 0, "Jul_10": 0,
+        "Jul_11": 0, "Jul_12": 0, "Jul_13": 0, "Jul_14": 0, "Jul_15": 0, "Jul_16": 0, "Jul_17": 0, "Jul_18": 0, "Jul_19": 0, "Jul_20": 0,
+        "Jul_21": 0, "Jul_22": 0, "Jul_23": 0, "Jul_24": 0, "Jul_25": 0, "Jul_26": 0, "Jul_27": 0, "Jul_28": 0, "Jul_29": 0, "Jul_30": 0, "Jul_31": 0,
+        "Aug_1": 0, "Aug_2": 0, "Aug_3": 0, "Aug_4": 0, "Aug_5": 0, "Aug_6": 0, "Aug_7": 0, "Aug_8": 0, "Aug_9": 0, "Aug_10": 0,
+        "Aug_11": 0, "Aug_12": 0, "Aug_13": 0, "Aug_14": 0, "Aug_15": 0, "Aug_16": 0, "Aug_17": 0, "Aug_18": 0, "Aug_19": 0, "Aug_20": 0,
+        "Aug_21": 0, "Aug_22": 0, "Aug_23": 0, "Aug_24": 0, "Aug_25": 0, "Aug_26": 0, "Aug_27": 0, "Aug_28": 0, "Aug_29": 0, "Aug_30": 0, "Aug_31": 0,
+        "Sep_1": 0, "Sep_2": 0, "Sep_3": 0, "Sep_4": 0, "Sep_5": 0, "Sep_6": 0, "Sep_7": 0, "Sep_8": 0, "Sep_9": 0, "Sep_10": 0,
+        "Sep_11": 0, "Sep_12": 0, "Sep_13": 0, "Sep_14": 0, "Sep_15": 0, "Sep_16": 0, "Sep_17": 0, "Sep_18": 0, "Sep_19": 0, "Sep_20": 0,
+        "Sep_21": 0, "Sep_22": 0, "Sep_23": 0, "Sep_24": 0, "Sep_25": 0, "Sep_26": 0, "Sep_27": 0, "Sep_28": 0, "Sep_29": 0, "Sep_30": 0,
+        "Oct_1": 0, "Oct_2": 0, "Oct_3": 0, "Oct_4": 0, "Oct_5": 0, "Oct_6": 0, "Oct_7": 0, "Oct_8": 0, "Oct_9": 0, "Oct_10": 0,
+        "Oct_11": 0, "Oct_12": 0, "Oct_13": 0, "Oct_14": 0, "Oct_15": 0, "Oct_16": 0, "Oct_17": 0, "Oct_18": 0, "Oct_19": 0, "Oct_20": 0,
+        "Oct_21": 0, "Oct_22": 0, "Oct_23": 0, "Oct_24": 0, "Oct_25": 0, "Oct_26": 0, "Oct_27": 0, "Oct_28": 0, "Oct_29": 0, "Oct_30": 0, "Oct_31": 0,
+        "Nov_1": 0, "Nov_2": 0, "Nov_3": 0, "Nov_4": 0, "Nov_5": 0, "Nov_6": 0, "Nov_7": 0, "Nov_8": 0, "Nov_9": 0, "Nov_10": 0,
+        "Nov_11": 0, "Nov_12": 0, "Nov_13": 0, "Nov_14": 0, "Nov_15": 0, "Nov_16": 0, "Nov_17": 0, "Nov_18": 0, "Nov_19": 0, "Nov_20": 0,
+        "Nov_21": 0, "Nov_22": 0, "Nov_23": 0, "Nov_24": 0, "Nov_25": 0, "Nov_26": 0, "Nov_27": 0, "Nov_28": 0, "Nov_29": 0, "Nov_30": 0,
+        "Dec_1": 0, "Dec_2": 0, "Dec_3": 0, "Dec_4": 0, "Dec_5": 0, "Dec_6": 0, "Dec_7": 0, "Dec_8": 0, "Dec_9": 0, "Dec_10": 0,
+        "Dec_11": 0, "Dec_12": 0, "Dec_13": 0, "Dec_14": 0, "Dec_15": 0, "Dec_16": 0, "Dec_17": 0, "Dec_18": 0, "Dec_19": 0, "Dec_20": 0,
+        "Dec_21": 0, "Dec_22": 0, "Dec_23": 0, "Dec_24": 0, "Dec_25": 0, "Dec_26": 0, "Dec_27": 0, "Dec_28": 0, "Dec_29": 0, "Dec_30": 0, "Dec_31": 0,
+        "Jan": 0, "Feb": 0,"Mar": 0, "Apr": 0,"May": 0, "Jun": 0,"Jul": 0, "Aug": 0,"Sep": 0, "Oct": 0,"Nov": 0, "Dec": 0,
+        "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0,
+        "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0, "20": 0,
+        "21": 0, "22": 0, "23": 0, "24": 0, "25": 0, "26": 0, "27": 0, "28": 0, "29": 0, "30": 0, "31": 0      
+    }
+
+    for (let i = 0; i < data.length; i++){
+        let beer = data[i];
+        let date = beer.Date;
+        let dateList = date.split(".");
+        let day = dateList[0];
+        if (day[0] === "0"){
+            day = day[1];
+        }
+        let month = dateList[1];
+        if (month == "01"){
+            month = "Jan";
+        } else if (month == "02"){
+            month = "Feb";
+        } else if (month == "03"){
+            month = "Mar";
+        } else if (month == "04"){
+            month = "Apr";
+        } else if (month == "05"){
+            month = "May";
+        } else if (month == "06"){
+            month = "Jun";
+        } else if (month == "07"){
+            month = "Jul";
+        } else if (month == "08"){
+            month = "Aug";
+        } else if (month == "09"){
+            month = "Sep";
+        } else if (month == "10"){
+            month = "Oct";
+        } else if (month == "11"){
+            month = "Nov";
+        } else if (month == "12"){
+            month = "Dec";
+        }
+
+        checkInDates[month + "_" + day] += 1;
+        checkInDates[month] += 1;
+        checkInDates[day] += 1;
+    }
+
+    const filteredChID = Object.keys(beerStyleRating).filter(key => key.includes("_"));
+    const minChID = Math.min(...filteredChID.map(key => beerStyleRating[key]));
+    const maxChID = Math.max(...filteredChID.map(key => beerStyleRating[key]));
+
+    for (let key in checkInDates) {
+        var element = document.getElementById(key);
+        element.innerText = checkInDates[key];
+        if (key.includes("_")){
+            element.style.color = "#FFFFFF";
+            if (checkInDates[key] === 0){
+                var rgbColor = "grey";
+            } else {
+                let rgbList = getColorAtPos(checkInDates[key], minChID, maxChID);
+                var rgbColor = `rgb(${rgbList[0]}, ${rgbList[1]}, ${rgbList[2]})`;
+            }
+            element.style.backgroundColor = rgbColor;
+        }  
+    }
+
+    var windRoseDiagram = {
+        "lager_N": 0, "ale_N": 0, "ipa_N": 0, "sour_N": 0, "stout_N": 0, "other_N": 0,
+        "lager_NNE": 0, "ale_NNE": 0, "ipa_NNE": 0, "sour_NNE": 0, "stout_NNE": 0, "other_NNE": 0,
+        "lager_NE": 0, "ale_NE": 0, "ipa_NE": 0, "sour_NE": 0, "stout_NE": 0, "other_NE": 0,
+        "lager_ENE": 0, "ale_ENE": 0, "ipa_ENE": 0, "sour_ENE": 0, "stout_ENE": 0, "other_ENE": 0,
+        "lager_E": 0, "ale_E": 0, "ipa_E": 0, "sour_E": 0, "stout_E": 0, "other_E": 0,
+        "lager_ESE": 0, "ale_ESE": 0, "ipa_ESE": 0, "sour_ESE": 0, "stout_ESE": 0, "other_ESE": 0,
+        "lager_SE": 0, "ale_SE": 0, "ipa_SE": 0, "sour_SE": 0, "stout_SE": 0, "other_SE": 0,
+        "lager_SSE": 0, "ale_SSE": 0, "ipa_SSE": 0, "sour_SSE": 0, "stout_SSE": 0, "other_SSE": 0,
+        "lager_S": 0, "ale_S": 0, "ipa_S": 0, "sour_S": 0, "stout_S": 0, "other_S": 0,
+        "lager_SSW": 0, "ale_SSW": 0, "ipa_SSW": 0, "sour_SSW": 0, "stout_SSW": 0, "other_SSW": 0,
+        "lager_SW": 0, "ale_SW": 0, "ipa_SW": 0, "sour_SW": 0, "stout_SW": 0, "other_SW": 0,
+        "lager_WSW": 0, "ale_WSW": 0, "ipa_WSW": 0, "sour_WSW": 0, "stout_WSW": 0, "other_WSW": 0,
+        "lager_W": 0, "ale_W": 0, "ipa_W": 0, "sour_W": 0, "stout_W": 0, "other_W": 0,
+        "lager_WNW": 0, "ale_WNW": 0, "ipa_WNW": 0, "sour_WNW": 0, "stout_WNW": 0, "other_WNW": 0,
+        "lager_NW": 0, "ale_NW": 0, "ipa_NW": 0, "sour_NW": 0, "stout_NW": 0, "other_NW": 0,
+        "lager_NNW": 0, "ale_NNW": 0, "ipa_NNW": 0, "sour_NNW": 0, "stout_NNW": 0, "other_NNW": 0
+    }
+
+    const midPoint = [50.0944850, 14.4806282];
+
+    function calculateAzimuth(lat1, lon1, lat2, lon2) {
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        
+        const y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
+        const x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) - 
+                Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
+        
+        let azimuth = Math.atan2(y, x) * 180 / Math.PI;
+        azimuth = (azimuth + 360) % 360;
+
+        if (azimuth >= 11.25 && azimuth < 33.75){
+            return "NNE";
+        } else if (azimuth >= 33.75 && azimuth < 56.25){
+            return "NE";
+        } else if (azimuth >= 56.25 && azimuth < 78.75){
+            return "ENE";
+        } else if (azimuth >= 78.25 && azimuth < 101.25){
+            return "E";
+        } else if (azimuth >= 101.25 && azimuth < 123.75){
+            return "ESE";
+        } else if (azimuth >= 123.75 && azimuth < 146.25){
+            return "SE";
+        } else if (azimuth >= 146.25 && azimuth < 168.75){
+            return "SSE";
+        } else if (azimuth >= 168.75 && azimuth < 191.25){
+            return "S";
+        } else if (azimuth >= 191.25 && azimuth < 213.75){
+            return "SSW";
+        } else if (azimuth >= 213.75 && azimuth < 236.25){
+            return "SW";
+        } else if (azimuth >= 236.25 && azimuth < 258.75){
+            return "WSW";
+        } else if (azimuth >= 258.75 && azimuth < 281.25){
+            return "W";
+        } else if (azimuth >= 281.25 && azimuth < 303.75){
+            return "WNW";
+        } else if (azimuth >= 303.75 && azimuth < 326.25){
+            return "NW";
+        } else if (azimuth >= 326.25 && azimuth < 348.75){
+            return "NNW";
+        } else {
+            return "N"
+        }
+    }
+
+    var beerCount = 0;
+    for (let i = 0; i < data.length; i++){
+        let beer = data[i];
+        let beerStyle = beer.Beer_style;
+        if (beerStyle.includes("Lager") || beerStyle.includes("Pilsner")){
+            beerStyle = "lager";
+        } else if (beerStyle.includes("Ale")){
+            beerStyle = "ale";
+        } else if (beerStyle.includes("IPA")){
+            beerStyle = "ipa";
+        } else if (beerStyle.includes("Sour")){
+            beerStyle = "sour";
+        } else if (beerStyle.includes("Stout") || beerStyle.includes("Porter")){
+            beerStyle = "stout";
+        } else {
+            beerStyle = "other";
+        }
+
+        if (beer.Venue_location !== null){
+            beerCount += 1;
+            let venueLocation = beer.Venue_location.split(", ");
+            let lat = venueLocation[0];
+            let lon = venueLocation[1];
+            let azimuth = calculateAzimuth(midPoint[0], midPoint[1], lat, lon);
+            let key = beerStyle + "_" + azimuth;
+            windRoseDiagram[key] += 1;
+        } 
+    }
+
+    for (let key in windRoseDiagram) {
+        var element = document.getElementById(key);
+        element.innerText = (windRoseDiagram[key]/beerCount*100).toFixed(2);;
+    }
+
+    for (var i = 0; i < data.length; i++) {
+        // Check if the "Rating" key exists in the current dictionary
+        if (data[i].hasOwnProperty("Rating")) {
+            // Replace commas in the "Rating" value
+            data[i].Rating = parseFloat(data[i].Rating.replace(/,/g, '.'));
+        }
+    }
+
+    data.sort(function(a, b) {
+        return b.Rating - a.Rating;
+    });
+
+    // Output the sorted list of dictionaries
+    var topTen = data.slice(0, 10);
+
+    for (var i = 0; i < topTen.length; i++) {
+        // Access each dictionary
+        let beerDict = topTen[i];
+        let element = document.getElementById("rating_" + String(i+1));
+        element.innerText = String(beerDict.Rating).replace(".", ",");
+        element = document.getElementById("beer_" + String(i+1));
+        element.innerText = beerDict.Beer;
+        element = document.getElementById("beer-style_" + String(i+1));
+        element.innerText = beerDict.Beer_style;
+        element = document.getElementById("ibu_" + String(i+1));
+        if (beerDict.IBU === null){
+            element.innerText = "-";
+        } else {
+            element.innerText = beerDict.IBU;
+        }
+        element = document.getElementById("abv_" + String(i+1));
+        if (beerDict.ABV === null){
+            element.innerText = "-";
+        } else {
+            element.innerText = beerDict.ABV;
+        }
+        element = document.getElementById("brewery_" + String(i+1));
+        element.innerText = beerDict.Brewery;
+        element = document.getElementById("country_" + String(i+1));
+        element.innerText = beerDict.Brewery_country;
+        element = document.getElementById("venue_" + String(i+1));
+        element.innerText = beerDict.Venue;
+    }
+
+    data.sort(function(a, b) {
+        return a.Rating - b.Rating;
+    });
+    topTen = data.slice(0, 10);
+
+    for (var i = 0; i < topTen.length; i++) {
+        // Access each dictionary
+        let beerDict = topTen[i];
+        let element = document.getElementById("rating_" + String(i+1) + "_worst");
+        element.innerText = String(beerDict.Rating).replace(".", ",");
+        element = document.getElementById("beer_" + String(i+1) + "_worst");
+        element.innerText = beerDict.Beer;
+        element = document.getElementById("beer-style_" + String(i+1) + "_worst");
+        element.innerText = beerDict.Beer_style;
+        element = document.getElementById("ibu_" + String(i+1) + "_worst");
+        if (beerDict.IBU === null){
+            element.innerText = "-";
+        } else {
+            element.innerText = beerDict.IBU;
+        }
+        element = document.getElementById("abv_" + String(i+1) + "_worst");
+        if (beerDict.ABV === null){
+            element.innerText = "-";
+        } else {
+            element.innerText = beerDict.ABV;
+        }
+        element = document.getElementById("brewery_" + String(i+1) + "_worst");
+        element.innerText = beerDict.Brewery;
+        element = document.getElementById("country_" + String(i+1) + "_worst");
+        element.innerText = beerDict.Brewery_country;
+        element = document.getElementById("venue_" + String(i+1) + "_worst");
+        element.innerText = beerDict.Venue;
+    }
+
+    var friendsRating = {"AM": [], "ES": [], "FZ": [], "JT": [], "JŽ": [], "LP": [], "ME": [], "MJ": [], "MK": [], "MS": [], "PL": [], "TB": [], "TH": [], "TS": [], "TV": [], "WS": []}
+    var friendNames = {"AM": "Anna Mlíková", "ES": "Eliška Sieglová", "FZ": "Filip Zadražil", "JT": "Jan Tarabec", "JŽ": "Jana Žemličková", "LP": "Luboš Petržilka",
+    "ME": "Malcolm Edwards", "MJ": "Miroslav Janeček", "MK": "Michal Knížek", "MS": "Matyáš Svítok", "PL": "Petr Lhota", "TB": "Tomáš Borolič",
+    "TH": "Terezie Hofmanová", "TS": "Tereza Svobodová", "TV": "Tereza Vodičková", "WS": "Wenhan Sun"};
+
+    for (var i = 0; i < data.length; i++) {
+        // Access each dictionary
+        var rating = data[i].Rating;
+        var friends = data[i].Friends;
+        for (var j = 0; j < friends.length; j++){
+            let friendAbr = friends[j];
+            friendsRating[friendAbr].push(rating)
+        }
+    }
+
+    var friendsAvgRating = {};
+    for (let key in friendsRating) {
+        let ratingList = friendsRating[key];
+        let ratingSum = 0;
+        let ratingLen = ratingList.length;
+        for (var i = 0; i < ratingList.length; i++) {
+            ratingSum += ratingList[i]
+        }
+        let ratingAvg = ratingSum/ratingLen;
+        friendsAvgRating[key] = {"avg": ratingAvg, "count": ratingLen}
+    }
+
+    let itemsArray = Object.entries(friendsAvgRating);
+
+    itemsArray.sort(function (a, b) {
+        return b[1].avg - a[1].avg; // Descending order, change the order if needed
+    });
+
+    let friendsByRating = Object.fromEntries(itemsArray);
+    var counter = 1;
+    for (let key in friendsByRating) {
+        let avg = friendsByRating[key]["avg"].toFixed(2);
+        let name = friendNames[key];
+        element = document.getElementById("name" + String(counter) + "A");
+        element.innerText = name;
+        element = document.getElementById("avg" + String(counter) + "C");
+        element.innerText = String(avg).replace(".", ",");
+        counter += 1;
+    }
+
+    
+    itemsArray.sort(function (a, b) {
+        return b[1].count - a[1].count; // Descending order, change the order if needed
+    });
+
+    let friendsByCount = Object.fromEntries(itemsArray);
+    counter = 1;
+    for (let key in friendsByCount) {
+        let count = friendsByCount[key]["count"]
+        let name = friendNames[key];
+        element = document.getElementById("name" + String(counter));
+        element.innerText = name;
+        element = document.getElementById("total" + String(counter));
+        element.innerText = count;
+        counter += 1;
+    }
+
+    /*------------------------------------------------------------------------------------------------------------------------------------*/
+
+    var venues = {};
+    for (var i = 0; i < data.length; i++) {
+        // Access each dictionary
+        var venue = data[i].Venue;
+        var rating = data[i].Rating;
+        if (venues.hasOwnProperty(venue)){
+            venues[venue].push(rating);
+        } else {
+            venues[venue] = [rating];
+        }
+    }
+
+    var venueAvgRating = {};
+    for (let key in venues) {
+        ratingList = venues[key];
+        ratingSum = 0;
+        ratingLen = ratingList.length;
+        if (ratingLen >= 5){
+            for (var i = 0; i < ratingList.length; i++) {
+                ratingSum += ratingList[i]
+            }
+            ratingAvg = ratingSum/ratingLen;
+            venueAvgRating[key] = {"avg": ratingAvg, "count": ratingLen}
+        }  
+    }
+
+    itemsArray = Object.entries(venueAvgRating);
+
+    itemsArray.sort(function (a, b) {
+        return b[1].avg - a[1].avg; // Descending order, change the order if needed
+    });
+
+    let venuesByRating = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in venuesByRating) {
+        avg = venuesByRating[key]["avg"].toFixed(2);
+        element = document.getElementById("venue" + String(counter) + "A");
+        element.innerText = key;
+        element = document.getElementById("avg" + String(counter));
+        element.innerText = String(avg).replace(".", ",");
+        counter += 1;
+    }
+
+    itemsArray.sort(function (a, b) {
+        return b[1].count - a[1].count; // Descending order, change the order if needed
+    });
+
+    let venuesByCount = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in venuesByCount) {
+        count = venuesByCount[key]["count"]
+        element = document.getElementById("venue" + String(counter));
+        element.innerText = key;
+        element = document.getElementById("total-beers" + String(counter));
+        element.innerText = count;
+        counter += 1;
+    }
+
+    /*------------------------------------------------------------------------------------------------------------------------------------*/
+    var breweries = {};
+    for (var i = 0; i < data.length; i++) {
+        // Access each dictionary
+        var brewery = data[i].Brewery;
+        var rating = data[i].Rating;
+        if (breweries.hasOwnProperty(brewery)){
+            breweries[brewery].push(rating);
+        } else {
+            breweries[brewery] = [rating];
+        }
+    }
+
+    var breweryAvgRating = {};
+    for (let key in breweries) {
+        ratingList = breweries[key];
+        ratingSum = 0;
+        ratingLen = ratingList.length;
+        if (ratingLen >= 5){
+            for (var i = 0; i < ratingList.length; i++) {
+                ratingSum += ratingList[i]
+            }
+            ratingAvg = ratingSum/ratingLen;
+            breweryAvgRating[key] = {"avg": ratingAvg, "count": ratingLen}
+        }  
+    }
+
+    itemsArray = Object.entries(breweryAvgRating);
+
+    itemsArray.sort(function (a, b) {
+        return b[1].avg - a[1].avg; // Descending order, change the order if needed
+    });
+
+    let breweriesByRating = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in breweriesByRating) {
+        avg = breweriesByRating[key]["avg"].toFixed(2);
+        element = document.getElementById("brewery" + String(counter) + "A");
+        element.innerText = key;
+        element = document.getElementById("avg" + String(counter) + "A");
+        element.innerText = String(avg).replace(".", ",");
+        counter += 1;
+    }
+
+    itemsArray.sort(function (a, b) {
+        return b[1].count - a[1].count; // Descending order, change the order if needed
+    });
+
+    let breweriesByCount = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in breweriesByCount) {
+        count = breweriesByCount[key]["count"]
+        element = document.getElementById("brewery" + String(counter));
+        element.innerText = key;
+        element = document.getElementById("total-beers" + String(counter) + "A");
+        element.innerText = count;
+        counter += 1;
+    }
+
+    /*------------------------------------------------------------------------------------------------------------------------------------*/
+
+    var beerStyles = {};
+    for (var i = 0; i < data.length; i++) {
+        // Access each dictionary
+        var beerStyle = data[i].Beer_style;
+        var rating = data[i].Rating;
+        if (beerStyles.hasOwnProperty(beerStyle)){
+            beerStyles[beerStyle].push(rating);
+        } else {
+            beerStyles[beerStyle] = [rating];
+        }
+    }
+
+    var beerStyleAvgRating = {};
+    for (let key in beerStyles) {
+        ratingList = beerStyles[key];
+        ratingSum = 0;
+        ratingLen = ratingList.length;
+        if (ratingLen >= 5){
+            for (var i = 0; i < ratingList.length; i++) {
+                ratingSum += ratingList[i]
+            }
+            ratingAvg = ratingSum/ratingLen;
+            beerStyleAvgRating[key] = {"avg": ratingAvg, "count": ratingLen}
+        }  
+    }
+
+    itemsArray = Object.entries(beerStyleAvgRating);
+
+    itemsArray.sort(function (a, b) {
+        return b[1].avg - a[1].avg; // Descending order, change the order if needed
+    });
+
+    let beerStylesByRating = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in beerStylesByRating) {
+        avg = beerStylesByRating[key]["avg"].toFixed(2);
+        element = document.getElementById("beer-style" + String(counter) + "A");
+        element.innerText = key;
+        element = document.getElementById("avg" + String(counter) + "B");
+        element.innerText = String(avg).replace(".", ",");
+        counter += 1;
+    }
+
+    itemsArray.sort(function (a, b) {
+        return b[1].count - a[1].count; // Descending order, change the order if needed
+    });
+
+    let beerStylesByCount = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in beerStylesByCount) {
+        count = beerStylesByCount[key]["count"]
+        element = document.getElementById("beer-style" + String(counter));
+        element.innerText = key;
+        element = document.getElementById("total-beers" + String(counter) + "B");
+        element.innerText = count;
+        counter += 1;
+    }
+
+    /*------------------------------------------------------------------------------------------------------------------------------------*/
+    
+    // Parse the data from an inline table using the Highcharts Data plugin
+    Highcharts.chart('container', {
+        data: {
+            table: 'freq',
+            startRow: 1,
+            endRow: 17,
+            endColumn: 7
+        },
+
+        chart: {
+            polar: true,
+            type: 'column',
+            backgroundColor: 'rgba(0,0,0,0)'
+        },
+
+        colors: ['#50B432', '#ED561B', '#DDDF00', '#2b62bb', 
+                             '#552711', '#ac1684'],
+
+        title: {
+            text: '',
+            align: 'left'
+        },
+
+        pane: {
+            size: '120%',
+
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            layout: 'vertical'
+            
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.y + ' %</b>';
+            }
+        },
+
+        yAxis: {
+            visible: false,
+            labels: {
+                enabled: false // Turn off labels on the y-axis
+            }
+        },
+
+        xAxis: {
+            visible: false,
+            labels: {
+                enabled: false // Turn off labels on the y-axis
+            }
+        },
+
+        plotOptions: {
+            series: {
+                type: "pie",
+                stacking: 'normal',
+                shadow: false,
+                groupPadding: 0,
+                pointPlacement: 'on',
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.5)',
+            }
+        },
+
+        exporting: {
+            enabled: false
+        },
+
+        credits: {
+            enabled: false
+        }
+    });
+</script>
+</body>
+</html>
