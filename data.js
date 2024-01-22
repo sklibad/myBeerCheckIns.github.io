@@ -10249,7 +10249,7 @@ var brewery_check_ins = {
             "Serving_style": "Can",
             "Photo_url": "https://assets.untappd.com/photos/2023_08_26/3c2bada534489cb9b4975341a8ab162b_raw.jpg",
             "Date": "26.08.2023",
-            "Comment": "I'm no longer drinking this crappy stuff, starting from now I'm gonna worship Czech beer before going to bed"
+            "Comment": "I'm no longer drinking this crappy stuff, starting from now I'm gonna worship Czech beer before going to bed. Edit: pretty decent in the end"
         },
         {
             "ID": 57,
