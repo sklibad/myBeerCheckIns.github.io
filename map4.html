@@ -479,7 +479,14 @@
             var popupItemIndex = splitResult[1];
             if (selectedLayer === "Breweries"){
                 var check_in = brewery_check_ins[breweryName][popupItemIndex];
-                $('#venueName').text(check_in["Venue"]);
+                if (check_in["Venue"] === null){
+                    $('#venue').hide();
+                    $('#venueName').hide();
+                } else {
+                    $('#venue').show();
+                    $('#venueName').text(check_in["Venue"]);
+                    $('#venueName').show();
+                }
             } else if (selectedLayer === "Venues"){
                 var check_in = venue_check_ins[breweryName][popupItemIndex];
                 $('#breweryName').text(check_in["Brewery"]);
@@ -943,8 +950,8 @@
                     venueMarkers.addLayer(venues);
 
                     map.addLayer(venueMarkers);
-                    zoom = 4;
-                    center = [46.24735658625215, 2.380466726996248];
+                    zoom = 3;
+                    center = [50.19243907905966, -19.821782223466816];
                 }
 
                 // Update the map's view based on the selected layer
