@@ -173,9 +173,10 @@ var venues_lst = [{
     { "type": "Feature", "properties": { "Venue": "Dva kohouti" }, "geometry": { "type": "Point", "coordinates": [ 14.44681331257183, 50.093472736384363 ] } },
     { "type": "Feature", "properties": { "Venue": "Waid" }, "geometry": { "type": "Point", "coordinates": [ 14.431106873909824, 50.074599070106089 ] } },
     { "type": "Feature", "properties": { "Venue": "Hotel U Dubu" }, "geometry": { "type": "Point", "coordinates": [ 15.272366701775802, 50.739313397187615 ] } },
-    { "type": "Feature", "properties": { "Venue": "U Medvídků" }, "geometry": { "type": "Point", "coordinates": [ 14.418821798806151, 50.082863747387563 ] } }
+    { "type": "Feature", "properties": { "Venue": "U Medvídků" }, "geometry": { "type": "Point", "coordinates": [ 14.418821798806151, 50.082863747387563 ] } },
+    { "type": "Feature", "properties": { "Venue": "Restaurace Pokrok" }, "geometry": { "type": "Point", "coordinates": [ 14.442583098066333, 50.041721945946797 ] } }
     ]
-    }
+    }    
     ];
 
 var breweries_lst = [{
@@ -438,9 +439,12 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "Pivovar Ladronka" }, "geometry": { "type": "Point", "coordinates": [ 14.356394211436545, 50.078447983284661 ] } },
     { "type": "Feature", "properties": { "Brewery": "Hákův parní pivovar" }, "geometry": { "type": "Point", "coordinates": [ 14.11924626532609, 50.527267727628043 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Čestmír" }, "geometry": { "type": "Point", "coordinates": [ 14.647854198342291, 50.189595935683563 ] } },
-    { "type": "Feature", "properties": { "Brewery": "U Medvídků" }, "geometry": { "type": "Point", "coordinates": [ 14.418821798806151, 50.082863747387563 ] } }
+    { "type": "Feature", "properties": { "Brewery": "U Medvídků" }, "geometry": { "type": "Point", "coordinates": [ 14.418821798806151, 50.082863747387563 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Tradiční pivovar v Rakovníku" }, "geometry": { "type": "Point", "coordinates": [ 13.727707084333669, 50.106255525120162 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Řeporyje" }, "geometry": { "type": "Point", "coordinates": [ 14.312604869849284, 50.033347060100667 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Загорка (Zagorka Brewery)" }, "geometry": { "type": "Point", "coordinates": [ 25.633915317920447, 42.44320186861404 ] } }
     ]
-    }
+    }    
     ];
 
 var venue_check_ins = {
@@ -9936,6 +9940,24 @@ var venue_check_ins = {
     ],
     "Home - Ipak": [
         {
+            "ID": 515,
+            "Beer": "Bakalář Za studena chmelený / Dry Hopped Lager",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 34.0,
+            "ABV": "5,2",
+            "Brewery": "Tradiční pivovar v Rakovníku",
+            "Brewery_location": "50.106255525120154, 13.72770708433367",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.07348211423651, 14.428222025402329",
+            "Friends": [],
+            "Rating": "3,25",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/531567cc549c610fa644a4eb2f48e212_c_1383202547_raw.jpg",
+            "Date": "23.05.2024",
+            "Comment": "Let's go Slováčci"
+        },
+        {
             "ID": 457,
             "Beer": "IIPPAA",
             "Beer_style": "IPA - Imperial / Double",
@@ -9970,6 +9992,24 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_08/e7e0a1ac1cc582675cd58d4bb00a165a_c_1370705006_raw.jpg",
             "Date": "09.04.2024",
             "Comment": "Polish craft beer is just zajebiście!"
+        },
+        {
+            "ID": 517,
+            "Beer": "Zagorka Special (Загорка Специално)",
+            "Beer_style": "Lager - Pale",
+            "IBU": NaN,
+            "ABV": "5,0",
+            "Brewery": "Загорка (Zagorka Brewery)",
+            "Brewery_location": "42.44320186861404, 25.633915317920447",
+            "Brewery_country": "Bulgaria",
+            "Beer_region": "Stara Zagora",
+            "Venue_location": "50.07348211423651, 14.428222025402329",
+            "Friends": [],
+            "Rating": "1,50",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/2fb220013eb1d4c01daa8f6cc7a6d7e6_c_1383286831_raw.jpg",
+            "Date": "23.05.2024",
+            "Comment": "Carlsberg vibes, pretty bad European lager"
         }
     ],
     "Fatfuck": [
@@ -10965,6 +11005,26 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_16/a2b51964178ef1798c65e32097ab5b3c_c_1381249485_raw.jpg",
             "Date": "16.05.2024",
             "Comment": "Expensive and the pilsner style not even recognizeable"
+        }
+    ],
+    "Restaurace Pokrok": [
+        {
+            "ID": 516,
+            "Beer": "Prefunda 12°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 36.0,
+            "ABV": "4,8",
+            "Brewery": "Pivovar Řeporyje",
+            "Brewery_location": "50.03334706010067, 14.312604869849283",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.0417219459468, 14.442583098066333",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/06a21ab020fd35d26d1a8939bf9b187a_c_1383267414_raw.jpg",
+            "Date": "23.05.2024",
+            "Comment": "Češi do toho"
         }
     ]
 };
@@ -21661,6 +21721,66 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_16/a2b51964178ef1798c65e32097ab5b3c_c_1381249485_raw.jpg",
             "Date": "16.05.2024",
             "Comment": "Expensive and the pilsner style not even recognizeable"
+        }
+    ],
+    "Tradiční pivovar v Rakovníku": [
+        {
+            "ID": 515,
+            "Beer": "Bakalář Za studena chmelený / Dry Hopped Lager",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 34.0,
+            "ABV": "5,2",
+            "Brewery_location": "50.106255525120154, 13.72770708433367",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Home - Ipak",
+            "Venue_location": "50.07348211423651, 14.428222025402329",
+            "Friends": [],
+            "Rating": "3,25",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/531567cc549c610fa644a4eb2f48e212_c_1383202547_raw.jpg",
+            "Date": "23.05.2024",
+            "Comment": "Let's go Slováčci"
+        }
+    ],
+    "Pivovar Řeporyje": [
+        {
+            "ID": 516,
+            "Beer": "Prefunda 12°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 36.0,
+            "ABV": "4,8",
+            "Brewery_location": "50.03334706010067, 14.312604869849283",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Restaurace Pokrok",
+            "Venue_location": "50.0417219459468, 14.442583098066333",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/06a21ab020fd35d26d1a8939bf9b187a_c_1383267414_raw.jpg",
+            "Date": "23.05.2024",
+            "Comment": "Češi do toho"
+        }
+    ],
+    "Загорка (Zagorka Brewery)": [
+        {
+            "ID": 517,
+            "Beer": "Zagorka Special (Загорка Специално)",
+            "Beer_style": "Lager - Pale",
+            "IBU": NaN,
+            "ABV": "5,0",
+            "Brewery_location": "42.44320186861404, 25.633915317920447",
+            "Brewery_country": "Bulgaria",
+            "Beer_region": "Stara Zagora",
+            "Venue": "Home - Ipak",
+            "Venue_location": "50.07348211423651, 14.428222025402329",
+            "Friends": [],
+            "Rating": "1,50",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/2fb220013eb1d4c01daa8f6cc7a6d7e6_c_1383286831_raw.jpg",
+            "Date": "23.05.2024",
+            "Comment": "Carlsberg vibes, pretty bad European lager"
         }
     ]
 };
