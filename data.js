@@ -174,10 +174,19 @@ var venues_lst = [{
     { "type": "Feature", "properties": { "Venue": "Waid" }, "geometry": { "type": "Point", "coordinates": [ 14.431106873909824, 50.074599070106089 ] } },
     { "type": "Feature", "properties": { "Venue": "Hotel U Dubu" }, "geometry": { "type": "Point", "coordinates": [ 15.272366701775802, 50.739313397187615 ] } },
     { "type": "Feature", "properties": { "Venue": "U Medvídků" }, "geometry": { "type": "Point", "coordinates": [ 14.418821798806151, 50.082863747387563 ] } },
-    { "type": "Feature", "properties": { "Venue": "Restaurace Pokrok" }, "geometry": { "type": "Point", "coordinates": [ 14.442583098066333, 50.041721945946797 ] } }
+    { "type": "Feature", "properties": { "Venue": "Restaurace Pokrok" }, "geometry": { "type": "Point", "coordinates": [ 14.442583098066333, 50.041721945946797 ] } },
+    { "type": "Feature", "properties": { "Venue": "Park Parukářka" }, "geometry": { "type": "Point", "coordinates": [ 14.461972041807009, 50.085236417320878 ] } },
+    { "type": "Feature", "properties": { "Venue": "Festival minipivovarů na Pražském hradě" }, "geometry": { "type": "Point", "coordinates": [ 14.404924928754417, 50.093295874879736 ] } },
+    { "type": "Feature", "properties": { "Venue": "Klášterní pivovar Strahov" }, "geometry": { "type": "Point", "coordinates": [ 14.388358514095261, 50.086853396666307 ] } },
+    { "type": "Feature", "properties": { "Venue": "Správčák" }, "geometry": { "type": "Point", "coordinates": [ 15.827075914565846, 50.258165202852105 ] } },
+    { "type": "Feature", "properties": { "Venue": "Obrazovic zahrada" }, "geometry": { "type": "Point", "coordinates": [ 14.369315538944493, 49.959762866047711 ] } },
+    { "type": "Feature", "properties": { "Venue": "Havlíčkovy sady (Grébovka)" }, "geometry": { "type": "Point", "coordinates": [ 14.44627698890452, 50.070042356682492 ] } },
+    { "type": "Feature", "properties": { "Venue": "Vršovická zahrada" }, "geometry": { "type": "Point", "coordinates": [ 14.447613785799073, 50.071822706321797 ] } },
+    { "type": "Feature", "properties": { "Venue": "Bad Flash Bar" }, "geometry": { "type": "Point", "coordinates": [ 14.447051265503431, 50.071588529739941 ] } },
+    { "type": "Feature", "properties": { "Venue": "Café Na půl cesty" }, "geometry": { "type": "Point", "coordinates": [ 14.431552170512004, 50.049888630074527 ] } }
     ]
-    }    
-    ];
+    }
+];
 
 var breweries_lst = [{
     "type": "FeatureCollection",
@@ -442,10 +451,44 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "U Medvídků" }, "geometry": { "type": "Point", "coordinates": [ 14.418821798806151, 50.082863747387563 ] } },
     { "type": "Feature", "properties": { "Brewery": "Tradiční pivovar v Rakovníku" }, "geometry": { "type": "Point", "coordinates": [ 13.727707084333669, 50.106255525120162 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Řeporyje" }, "geometry": { "type": "Point", "coordinates": [ 14.312604869849284, 50.033347060100667 ] } },
-    { "type": "Feature", "properties": { "Brewery": "Загорка (Zagorka Brewery)" }, "geometry": { "type": "Point", "coordinates": [ 25.633915317920447, 42.44320186861404 ] } }
+    { "type": "Feature", "properties": { "Brewery": "Загорка (Zagorka Brewery)" }, "geometry": { "type": "Point", "coordinates": [ 25.633915317920447, 42.44320186861404 ] } },
+    { "type": "Feature", "properties": { "Brewery": "The Alchemist" }, "geometry": { "type": "Point", "coordinates": [ -72.715746088259181, 44.475934649896097 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Haksna Brewery" }, "geometry": { "type": "Point", "coordinates": [ 18.205041083605529, 49.762141313449597 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Kraft" }, "geometry": { "type": "Point", "coordinates": [ 14.494235468244989, 50.060092910736401 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Švabín Brewery" }, "geometry": { "type": "Point", "coordinates": [ 13.748478181951992, 49.852916433482974 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Psychovar" }, "geometry": { "type": "Point", "coordinates": [ 14.242806046489305, 49.91614964345321 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Minipivovar Brabčák" }, "geometry": { "type": "Point", "coordinates": [ 18.306709511748664, 49.772784656928685 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Kladno Kročehlavy" }, "geometry": { "type": "Point", "coordinates": [ 14.111318896867964, 50.140716209963365 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Kristýna" }, "geometry": { "type": "Point", "coordinates": [ 14.824740041938714, 50.862365374901017 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Zmolský Pivovar" }, "geometry": { "type": "Point", "coordinates": [ 16.141154352958623, 48.9816326957962 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Tahoun" }, "geometry": { "type": "Point", "coordinates": [ 14.949374427212112, 50.258728665318912 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Malenovice" }, "geometry": { "type": "Point", "coordinates": [ 17.597158940266876, 49.205604504628603 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Červený vlk" }, "geometry": { "type": "Point", "coordinates": [ 12.926176154738114, 50.40935380686664 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Topolský pivovar" }, "geometry": { "type": "Point", "coordinates": [ 17.539780910681827, 49.123006915343836 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pokusný minipivovar ve Chmelařském institutu" }, "geometry": { "type": "Point", "coordinates": [ 13.52570508539219, 50.323661119462443 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Purkmistr" }, "geometry": { "type": "Point", "coordinates": [ 13.414088480685663, 49.698758403785632 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Zábřeh" }, "geometry": { "type": "Point", "coordinates": [ 16.860892632664331, 49.887898482375483 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovarský dům Poupě" }, "geometry": { "type": "Point", "coordinates": [ 16.606017542075008, 49.192877954695938 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar VŠCHT Praha" }, "geometry": { "type": "Point", "coordinates": [ 14.389808993793212, 50.103365351273922 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Karlovský minipivovar Pod pralesem" }, "geometry": { "type": "Point", "coordinates": [ 18.357404581090801, 49.370073353326042 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Městský pivovar Domažlice" }, "geometry": { "type": "Point", "coordinates": [ 12.927000229483443, 49.441886622058483 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Zámecký pivovar Zábřeh" }, "geometry": { "type": "Point", "coordinates": [ 18.240302734204239, 49.807013994833341 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Rožnovský pivovar" }, "geometry": { "type": "Point", "coordinates": [ 18.136823740990582, 49.456718295346981 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Klášterní pivovar Želiv" }, "geometry": { "type": "Point", "coordinates": [ 15.213886768392497, 49.529685261524577 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Zhůřák" }, "geometry": { "type": "Point", "coordinates": [ 13.51593872869555, 49.537508905106748 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Neratov" }, "geometry": { "type": "Point", "coordinates": [ 16.552906025867753, 50.21490517900591 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Joe's Garage Beer" }, "geometry": { "type": "Point", "coordinates": [ 13.453513911387915, 49.755502818152273 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Podlesí" }, "geometry": { "type": "Point", "coordinates": [ 13.982009382884367, 49.689860221597122 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Holendr" }, "geometry": { "type": "Point", "coordinates": [ 17.966887182885216, 49.481613632460132 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Kroměříž" }, "geometry": { "type": "Point", "coordinates": [ 17.39800754026588, 49.30997796389827 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Strahov" }, "geometry": { "type": "Point", "coordinates": [ 14.388358514095261, 50.086853396666307 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Rezek" }, "geometry": { "type": "Point", "coordinates": [ 15.268380642607051, 50.696666541806017 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar Kutná Hora" }, "geometry": { "type": "Point", "coordinates": [ 15.270966677814036, 49.956575500082266 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Moucha" }, "geometry": { "type": "Point", "coordinates": [ 14.411284006335013, 50.030421826469649 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar v Poličce" }, "geometry": { "type": "Point", "coordinates": [ 16.259893649616323, 49.710985468684349 ] } }
     ]
-    }    
-    ];
+    }
+];
 
 var venue_check_ins = {
     "Más Al Sur": [
@@ -2217,6 +2260,50 @@ var venue_check_ins = {
             "Comment": "koncept oživit starej zapomenutej způsob vaření velice uznávám, bohužel tohle je až moc velká divočina"
         },
         {
+            "ID": 529,
+            "Beer": "Bajka O Vlku A Lišce 16",
+            "Beer_style": "IPA - Other",
+            "IBU": NaN,
+            "ABV": "6,7",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB",
+                "TH",
+                "JŽ",
+                "AM",
+                "MS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_05/1ab89388a8bc5d797c88876b3350caf5_c_1387171496_raw.jpg",
+            "Date": "05.06.2024",
+            "Comment": "Not my cup of NEIPA"
+        },
+        {
+            "ID": 589,
+            "Beer": "Bounty 13",
+            "Beer_style": "Lager - Dark",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_03/f8b2c40a89dd17a877039fdb0ae9a557_c_1395435877_raw.jpg",
+            "Date": "03.07.2024",
+            "Comment": "Milky, I think"
+        },
+        {
             "ID": 461,
             "Beer": "Cape of Good Hops 17",
             "Beer_style": "IPA - New England / Hazy",
@@ -2417,6 +2504,30 @@ var venue_check_ins = {
             "Comment": "NEIPA a sakra tady jdeme znovu, myslel jsem si, že jsem se jich v Rize přepil, ale nikoliv, tahle mi šmakuje"
         },
         {
+            "ID": 528,
+            "Beer": "Karrel: New World Kölsch 11°",
+            "Beer_style": "Kölsch",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB",
+                "TH",
+                "JŽ",
+                "AM",
+                "MS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_05/66ae60dc1e36530b410affce8c6ae070_c_1387170479_raw.jpg",
+            "Date": "05.06.2024",
+            "Comment": "Not addressing well, pretty light, suitable for chugging."
+        },
+        {
             "ID": 72,
             "Beer": "Kartel Best Bitter 11 (srpen 2023)",
             "Beer_style": "Bitter - Best",
@@ -2457,6 +2568,26 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_10/41c10d6bba89d4d9dafe3a90fce5c4cc_c_1371040066_raw.jpg",
             "Date": "11.04.2024",
             "Comment": "Dang, I would forbid coconut in lagers"
+        },
+        {
+            "ID": 588,
+            "Beer": "Kartel Elderflower Summer Ale 11 (červenec 2024)",
+            "Beer_style": "Pale Ale - Fruited",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_03/6b469770d9df02a303a6db231ba73860_c_1395432243_raw.jpg",
+            "Date": "03.07.2024",
+            "Comment": "Elderflower is there! Nice attempt that I appreciate"
         },
         {
             "ID": 499,
@@ -2887,6 +3018,24 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_04_05/f5bfd76aec79a56d665927101ae04a57_raw.jpg",
             "Date": "05.04.2023",
             "Comment": "rybo rybičko, velice dobrá pivečka si na čepu držíš, nadprůměrná APA, děkuji za ni"
+        },
+        {
+            "ID": 580,
+            "Beer": "Kořen 11°",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "4,3",
+            "Brewery": "Pivovar Kristýna",
+            "Brewery_location": "50.86236537490102, 14.824740041938714",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue_location": "50.07242851674521, 14.422977834270295",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_20/f1f9ac79077e0d22ce5340596001f4eb_c_1391425099_raw.jpg",
+            "Date": "20.06.2024",
+            "Comment": "Is Kristýna expanding or what? Saw them 2 weeks ago for the first time at the Prague Castle beer festival. Now they've plenty of kegs stored in Mrtvá Ryba, will stay on tap for quite some time I guess, on the way from Lidl back to work hehe"
         },
         {
             "ID": 213,
@@ -5809,6 +5958,87 @@ var venue_check_ins = {
             "Comment": "apricot sour ale, I would say, idk what's in the description, I'm quite confident with the taste profile"
         },
         {
+            "ID": 569,
+            "Beer": "Ale 11",
+            "Beer_style": "Pale Ale - American",
+            "IBU": 39.0,
+            "ABV": "4,5",
+            "Brewery": "Hradecký Klenot",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/eb3342967b6e51862166e4edb6c73c76_c_1389510111_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Refreshing start of the day"
+        },
+        {
+            "ID": 561,
+            "Beer": "Antošův ležák",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 30.0,
+            "ABV": "4,7",
+            "Brewery": "Pivovar Antoš",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "TV",
+                "PL"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_12/6cf7577267cc48434969c1a2f428d1c7_c_1389077448_raw.jpg",
+            "Date": "12.06.2024",
+            "Comment": "Let the Rock for People begin"
+        },
+        {
+            "ID": 578,
+            "Beer": "Belgian Witbier",
+            "Beer_style": "Wheat Beer - Witbier / Blanche",
+            "IBU": 20.0,
+            "ABV": "4,3",
+            "Brewery": "Pivovarský dům Benedict",
+            "Brewery_location": "50.07539340110661, 14.423844969713297",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/414749b426042b7135f7f6f97744edf3_c_1390104428_raw.jpg",
+            "Date": "15.06.2024",
+            "Comment": "I feel coriander"
+        },
+        {
+            "ID": 575,
+            "Beer": "Bikini Ale",
+            "Beer_style": "Pale Ale - Other",
+            "IBU": NaN,
+            "ABV": "4,8",
+            "Brewery": "Bad Flash",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/0e7df5c8aa61a43020f5862730ae2c25_c_1389654157_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Maty Svítok módní návrhář"
+        },
+        {
             "ID": 138,
             "Beer": "Cardamom Red Ale",
             "Beer_style": "Red Ale - Other",
@@ -5825,6 +6055,26 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_11/726d0af3db21ce517dbfb7d40f43191d_raw.jpg",
             "Date": "11.06.2023",
             "Comment": "I did it! no more breweries left to collect, I can leave this place satisfied, unfortunatelly not a good choice at all, too malty and I feel a vibe of porter"
+        },
+        {
+            "ID": 571,
+            "Beer": "Coffee Brown ALE",
+            "Beer_style": "Brown Ale - Other",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery": "Hradecký Klenot",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "2,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/6374f6eb62144b43583f2a7d61a6cfd4_c_1389514339_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Not my cup of coffee beer, tartiness reminds robusta"
         },
         {
             "ID": 145,
@@ -5963,6 +6213,44 @@ var venue_check_ins = {
             "Comment": "delicious! this is what I was looking for the whole time, I guess that I'm gonna stop right here leaving this place with good taste on the tongue"
         },
         {
+            "ID": 579,
+            "Beer": "Klenot 11 polotmavý",
+            "Beer_style": "Lager - Amber / Red",
+            "IBU": 22.0,
+            "ABV": "4,5",
+            "Brewery": "Hradecký Klenot",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/9052259ad7547444700cf6f801f51c60_c_1390106628_raw.jpg",
+            "Date": "15.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 562,
+            "Beer": "Krahulík 10",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 29.0,
+            "ABV": "4,1",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_12/3ae5942886c38b6d4212e6e83143b32d_c_1389088272_raw.jpg",
+            "Date": "12.06.2024",
+            "Comment": "Last Krahulík into the collection"
+        },
+        {
             "ID": 143,
             "Beer": "Krahulík 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -6004,6 +6292,46 @@ var venue_check_ins = {
             "Comment": "no clue what the taste profile was"
         },
         {
+            "ID": 567,
+            "Beer": "Mango Chilli Sour Ale",
+            "Beer_style": "Sour - Fruited",
+            "IBU": 8.0,
+            "ABV": "4,9",
+            "Brewery": "Bad Flash",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/74f7f409c7e423ef62a0ffc0775b495b_c_1389290478_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Chilli lovers, get it until they sell it all"
+        },
+        {
+            "ID": 572,
+            "Beer": "Marination Nation",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery": "Pivovar Antoš",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/0762e42a657a4d1b2090300d5202ca4d_c_1389561514_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Antoš strikes again"
+        },
+        {
             "ID": 139,
             "Beer": "Mordýř 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -6020,6 +6348,44 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_11/3b07c02d793422fab8fccbbfa5b3d7bd_raw.jpg",
             "Date": "11.06.2023",
             "Comment": "bad aftertaste, AZ-kviz James Cole vs Mcgay"
+        },
+        {
+            "ID": 570,
+            "Beer": "Na Pool",
+            "Beer_style": "Lager - IPL (India Pale Lager)",
+            "IBU": 38.0,
+            "ABV": "4,0",
+            "Brewery": "Budějovický Budvar",
+            "Brewery_location": "48.99437662043317, 14.476713544734894",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihočeský kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/3a395b254c358bce9af57b34ab24d6ce_c_1389510256_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Pairs well with burger"
+        },
+        {
+            "ID": 577,
+            "Beer": "Nealko Grep",
+            "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
+            "IBU": NaN,
+            "ABV": "0,5",
+            "Brewery": "Hradecký Klenot",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/954751d3ef195eda700076c5c82ad38b_c_1389931079_raw.jpg",
+            "Date": "15.06.2024",
+            "Comment": NaN
         },
         {
             "ID": 142,
@@ -6099,6 +6465,26 @@ var venue_check_ins = {
             "Comment": "maybe a last beer today, the grind to get them all exhausted me quite a lot, I would go to sleep rn, but Muse band is already on the horizon, so def not a sleep time yet!"
         },
         {
+            "ID": 576,
+            "Beer": "Počernická dvanáctka",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 26.0,
+            "ABV": "4,4",
+            "Brewery": "Počernický pivovar",
+            "Brewery_location": "50.08846086535482, 14.580681299998794",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/f615369104ac5b5928c516312668028b_c_1389728083_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "BMTH"
+        },
+        {
             "ID": 146,
             "Beer": "Počernická I.P.A.",
             "Beer_style": "IPA - Other",
@@ -6119,6 +6505,26 @@ var venue_check_ins = {
             "Comment": "not a bargain at all, thinking about the flavor profile and can't think of nothing, but disgusting, this is not an IPA beer style I like"
         },
         {
+            "ID": 574,
+            "Beer": "Rampušák 12",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 40.0,
+            "ABV": "4,9",
+            "Brewery": "Rodinný pivovar Rampušák",
+            "Brewery_location": "50.29340474581693, 16.16344031349508",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/a5d807ff72c7df55036516f793af4517_c_1389624350_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Avril Lavigne my love"
+        },
+        {
             "ID": 154,
             "Beer": "Rebel Hořká 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -6137,6 +6543,66 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_09/1bf5fc085018d7633537c6776913b0d3_raw.jpg",
             "Date": "09.06.2023",
             "Comment": "let the \"beer\" festival begin! finally a bitter taste after all the watery austrian lagers, pretty good choice for the very begining, pennyinpraha goes down pretty smoothly"
+        },
+        {
+            "ID": 566,
+            "Beer": "Sour - Raspberry & Coffee",
+            "Beer_style": "Sour - Other",
+            "IBU": NaN,
+            "ABV": "4,0",
+            "Brewery": "Hradecký Klenot",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/31f02294164e6b7ffa0bc81723208e10_c_1389276626_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Amusing"
+        },
+        {
+            "ID": 564,
+            "Beer": "Summer Ale",
+            "Beer_style": "Pale Ale - American",
+            "IBU": NaN,
+            "ABV": "4,0",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/58b305130112f8cdf5545023214d11c3_c_1389265079_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Awkwardly sour, seeking for americam hops but can't find them, you can do better Sibeeria"
+        },
+        {
+            "ID": 568,
+            "Beer": "Summer Ale",
+            "Beer_style": "Blonde / Golden Ale - Other",
+            "IBU": NaN,
+            "ABV": "3,9",
+            "Brewery": "Měšťanský pivovar Kutná Hora",
+            "Brewery_location": "49.956575500082266, 15.270966677814036",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/65632260ef364f93891e96ababd92674_c_1389306444_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Not bad, good price!"
         },
         {
             "ID": 152,
@@ -6160,6 +6626,26 @@ var venue_check_ins = {
             "Comment": "as Lauren would say, yummmyyyyy"
         },
         {
+            "ID": 573,
+            "Beer": "Světlý ležák 12°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 35.0,
+            "ABV": "4,8",
+            "Brewery": "Pivovar Permon",
+            "Brewery_location": "50.17874994137674, 12.63787465580559",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Karlovarský kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/676c0e3833c4a216b37f10454bc29791_c_1389577653_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Keanu Reeves on the guitar"
+        },
+        {
             "ID": 144,
             "Beer": "Světlý speciál 13°",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -6179,6 +6665,26 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_10/b2a057e74793e554d485dbb31942c00c_raw.jpg",
             "Date": "10.06.2023",
             "Comment": "nothing special, had higher expectation, def need to have a next one to fix the taste again"
+        },
+        {
+            "ID": 565,
+            "Beer": "Vošta",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": NaN,
+            "ABV": "4,8",
+            "Brewery": "Pivovar Clock",
+            "Brewery_location": "50.08125410516569, 16.317200948562274",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/85d5df43a3ff84734924c51c4a1cff13_c_1389274304_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Playing by hops, god job there"
         }
     ],
     "Volksgarten": [
@@ -8153,6 +8659,26 @@ var venue_check_ins = {
             "Comment": "tak dobré hodnocení a přitom tak hrozná chuť, to mi nejde dohromady.. nejhořčí pivo, co jsem kdy měl, na konci trochu kouřový, tohle se nepije samo a nepije lehce"
         },
         {
+            "ID": 586,
+            "Beer": "Jura",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 35.0,
+            "ABV": "5,0",
+            "Brewery": "Chroust",
+            "Brewery_location": "50.130198177665946, 14.395175871162714",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.07060094422077, 14.450756355698998",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_02/fdf481e9fda034ff161db6929d67888d_c_1395266135_raw.jpg",
+            "Date": "02.07.2024",
+            "Comment": "Beertime after spikeball with floorball boys"
+        },
+        {
             "ID": 311,
             "Beer": "Pretty Pineapple, Guava & Coconut",
             "Beer_style": "Sour - Smoothie / Pastry",
@@ -8171,6 +8697,26 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_01_12/0e1cfc85749c8e7fe0432b41e3f328b3_raw.jpg",
             "Date": "12.01.2023",
             "Comment": "tak tohle je největší překvapení večera, on může kyseláč chutnat opravdu takhle dobře? zbožňuju kokos v pivě 😍"
+        },
+        {
+            "ID": 587,
+            "Beer": "Sabro Fan Service 12",
+            "Beer_style": "IPA - Session",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.07060094422077, 14.450756355698998",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_02/36152d2b62b0420fbbd417da94340cd6_c_1395273300_raw.jpg",
+            "Date": "02.07.2024",
+            "Comment": "Well made, drinkable and amusing"
         }
     ],
     "Home - Boro": [
@@ -9958,6 +10504,24 @@ var venue_check_ins = {
             "Comment": "Let's go Slováčci"
         },
         {
+            "ID": 518,
+            "Beer": "Heady Topper",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": 100.0,
+            "ABV": "8,0",
+            "Brewery": "The Alchemist",
+            "Brewery_location": "44.475934649896104, -72.71574608825918",
+            "Brewery_country": "United States",
+            "Beer_region": "VT",
+            "Venue_location": "50.07348211423651, 14.428222025402329",
+            "Friends": [],
+            "Rating": "4,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_25/541a105a93947b0aea079214abb351b9_c_1384019937_raw.jpg",
+            "Date": "25.05.2024",
+            "Comment": "One year ago Lauren told me about this glorified beer from her home state, so when I got into Vermont I must have found it. I brought it back home and waited until we humble Sweeds in icehockey semifinals. I've never had a beer so wealthy on hops, love it"
+        },
+        {
             "ID": 457,
             "Beer": "IIPPAA",
             "Beer_style": "IPA - Imperial / Double",
@@ -10820,6 +11384,26 @@ var venue_check_ins = {
             "Comment": "Nothing but this you need after a work day, a fabulous Czech lager with Canadian ice hockey fans in the background"
         },
         {
+            "ID": 521,
+            "Beer": "I Love the Smell of HBC 630 in the Morning",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": NaN,
+            "ABV": "6,7",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "LP"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_29/02b99ce6d2b1a2587409bb5dcaa80d1b_c_1385150197_raw.jpg",
+            "Date": "29.05.2024",
+            "Comment": "Low on hops and I can feel the alcohol, a feminine NEIPA cuz it's juicy, reminding drinks"
+        },
+        {
             "ID": 513,
             "Beer": "Kazbek Cold IPA",
             "Beer_style": "IPA - Cold",
@@ -10860,6 +11444,26 @@ var venue_check_ins = {
             "Comment": "A feeling of America on the tip of my tongue, decent ale"
         },
         {
+            "ID": 520,
+            "Beer": "One American",
+            "Beer_style": "Sour - Berliner Weisse",
+            "IBU": NaN,
+            "ABV": "4,5",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "LP"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_29/e4a71685c8634ee968f04c83b0562c07_c_1385144948_raw.jpg",
+            "Date": "29.05.2024",
+            "Comment": "An honest sour ale, they don't lie with the description! I like it!"
+        },
+        {
             "ID": 501,
             "Beer": "One Love",
             "Beer_style": "Stout - Other",
@@ -10879,6 +11483,26 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_07/5c116ab25ea60b4501cccab4447e014c_c_1378625576_raw.jpg",
             "Date": "07.05.2024",
             "Comment": "Those who crave raspberries would appreciate this one big time, me not so much"
+        },
+        {
+            "ID": 519,
+            "Beer": "Patronus",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "3,8",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "LP"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_29/0ad2a8720115824afd7d5bbea6da035f_c_1385142893_raw.jpg",
+            "Date": "29.05.2024",
+            "Comment": "So drinkable woow and hoppy as well a flawless 10°"
         }
     ],
     "Hákovna": [
@@ -11025,6 +11649,965 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/06a21ab020fd35d26d1a8939bf9b187a_c_1383267414_raw.jpg",
             "Date": "23.05.2024",
             "Comment": "Češi do toho"
+        }
+    ],
+    "Park Parukářka": [
+        {
+            "ID": 525,
+            "Beer": "Antošovy koule",
+            "Beer_style": "Stout - Milk / Sweet",
+            "IBU": NaN,
+            "ABV": "5,8",
+            "Brewery": "Pivovar Antoš",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ",
+                "MJ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/14f4a0abd0cf137769169f27c3d979f6_c_1385571405_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Mmm liquid Mozzart balls"
+        },
+        {
+            "ID": 527,
+            "Beer": "Fénix IPA",
+            "Beer_style": "IPA - American",
+            "IBU": NaN,
+            "ABV": NaN,
+            "Brewery": "Minipivovar Brabčák",
+            "Brewery_location": "49.772784656928685, 18.306709511748664",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Moravskoslezský kraj",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ",
+                "MJ"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/04e70d4a75821a625dbf484d69b61391_c_1385592210_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Mid"
+        },
+        {
+            "ID": 526,
+            "Beer": "Jiříkovo Vidění Oat Wheat Sour Ale",
+            "Beer_style": "Sour - Other",
+            "IBU": 15.0,
+            "ABV": "4,4",
+            "Brewery": "Psychovar",
+            "Brewery_location": "49.91614964345321, 14.242806046489305",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/a1307b30baf4bf246be41733dd4d2dc0_c_1385588369_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "This is a discovery of the month, just wow"
+        },
+        {
+            "ID": 524,
+            "Beer": "Leshy",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": 60.0,
+            "ABV": "7,5",
+            "Brewery": "Švabín Brewery",
+            "Brewery_location": "49.852916433482974, 13.748478181951992",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ",
+                "MJ"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/1c573bfe832df9404dfef836b969171f_c_1385566643_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Yummy and hoppy, super good"
+        },
+        {
+            "ID": 522,
+            "Beer": "Our Lager",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 31.0,
+            "ABV": "4,7",
+            "Brewery": "Haksna Brewery",
+            "Brewery_location": "49.762141313449604, 18.205041083605526",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Moravskoslezský kraj",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/065db5d004b856f64534923bc3993871_c_1385560437_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "It's starting to rain ayay, good lager for the beginning!"
+        },
+        {
+            "ID": 523,
+            "Beer": "Tekutý Manitú",
+            "Beer_style": "IPA - American",
+            "IBU": 40.0,
+            "ABV": "5,0",
+            "Brewery": "Pivovar Kraft",
+            "Brewery_location": "50.060092910736394, 14.49423546824499",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/17017c7585beb2bab010c462860a6980_c_1385563064_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Wow an honest APA, indeed one of the best APA I've ever had, I'm veery satisfied"
+        }
+    ],
+    "Festival minipivovarů na Pražském hradě": [
+        {
+            "ID": 558,
+            "Beer": "Ale 11",
+            "Beer_style": "Pale Ale - American",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery": "Holendr",
+            "Brewery_location": "49.48161363246013, 17.966887182885216",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/c33138c777af383bbed4a0a7d594f910_c_1387620472_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 547,
+            "Beer": "Beránek polotmavý 12",
+            "Beer_style": "Lager - Amber / Red",
+            "IBU": 35.0,
+            "ABV": "5,1",
+            "Brewery": "Heineken Česká Republika",
+            "Brewery_location": "50.17431950112256, 13.774900712110268",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3a40e2c80d5e9de281082a208ac1a4d1_c_1387551604_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 552,
+            "Beer": "Cherry-Raspberry Kompot Sour",
+            "Beer_style": "Sour - Fruited",
+            "IBU": 10.0,
+            "ABV": "6,3",
+            "Brewery": "Pivovar Zhůřák",
+            "Brewery_location": "49.53750890510675, 13.51593872869555",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/293152986051f876c439cd8d9bee4ebb_c_1387578700_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 541,
+            "Beer": "Cold IPA Saturn + Eris 14,5",
+            "Beer_style": "IPA - Cold",
+            "IBU": 50.0,
+            "ABV": "6,1",
+            "Brewery": "Pokusný minipivovar ve Chmelařském institutu",
+            "Brewery_location": "50.32366111946244, 13.52570508539219",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/56d6a7782a24cb453cc72ebc488bc355_c_1387523975_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 548,
+            "Beer": "Domažlický Doppel",
+            "Beer_style": "Bock - Doppelbock",
+            "IBU": 23.0,
+            "ABV": "7,5",
+            "Brewery": "Městský pivovar Domažlice",
+            "Brewery_location": "49.441886622058476, 12.927000229483443",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/a081c633a5249e210b9cf0bd523d83f6_c_1387559102_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 542,
+            "Beer": "Forest Gunk",
+            "Beer_style": "Pale Ale - Other",
+            "IBU": 44.0,
+            "ABV": "5,2",
+            "Brewery": "Pivovar Purkmistr",
+            "Brewery_location": "49.69875840378563, 13.414088480685663",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/c59fbd868dc360535ae5c3e5b160e157_c_1387526007_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Tastes oldschool American"
+        },
+        {
+            "ID": 545,
+            "Beer": "Hawai 11",
+            "Beer_style": "Wheat Beer - Witbier / Blanche",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery": "Pivovar VŠCHT Praha",
+            "Brewery_location": "50.103365351273915, 14.389808993793213",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "2,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/66a7027c3208f79f65fd6a54223a97c3_c_1387537734_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Uuh"
+        },
+        {
+            "ID": 556,
+            "Beer": "Juicy Sabro 12°",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": NaN,
+            "ABV": "4,5",
+            "Brewery": "Joe's Garage Beer",
+            "Brewery_location": "49.75550281815227, 13.453513911387917",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dd9c7c5be7abd884dc1b030d4d2b29b7_c_1387604595_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 546,
+            "Beer": "Karlovsky Anniversary Strong",
+            "Beer_style": "Strong Ale - Other",
+            "IBU": NaN,
+            "ABV": NaN,
+            "Brewery": "Karlovský minipivovar Pod pralesem",
+            "Brewery_location": "49.37007335332604, 18.3574045810908",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/39ed20cb870312ab8c670106642df9ef_c_1387544415_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 538,
+            "Beer": "Kaštanové pivo",
+            "Beer_style": "Spiced / Herbed Beer",
+            "IBU": NaN,
+            "ABV": "7,0",
+            "Brewery": "Pivovar Uhříněves",
+            "Brewery_location": "50.027974142788516, 14.607107128323797",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e18177e433471f72595adb1952fa9cb7_c_1387519780_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 530,
+            "Beer": "Kladenská Poldi 8°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 25.0,
+            "ABV": "3,2",
+            "Brewery": "Pivovar Kladno Kročehlavy",
+            "Brewery_location": "50.140716209963365, 14.111318896867965",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/7ce80dd3c119cc21a204dee3cba8501e_c_1387511339_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 557,
+            "Beer": "Klokan",
+            "Beer_style": "Pale Ale - Australian",
+            "IBU": 23.0,
+            "ABV": "5,0",
+            "Brewery": "Pivovar Podlesí",
+            "Brewery_location": "49.689860221597115, 13.982009382884367",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/cd3ab62448966a335c954a18a656d7f4_c_1387609489_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 535,
+            "Beer": "Kmet - Dubský Zeleňák",
+            "Beer_style": "Historical Beer - Other",
+            "IBU": NaN,
+            "ABV": "4,3",
+            "Brewery": "Pivovar Malenovice",
+            "Brewery_location": "49.205604504628596, 17.597158940266876",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/ca78e05ca40b1da3bdb06f03167093fa_c_1387515017_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 531,
+            "Beer": "Křemen 10",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "3,9",
+            "Brewery": "Pivovar Kristýna",
+            "Brewery_location": "50.86236537490102, 14.824740041938714",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e1f36fa4f4a8dc950b42c9c4ff3a8db2_c_1387511802_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 536,
+            "Beer": "Lehký Střízlík",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 30.0,
+            "ABV": "3,0",
+            "Brewery": "Pivovar Červený vlk",
+            "Brewery_location": "50.40935380686664, 12.926176154738114",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Karlovarský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ"
+            ],
+            "Rating": "2,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/0ffb6b1a6658d6553950b940a6af5d44_c_1387516806_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Máslo, už musím prokládat"
+        },
+        {
+            "ID": 555,
+            "Beer": "Lvice 12 %",
+            "Beer_style": "IPA - Other",
+            "IBU": 40.0,
+            "ABV": "5,0",
+            "Brewery": "Topolský pivovar",
+            "Brewery_location": "49.123006915343844, 17.539780910681827",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/025bcd3da6baec036ddd46cb48f1f48f_c_1387600992_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 559,
+            "Beer": "Maxmilian Polibek",
+            "Beer_style": "IPA - Session",
+            "IBU": 34.0,
+            "ABV": "4,5",
+            "Brewery": "Pivovar Kroměříž",
+            "Brewery_location": "49.30997796389827, 17.39800754026588",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/27b5ea04eb73bf306825677963f3752e_c_1387631543_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 539,
+            "Beer": "Māhutonga",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 30.0,
+            "ABV": "5,9",
+            "Brewery": "Vinohradský pivovar",
+            "Brewery_location": "50.07532369998683, 14.457555284654678",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/f00868edb95c7c3bef16e2291344bf46_c_1387520871_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Just wow"
+        },
+        {
+            "ID": 540,
+            "Beer": "Pastry Sour - Carrot Cake - Mrkvový Dort",
+            "Beer_style": "Sour - Smoothie / Pastry",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery": "Pivovar Obora",
+            "Brewery_location": "49.338898000982084, 14.639135934721343",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihočeský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83a446c8f57eded6828e31ebcb6242ae_c_1387522891_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 549,
+            "Beer": "Pikard Red Ale",
+            "Beer_style": "Bitter - Session / Ordinary",
+            "IBU": NaN,
+            "ABV": "4,0",
+            "Brewery": "Zámecký pivovar Zábřeh",
+            "Brewery_location": "49.80701399483334, 18.240302734204242",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Moravskoslezský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "2,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dce33be48f624d284bd92574cb2364f5_c_1387562141_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 544,
+            "Beer": "Poupětův Američan 11°",
+            "Beer_style": "Pale Ale - American",
+            "IBU": 30.0,
+            "ABV": "4,5",
+            "Brewery": "Pivovarský dům Poupě",
+            "Brewery_location": "49.19287795469594, 16.60601754207501",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihomoravský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/95a273f3cec41b59af186765a90ddcf7_c_1387534953_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 551,
+            "Beer": "Pouťová A.P.A.",
+            "Beer_style": "Pale Ale - American",
+            "IBU": NaN,
+            "ABV": "4,3",
+            "Brewery": "Klášterní pivovar Želiv",
+            "Brewery_location": "49.52968526152458, 15.213886768392497",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "kraj Vysočina",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "2,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/2426cc86a096fcd1c827680cb66ceea8_c_1387570665_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 554,
+            "Beer": "Prorok 11 NEIPA",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 9.0,
+            "ABV": "4,4",
+            "Brewery": "Pivovar Neratov",
+            "Brewery_location": "50.21490517900591, 16.552906025867753",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/b5bbbbcf6d33ee133c999a93afe27fd4_c_1387593885_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 550,
+            "Beer": "Rytíř Gutmann 16°",
+            "Beer_style": "Bock - Single / Traditional",
+            "IBU": NaN,
+            "ABV": "6,0",
+            "Brewery": "Rožnovský pivovar",
+            "Brewery_location": "49.45671829534698, 18.136823740990586",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/038f46be03ecf2aaed6d8fb6d48690a7_c_1387567231_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 534,
+            "Beer": "Tahoun",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 32.0,
+            "ABV": "5,0",
+            "Brewery": "Tahoun",
+            "Brewery_location": "50.25872866531891, 14.949374427212113",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/5c39613b79e512a359d25892273dfe8a_c_1387514383_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Plzeň 11°"
+        },
+        {
+            "ID": 537,
+            "Beer": "Topolské výčepní pivo 10",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 24.0,
+            "ABV": "4,0",
+            "Brewery": "Topolský pivovar",
+            "Brewery_location": "49.123006915343844, 17.539780910681827",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3da421866174f0201279e3a3d27d0b52_c_1387518574_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 553,
+            "Beer": "Torpid Mind",
+            "Beer_style": "Stout - Russian Imperial",
+            "IBU": NaN,
+            "ABV": "10,5",
+            "Brewery": "Bad Flash",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/5bf4be7b7ffaca87d8c1298dc6ba3ad8_c_1387585183_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Hihi imperial stout"
+        },
+        {
+            "ID": 532,
+            "Beer": "Vojtěch 11°",
+            "Beer_style": "Lager - Other",
+            "IBU": NaN,
+            "ABV": NaN,
+            "Brewery": "Zmolský Pivovar",
+            "Brewery_location": "48.9816326957962, 16.141154352958623",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihomoravský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/badaae7d1173ea8190faefc5784fc735_c_1387512616_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "I drink faster than I'm able to take photos"
+        },
+        {
+            "ID": 543,
+            "Beer": "Welzl 14 APA",
+            "Beer_style": "Pale Ale - American",
+            "IBU": 65.0,
+            "ABV": "6,5",
+            "Brewery": "Pivovar Zábřeh",
+            "Brewery_location": "49.887898482375476, 16.86089263266433",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Olomoucký kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83b560099b888c12f3fdd2eefd4a1f08_c_1387531302_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 533,
+            "Beer": "Únětický speciál 8° Letní",
+            "Beer_style": "Lager - Pale",
+            "IBU": 40.0,
+            "ABV": "3,4",
+            "Brewery": "Únětický pivovar",
+            "Brewery_location": "50.14920082481283, 14.35431148463674",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/d0efd99a1133f6ff1e3b74d041deb433_c_1387513069_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Klášterní pivovar Strahov": [
+        {
+            "ID": 560,
+            "Beer": "Sv. Norbert Sakura Amber Ale",
+            "Beer_style": "Red Ale - American Amber / Red",
+            "IBU": 25.0,
+            "ABV": "5,5",
+            "Brewery": "Pivovar Strahov",
+            "Brewery_location": "50.08685339666631, 14.38835851409526",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.08685339666631, 14.38835851409526",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/972d1d4f83accf2cd4febc23e679ff0b_c_1387702597_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Správčák": [
+        {
+            "ID": 563,
+            "Beer": "Výroční 12",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery": "Rezek",
+            "Brewery_location": "50.69666654180602, 15.26838064260705",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue_location": "50.258165202852105, 15.827075914565846",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Bottle",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/3ce2e0e20ca484014dd72c03591daee9_c_1389259229_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Nicely cooled, bitter but stil Rezeklike"
+        }
+    ],
+    "Obrazovic zahrada": [
+        {
+            "ID": 581,
+            "Beer": "Česká Moucha 11°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": NaN,
+            "ABV": "4,1",
+            "Brewery": "Pivovar Moucha",
+            "Brewery_location": "50.03042182646965, 14.411284006335011",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "49.95976286604771, 14.369315538944493",
+            "Friends": [
+                "FL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_22/e7c46199d8029b5386fab7a928131f69_c_1392132738_raw.jpg",
+            "Date": "22.06.2024",
+            "Comment": "Czech barbecue"
+        }
+    ],
+    "Havlíčkovy sady (Grébovka)": [
+        {
+            "ID": 582,
+            "Beer": "Záviš 12%",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 28.0,
+            "ABV": "5,2",
+            "Brewery": "Měšťanský pivovar v Poličce",
+            "Brewery_location": "49.71098546868435, 16.259893649616323",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.07004235668249, 14.44627698890452",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_25/d5833aaa255bf429ed71a25e4a341630_c_1393146679_raw.jpg",
+            "Date": "25.06.2024",
+            "Comment": "Nasládlé jak cecek"
+        }
+    ],
+    "Vršovická zahrada": [
+        {
+            "ID": 583,
+            "Beer": "Pražská Moucha 12°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery": "Pivovar Moucha",
+            "Brewery_location": "50.03042182646965, 14.411284006335011",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.0718227063218, 14.447613785799073",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_25/091ebe77662d8344a3cffa62f079bc80_c_1393189487_raw.jpg",
+            "Date": "25.06.2024",
+            "Comment": "Hehe Moucha 11 on the weekend Moucha 12 on Tuesday"
+        }
+    ],
+    "Bad Flash Bar": [
+        {
+            "ID": 584,
+            "Beer": "BlackCurrant & PinkPepper",
+            "Beer_style": "Sour - Other",
+            "IBU": NaN,
+            "ABV": "4,9",
+            "Brewery": "Bad Flash",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.07158852973994, 14.44705126550343",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_25/592b2a7560301c597888928c724fc16e_c_1393201254_raw.jpg",
+            "Date": "25.06.2024",
+            "Comment": "Not addressing, not spicy at all, plain flavoured"
+        }
+    ],
+    "Café Na půl cesty": [
+        {
+            "ID": 585,
+            "Beer": "Frajerka",
+            "Beer_style": "Pale Ale - Other",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery": "Pivovar Trautenberk",
+            "Brewery_location": "50.74550203385104, 15.821954734382674",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.04988863007453, 14.431552170512004",
+            "Friends": [],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_28/1d26cf291bac6a41ba87878412f3433f_c_1393875777_raw.jpg",
+            "Date": "28.06.2024",
+            "Comment": "Reminds me a really good Ale I had at Dartmouth"
         }
     ]
 };
@@ -12626,6 +14209,50 @@ var brewery_check_ins = {
             "Comment": "koncept oživit starej zapomenutej způsob vaření velice uznávám, bohužel tohle je až moc velká divočina"
         },
         {
+            "ID": 529,
+            "Beer": "Bajka O Vlku A Lišce 16",
+            "Beer_style": "IPA - Other",
+            "IBU": NaN,
+            "ABV": "6,7",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Ježkovy voči",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB",
+                "TH",
+                "JŽ",
+                "AM",
+                "MS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_05/1ab89388a8bc5d797c88876b3350caf5_c_1387171496_raw.jpg",
+            "Date": "05.06.2024",
+            "Comment": "Not my cup of NEIPA"
+        },
+        {
+            "ID": 589,
+            "Beer": "Bounty 13",
+            "Beer_style": "Lager - Dark",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Ježkovy voči",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_03/f8b2c40a89dd17a877039fdb0ae9a557_c_1395435877_raw.jpg",
+            "Date": "03.07.2024",
+            "Comment": "Milky, I think"
+        },
+        {
             "ID": 461,
             "Beer": "Cape of Good Hops 17",
             "Beer_style": "IPA - New England / Hazy",
@@ -12824,6 +14451,30 @@ var brewery_check_ins = {
             "Comment": "NEIPA a sakra tady jdeme znovu, myslel jsem si, že jsem se jich v Rize přepil, ale nikoliv, tahle mi šmakuje"
         },
         {
+            "ID": 528,
+            "Beer": "Karrel: New World Kölsch 11°",
+            "Beer_style": "Kölsch",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Ježkovy voči",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB",
+                "TH",
+                "JŽ",
+                "AM",
+                "MS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_05/66ae60dc1e36530b410affce8c6ae070_c_1387170479_raw.jpg",
+            "Date": "05.06.2024",
+            "Comment": "Not addressing well, pretty light, suitable for chugging."
+        },
+        {
             "ID": 72,
             "Beer": "Kartel Best Bitter 11 (srpen 2023)",
             "Beer_style": "Bitter - Best",
@@ -12866,6 +14517,26 @@ var brewery_check_ins = {
             "Comment": "Dang, I would forbid coconut in lagers"
         },
         {
+            "ID": 588,
+            "Beer": "Kartel Elderflower Summer Ale 11 (červenec 2024)",
+            "Beer_style": "Pale Ale - Fruited",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Ježkovy voči",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_03/6b469770d9df02a303a6db231ba73860_c_1395432243_raw.jpg",
+            "Date": "03.07.2024",
+            "Comment": "Elderflower is there! Nice attempt that I appreciate"
+        },
+        {
             "ID": 499,
             "Beer": "Kartel Oak Aged Citra Pale Ale 12 (Květen 2024)",
             "Beer_style": "Pale Ale - Other",
@@ -12905,6 +14576,24 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_02_03/aa85aff8f15fa1222d5573e327918748_raw.jpg",
             "Date": "03.02.2023",
             "Comment": "k těm stoutům se člověk propíjí opravdu pomalu, tenhle je oproti ostatním, které jsem měl možnost dosud ochutnat, co se týče alkoholu značně lehčí, nicméně na konci je docela těžce kávově hořký"
+        },
+        {
+            "ID": 562,
+            "Beer": "Krahulík 10",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 29.0,
+            "ABV": "4,1",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_12/3ae5942886c38b6d4212e6e83143b32d_c_1389088272_raw.jpg",
+            "Date": "12.06.2024",
+            "Comment": "Last Krahulík into the collection"
         },
         {
             "ID": 143,
@@ -13080,6 +14769,26 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_08_24/5a2b345e9080227381e0e6fff1f6d089_raw.jpg",
             "Date": "25.08.2023",
             "Comment": "Nothing special, refreshing watery APA"
+        },
+        {
+            "ID": 587,
+            "Beer": "Sabro Fan Service 12",
+            "Beer_style": "IPA - Session",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Galerie piva",
+            "Venue_location": "50.07060094422077, 14.450756355698998",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_02/36152d2b62b0420fbbd417da94340cd6_c_1395273300_raw.jpg",
+            "Date": "02.07.2024",
+            "Comment": "Well made, drinkable and amusing"
         },
         {
             "ID": 207,
@@ -14236,6 +15945,29 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2022_10_30/cb781999fb046fb3c9aa9ca4f75a2814_raw.jpg",
             "Date": "30.10.2022",
             "Comment": "tak tohle já můžu, top strop"
+        },
+        {
+            "ID": 539,
+            "Beer": "Māhutonga",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 30.0,
+            "ABV": "5,9",
+            "Brewery_location": "50.07532369998683, 14.457555284654678",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/f00868edb95c7c3bef16e2291344bf46_c_1387520871_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Just wow"
         },
         {
             "ID": 123,
@@ -15412,6 +17144,48 @@ var brewery_check_ins = {
     ],
     "Pivovar Antoš": [
         {
+            "ID": 525,
+            "Beer": "Antošovy koule",
+            "Beer_style": "Stout - Milk / Sweet",
+            "IBU": NaN,
+            "ABV": "5,8",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Park Parukářka",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ",
+                "MJ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/14f4a0abd0cf137769169f27c3d979f6_c_1385571405_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Mmm liquid Mozzart balls"
+        },
+        {
+            "ID": 561,
+            "Beer": "Antošův ležák",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 30.0,
+            "ABV": "4,7",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "TV",
+                "PL"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_12/6cf7577267cc48434969c1a2f428d1c7_c_1389077448_raw.jpg",
+            "Date": "12.06.2024",
+            "Comment": "Let the Rock for People begin"
+        },
+        {
             "ID": 275,
             "Beer": "Art of Nectaron",
             "Beer_style": "IPA - New England / Hazy",
@@ -15471,6 +17245,26 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_07_15/32112c352e43eb34e8f8fe97cf48d2ef_raw.jpg",
             "Date": "15.07.2023",
             "Comment": "not my cup of beer, but pretty refreshing in the year's hottest day"
+        },
+        {
+            "ID": 572,
+            "Beer": "Marination Nation",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/0762e42a657a4d1b2090300d5202ca4d_c_1389561514_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Antoš strikes again"
         },
         {
             "ID": 219,
@@ -16115,6 +17909,24 @@ var brewery_check_ins = {
     ],
     "Pivovar Trautenberk": [
         {
+            "ID": 585,
+            "Beer": "Frajerka",
+            "Beer_style": "Pale Ale - Other",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery_location": "50.74550203385104, 15.821954734382674",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Café Na půl cesty",
+            "Venue_location": "50.04988863007453, 14.431552170512004",
+            "Friends": [],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_28/1d26cf291bac6a41ba87878412f3433f_c_1393875777_raw.jpg",
+            "Date": "28.06.2024",
+            "Comment": "Reminds me a really good Ale I had at Dartmouth"
+        },
+        {
             "ID": 128,
             "Beer": "Trautenberk 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -16600,6 +18412,26 @@ var brewery_check_ins = {
     ],
     "Pivovar Permon": [
         {
+            "ID": 573,
+            "Beer": "Světlý ležák 12°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 35.0,
+            "ABV": "4,8",
+            "Brewery_location": "50.17874994137674, 12.63787465580559",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Karlovarský kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/676c0e3833c4a216b37f10454bc29791_c_1389577653_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Keanu Reeves on the guitar"
+        },
+        {
             "ID": 144,
             "Beer": "Světlý speciál 13°",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -16640,6 +18472,26 @@ var brewery_check_ins = {
         }
     ],
     "Počernický pivovar": [
+        {
+            "ID": 576,
+            "Beer": "Počernická dvanáctka",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 26.0,
+            "ABV": "4,4",
+            "Brewery_location": "50.08846086535482, 14.580681299998794",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/f615369104ac5b5928c516312668028b_c_1389728083_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "BMTH"
+        },
         {
             "ID": 146,
             "Beer": "Počernická I.P.A.",
@@ -16788,6 +18640,26 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_03_07/90cb1fe62dccead80d892f14a9bba245_raw.jpg",
             "Date": "07.03.2023",
             "Comment": "ojediněle přidávám po druhé, protože je mnohem lepší než na první dobrou, skvěle načepované, plná hořká chuť nepřebíjí ovocnost, velice solidní"
+        },
+        {
+            "ID": 565,
+            "Beer": "Vošta",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": NaN,
+            "ABV": "4,8",
+            "Brewery_location": "50.08125410516569, 16.317200948562274",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/85d5df43a3ff84734924c51c4a1cff13_c_1389274304_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Playing by hops, god job there"
         }
     ],
     "Rodinný pivovar Rampušák": [
@@ -16810,6 +18682,26 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_10/f24a9561b6338a74eacae0495de79fd8_raw.jpg",
             "Date": "10.06.2023",
             "Comment": "first beer of the day, pretty juicy and yummy, me likey"
+        },
+        {
+            "ID": 574,
+            "Beer": "Rampušák 12",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 40.0,
+            "ABV": "4,9",
+            "Brewery_location": "50.29340474581693, 16.16344031349508",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/a5d807ff72c7df55036516f793af4517_c_1389624350_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Avril Lavigne my love"
         }
     ],
     "Hradecký Klenot": [
@@ -16835,6 +18727,46 @@ var brewery_check_ins = {
             "Comment": "apricot sour ale, I would say, idk what's in the description, I'm quite confident with the taste profile"
         },
         {
+            "ID": 569,
+            "Beer": "Ale 11",
+            "Beer_style": "Pale Ale - American",
+            "IBU": 39.0,
+            "ABV": "4,5",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/eb3342967b6e51862166e4edb6c73c76_c_1389510111_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Refreshing start of the day"
+        },
+        {
+            "ID": 571,
+            "Beer": "Coffee Brown ALE",
+            "Beer_style": "Brown Ale - Other",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "2,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/6374f6eb62144b43583f2a7d61a6cfd4_c_1389514339_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Not my cup of coffee beer, tartiness reminds robusta"
+        },
+        {
             "ID": 150,
             "Beer": "IPA",
             "Beer_style": "IPA - Other",
@@ -16854,6 +18786,64 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_10/418019cd6e2aa2c5497c93478756a9af_raw.jpg",
             "Date": "10.06.2023",
             "Comment": "Billy Talent + this IPA? divine combination"
+        },
+        {
+            "ID": 579,
+            "Beer": "Klenot 11 polotmavý",
+            "Beer_style": "Lager - Amber / Red",
+            "IBU": 22.0,
+            "ABV": "4,5",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/9052259ad7547444700cf6f801f51c60_c_1390106628_raw.jpg",
+            "Date": "15.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 577,
+            "Beer": "Nealko Grep",
+            "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
+            "IBU": NaN,
+            "ABV": "0,5",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/954751d3ef195eda700076c5c82ad38b_c_1389931079_raw.jpg",
+            "Date": "15.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 566,
+            "Beer": "Sour - Raspberry & Coffee",
+            "Beer_style": "Sour - Other",
+            "IBU": NaN,
+            "ABV": "4,0",
+            "Brewery_location": "50.20940793371788, 15.834727157670889",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/31f02294164e6b7ffa0bc81723208e10_c_1389276626_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Amusing"
         }
     ],
     "Stieglbrauerei zu Salzburg": [
@@ -16976,6 +18966,29 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_08/81b0847452e1c3af74112d214c5933b6_c_1378697400_raw.jpg",
             "Date": "02.05.2024",
             "Comment": "Probably just wasn't in beer mood that day"
+        },
+        {
+            "ID": 540,
+            "Beer": "Pastry Sour - Carrot Cake - Mrkvový Dort",
+            "Beer_style": "Sour - Smoothie / Pastry",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery_location": "49.338898000982084, 14.639135934721343",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihočeský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83a446c8f57eded6828e31ebcb6242ae_c_1387522891_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
         },
         {
             "ID": 160,
@@ -17180,6 +19193,27 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_05_23/d5a3bf16e770e576c9295ee13a02e59e_raw.jpg",
             "Date": "23.05.2023",
             "Comment": "nic moc, aspoň že jsem ho nepil sám"
+        },
+        {
+            "ID": 533,
+            "Beer": "Únětický speciál 8° Letní",
+            "Beer_style": "Lager - Pale",
+            "IBU": 40.0,
+            "ABV": "3,4",
+            "Brewery_location": "50.14920082481283, 14.35431148463674",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/d0efd99a1133f6ff1e3b74d041deb433_c_1387513069_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
         }
     ],
     "Primátor": [
@@ -17505,6 +19539,26 @@ var brewery_check_ins = {
             "Comment": "exáč v rámci pivních ve vlaku, jako bych pil perlivou vodu.. příště si 2x rozmyslím, jestli na jih Čech zavítám a jestli si tam dokonce dám pivo"
         },
         {
+            "ID": 570,
+            "Beer": "Na Pool",
+            "Beer_style": "Lager - IPL (India Pale Lager)",
+            "IBU": 38.0,
+            "ABV": "4,0",
+            "Brewery_location": "48.99437662043317, 14.476713544734894",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihočeský kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/3a395b254c358bce9af57b34ab24d6ce_c_1389510256_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Pairs well with burger"
+        },
+        {
             "ID": 178,
             "Beer": "Pardál Echt",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -17642,6 +19696,46 @@ var brewery_check_ins = {
     ],
     "Bad Flash": [
         {
+            "ID": 575,
+            "Beer": "Bikini Ale",
+            "Beer_style": "Pale Ale - Other",
+            "IBU": NaN,
+            "ABV": "4,8",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_14/0e7df5c8aa61a43020f5862730ae2c25_c_1389654157_raw.jpg",
+            "Date": "14.06.2024",
+            "Comment": "Maty Svítok módní návrhář"
+        },
+        {
+            "ID": 584,
+            "Beer": "BlackCurrant & PinkPepper",
+            "Beer_style": "Sour - Other",
+            "IBU": NaN,
+            "ABV": "4,9",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Bad Flash Bar",
+            "Venue_location": "50.07158852973994, 14.44705126550343",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_25/592b2a7560301c597888928c724fc16e_c_1393201254_raw.jpg",
+            "Date": "25.06.2024",
+            "Comment": "Not addressing, not spicy at all, plain flavoured"
+        },
+        {
             "ID": 188,
             "Beer": "Denali NEIPA",
             "Beer_style": "IPA - New England / Hazy",
@@ -17662,6 +19756,26 @@ var brewery_check_ins = {
             "Comment": "bohužel bez fota, věnoval jsem se společnosti viz předchozí příspěvek, spontánní hospůdka po společném lezení"
         },
         {
+            "ID": 567,
+            "Beer": "Mango Chilli Sour Ale",
+            "Beer_style": "Sour - Fruited",
+            "IBU": 8.0,
+            "ABV": "4,9",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/74f7f409c7e423ef62a0ffc0775b495b_c_1389290478_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Chilli lovers, get it until they sell it all"
+        },
+        {
             "ID": 271,
             "Beer": "Prostě ležák 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -17680,6 +19794,29 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_02_13/dfabfb93c193b1c9ade431b41c0a1570_raw.jpg",
             "Date": "13.02.2023",
             "Comment": "po týdnu jsem zase zpět připraven přinášet novinky z pivního světa, začínám opatrně ležáčkem a mile překvapil, příjemná hořkost, příjemný říz, jen tak dál"
+        },
+        {
+            "ID": 553,
+            "Beer": "Torpid Mind",
+            "Beer_style": "Stout - Russian Imperial",
+            "IBU": NaN,
+            "ABV": "10,5",
+            "Brewery_location": "50.128906103778206, 14.454356221643813",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/5bf4be7b7ffaca87d8c1298dc6ba3ad8_c_1387585183_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Hihi imperial stout"
         }
     ],
     "Sibeeria": [
@@ -17761,6 +19898,26 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_02_24/e14aa977ea047f0cbd507009c7f7f172_raw.jpg",
             "Date": "24.02.2023",
             "Comment": "ve skutečnosti jsem čekal větší mrdici, než jsem dostal.."
+        },
+        {
+            "ID": 521,
+            "Beer": "I Love the Smell of HBC 630 in the Morning",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": NaN,
+            "ABV": "6,7",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "LP"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_29/02b99ce6d2b1a2587409bb5dcaa80d1b_c_1385150197_raw.jpg",
+            "Date": "29.05.2024",
+            "Comment": "Low on hops and I can feel the alcohol, a feminine NEIPA cuz it's juicy, reminding drinks"
         },
         {
             "ID": 280,
@@ -17862,6 +20019,26 @@ var brewery_check_ins = {
             "Comment": "moc dobrá, příjemně ovocná, slaďoučká"
         },
         {
+            "ID": 520,
+            "Beer": "One American",
+            "Beer_style": "Sour - Berliner Weisse",
+            "IBU": NaN,
+            "ABV": "4,5",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "LP"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_29/e4a71685c8634ee968f04c83b0562c07_c_1385144948_raw.jpg",
+            "Date": "29.05.2024",
+            "Comment": "An honest sour ale, they don't lie with the description! I like it!"
+        },
+        {
             "ID": 501,
             "Beer": "One Love",
             "Beer_style": "Stout - Other",
@@ -17883,6 +20060,26 @@ var brewery_check_ins = {
             "Comment": "Those who crave raspberries would appreciate this one big time, me not so much"
         },
         {
+            "ID": 519,
+            "Beer": "Patronus",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "3,8",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "LP"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_29/0ad2a8720115824afd7d5bbea6da035f_c_1385142893_raw.jpg",
+            "Date": "29.05.2024",
+            "Comment": "So drinkable woow and hoppy as well a flawless 10°"
+        },
+        {
             "ID": 453,
             "Beer": "Podzim 2023",
             "Beer_style": "Scotch Ale / Wee Heavy",
@@ -17901,6 +20098,26 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_05/cf991f390e450e360fc529a66a5a089e_c_1369345644_raw.jpg",
             "Date": "05.04.2024",
             "Comment": "That was very good"
+        },
+        {
+            "ID": 564,
+            "Beer": "Summer Ale",
+            "Beer_style": "Pale Ale - American",
+            "IBU": NaN,
+            "ABV": "4,0",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/58b305130112f8cdf5545023214d11c3_c_1389265079_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Awkwardly sour, seeking for americam hops but can't find them, you can do better Sibeeria"
         },
         {
             "ID": 282,
@@ -18022,6 +20239,26 @@ var brewery_check_ins = {
         }
     ],
     "Chroust": [
+        {
+            "ID": 586,
+            "Beer": "Jura",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 35.0,
+            "ABV": "5,0",
+            "Brewery_location": "50.130198177665946, 14.395175871162714",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Galerie piva",
+            "Venue_location": "50.07060094422077, 14.450756355698998",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_02/fdf481e9fda034ff161db6929d67888d_c_1395266135_raw.jpg",
+            "Date": "02.07.2024",
+            "Comment": "Beertime after spikeball with floorball boys"
+        },
         {
             "ID": 194,
             "Beer": "Oyster Stout",
@@ -19006,6 +21243,26 @@ var brewery_check_ins = {
         }
     ],
     "Pivovarský dům Benedict": [
+        {
+            "ID": 578,
+            "Beer": "Belgian Witbier",
+            "Beer_style": "Wheat Beer - Witbier / Blanche",
+            "IBU": 20.0,
+            "ABV": "4,3",
+            "Brewery_location": "50.07539340110661, 14.423844969713297",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/414749b426042b7135f7f6f97744edf3_c_1390104428_raw.jpg",
+            "Date": "15.06.2024",
+            "Comment": "I feel coriander"
+        },
         {
             "ID": 265,
             "Beer": "Norská Kveik IPA 14%",
@@ -20456,6 +22713,29 @@ var brewery_check_ins = {
     ],
     "Heineken Česká Republika": [
         {
+            "ID": 547,
+            "Beer": "Beránek polotmavý 12",
+            "Beer_style": "Lager - Amber / Red",
+            "IBU": 35.0,
+            "ABV": "5,1",
+            "Brewery_location": "50.17431950112256, 13.774900712110268",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3a40e2c80d5e9de281082a208ac1a4d1_c_1387551604_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
             "ID": 422,
             "Beer": "Zlatopramen",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -20973,6 +23253,29 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_10/c38337aad9bfab9c23add164f7d2159a_c_1371001245_raw.jpg",
             "Date": "10.04.2024",
             "Comment": "Righteous Czech Pils, I recommend"
+        },
+        {
+            "ID": 538,
+            "Beer": "Kaštanové pivo",
+            "Beer_style": "Spiced / Herbed Beer",
+            "IBU": NaN,
+            "ABV": "7,0",
+            "Brewery_location": "50.027974142788516, 14.607107128323797",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e18177e433471f72595adb1952fa9cb7_c_1387519780_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
         }
     ],
     "Sierra Nevada Brewing Co.": [
@@ -21781,6 +24084,876 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_23/2fb220013eb1d4c01daa8f6cc7a6d7e6_c_1383286831_raw.jpg",
             "Date": "23.05.2024",
             "Comment": "Carlsberg vibes, pretty bad European lager"
+        }
+    ],
+    "The Alchemist": [
+        {
+            "ID": 518,
+            "Beer": "Heady Topper",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": 100.0,
+            "ABV": "8,0",
+            "Brewery_location": "44.475934649896104, -72.71574608825918",
+            "Brewery_country": "United States",
+            "Beer_region": "VT",
+            "Venue": "Home - Ipak",
+            "Venue_location": "50.07348211423651, 14.428222025402329",
+            "Friends": [],
+            "Rating": "4,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_25/541a105a93947b0aea079214abb351b9_c_1384019937_raw.jpg",
+            "Date": "25.05.2024",
+            "Comment": "One year ago Lauren told me about this glorified beer from her home state, so when I got into Vermont I must have found it. I brought it back home and waited until we humble Sweeds in icehockey semifinals. I've never had a beer so wealthy on hops, love it"
+        }
+    ],
+    "Haksna Brewery": [
+        {
+            "ID": 522,
+            "Beer": "Our Lager",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 31.0,
+            "ABV": "4,7",
+            "Brewery_location": "49.762141313449604, 18.205041083605526",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Moravskoslezský kraj",
+            "Venue": "Park Parukářka",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/065db5d004b856f64534923bc3993871_c_1385560437_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "It's starting to rain ayay, good lager for the beginning!"
+        }
+    ],
+    "Pivovar Kraft": [
+        {
+            "ID": 523,
+            "Beer": "Tekutý Manitú",
+            "Beer_style": "IPA - American",
+            "IBU": 40.0,
+            "ABV": "5,0",
+            "Brewery_location": "50.060092910736394, 14.49423546824499",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Park Parukářka",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/17017c7585beb2bab010c462860a6980_c_1385563064_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Wow an honest APA, indeed one of the best APA I've ever had, I'm veery satisfied"
+        }
+    ],
+    "Švabín Brewery": [
+        {
+            "ID": 524,
+            "Beer": "Leshy",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": 60.0,
+            "ABV": "7,5",
+            "Brewery_location": "49.852916433482974, 13.748478181951992",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Park Parukářka",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ",
+                "MJ"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/1c573bfe832df9404dfef836b969171f_c_1385566643_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Yummy and hoppy, super good"
+        }
+    ],
+    "Psychovar": [
+        {
+            "ID": 526,
+            "Beer": "Jiříkovo Vidění Oat Wheat Sour Ale",
+            "Beer_style": "Sour - Other",
+            "IBU": 15.0,
+            "ABV": "4,4",
+            "Brewery_location": "49.91614964345321, 14.242806046489305",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Park Parukářka",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/a1307b30baf4bf246be41733dd4d2dc0_c_1385588369_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "This is a discovery of the month, just wow"
+        }
+    ],
+    "Minipivovar Brabčák": [
+        {
+            "ID": 527,
+            "Beer": "Fénix IPA",
+            "Beer_style": "IPA - American",
+            "IBU": NaN,
+            "ABV": NaN,
+            "Brewery_location": "49.772784656928685, 18.306709511748664",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Moravskoslezský kraj",
+            "Venue": "Park Parukářka",
+            "Venue_location": "50.08523641732088, 14.461972041807007",
+            "Friends": [
+                "FZ",
+                "MJ"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_31/04e70d4a75821a625dbf484d69b61391_c_1385592210_raw.jpg",
+            "Date": "31.05.2024",
+            "Comment": "Mid"
+        }
+    ],
+    "Pivovar Kladno Kročehlavy": [
+        {
+            "ID": 530,
+            "Beer": "Kladenská Poldi 8°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 25.0,
+            "ABV": "3,2",
+            "Brewery_location": "50.140716209963365, 14.111318896867965",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/7ce80dd3c119cc21a204dee3cba8501e_c_1387511339_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Kristýna": [
+        {
+            "ID": 580,
+            "Beer": "Kořen 11°",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "4,3",
+            "Brewery_location": "50.86236537490102, 14.824740041938714",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue": "Studentský klub Mrtvá Ryba",
+            "Venue_location": "50.07242851674521, 14.422977834270295",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_20/f1f9ac79077e0d22ce5340596001f4eb_c_1391425099_raw.jpg",
+            "Date": "20.06.2024",
+            "Comment": "Is Kristýna expanding or what? Saw them 2 weeks ago for the first time at the Prague Castle beer festival. Now they've plenty of kegs stored in Mrtvá Ryba, will stay on tap for quite some time I guess, on the way from Lidl back to work hehe"
+        },
+        {
+            "ID": 531,
+            "Beer": "Křemen 10",
+            "Beer_style": "Lager - Světlé (Czech Pale)",
+            "IBU": NaN,
+            "ABV": "3,9",
+            "Brewery_location": "50.86236537490102, 14.824740041938714",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e1f36fa4f4a8dc950b42c9c4ff3a8db2_c_1387511802_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Zmolský Pivovar": [
+        {
+            "ID": 532,
+            "Beer": "Vojtěch 11°",
+            "Beer_style": "Lager - Other",
+            "IBU": NaN,
+            "ABV": NaN,
+            "Brewery_location": "48.9816326957962, 16.141154352958623",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihomoravský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/badaae7d1173ea8190faefc5784fc735_c_1387512616_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "I drink faster than I'm able to take photos"
+        }
+    ],
+    "Tahoun": [
+        {
+            "ID": 534,
+            "Beer": "Tahoun",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 32.0,
+            "ABV": "5,0",
+            "Brewery_location": "50.25872866531891, 14.949374427212113",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/5c39613b79e512a359d25892273dfe8a_c_1387514383_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Plzeň 11°"
+        }
+    ],
+    "Pivovar Malenovice": [
+        {
+            "ID": 535,
+            "Beer": "Kmet - Dubský Zeleňák",
+            "Beer_style": "Historical Beer - Other",
+            "IBU": NaN,
+            "ABV": "4,3",
+            "Brewery_location": "49.205604504628596, 17.597158940266876",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/ca78e05ca40b1da3bdb06f03167093fa_c_1387515017_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Červený vlk": [
+        {
+            "ID": 536,
+            "Beer": "Lehký Střízlík",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 30.0,
+            "ABV": "3,0",
+            "Brewery_location": "50.40935380686664, 12.926176154738114",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Karlovarský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ"
+            ],
+            "Rating": "2,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/0ffb6b1a6658d6553950b940a6af5d44_c_1387516806_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Máslo, už musím prokládat"
+        }
+    ],
+    "Topolský pivovar": [
+        {
+            "ID": 555,
+            "Beer": "Lvice 12 %",
+            "Beer_style": "IPA - Other",
+            "IBU": 40.0,
+            "ABV": "5,0",
+            "Brewery_location": "49.123006915343844, 17.539780910681827",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/025bcd3da6baec036ddd46cb48f1f48f_c_1387600992_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        },
+        {
+            "ID": 537,
+            "Beer": "Topolské výčepní pivo 10",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 24.0,
+            "ABV": "4,0",
+            "Brewery_location": "49.123006915343844, 17.539780910681827",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3da421866174f0201279e3a3d27d0b52_c_1387518574_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pokusný minipivovar ve Chmelařském institutu": [
+        {
+            "ID": 541,
+            "Beer": "Cold IPA Saturn + Eris 14,5",
+            "Beer_style": "IPA - Cold",
+            "IBU": 50.0,
+            "ABV": "6,1",
+            "Brewery_location": "50.32366111946244, 13.52570508539219",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/56d6a7782a24cb453cc72ebc488bc355_c_1387523975_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Purkmistr": [
+        {
+            "ID": 542,
+            "Beer": "Forest Gunk",
+            "Beer_style": "Pale Ale - Other",
+            "IBU": 44.0,
+            "ABV": "5,2",
+            "Brewery_location": "49.69875840378563, 13.414088480685663",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/c59fbd868dc360535ae5c3e5b160e157_c_1387526007_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Tastes oldschool American"
+        }
+    ],
+    "Pivovar Zábřeh": [
+        {
+            "ID": 543,
+            "Beer": "Welzl 14 APA",
+            "Beer_style": "Pale Ale - American",
+            "IBU": 65.0,
+            "ABV": "6,5",
+            "Brewery_location": "49.887898482375476, 16.86089263266433",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Olomoucký kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83b560099b888c12f3fdd2eefd4a1f08_c_1387531302_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovarský dům Poupě": [
+        {
+            "ID": 544,
+            "Beer": "Poupětův Američan 11°",
+            "Beer_style": "Pale Ale - American",
+            "IBU": 30.0,
+            "ABV": "4,5",
+            "Brewery_location": "49.19287795469594, 16.60601754207501",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Jihomoravský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/95a273f3cec41b59af186765a90ddcf7_c_1387534953_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar VŠCHT Praha": [
+        {
+            "ID": 545,
+            "Beer": "Hawai 11",
+            "Beer_style": "Wheat Beer - Witbier / Blanche",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery_location": "50.103365351273915, 14.389808993793213",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "2,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/66a7027c3208f79f65fd6a54223a97c3_c_1387537734_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": "Uuh"
+        }
+    ],
+    "Karlovský minipivovar Pod pralesem": [
+        {
+            "ID": 546,
+            "Beer": "Karlovsky Anniversary Strong",
+            "Beer_style": "Strong Ale - Other",
+            "IBU": NaN,
+            "ABV": NaN,
+            "Brewery_location": "49.37007335332604, 18.3574045810908",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/39ed20cb870312ab8c670106642df9ef_c_1387544415_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Městský pivovar Domažlice": [
+        {
+            "ID": 548,
+            "Beer": "Domažlický Doppel",
+            "Beer_style": "Bock - Doppelbock",
+            "IBU": 23.0,
+            "ABV": "7,5",
+            "Brewery_location": "49.441886622058476, 12.927000229483443",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/a081c633a5249e210b9cf0bd523d83f6_c_1387559102_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Zámecký pivovar Zábřeh": [
+        {
+            "ID": 549,
+            "Beer": "Pikard Red Ale",
+            "Beer_style": "Bitter - Session / Ordinary",
+            "IBU": NaN,
+            "ABV": "4,0",
+            "Brewery_location": "49.80701399483334, 18.240302734204242",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Moravskoslezský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "2,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dce33be48f624d284bd92574cb2364f5_c_1387562141_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Rožnovský pivovar": [
+        {
+            "ID": 550,
+            "Beer": "Rytíř Gutmann 16°",
+            "Beer_style": "Bock - Single / Traditional",
+            "IBU": NaN,
+            "ABV": "6,0",
+            "Brewery_location": "49.45671829534698, 18.136823740990586",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/038f46be03ecf2aaed6d8fb6d48690a7_c_1387567231_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Klášterní pivovar Želiv": [
+        {
+            "ID": 551,
+            "Beer": "Pouťová A.P.A.",
+            "Beer_style": "Pale Ale - American",
+            "IBU": NaN,
+            "ABV": "4,3",
+            "Brewery_location": "49.52968526152458, 15.213886768392497",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "kraj Vysočina",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "2,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/2426cc86a096fcd1c827680cb66ceea8_c_1387570665_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Zhůřák": [
+        {
+            "ID": 552,
+            "Beer": "Cherry-Raspberry Kompot Sour",
+            "Beer_style": "Sour - Fruited",
+            "IBU": 10.0,
+            "ABV": "6,3",
+            "Brewery_location": "49.53750890510675, 13.51593872869555",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/293152986051f876c439cd8d9bee4ebb_c_1387578700_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Neratov": [
+        {
+            "ID": 554,
+            "Beer": "Prorok 11 NEIPA",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 9.0,
+            "ABV": "4,4",
+            "Brewery_location": "50.21490517900591, 16.552906025867753",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/b5bbbbcf6d33ee133c999a93afe27fd4_c_1387593885_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Joe's Garage Beer": [
+        {
+            "ID": 556,
+            "Beer": "Juicy Sabro 12°",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": NaN,
+            "ABV": "4,5",
+            "Brewery_location": "49.75550281815227, 13.453513911387917",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dd9c7c5be7abd884dc1b030d4d2b29b7_c_1387604595_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Podlesí": [
+        {
+            "ID": 557,
+            "Beer": "Klokan",
+            "Beer_style": "Pale Ale - Australian",
+            "IBU": 23.0,
+            "ABV": "5,0",
+            "Brewery_location": "49.689860221597115, 13.982009382884367",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/cd3ab62448966a335c954a18a656d7f4_c_1387609489_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Holendr": [
+        {
+            "ID": 558,
+            "Beer": "Ale 11",
+            "Beer_style": "Pale Ale - American",
+            "IBU": NaN,
+            "ABV": "5,1",
+            "Brewery_location": "49.48161363246013, 17.966887182885216",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/c33138c777af383bbed4a0a7d594f910_c_1387620472_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Kroměříž": [
+        {
+            "ID": 559,
+            "Beer": "Maxmilian Polibek",
+            "Beer_style": "IPA - Session",
+            "IBU": 34.0,
+            "ABV": "4,5",
+            "Brewery_location": "49.30997796389827, 17.39800754026588",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Zlínský kraj",
+            "Venue": "Festival minipivovarů na Pražském hradě",
+            "Venue_location": "50.093295874879736, 14.404924928754417",
+            "Friends": [
+                "JŽ",
+                "AM",
+                "FZ",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/27b5ea04eb73bf306825677963f3752e_c_1387631543_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Pivovar Strahov": [
+        {
+            "ID": 560,
+            "Beer": "Sv. Norbert Sakura Amber Ale",
+            "Beer_style": "Red Ale - American Amber / Red",
+            "IBU": 25.0,
+            "ABV": "5,5",
+            "Brewery_location": "50.08685339666631, 14.38835851409526",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Klášterní pivovar Strahov",
+            "Venue_location": "50.08685339666631, 14.38835851409526",
+            "Friends": [
+                "JŽ",
+                "AM"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/972d1d4f83accf2cd4febc23e679ff0b_c_1387702597_raw.jpg",
+            "Date": "07.06.2024",
+            "Comment": NaN
+        }
+    ],
+    "Rezek": [
+        {
+            "ID": 563,
+            "Beer": "Výroční 12",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": NaN,
+            "ABV": "5,5",
+            "Brewery_location": "50.69666654180602, 15.26838064260705",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue": "Správčák",
+            "Venue_location": "50.258165202852105, 15.827075914565846",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Bottle",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/3ce2e0e20ca484014dd72c03591daee9_c_1389259229_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Nicely cooled, bitter but stil Rezeklike"
+        }
+    ],
+    "Měšťanský pivovar Kutná Hora": [
+        {
+            "ID": 568,
+            "Beer": "Summer Ale",
+            "Beer_style": "Blonde / Golden Ale - Other",
+            "IBU": NaN,
+            "ABV": "3,9",
+            "Brewery_location": "49.956575500082266, 15.270966677814036",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "Rock for People",
+            "Venue_location": "50.246756245826106, 15.837240959433501",
+            "Friends": [
+                "PL"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_13/65632260ef364f93891e96ababd92674_c_1389306444_raw.jpg",
+            "Date": "13.06.2024",
+            "Comment": "Not bad, good price!"
+        }
+    ],
+    "Pivovar Moucha": [
+        {
+            "ID": 583,
+            "Beer": "Pražská Moucha 12°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": NaN,
+            "ABV": "4,6",
+            "Brewery_location": "50.03042182646965, 14.411284006335011",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Vršovická zahrada",
+            "Venue_location": "50.0718227063218, 14.447613785799073",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_25/091ebe77662d8344a3cffa62f079bc80_c_1393189487_raw.jpg",
+            "Date": "25.06.2024",
+            "Comment": "Hehe Moucha 11 on the weekend Moucha 12 on Tuesday"
+        },
+        {
+            "ID": 581,
+            "Beer": "Česká Moucha 11°",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": NaN,
+            "ABV": "4,1",
+            "Brewery_location": "50.03042182646965, 14.411284006335011",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Obrazovic zahrada",
+            "Venue_location": "49.95976286604771, 14.369315538944493",
+            "Friends": [
+                "FL"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_22/e7c46199d8029b5386fab7a928131f69_c_1392132738_raw.jpg",
+            "Date": "22.06.2024",
+            "Comment": "Czech barbecue"
+        }
+    ],
+    "Měšťanský pivovar v Poličce": [
+        {
+            "ID": 582,
+            "Beer": "Záviš 12%",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 28.0,
+            "ABV": "5,2",
+            "Brewery_location": "49.71098546868435, 16.259893649616323",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Havlíčkovy sady (Grébovka)",
+            "Venue_location": "50.07004235668249, 14.44627698890452",
+            "Friends": [
+                "TB"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_25/d5833aaa255bf429ed71a25e4a341630_c_1393146679_raw.jpg",
+            "Date": "25.06.2024",
+            "Comment": "Nasládlé jak cecek"
         }
     ]
 };
