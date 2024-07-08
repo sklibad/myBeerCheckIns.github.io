@@ -485,10 +485,11 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "Rezek" }, "geometry": { "type": "Point", "coordinates": [ 15.268380642607051, 50.696666541806017 ] } },
     { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar Kutná Hora" }, "geometry": { "type": "Point", "coordinates": [ 15.270966677814036, 49.956575500082266 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Moucha" }, "geometry": { "type": "Point", "coordinates": [ 14.411284006335013, 50.030421826469649 ] } },
-    { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar v Poličce" }, "geometry": { "type": "Point", "coordinates": [ 16.259893649616323, 49.710985468684349 ] } }
+    { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar v Poličce" }, "geometry": { "type": "Point", "coordinates": [ 16.259893649616323, 49.710985468684349 ] } },
+    { "type": "Feature", "properties": { "Brewery": "TamTam Brewing Co." }, "geometry": { "type": "Point", "coordinates": [ 13.396667321005175, 49.730601660106309 ] } },
+    { "type": "Feature", "properties": { "Brewery": "The Barn Beer Co." }, "geometry": { "type": "Point", "coordinates": [ 13.445213406266674, 49.798492881474772 ] } }
     ]
-    }
-];
+    }];
 
 var venue_check_ins = {
     "Más Al Sur": [
@@ -6810,6 +6811,42 @@ var venue_check_ins = {
             "Comment": "ale jo, nenadchl ani nezklamal"
         },
         {
+            "ID": 590,
+            "Beer": "The Eagle Flies Alone",
+            "Beer_style": "IPA - Rye",
+            "IBU": 53.0,
+            "ABV": "6,9",
+            "Brewery": "TamTam Brewing Co.",
+            "Brewery_location": "49.73060166010631, 13.396667321005177",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "50.07868125796863, 14.423487199684509",
+            "Friends": [],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/bdb20a084566f449869650c293e7ab37_c_1396675983_raw.jpg",
+            "Date": "06.07.2024",
+            "Comment": "Pretty warm, me no likey"
+        },
+        {
+            "ID": 591,
+            "Beer": "Ummagumma",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 25.0,
+            "ABV": "7,0",
+            "Brewery": "The Barn Beer Co.",
+            "Brewery_location": "49.79849288147477, 13.445213406266674",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "50.07868125796863, 14.423487199684509",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/1dc9022f3cadbe197041b72fced9a4e1_c_1396689235_raw.jpg",
+            "Date": "06.07.2024",
+            "Comment": "Not too warm, fruity as hell, a taste rollecoaster"
+        },
+        {
             "ID": 162,
             "Beer": "Unicorn Milk",
             "Beer_style": "IPA - Milkshake",
@@ -6829,6 +6866,24 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_05_30/4447b01619598d33dc39d8c0a3aacd2a_raw.jpg",
             "Date": "30.05.2023",
             "Comment": "tak tohle mě tolik nenadchlo, alespoň ne tolik jako mou drahou polovičku, která mimo svého piva vypila půlku toho mého"
+        },
+        {
+            "ID": 592,
+            "Beer": "Yellowstone",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": NaN,
+            "ABV": "7,9",
+            "Brewery": "Cobolis",
+            "Brewery_location": "50.127036253185786, 14.47016989999928",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.07868125796863, 14.423487199684509",
+            "Friends": [],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/640896b484d7a37c259a2d2d5e71132b_c_1396711147_raw.jpg",
+            "Date": "06.07.2024",
+            "Comment": "I can tell it's the strongest beer from the menu"
         }
     ],
     "Skautský institut v Rybárně": [
@@ -12515,7 +12570,7 @@ var venue_check_ins = {
             "Beer_region": "Hlavní město Praha",
             "Venue_location": "49.95976286604771, 14.369315538944493",
             "Friends": [
-                "FL"
+                "FZ"
             ],
             "Rating": "3,75",
             "Serving_style": "Draft",
@@ -20895,6 +20950,24 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_03_16/b722727e58a82b64d65f92154de8afd5_raw.jpg",
             "Date": "16.03.2023",
             "Comment": "pivečko na podporu Ukrajiny na závěr, měl to být zlatý hřeb večera, NEIPIČKA od Cobolisu, člověk by řekl, že záruka kvality, což o to, chuť perfektní, ale zase řídký, jak si my milovnící NEIPY nepřejeme, snad je to jen místní pípou.."
+        },
+        {
+            "ID": 592,
+            "Beer": "Yellowstone",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": NaN,
+            "ABV": "7,9",
+            "Brewery_location": "50.127036253185786, 14.47016989999928",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Craft House Prague",
+            "Venue_location": "50.07868125796863, 14.423487199684509",
+            "Friends": [],
+            "Rating": "3,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/640896b484d7a37c259a2d2d5e71132b_c_1396711147_raw.jpg",
+            "Date": "06.07.2024",
+            "Comment": "I can tell it's the strongest beer from the menu"
         }
     ],
     "Rodinný pivovar Pacov": [
@@ -24925,7 +24998,7 @@ var brewery_check_ins = {
             "Venue": "Obrazovic zahrada",
             "Venue_location": "49.95976286604771, 14.369315538944493",
             "Friends": [
-                "FL"
+                "FZ"
             ],
             "Rating": "3,75",
             "Serving_style": "Draft",
@@ -24954,6 +25027,46 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_25/d5833aaa255bf429ed71a25e4a341630_c_1393146679_raw.jpg",
             "Date": "25.06.2024",
             "Comment": "Nasládlé jak cecek"
+        }
+    ],
+    "TamTam Brewing Co.": [
+        {
+            "ID": 590,
+            "Beer": "The Eagle Flies Alone",
+            "Beer_style": "IPA - Rye",
+            "IBU": 53.0,
+            "ABV": "6,9",
+            "Brewery_location": "49.73060166010631, 13.396667321005177",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Craft House Prague",
+            "Venue_location": "50.07868125796863, 14.423487199684509",
+            "Friends": [],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/bdb20a084566f449869650c293e7ab37_c_1396675983_raw.jpg",
+            "Date": "06.07.2024",
+            "Comment": "Pretty warm, me no likey"
+        }
+    ],
+    "The Barn Beer Co.": [
+        {
+            "ID": 591,
+            "Beer": "Ummagumma",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 25.0,
+            "ABV": "7,0",
+            "Brewery_location": "49.79849288147477, 13.445213406266674",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Craft House Prague",
+            "Venue_location": "50.07868125796863, 14.423487199684509",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/1dc9022f3cadbe197041b72fced9a4e1_c_1396689235_raw.jpg",
+            "Date": "06.07.2024",
+            "Comment": "Not too warm, fruity as hell, a taste rollecoaster"
         }
     ]
 };
