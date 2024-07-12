@@ -2281,7 +2281,7 @@ var data = [
     },
     {
         "ID": 110,
-        "Beer": "Ananas",
+        "Beer": "Anullas",
         "Beer_style": "Fruit Beer",
         "IBU": null,
         "ABV": "5,0",
@@ -3980,7 +3980,7 @@ var data = [
         "Brewery": "Grupo Modelo",
         "Brewery_location": "23.26523053454115, -106.41610550418042",
         "Brewery_country": "Mexico",
-        "Beer_region": "Sinaloa",
+        "Beer_region": "Ciudad de México",
         "Venue": "Home - Prague",
         "Venue_location": "50.02003301954145, 14.4955535423371",
         "Friends": [],
@@ -4506,7 +4506,7 @@ var data = [
         "Beer_style": "Lager - Strong",
         "IBU": 31.0,
         "ABV": "6,3",
-        "Brewery": "Pivovar Ferdinand",
+        "Brewery": "Pivovar Ferdinulld",
         "Brewery_location": "49.779519327938615, 14.690448686510157",
         "Brewery_country": "Czech Republic",
         "Beer_region": "Středočeský kraj",
@@ -7869,25 +7869,6 @@ var data = [
     },
     {
         "ID": 377,
-        "Beer": "Semi-dark lager (Polotmavá 12)",
-        "Beer_style": "Lager - Amber / Red",
-        "IBU": 30.0,
-        "ABV": "5,0",
-        "Brewery": "Bernard Family Brewery",
-        "Brewery_location": "49.53995499999751, 15.359816186508956",
-        "Brewery_country": "Czech Republic",
-        "Beer_region": "kraj Vysočina",
-        "Venue": "Hotel Petra",
-        "Venue_location": "50.74272287671157, 15.022598647456764",
-        "Friends": [],
-        "Rating": "2,75",
-        "Serving_style": "Draft",
-        "Photo_url": "https://assets.untappd.com/photos/2022_11_05/4591b736ff20709203a46deb1e2676bd_raw.jpg",
-        "Date": "05.11.2022",
-        "Comment": "toto je vzácný okamžik, neboť tmavé pivko ze srdce nemám rád, nu což dáme tomu polotmavému šanci.. a co se nestalo! karamelová chuť je ta tam! chutná to tochu kouřově až spáleně, ale je to spíš jen takový lehký nádech, a proto se mi z toho huba nekřiví"
-    },
-    {
-        "ID": 378,
         "Beer": "Light Lager (Světlé Pivo 10)",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 28.0,
@@ -7906,7 +7887,7 @@ var data = [
         "Comment": "zpě na místě dění průměrná 10°, dal jsem si ji pouze kvůli doplnění kolekce, příště zase za 11"
     },
     {
-        "ID": 379,
+        "ID": 378,
         "Beer": "Bohemian Lager (Světlý ležák 11)",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 34.0,
@@ -7925,7 +7906,7 @@ var data = [
         "Comment": "strejdova oslava začíná, Bernard jsem měl vždycky rád a tady se k němu chovají dobře"
     },
     {
-        "ID": 380,
+        "ID": 379,
         "Beer": "Staropramen 11",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -7946,7 +7927,7 @@ var data = [
         "Comment": "hospoda, kde nemaj sklo, tak to jsem nezažil.. šel jsem sem na nefiltra, abych ho doplnil do sbírky, ale oni maj jen 11°, kterou už jsem si jednou vytrpěl, co k tomu dodat, na ní si zkrátka pochutnat nejde"
     },
     {
-        "ID": 381,
+        "ID": 380,
         "Beer": "Bohemian Lager 11%",
         "Beer_style": "Lager - Pale",
         "IBU": 35.0,
@@ -7965,7 +7946,7 @@ var data = [
         "Comment": "s touto značkou se setkávám poprvé a určitě ne naposled! skvěle hořké, tak akorát 37 IBU si zapisuji jako hodnotu ideál"
     },
     {
-        "ID": 382,
+        "ID": 381,
         "Beer": "Březňák 11",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -7986,7 +7967,7 @@ var data = [
         "Comment": "druhý kousek od Březňáka za dnešní večer a taky velké zklamání, zlí jazykové tvrdili, že Březňák nestojí za nic, já jim vždy oponoval, dnes jim bohužel musím dát za pravdu.. pivo je sice pitelné, ale zároveň železité, a to tu rozhodně vidět nechceme"
     },
     {
-        "ID": 383,
+        "ID": 382,
         "Beer": "Březňák Světlý ležák / Original Böhmisch Pils",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -8007,7 +7988,7 @@ var data = [
         "Comment": "ok, Vinohradská 12° ztratila prvenství nejhoršího ležáku dne, tento Březňák, ať se jde vycpat, vopravdu.. tohle pivo není konkurenčně schopné"
     },
     {
-        "ID": 384,
+        "ID": 383,
         "Beer": "Zlatá jedenáctka",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -8028,7 +8009,7 @@ var data = [
         "Comment": "tak jo, dávám si ho podruhý a naposled jenom kvůli kolekci, tohle tady pijou jen štamgasti"
     },
     {
-        "ID": 385,
+        "ID": 384,
         "Beer": "Kozel Premium Lager / Kozel 11",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 25.0,
@@ -8049,7 +8030,7 @@ var data = [
         "Comment": "po těch všech dnešních speciálech to chutná slaďoučce jak med"
     },
     {
-        "ID": 386,
+        "ID": 385,
         "Beer": "Vinohradská 11",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -8070,7 +8051,7 @@ var data = [
         "Comment": "tak tohle se nedá.. nejsem tedy sám, komu nešmakuje, holt 100 lidí 100 chutí.. tuto si už znovu nedám, tady je všechno špatně"
     },
     {
-        "ID": 387,
+        "ID": 386,
         "Beer": "Enigma Encrypted",
         "Beer_style": "Pale Ale - Australian",
         "IBU": 30.0,
@@ -8091,7 +8072,7 @@ var data = [
         "Comment": "APA je asi můj nejoblíbenější speciálek a tenhle kus to jenom potvrzuje, hořkost tak akorát, ovocíčkem to jak voní, tak chutná, zkrátka tady sládci neudělali nic špatně"
     },
     {
-        "ID": 388,
+        "ID": 387,
         "Beer": "Western Approaches",
         "Beer_style": "Lager - IPL (India Pale Lager)",
         "IBU": 45.0,
@@ -8112,7 +8093,7 @@ var data = [
         "Comment": "hořkost možná lehce nad mou hranicí, jinak skvěle pitelné, odpovídá popisu piva - hybrid mezi ležákem a ipou můžu potvrdit"
     },
     {
-        "ID": 389,
+        "ID": 388,
         "Beer": "Káranská 9",
         "Beer_style": "Lager - Pale",
         "IBU": null,
@@ -8133,7 +8114,7 @@ var data = [
         "Comment": "výčepák mi pivo po donesení hned zase odnesl, aby doplnil míru, cením takovou reflexi! načepované perfektně, na začátku mi tam ale něco vadí, proto nedávám kdovíjak vysoké hodnocení, 8° ze Cvikova lepší"
     },
     {
-        "ID": 390,
+        "ID": 389,
         "Beer": "Radegast Originál",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -8152,7 +8133,7 @@ var data = [
         "Comment": "na to, že je to 10°, tak luxus, tady vědí, jak se k tomu pivku chovat, k fotbálku ideal"
     },
     {
-        "ID": 391,
+        "ID": 390,
         "Beer": "Liberator",
         "Beer_style": "Pale Ale - American",
         "IBU": 24.0,
@@ -8173,7 +8154,7 @@ var data = [
         "Comment": "tak tohle já můžu, top strop"
     },
     {
-        "ID": 392,
+        "ID": 391,
         "Beer": "Radegast Ratar",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 50.0,
@@ -8194,7 +8175,7 @@ var data = [
         "Comment": "na lahvový pivo top"
     },
     {
-        "ID": 393,
+        "ID": 392,
         "Beer": "Argus 11 Granát",
         "Beer_style": "Lager - Amber / Red",
         "IBU": null,
@@ -8215,7 +8196,7 @@ var data = [
         "Comment": "dneska sbírám jedno za druhým, tady bych se ale měl přiznat, že nebylo moje a měl jsem jen jeden lok, celý jedině na ex.."
     },
     {
-        "ID": 394,
+        "ID": 393,
         "Beer": "Staropramen Extra chmelená 12",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 32.0,
@@ -8236,7 +8217,7 @@ var data = [
         "Comment": "prostě Staráč, žádnej zázrak, chuť levnýho pivka"
     },
     {
-        "ID": 395,
+        "ID": 394,
         "Beer": "Gambrinus Originál 10",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 24.0,
@@ -8255,7 +8236,7 @@ var data = [
         "Comment": "prostě gambrihnus.."
     },
     {
-        "ID": 396,
+        "ID": 395,
         "Beer": "Pie Eating Contest",
         "Beer_style": "Stout - Imperial / Double Pastry",
         "IBU": null,
@@ -8276,7 +8257,7 @@ var data = [
         "Comment": "Oh boy, so alcoholic, better not as a first drink of the night choice"
     },
     {
-        "ID": 397,
+        "ID": 396,
         "Beer": "Dendy Is Not Sakura",
         "Beer_style": "Pale Ale - American",
         "IBU": null,
@@ -8298,7 +8279,7 @@ var data = [
         "Comment": "Happy birthday Dendy!! Good start for today's night"
     },
     {
-        "ID": 398,
+        "ID": 397,
         "Beer": "Duna - Weiss",
         "Beer_style": "Wheat Beer - Hopfenweisse",
         "IBU": null,
@@ -8321,7 +8302,7 @@ var data = [
         "Comment": "I recommend this one to all weiss lovers"
     },
     {
-        "ID": 399,
+        "ID": 398,
         "Beer": "Apparition - Phantasm Series",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 52.0,
@@ -8344,7 +8325,7 @@ var data = [
         "Comment": "Yummy NEIPA, first French beer, let's go!"
     },
     {
-        "ID": 400,
+        "ID": 399,
         "Beer": "Night Slither",
         "Beer_style": "Porter - Imperial / Double Baltic",
         "IBU": null,
@@ -8367,7 +8348,7 @@ var data = [
         "Comment": "Oh my gosh, that's my cup of tea. Coffee as I love it, very alcoholic, but as a 4rd drink drink it's w/e. First Estonian beer, that's a slay."
     },
     {
-        "ID": 401,
+        "ID": 400,
         "Beer": "Indigo",
         "Beer_style": "Stout - Milk / Sweet",
         "IBU": 30.0,
@@ -8390,7 +8371,7 @@ var data = [
         "Comment": "Weak stout as expected. A little smoky, strong coffee."
     },
     {
-        "ID": 402,
+        "ID": 401,
         "Beer": "Forest of Endless Imagination",
         "Beer_style": "Sour - Smoothie / Pastry",
         "IBU": null,
@@ -8413,7 +8394,7 @@ var data = [
         "Comment": "terisvobodova you would love it as well as I do, a strawberry cocktail, very far from beer, a fantasy"
     },
     {
-        "ID": 403,
+        "ID": 402,
         "Beer": "Outono Tropical",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -8434,7 +8415,7 @@ var data = [
         "Comment": "Hoppy light NEIPA."
     },
     {
-        "ID": 404,
+        "ID": 403,
         "Beer": "Czech Kolsch",
         "Beer_style": "Kölsch",
         "IBU": null,
@@ -8455,7 +8436,7 @@ var data = [
         "Comment": "First time kolsch and I'm not dissapointed at all. pennyinpraha goes down smoothly, a little zesty, little sour, hoppy and drinkable, simply it has it all, good for summer vibes."
     },
     {
-        "ID": 405,
+        "ID": 404,
         "Beer": "Black Daschsund",
         "Beer_style": "Stout - Imperial / Double Pastry",
         "IBU": null,
@@ -8476,7 +8457,7 @@ var data = [
         "Comment": "Yummyy, strong coffee, smooth and full, I'm a fan."
     },
     {
-        "ID": 406,
+        "ID": 405,
         "Beer": "Stout",
         "Beer_style": "Stout - Foreign / Export",
         "IBU": 17.0,
@@ -8497,7 +8478,7 @@ var data = [
         "Comment": "I literally jared against a not flavoursome stout. I could feel a chemical red berries. Other than that it was just soo bitter/hoppy tasted like a brewing defect."
     },
     {
-        "ID": 407,
+        "ID": 406,
         "Beer": "Imperial Stout",
         "Beer_style": "Stout - Imperial / Double",
         "IBU": 45.0,
@@ -8518,7 +8499,7 @@ var data = [
         "Comment": "First of all smells good! I'm sensing raspberries. Tastewise not distinctive, malty, caramelly, but def not bad!"
     },
     {
-        "ID": 408,
+        "ID": 407,
         "Beer": "Barleywine",
         "Beer_style": "Barleywine - Other",
         "IBU": null,
@@ -8539,7 +8520,7 @@ var data = [
         "Comment": "I def didn't expect this from barleywine. I miss the wine, that's the main lack in the flavour. It feels like a belgian beer in the end, I consider it as a fraud on customer."
     },
     {
-        "ID": 409,
+        "ID": 408,
         "Beer": "Triple NEIPA Phantasm",
         "Beer_style": "IPA - Triple New England / Hazy",
         "IBU": 32.0,
@@ -8560,7 +8541,7 @@ var data = [
         "Comment": "Just WOW"
     },
     {
-        "ID": 410,
+        "ID": 409,
         "Beer": "Sapporo Premium Beer",
         "Beer_style": "Lager - Pale",
         "IBU": 18.0,
@@ -8581,7 +8562,7 @@ var data = [
         "Comment": "1st Japanese beer, tastes like piss"
     },
     {
-        "ID": 411,
+        "ID": 410,
         "Beer": "St-Louis Premium Kriek",
         "Beer_style": "Lambic - Kriek",
         "IBU": null,
@@ -8602,7 +8583,7 @@ var data = [
         "Comment": "Wow I love this so much."
     },
     {
-        "ID": 412,
+        "ID": 411,
         "Beer": "Affogato",
         "Beer_style": "Stout - Imperial / Double Pastry",
         "IBU": null,
@@ -8623,7 +8604,7 @@ var data = [
         "Comment": "Mmm yes righteous coffeeish roasty stout. 👌"
     },
     {
-        "ID": 413,
+        "ID": 412,
         "Beer": "Půlnoční Black IPA 13°",
         "Beer_style": "IPA - Black / Cascadian Dark Ale",
         "IBU": 43.0,
@@ -8647,7 +8628,7 @@ var data = [
         "Comment": "Matched my anticipation, smells citrusy and you can feel both a dark coffeeish lager and an IPA, well realized project."
     },
     {
-        "ID": 414,
+        "ID": 413,
         "Beer": "Y",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -8669,7 +8650,7 @@ var data = [
         "Comment": "Shall we do some check-ins? Beginning of our today's journey, not so rare 10° from Rohozec, not so bad as well! Goes well with the burger, having that together was an intention anyways."
     },
     {
-        "ID": 415,
+        "ID": 414,
         "Beer": "Bock",
         "Beer_style": "Bock - Single / Traditional",
         "IBU": null,
@@ -8691,7 +8672,7 @@ var data = [
         "Comment": "Ayayaay, mistakes were made! Not so good ratio of price and taste, but of price and alcohol without any doubt. I'm gonna keep getting over it in couple of days."
     },
     {
-        "ID": 416,
+        "ID": 415,
         "Beer": "Prometheus",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -8714,7 +8695,7 @@ var data = [
         "Comment": "Pilsner with Rohozec handwriting without any doubt. I didn't like the aftertaste tho."
     },
     {
-        "ID": 417,
+        "ID": 416,
         "Beer": "Polotmavá 10",
         "Beer_style": "Lager - Amber / Red",
         "IBU": 28.0,
@@ -8737,7 +8718,7 @@ var data = [
         "Comment": "Self-service place invited us in to have a beer on a cosy couch next to the fireplace. I always appreciate these places anywhere you want the drinks to be available 24/7. Also a nice test for the Czech rectitude."
     },
     {
-        "ID": 418,
+        "ID": 417,
         "Beer": "Dynamo 10°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 32.0,
@@ -8756,7 +8737,7 @@ var data = [
         "Comment": "Feel the true Volt power! Being back in town I tried new beer brewed while I was in Portugal. That's the most hoppy 10° Pils I've ever had. Sipping that not having fatty meal at the same time, that would be a challenge.. my mum liked it!!"
     },
     {
-        "ID": 419,
+        "ID": 418,
         "Beer": "Severská APA",
         "Beer_style": "Pale Ale - American",
         "IBU": 38.0,
@@ -8775,7 +8756,7 @@ var data = [
         "Comment": "2 days old check-in, my friend from Děčín shared the bottle of his local brewery with me, fair APA, pleasant hoppy sipping"
     },
     {
-        "ID": 420,
+        "ID": 419,
         "Beer": "Neon",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -8794,7 +8775,7 @@ var data = [
         "Comment": "One of the best beers I've had from Volt."
     },
     {
-        "ID": 421,
+        "ID": 420,
         "Beer": "Václav 11°",
         "Beer_style": "Lager - Helles",
         "IBU": 30.0,
@@ -8813,7 +8794,7 @@ var data = [
         "Comment": "Drinkable and sweet, another gift from my friend."
     },
     {
-        "ID": 422,
+        "ID": 421,
         "Beer": "Zlatopramen",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -8832,7 +8813,7 @@ var data = [
         "Comment": "Bought it for the chugging trivia game. Wasn't so shitty in the end!! I will have to probabably re-evaluate it next time 😄"
     },
     {
-        "ID": 423,
+        "ID": 422,
         "Beer": "Medovina",
         "Beer_style": "Mead - Other",
         "IBU": null,
@@ -8851,7 +8832,7 @@ var data = [
         "Comment": "I almost forgot! That's a best mead you can get. Also Carlo appreciated it."
     },
     {
-        "ID": 424,
+        "ID": 423,
         "Beer": "Montserrat",
         "Beer_style": "Stout - Irish Dry",
         "IBU": 70.0,
@@ -8870,7 +8851,7 @@ var data = [
         "Comment": "Encouraged by Filip to have a well deserved rest to recharge my power I found a spot to have a beer in Grácia is the last area to explore, so 1 beer and I complete my wandering by walking from here to bus to airport. I'm craving for a daily dose of sleep."
     },
     {
-        "ID": 425,
+        "ID": 424,
         "Beer": "Coral Cerveja",
         "Beer_style": "Lager - Pale",
         "IBU": null,
@@ -8889,7 +8870,7 @@ var data = [
         "Comment": "Not as bad as I expected in the end. First day on Madeira 😍"
     },
     {
-        "ID": 426,
+        "ID": 425,
         "Beer": "Coral Tónica Stout",
         "Beer_style": "Stout - Other",
         "IBU": null,
@@ -8908,7 +8889,7 @@ var data = [
         "Comment": "Coffee + croissant + stout, the stout was the worst from this holly trinity."
     },
     {
-        "ID": 427,
+        "ID": 426,
         "Beer": "Sesh!",
         "Beer_style": "IPA - Session",
         "IBU": null,
@@ -8930,7 +8911,7 @@ var data = [
         "Comment": "Standart NEIPA, never a bad choice."
     },
     {
-        "ID": 428,
+        "ID": 427,
         "Beer": "HELIUM FLASH",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": 65.0,
@@ -8952,7 +8933,7 @@ var data = [
         "Comment": "Best DOUBLE NEIPA I've ever tried, sweet and hoppy, very good job here."
     },
     {
-        "ID": 429,
+        "ID": 428,
         "Beer": "Long Way From Home",
         "Beer_style": "Stout - Imperial / Double",
         "IBU": null,
@@ -8974,7 +8955,7 @@ var data = [
         "Comment": "Very coffeeish, me likey."
     },
     {
-        "ID": 430,
+        "ID": 429,
         "Beer": "Sagres Preta",
         "Beer_style": "Lager - Munich Dunkel",
         "IBU": null,
@@ -8995,7 +8976,7 @@ var data = [
         "Comment": "Tastes like when you burn your meal"
     },
     {
-        "ID": 431,
+        "ID": 430,
         "Beer": "Super Bock Selecção 1927 Japanese Rice Lager",
         "Beer_style": "Lager - Japanese Rice",
         "IBU": 19.0,
@@ -9016,7 +8997,7 @@ var data = [
         "Comment": "Light drinkable clean lager, why not"
     },
     {
-        "ID": 432,
+        "ID": 431,
         "Beer": "Grimbergen Double Ambrée",
         "Beer_style": "Belgian Dubbel",
         "IBU": 22.0,
@@ -9037,7 +9018,7 @@ var data = [
         "Comment": "It isn't edible nor alongside the garlic spread."
     },
     {
-        "ID": 433,
+        "ID": 432,
         "Beer": "Six Months Behind Schedule (2023)",
         "Beer_style": "Stout - Imperial / Double",
         "IBU": 40.0,
@@ -9058,7 +9039,7 @@ var data = [
         "Comment": "First Bulgarian kerf, I felt the alcohol a lot nothing else so much"
     },
     {
-        "ID": 434,
+        "ID": 433,
         "Beer": "Break On Through",
         "Beer_style": "IPA - American",
         "IBU": null,
@@ -9079,7 +9060,7 @@ var data = [
         "Comment": "Very good westcoast!"
     },
     {
-        "ID": 435,
+        "ID": 434,
         "Beer": "SPOOKY FLUIDS V2",
         "Beer_style": "IPA - Milkshake",
         "IBU": 23.0,
@@ -9100,7 +9081,7 @@ var data = [
         "Comment": "Thank you guys for giving me a taster!"
     },
     {
-        "ID": 436,
+        "ID": 435,
         "Beer": "Johnny Crash",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 54.0,
@@ -9119,7 +9100,7 @@ var data = [
         "Comment": "Good NEIPA, I don't see a problem"
     },
     {
-        "ID": 437,
+        "ID": 436,
         "Beer": "Cuvée Courson",
         "Beer_style": "Farmhouse Ale - Bière de Coupage",
         "IBU": null,
@@ -9140,7 +9121,7 @@ var data = [
         "Comment": "Sour taste well hidden, so I was satisfied"
     },
     {
-        "ID": 438,
+        "ID": 437,
         "Beer": "Éclaircie",
         "Beer_style": "Stout - Foreign / Export",
         "IBU": null,
@@ -9161,7 +9142,7 @@ var data = [
         "Comment": "Average between stouts"
     },
     {
-        "ID": 439,
+        "ID": 438,
         "Beer": "Pêche / Pêcheresse",
         "Beer_style": "Lambic - Fruit",
         "IBU": 10.0,
@@ -9182,7 +9163,7 @@ var data = [
         "Comment": "Light yummy and refreshing"
     },
     {
-        "ID": 440,
+        "ID": 439,
         "Beer": "Super Bock Green",
         "Beer_style": "Shandy / Radler",
         "IBU": 10.0,
@@ -9203,7 +9184,7 @@ var data = [
         "Comment": "Having super bock the last day is must have"
     },
     {
-        "ID": 441,
+        "ID": 440,
         "Beer": "PARKA",
         "Beer_style": "Porter - Other",
         "IBU": 45.0,
@@ -9224,7 +9205,7 @@ var data = [
         "Comment": "I guess that this might be close to how a porter should taste like, however I'm little bit picky after I discovered so many additional flavourful kinds"
     },
     {
-        "ID": 442,
+        "ID": 441,
         "Beer": "Rebendita - MilkShake Passion IPA",
         "Beer_style": "IPA - Milkshake",
         "IBU": 14.0,
@@ -9245,7 +9226,7 @@ var data = [
         "Comment": "Fruity and hoppy as well good quality sipping"
     },
     {
-        "ID": 443,
+        "ID": 442,
         "Beer": "Hazelnut Brown Nectar",
         "Beer_style": "Brown Ale - American",
         "IBU": 33.0,
@@ -9266,7 +9247,7 @@ var data = [
         "Comment": "Yummyy, I ask for more hazelnuts in beers in general!"
     },
     {
-        "ID": 444,
+        "ID": 443,
         "Beer": "Letra G",
         "Beer_style": "Stout - Imperial / Double",
         "IBU": 51.0,
@@ -9287,7 +9268,7 @@ var data = [
         "Comment": "Ok, with this one I'm def getting drunk"
     },
     {
-        "ID": 445,
+        "ID": 444,
         "Beer": "Schwechater Bier",
         "Beer_style": "Lager - Helles",
         "IBU": null,
@@ -9308,7 +9289,7 @@ var data = [
         "Comment": "Solid lager with not so pleasant aftertaste"
     },
     {
-        "ID": 446,
+        "ID": 445,
         "Beer": "Puntigamer",
         "Beer_style": "Lager - Helles",
         "IBU": null,
@@ -9329,7 +9310,7 @@ var data = [
         "Comment": "Not so good"
     },
     {
-        "ID": 447,
+        "ID": 446,
         "Beer": "Union Grapefruit Milkshake IPA Chroust",
         "Beer_style": "IPA - Milkshake",
         "IBU": 25.0,
@@ -9350,7 +9331,7 @@ var data = [
         "Comment": "Oh yes, this is my cup of beer"
     },
     {
-        "ID": 448,
+        "ID": 447,
         "Beer": "Birell",
         "Beer_style": "Non-Alcoholic Beer - Lager",
         "IBU": null,
@@ -9371,7 +9352,7 @@ var data = [
         "Comment": "Let the 3 alcohol-free months begin"
     },
     {
-        "ID": 449,
+        "ID": 448,
         "Beer": "Birell Polotmavý",
         "Beer_style": "Non-Alcoholic Beer - Lager",
         "IBU": null,
@@ -9392,7 +9373,7 @@ var data = [
         "Comment": "Darts generally pair better with alcoholic beers"
     },
     {
-        "ID": 450,
+        "ID": 449,
         "Beer": "Drink and Drive Ø",
         "Beer_style": "Non-Alcoholic Beer - IPA",
         "IBU": null,
@@ -9413,7 +9394,7 @@ var data = [
         "Comment": "First alcohol-free NEIPA I have ever had, I must rate it as a successful atempt!"
     },
     {
-        "ID": 451,
+        "ID": 450,
         "Beer": "Desítka",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 38.0,
@@ -9435,7 +9416,7 @@ var data = [
         "Comment": "First beer after more than 2 months and a good one!"
     },
     {
-        "ID": 452,
+        "ID": 451,
         "Beer": "Sinker Oak",
         "Beer_style": "Pilsner - Other",
         "IBU": null,
@@ -9456,7 +9437,7 @@ var data = [
         "Comment": "Wood af"
     },
     {
-        "ID": 453,
+        "ID": 452,
         "Beer": "Podzim 2023",
         "Beer_style": "Scotch Ale / Wee Heavy",
         "IBU": null,
@@ -9477,7 +9458,7 @@ var data = [
         "Comment": "That was very good"
     },
     {
-        "ID": 454,
+        "ID": 453,
         "Beer": "Dno Pytle 4K HD",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": null,
@@ -9498,7 +9479,7 @@ var data = [
         "Comment": "Didn't dazzle me"
     },
     {
-        "ID": 455,
+        "ID": 454,
         "Beer": "Nectar of Happiness Strata",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -9519,7 +9500,7 @@ var data = [
         "Comment": "Got me drunk, was it the happiness?"
     },
     {
-        "ID": 456,
+        "ID": 455,
         "Beer": "Podřipský Red Ale 12°",
         "Beer_style": "Red Ale - American Amber / Red",
         "IBU": null,
@@ -9540,7 +9521,7 @@ var data = [
         "Comment": "Too sweet"
     },
     {
-        "ID": 457,
+        "ID": 456,
         "Beer": "IIPPAA",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": 60.0,
@@ -9559,7 +9540,7 @@ var data = [
         "Comment": "West coast today, east coast hopefully on Thursday, brought this one from weekend trip to Warsaw and don't regret a single penny spent on it"
     },
     {
-        "ID": 458,
+        "ID": 457,
         "Beer": "Porter Bałtycki",
         "Beer_style": "Porter - Baltic",
         "IBU": 40.0,
@@ -9578,7 +9559,7 @@ var data = [
         "Comment": "Polish craft beer is just zajebiście!"
     },
     {
-        "ID": 459,
+        "ID": 458,
         "Beer": "Alois 11",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -9597,7 +9578,7 @@ var data = [
         "Comment": "Righteous Czech Pils, I recommend"
     },
     {
-        "ID": 460,
+        "ID": 459,
         "Beer": "Ale Golden Blondie",
         "Beer_style": "Blonde / Golden Ale - Other",
         "IBU": null,
@@ -9616,7 +9597,7 @@ var data = [
         "Comment": "That was awesome! Bitterness scale just as I love it, mild fruitness, little sweet, kinda a bittersweet symphony"
     },
     {
-        "ID": 461,
+        "ID": 460,
         "Beer": "Cape of Good Hops 17",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -9638,7 +9619,7 @@ var data = [
         "Comment": "Hoppy af, not happy though"
     },
     {
-        "ID": 462,
+        "ID": 461,
         "Beer": "Kartel Coconut Krahulík 11",
         "Beer_style": "Pilsner - Other",
         "IBU": null,
@@ -9660,7 +9641,7 @@ var data = [
         "Comment": "Dang, I would forbid coconut in lagers"
     },
     {
-        "ID": 463,
+        "ID": 462,
         "Beer": "Hazy Little Thing",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 35.0,
@@ -9679,7 +9660,7 @@ var data = [
         "Comment": "First beer in America and so yummyyyyy"
     },
     {
-        "ID": 464,
+        "ID": 463,
         "Beer": "Coors Light",
         "Beer_style": "Lager - American Light",
         "IBU": 10.0,
@@ -9701,7 +9682,7 @@ var data = [
         "Comment": "A water, not a beer"
     },
     {
-        "ID": 465,
+        "ID": 464,
         "Beer": "Voodoo Ranger - Captain Dynamite IPA",
         "Beer_style": "IPA - American",
         "IBU": 45.0,
@@ -9723,7 +9704,7 @@ var data = [
         "Comment": "Too alcoholic for me"
     },
     {
-        "ID": 466,
+        "ID": 465,
         "Beer": "Switchback Ale",
         "Beer_style": "Red Ale - American Amber / Red",
         "IBU": 28.0,
@@ -9745,7 +9726,7 @@ var data = [
         "Comment": "Mid, hoppy and malty"
     },
     {
-        "ID": 467,
+        "ID": 466,
         "Beer": "Sour Monkey",
         "Beer_style": "Sour - Other",
         "IBU": 10.0,
@@ -9764,7 +9745,7 @@ var data = [
         "Comment": "My first pong!"
     },
     {
-        "ID": 468,
+        "ID": 467,
         "Beer": "Catamount Imperial IPA",
         "Beer_style": "The Catamount Brewery",
         "IBU": null,
@@ -9783,7 +9764,7 @@ var data = [
         "Comment": "Mid IPA"
     },
     {
-        "ID": 469,
+        "ID": 468,
         "Beer": "Keystone Light",
         "Beer_style": "Lager - American Light",
         "IBU": 7.0,
@@ -9802,7 +9783,7 @@ var data = [
         "Comment": "Ppl here are being tricked for driking a beer"
     },
     {
-        "ID": 470,
+        "ID": 469,
         "Beer": "Pavement",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": null,
@@ -9824,7 +9805,7 @@ var data = [
         "Comment": "I've forgotten to rate this one! $12 is my record for a pint so far, my wallet started bleeding out"
     },
     {
-        "ID": 471,
+        "ID": 470,
         "Beer": "Pale Ale",
         "Beer_style": "Pale Ale - American",
         "IBU": null,
@@ -9843,7 +9824,7 @@ var data = [
         "Comment": "A pure definition of an American Pale Ale"
     },
     {
-        "ID": 472,
+        "ID": 471,
         "Beer": "Double Cloud Candy",
         "Beer_style": "IPA - Imperial / Double New England / Hazy",
         "IBU": null,
@@ -9855,14 +9836,14 @@ var data = [
         "Venue": "Dunk’s Sports Grill",
         "Venue_location": "43.70072369919336, -72.28853395795564",
         "Friends": [],
-        "Rating": "4,25",
+        "Rating": "3,50",
         "Serving_style": "Draft",
         "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_14/11dfcb4c518acb59e055df52061037d9_c_1372397179_raw.jpg",
         "Date": "14.04.2024",
         "Comment": "Kinda sour tbh, disctinct fruit flavor not standing out as I would assume judging by the color. Low on hops as well"
     },
     {
-        "ID": 473,
+        "ID": 472,
         "Beer": "Trail Juice IPA",
         "Beer_style": "IPA - American",
         "IBU": null,
@@ -9881,7 +9862,7 @@ var data = [
         "Comment": "Not a big fan of the hops used"
     },
     {
-        "ID": 474,
+        "ID": 473,
         "Beer": "Pineapple Fruit Freak Ale",
         "Beer_style": "Fruit Beer",
         "IBU": null,
@@ -9900,7 +9881,7 @@ var data = [
         "Comment": "Pineapple sucks"
     },
     {
-        "ID": 475,
+        "ID": 474,
         "Beer": "Mountain Haze",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 40.0,
@@ -9919,7 +9900,7 @@ var data = [
         "Comment": "Smoky flavour at the end surprised me big time"
     },
     {
-        "ID": 476,
+        "ID": 475,
         "Beer": "Pale Ale",
         "Beer_style": "Pale Ale - American",
         "IBU": 24.0,
@@ -9938,7 +9919,7 @@ var data = [
         "Comment": "Very stale, but a good deal during happy hour"
     },
     {
-        "ID": 477,
+        "ID": 476,
         "Beer": "Quaker State",
         "Beer_style": "Stout - Oatmeal",
         "IBU": null,
@@ -9957,7 +9938,7 @@ var data = [
         "Comment": "Decently drinkable and flavourful at the same time"
     },
     {
-        "ID": 478,
+        "ID": 477,
         "Beer": "Magic Rain",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 50.0,
@@ -9976,7 +9957,7 @@ var data = [
         "Comment": "Mm so good so good! Sweet Caroline.."
     },
     {
-        "ID": 479,
+        "ID": 478,
         "Beer": "Mas Verde",
         "Beer_style": "IPA - American",
         "IBU": null,
@@ -9995,7 +9976,7 @@ var data = [
         "Comment": "Oh wow, that one was flawless"
     },
     {
-        "ID": 480,
+        "ID": 479,
         "Beer": "Shed Mountain Hazy IPA",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 40.0,
@@ -10014,7 +9995,7 @@ var data = [
         "Comment": "Hanging out with Hawaiians 🤩"
     },
     {
-        "ID": 481,
+        "ID": 480,
         "Beer": "Unified Press",
         "Beer_style": "Cider - Traditional / Apfelwein",
         "IBU": null,
@@ -10033,7 +10014,7 @@ var data = [
         "Comment": "Triviaaa, not so sweet as most of the European ones."
     },
     {
-        "ID": 482,
+        "ID": 481,
         "Beer": "Boston Lager Remastered",
         "Beer_style": "Lager - American",
         "IBU": 30.0,
@@ -10052,7 +10033,7 @@ var data = [
         "Comment": "I was very surprised! A good lager beer in America"
     },
     {
-        "ID": 483,
+        "ID": 482,
         "Beer": "Green State Lager",
         "Beer_style": "Pilsner - Other",
         "IBU": 25.0,
@@ -10071,7 +10052,7 @@ var data = [
         "Comment": "This is one of those caramely European lager's reminding me San Miguel a little bit And yes, I was drinking in a church"
     },
     {
-        "ID": 484,
+        "ID": 483,
         "Beer": "Cloud Drop DIPA",
         "Beer_style": "IPA - Imperial / Double New England / Hazy",
         "IBU": 60.0,
@@ -10087,10 +10068,10 @@ var data = [
         "Serving_style": "Can",
         "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_20/ecf19540833a2dde8bad7395913273fa_c_1373880790_raw.jpg",
         "Date": "20.04.2024",
-        "Comment": "The imperial part is somewhat dominant there"
+        "Comment": "The imperial part is somewhat dominullt there"
     },
     {
-        "ID": 485,
+        "ID": 484,
         "Beer": "Dandy Lion Haze",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -10109,13 +10090,13 @@ var data = [
         "Comment": "We all were big fans!"
     },
     {
-        "ID": 486,
+        "ID": 485,
         "Beer": "Modelo Especial",
         "Beer_style": "Lager - Mexican",
         "IBU": 18.0,
         "ABV": "4,5",
         "Brewery": "Grupo Modelo",
-        "Brewery_location": "19.484444018347613, -99.15948459022967",
+        "Brewery_location": "23.26523053454115, -106.41610550418042",
         "Brewery_country": "Mexico",
         "Beer_region": "Ciudad de México",
         "Venue": "Sigma Nu",
@@ -10128,7 +10109,7 @@ var data = [
         "Comment": "Reminds me of the honey lager from Azores"
     },
     {
-        "ID": 487,
+        "ID": 486,
         "Beer": "Original Blend",
         "Beer_style": "Cider - Traditional / Apfelwein",
         "IBU": null,
@@ -10147,7 +10128,7 @@ var data = [
         "Comment": "Oh wow, they had some quality stuff over there."
     },
     {
-        "ID": 488,
+        "ID": 487,
         "Beer": "Little Sip",
         "Beer_style": "IPA - American",
         "IBU": null,
@@ -10166,7 +10147,7 @@ var data = [
         "Comment": "That was indeed a finest liquid. Beverage on the photo is not matching, didn't want to add another from the dark dance floor. Feel the vibes of a little college party."
     },
     {
-        "ID": 489,
+        "ID": 488,
         "Beer": "Peaches & Dreams",
         "Beer_style": "Sour - Fruited",
         "IBU": null,
@@ -10185,7 +10166,7 @@ var data = [
         "Comment": "Had all the beers on the tap, had to go for sour then"
     },
     {
-        "ID": 490,
+        "ID": 489,
         "Beer": "U.F.O. White",
         "Beer_style": "Wheat Beer - Witbier / Blanche",
         "IBU": null,
@@ -10204,7 +10185,7 @@ var data = [
         "Comment": "Ugh, menu said white ale, this definitely wasn't an ale though, felt a spark of a gose init Happy 21st birthday Meakala! 6 Hawaiians and one American/Norweigan on the photo"
     },
     {
-        "ID": 491,
+        "ID": 490,
         "Beer": "Fiddlehead IPA",
         "Beer_style": "IPA - American",
         "IBU": 53.0,
@@ -10223,7 +10204,7 @@ var data = [
         "Comment": "Oh wow, that one felt good, a New England masterpiece"
     },
     {
-        "ID": 492,
+        "ID": 491,
         "Beer": "Built To Spill",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": 80.0,
@@ -10242,7 +10223,7 @@ var data = [
         "Comment": "Oh wow, it's gonna be tough leaving such a yummy environment"
     },
     {
-        "ID": 493,
+        "ID": 492,
         "Beer": "Catamount IPA",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 40.0,
@@ -10261,7 +10242,7 @@ var data = [
         "Comment": "Last beer with Meakala and Kaleo, thank you guys, it's been amazing"
     },
     {
-        "ID": 494,
+        "ID": 493,
         "Beer": "Cascade State of Mind",
         "Beer_style": "Pale Ale - American",
         "IBU": null,
@@ -10280,7 +10261,7 @@ var data = [
         "Comment": "Immaculate american ale, gonna be hard leaving this place since they know how it should be done here on the east coast."
     },
     {
-        "ID": 495,
+        "ID": 494,
         "Beer": "Světlý ležák Medium 11°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -10303,7 +10284,7 @@ var data = [
         "Comment": "Back home listening to Peťulka playing the drums."
     },
     {
-        "ID": 496,
+        "ID": 495,
         "Beer": "Světlý ležák Premium 12°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 33.0,
@@ -10326,7 +10307,7 @@ var data = [
         "Comment": "Yuck, I miss american beer"
     },
     {
-        "ID": 497,
+        "ID": 496,
         "Beer": "Světlý ležák Premium 12° nefiltrovaný",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 32.0,
@@ -10349,10 +10330,10 @@ var data = [
         "Comment": "I don't see any difference from the filtered one"
     },
     {
-        "ID": 498,
+        "ID": 497,
         "Beer": "Black Hill",
         "Beer_style": "Cider - Traditional / Apfelwein",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "4,5",
         "Brewery": "Pivovary Lobkowicz",
         "Brewery_location": "50.05714807441847, 14.544989359279795",
@@ -10367,15 +10348,15 @@ var data = [
         ],
         "Rating": "4,00",
         "Serving_style": "Draft",
-        "Photo_url": NaN,
+        "Photo_url": null,
         "Date": "24.04.2024",
         "Comment": "Yummy cider, due to particular circumsatnces I don't have a photo.."
     },
     {
-        "ID": 499,
+        "ID": 498,
         "Beer": "Kartel Oak Aged Citra Pale Ale 12 (Květen 2024)",
         "Beer_style": "Pale Ale - Other",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "5,1",
         "Brewery": "Rodinný pivovar Zichovec",
         "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -10394,7 +10375,7 @@ var data = [
         "Comment": "Jeez, I'm not a fan, Kartel is usually under my limits, sad to announce that"
     },
     {
-        "ID": 500,
+        "ID": 499,
         "Beer": "Anežka",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 35.0,
@@ -10413,13 +10394,13 @@ var data = [
         "Serving_style": "Draft",
         "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_07/073f637272b7fe553b81166f6480619a_c_1378616623_raw.jpg",
         "Date": "07.05.2024",
-        "Comment": NaN
+        "Comment": null
     },
     {
-        "ID": 501,
+        "ID": 500,
         "Beer": "One Love",
         "Beer_style": "Stout - Other",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "6,4",
         "Brewery": "Sibeeria",
         "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -10438,10 +10419,10 @@ var data = [
         "Comment": "Those who crave raspberries would appreciate this one big time, me not so much"
     },
     {
-        "ID": 502,
+        "ID": 501,
         "Beer": "Dark Ritual",
         "Beer_style": "Stout - Imperial / Double",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "11,6",
         "Brewery": "Sibeeria",
         "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -10460,10 +10441,10 @@ var data = [
         "Comment": "A genuine stout, hard on alcohol af boii"
     },
     {
-        "ID": 503,
+        "ID": 502,
         "Beer": "Heyl Summer Ale 8",
         "Beer_style": "Pale Ale - American",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "3,3",
         "Brewery": "Pivovar Ladronka",
         "Brewery_location": "50.07844798328466, 14.356394211436543",
@@ -10481,7 +10462,7 @@ var data = [
         "Comment": "Retrospective check-ins coming up in next few posts. Very light ale, still hoppy though!"
     },
     {
-        "ID": 504,
+        "ID": 503,
         "Beer": "Stout šalvěj",
         "Beer_style": "Stout - Other",
         "IBU": 48.0,
@@ -10502,7 +10483,7 @@ var data = [
         "Comment": "I don't know man, probably shouldn't go for whatever stout from beer menu next time"
     },
     {
-        "ID": 505,
+        "ID": 504,
         "Beer": "Ale NE",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 27.0,
@@ -10523,10 +10504,10 @@ var data = [
         "Comment": "Probably just wasn't in beer mood that day"
     },
     {
-        "ID": 506,
+        "ID": 505,
         "Beer": "Frida Revolucion",
         "Beer_style": "Pale Ale - American",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "5,3",
         "Brewery": "Pivovar Čestmír",
         "Brewery_location": "50.189595935683556, 14.64785419834229",
@@ -10542,7 +10523,7 @@ var data = [
         "Comment": "This one is from Monday, officially first good ale upon arriving from the US"
     },
     {
-        "ID": 507,
+        "ID": 506,
         "Beer": "Semi-dark lager (Polotmavá 12)",
         "Beer_style": "Lager - Amber / Red",
         "IBU": 30.0,
@@ -10565,10 +10546,10 @@ var data = [
         "Comment": "Way better than the last time, likely just freshly tapped keg"
     },
     {
-        "ID": 508,
+        "ID": 507,
         "Beer": "Like A Strawberry Daiquiri 14",
         "Beer_style": "Sour - Other Gose",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "6,0",
         "Brewery": "Rodinný pivovar Zichovec",
         "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -10586,10 +10567,10 @@ var data = [
         "Comment": "Best gose I've ever had, yummy strawberries, highly recommended"
     },
     {
-        "ID": 509,
+        "ID": 508,
         "Beer": "Alegott",
         "Beer_style": "Pale Ale - Other",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "4,9",
         "Brewery": "U Medvídků",
         "Brewery_location": "50.082863747387556, 14.418821798806153",
@@ -10605,10 +10586,10 @@ var data = [
         "Comment": "Walking the Brazilians, a visit from Porto"
     },
     {
-        "ID": 510,
+        "ID": 509,
         "Beer": "Blondgott",
         "Beer_style": "Pilsner - Czech / Bohemian",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "4,6",
         "Brewery": "U Medvídků",
         "Brewery_location": "50.082863747387556, 14.418821798806153",
@@ -10624,7 +10605,7 @@ var data = [
         "Comment": "Expensive and the pilsner style not even recognizeable"
     },
     {
-        "ID": 511,
+        "ID": 510,
         "Beer": "Everyday Life",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 38.0,
@@ -10645,10 +10626,10 @@ var data = [
         "Comment": "Nothing but this you need after a work day, a fabulous Czech lager with Canadian ice hockey fans in the background"
     },
     {
-        "ID": 512,
+        "ID": 511,
         "Beer": "Liquid Luck",
         "Beer_style": "Pale Ale - American",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "4,3",
         "Brewery": "Sibeeria",
         "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -10666,10 +10647,10 @@ var data = [
         "Comment": "A feeling of America on the tip of my tongue, decent ale"
     },
     {
-        "ID": 513,
+        "ID": 512,
         "Beer": "Kazbek Cold IPA",
         "Beer_style": "IPA - Cold",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "6,3",
         "Brewery": "Sibeeria",
         "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -10687,7 +10668,7 @@ var data = [
         "Comment": "This one def doesn't taste American! How could it though when it's made out of Czech hops! An experienced beer connoisseur would have found out!"
     },
     {
-        "ID": 514,
+        "ID": 513,
         "Beer": "Magor 15",
         "Beer_style": "Bock - Single / Traditional",
         "IBU": 30.0,
@@ -10711,7 +10692,7 @@ var data = [
         "Comment": "The best bock I've ever had"
     },
     {
-        "ID": 515,
+        "ID": 514,
         "Beer": "Bakalář Za studena chmelený / Dry Hopped Lager",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 34.0,
@@ -10730,7 +10711,7 @@ var data = [
         "Comment": "Let's go Slováčci"
     },
     {
-        "ID": 516,
+        "ID": 515,
         "Beer": "Prefunda 12°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 36.0,
@@ -10749,10 +10730,10 @@ var data = [
         "Comment": "Češi do toho"
     },
     {
-        "ID": 517,
+        "ID": 516,
         "Beer": "Zagorka Special (Загорка Специално)",
         "Beer_style": "Lager - Pale",
-        "IBU": NaN,
+        "IBU": null,
         "ABV": "5,0",
         "Brewery": "Загорка (Zagorka Brewery)",
         "Brewery_location": "42.44320186861404, 25.633915317920447",
@@ -10768,7 +10749,7 @@ var data = [
         "Comment": "Carlsberg vibes, pretty bad European lager"
     },
     {
-        "ID": 518,
+        "ID": 517,
         "Beer": "Heady Topper",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": 100.0,
@@ -10787,7 +10768,7 @@ var data = [
         "Comment": "One year ago Lauren told me about this glorified beer from her home state, so when I got into Vermont I must have found it. I brought it back home and waited until we humble Sweeds in icehockey semifinals. I've never had a beer so wealthy on hops, love it"
     },
     {
-        "ID": 519,
+        "ID": 518,
         "Beer": "Patronus",
         "Beer_style": "Lager - Světlé (Czech Pale)",
         "IBU": null,
@@ -10808,7 +10789,7 @@ var data = [
         "Comment": "So drinkable woow and hoppy as well a flawless 10°"
     },
     {
-        "ID": 520,
+        "ID": 519,
         "Beer": "One American",
         "Beer_style": "Sour - Berliner Weisse",
         "IBU": null,
@@ -10829,7 +10810,7 @@ var data = [
         "Comment": "An honest sour ale, they don't lie with the description! I like it!"
     },
     {
-        "ID": 521,
+        "ID": 520,
         "Beer": "I Love the Smell of HBC 630 in the Morning",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -10850,7 +10831,7 @@ var data = [
         "Comment": "Low on hops and I can feel the alcohol, a feminine NEIPA cuz it's juicy, reminding drinks"
     },
     {
-        "ID": 522,
+        "ID": 521,
         "Beer": "Our Lager",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 31.0,
@@ -10871,7 +10852,7 @@ var data = [
         "Comment": "It's starting to rain ayay, good lager for the beginning!"
     },
     {
-        "ID": 523,
+        "ID": 522,
         "Beer": "Tekutý Manitú",
         "Beer_style": "IPA - American",
         "IBU": 40.0,
@@ -10892,7 +10873,7 @@ var data = [
         "Comment": "Wow an honest APA, indeed one of the best APA I've ever had, I'm veery satisfied"
     },
     {
-        "ID": 524,
+        "ID": 523,
         "Beer": "Leshy",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": 60.0,
@@ -10914,7 +10895,7 @@ var data = [
         "Comment": "Yummy and hoppy, super good"
     },
     {
-        "ID": 525,
+        "ID": 524,
         "Beer": "Antošovy koule",
         "Beer_style": "Stout - Milk / Sweet",
         "IBU": null,
@@ -10936,7 +10917,7 @@ var data = [
         "Comment": "Mmm liquid Mozzart balls"
     },
     {
-        "ID": 526,
+        "ID": 525,
         "Beer": "Jiříkovo Vidění Oat Wheat Sour Ale",
         "Beer_style": "Sour - Other",
         "IBU": 15.0,
@@ -10957,7 +10938,7 @@ var data = [
         "Comment": "This is a discovery of the month, just wow"
     },
     {
-        "ID": 527,
+        "ID": 526,
         "Beer": "Fénix IPA",
         "Beer_style": "IPA - American",
         "IBU": null,
@@ -10979,7 +10960,7 @@ var data = [
         "Comment": "Mid"
     },
     {
-        "ID": 528,
+        "ID": 527,
         "Beer": "Karrel: New World Kölsch 11°",
         "Beer_style": "Kölsch",
         "IBU": null,
@@ -11004,7 +10985,7 @@ var data = [
         "Comment": "Not addressing well, pretty light, suitable for chugging."
     },
     {
-        "ID": 529,
+        "ID": 528,
         "Beer": "Bajka O Vlku A Lišce 16",
         "Beer_style": "IPA - Other",
         "IBU": null,
@@ -11029,7 +11010,7 @@ var data = [
         "Comment": "Not my cup of NEIPA"
     },
     {
-        "ID": 530,
+        "ID": 529,
         "Beer": "Kladenská Poldi 8°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 25.0,
@@ -11051,7 +11032,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 531,
+        "ID": 530,
         "Beer": "Křemen 10",
         "Beer_style": "Lager - Světlé (Czech Pale)",
         "IBU": null,
@@ -11073,7 +11054,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 532,
+        "ID": 531,
         "Beer": "Vojtěch 11°",
         "Beer_style": "Lager - Other",
         "IBU": null,
@@ -11095,7 +11076,7 @@ var data = [
         "Comment": "I drink faster than I'm able to take photos"
     },
     {
-        "ID": 533,
+        "ID": 532,
         "Beer": "Únětický speciál 8° Letní",
         "Beer_style": "Lager - Pale",
         "IBU": 40.0,
@@ -11117,7 +11098,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 534,
+        "ID": 533,
         "Beer": "Tahoun",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 32.0,
@@ -11140,7 +11121,7 @@ var data = [
         "Comment": "Plzeň 11°"
     },
     {
-        "ID": 535,
+        "ID": 534,
         "Beer": "Kmet - Dubský Zeleňák",
         "Beer_style": "Historical Beer - Other",
         "IBU": null,
@@ -11163,7 +11144,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 536,
+        "ID": 535,
         "Beer": "Lehký Střízlík",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 30.0,
@@ -11186,7 +11167,7 @@ var data = [
         "Comment": "Máslo, už musím prokládat"
     },
     {
-        "ID": 537,
+        "ID": 536,
         "Beer": "Topolské výčepní pivo 10",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 24.0,
@@ -11210,7 +11191,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 538,
+        "ID": 537,
         "Beer": "Kaštanové pivo",
         "Beer_style": "Spiced / Herbed Beer",
         "IBU": null,
@@ -11234,7 +11215,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 539,
+        "ID": 538,
         "Beer": "Māhutonga",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 30.0,
@@ -11258,7 +11239,7 @@ var data = [
         "Comment": "Just wow"
     },
     {
-        "ID": 540,
+        "ID": 539,
         "Beer": "Pastry Sour - Carrot Cake - Mrkvový Dort",
         "Beer_style": "Sour - Smoothie / Pastry",
         "IBU": null,
@@ -11282,7 +11263,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 541,
+        "ID": 540,
         "Beer": "Cold IPA Saturn + Eris 14,5",
         "Beer_style": "IPA - Cold",
         "IBU": 50.0,
@@ -11306,7 +11287,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 542,
+        "ID": 541,
         "Beer": "Forest Gunk",
         "Beer_style": "Pale Ale - Other",
         "IBU": 44.0,
@@ -11330,7 +11311,7 @@ var data = [
         "Comment": "Tastes oldschool American"
     },
     {
-        "ID": 543,
+        "ID": 542,
         "Beer": "Welzl 14 APA",
         "Beer_style": "Pale Ale - American",
         "IBU": 65.0,
@@ -11354,7 +11335,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 544,
+        "ID": 543,
         "Beer": "Poupětův Američan 11°",
         "Beer_style": "Pale Ale - American",
         "IBU": 30.0,
@@ -11378,7 +11359,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 545,
+        "ID": 544,
         "Beer": "Hawai 11",
         "Beer_style": "Wheat Beer - Witbier / Blanche",
         "IBU": null,
@@ -11402,7 +11383,7 @@ var data = [
         "Comment": "Uuh"
     },
     {
-        "ID": 546,
+        "ID": 545,
         "Beer": "Karlovsky Anniversary Strong",
         "Beer_style": "Strong Ale - Other",
         "IBU": null,
@@ -11426,7 +11407,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 547,
+        "ID": 546,
         "Beer": "Beránek polotmavý 12",
         "Beer_style": "Lager - Amber / Red",
         "IBU": 35.0,
@@ -11450,7 +11431,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 548,
+        "ID": 547,
         "Beer": "Domažlický Doppel",
         "Beer_style": "Bock - Doppelbock",
         "IBU": 23.0,
@@ -11474,7 +11455,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 549,
+        "ID": 548,
         "Beer": "Pikard Red Ale",
         "Beer_style": "Bitter - Session / Ordinary",
         "IBU": null,
@@ -11498,7 +11479,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 550,
+        "ID": 549,
         "Beer": "Rytíř Gutmann 16°",
         "Beer_style": "Bock - Single / Traditional",
         "IBU": null,
@@ -11522,7 +11503,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 551,
+        "ID": 550,
         "Beer": "Pouťová A.P.A.",
         "Beer_style": "Pale Ale - American",
         "IBU": null,
@@ -11546,7 +11527,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 552,
+        "ID": 551,
         "Beer": "Cherry-Raspberry Kompot Sour",
         "Beer_style": "Sour - Fruited",
         "IBU": 10.0,
@@ -11570,7 +11551,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 553,
+        "ID": 552,
         "Beer": "Torpid Mind",
         "Beer_style": "Stout - Russian Imperial",
         "IBU": null,
@@ -11594,7 +11575,7 @@ var data = [
         "Comment": "Hihi imperial stout"
     },
     {
-        "ID": 554,
+        "ID": 553,
         "Beer": "Prorok 11 NEIPA",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 9.0,
@@ -11618,7 +11599,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 555,
+        "ID": 554,
         "Beer": "Lvice 12 %",
         "Beer_style": "IPA - Other",
         "IBU": 40.0,
@@ -11642,7 +11623,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 556,
+        "ID": 555,
         "Beer": "Juicy Sabro 12°",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -11666,7 +11647,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 557,
+        "ID": 556,
         "Beer": "Klokan",
         "Beer_style": "Pale Ale - Australian",
         "IBU": 23.0,
@@ -11690,7 +11671,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 558,
+        "ID": 557,
         "Beer": "Ale 11",
         "Beer_style": "Pale Ale - American",
         "IBU": null,
@@ -11714,7 +11695,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 559,
+        "ID": 558,
         "Beer": "Maxmilian Polibek",
         "Beer_style": "IPA - Session",
         "IBU": 34.0,
@@ -11738,7 +11719,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 560,
+        "ID": 559,
         "Beer": "Sv. Norbert Sakura Amber Ale",
         "Beer_style": "Red Ale - American Amber / Red",
         "IBU": 25.0,
@@ -11760,7 +11741,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 561,
+        "ID": 560,
         "Beer": "Antošův ležák",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 30.0,
@@ -11782,7 +11763,7 @@ var data = [
         "Comment": "Let the Rock for People begin"
     },
     {
-        "ID": 562,
+        "ID": 561,
         "Beer": "Krahulík 10",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 29.0,
@@ -11801,7 +11782,7 @@ var data = [
         "Comment": "Last Krahulík into the collection"
     },
     {
-        "ID": 563,
+        "ID": 562,
         "Beer": "Výroční 12",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -11822,7 +11803,7 @@ var data = [
         "Comment": "Nicely cooled, bitter but stil Rezeklike"
     },
     {
-        "ID": 564,
+        "ID": 563,
         "Beer": "Summer Ale",
         "Beer_style": "Pale Ale - American",
         "IBU": null,
@@ -11843,7 +11824,7 @@ var data = [
         "Comment": "Awkwardly sour, seeking for americam hops but can't find them, you can do better Sibeeria"
     },
     {
-        "ID": 565,
+        "ID": 564,
         "Beer": "Vošta",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": null,
@@ -11864,7 +11845,7 @@ var data = [
         "Comment": "Playing by hops, god job there"
     },
     {
-        "ID": 566,
+        "ID": 565,
         "Beer": "Sour - Raspberry & Coffee",
         "Beer_style": "Sour - Other",
         "IBU": null,
@@ -11885,7 +11866,7 @@ var data = [
         "Comment": "Amusing"
     },
     {
-        "ID": 567,
+        "ID": 566,
         "Beer": "Mango Chilli Sour Ale",
         "Beer_style": "Sour - Fruited",
         "IBU": 8.0,
@@ -11906,7 +11887,7 @@ var data = [
         "Comment": "Chilli lovers, get it until they sell it all"
     },
     {
-        "ID": 568,
+        "ID": 567,
         "Beer": "Summer Ale",
         "Beer_style": "Blonde / Golden Ale - Other",
         "IBU": null,
@@ -11927,7 +11908,7 @@ var data = [
         "Comment": "Not bad, good price!"
     },
     {
-        "ID": 569,
+        "ID": 568,
         "Beer": "Ale 11",
         "Beer_style": "Pale Ale - American",
         "IBU": 39.0,
@@ -11948,7 +11929,7 @@ var data = [
         "Comment": "Refreshing start of the day"
     },
     {
-        "ID": 570,
+        "ID": 569,
         "Beer": "Na Pool",
         "Beer_style": "Lager - IPL (India Pale Lager)",
         "IBU": 38.0,
@@ -11969,7 +11950,7 @@ var data = [
         "Comment": "Pairs well with burger"
     },
     {
-        "ID": 571,
+        "ID": 570,
         "Beer": "Coffee Brown ALE",
         "Beer_style": "Brown Ale - Other",
         "IBU": null,
@@ -11990,7 +11971,7 @@ var data = [
         "Comment": "Not my cup of coffee beer, tartiness reminds robusta"
     },
     {
-        "ID": 572,
+        "ID": 571,
         "Beer": "Marination Nation",
         "Beer_style": "Lager - Světlé (Czech Pale)",
         "IBU": null,
@@ -12011,7 +11992,7 @@ var data = [
         "Comment": "Antoš strikes again"
     },
     {
-        "ID": 573,
+        "ID": 572,
         "Beer": "Světlý ležák 12°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 35.0,
@@ -12032,7 +12013,7 @@ var data = [
         "Comment": "Keanu Reeves on the guitar"
     },
     {
-        "ID": 574,
+        "ID": 573,
         "Beer": "Rampušák 12",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 40.0,
@@ -12053,7 +12034,7 @@ var data = [
         "Comment": "Avril Lavigne my love"
     },
     {
-        "ID": 575,
+        "ID": 574,
         "Beer": "Bikini Ale",
         "Beer_style": "Pale Ale - Other",
         "IBU": null,
@@ -12074,7 +12055,7 @@ var data = [
         "Comment": "Maty Svítok módní návrhář"
     },
     {
-        "ID": 576,
+        "ID": 575,
         "Beer": "Počernická dvanáctka",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 26.0,
@@ -12095,7 +12076,7 @@ var data = [
         "Comment": "BMTH"
     },
     {
-        "ID": 577,
+        "ID": 576,
         "Beer": "Nealko Grep",
         "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
         "IBU": null,
@@ -12114,7 +12095,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 578,
+        "ID": 577,
         "Beer": "Belgian Witbier",
         "Beer_style": "Wheat Beer - Witbier / Blanche",
         "IBU": 20.0,
@@ -12135,7 +12116,7 @@ var data = [
         "Comment": "I feel coriander"
     },
     {
-        "ID": 579,
+        "ID": 578,
         "Beer": "Klenot 11 polotmavý",
         "Beer_style": "Lager - Amber / Red",
         "IBU": 22.0,
@@ -12156,7 +12137,7 @@ var data = [
         "Comment": null
     },
     {
-        "ID": 580,
+        "ID": 579,
         "Beer": "Kořen 11°",
         "Beer_style": "Lager - Světlé (Czech Pale)",
         "IBU": null,
@@ -12175,7 +12156,7 @@ var data = [
         "Comment": "Is Kristýna expanding or what? Saw them 2 weeks ago for the first time at the Prague Castle beer festival. Now they've plenty of kegs stored in Mrtvá Ryba, will stay on tap for quite some time I guess, on the way from Lidl back to work hehe"
     },
     {
-        "ID": 581,
+        "ID": 580,
         "Beer": "Česká Moucha 11°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -12196,7 +12177,7 @@ var data = [
         "Comment": "Czech barbecue"
     },
     {
-        "ID": 582,
+        "ID": 581,
         "Beer": "Záviš 12%",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 28.0,
@@ -12217,7 +12198,7 @@ var data = [
         "Comment": "Nasládlé jak cecek"
     },
     {
-        "ID": 583,
+        "ID": 582,
         "Beer": "Pražská Moucha 12°",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": null,
@@ -12238,7 +12219,7 @@ var data = [
         "Comment": "Hehe Moucha 11 on the weekend Moucha 12 on Tuesday"
     },
     {
-        "ID": 584,
+        "ID": 583,
         "Beer": "BlackCurrant & PinkPepper",
         "Beer_style": "Sour - Other",
         "IBU": null,
@@ -12259,7 +12240,7 @@ var data = [
         "Comment": "Not addressing, not spicy at all, plain flavoured"
     },
     {
-        "ID": 585,
+        "ID": 584,
         "Beer": "Frajerka",
         "Beer_style": "Pale Ale - Other",
         "IBU": null,
@@ -12278,7 +12259,7 @@ var data = [
         "Comment": "Reminds me a really good Ale I had at Dartmouth"
     },
     {
-        "ID": 586,
+        "ID": 585,
         "Beer": "Jura",
         "Beer_style": "Pilsner - Czech / Bohemian",
         "IBU": 35.0,
@@ -12299,7 +12280,7 @@ var data = [
         "Comment": "Beertime after spikeball with floorball boys"
     },
     {
-        "ID": 587,
+        "ID": 586,
         "Beer": "Sabro Fan Service 12",
         "Beer_style": "IPA - Session",
         "IBU": null,
@@ -12320,7 +12301,7 @@ var data = [
         "Comment": "Well made, drinkable and amusing"
     },
     {
-        "ID": 588,
+        "ID": 587,
         "Beer": "Kartel Elderflower Summer Ale 11 (červenec 2024)",
         "Beer_style": "Pale Ale - Fruited",
         "IBU": null,
@@ -12341,7 +12322,7 @@ var data = [
         "Comment": "Elderflower is there! Nice attempt that I appreciate"
     },
     {
-        "ID": 589,
+        "ID": 588,
         "Beer": "Bounty 13",
         "Beer_style": "Lager - Dark",
         "IBU": null,
@@ -12362,7 +12343,7 @@ var data = [
         "Comment": "Milky, I think"
     },
     {
-        "ID": 590,
+        "ID": 589,
         "Beer": "The Eagle Flies Alone",
         "Beer_style": "IPA - Rye",
         "IBU": 53.0,
@@ -12381,7 +12362,7 @@ var data = [
         "Comment": "Pretty warm, me no likey"
     },
     {
-        "ID": 591,
+        "ID": 590,
         "Beer": "Ummagumma",
         "Beer_style": "IPA - New England / Hazy",
         "IBU": 25.0,
@@ -12400,7 +12381,7 @@ var data = [
         "Comment": "Not too warm, fruity as hell, a taste rollecoaster"
     },
     {
-        "ID": 592,
+        "ID": 591,
         "Beer": "Yellowstone",
         "Beer_style": "IPA - Imperial / Double",
         "IBU": null,
@@ -12417,5 +12398,204 @@ var data = [
         "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/640896b484d7a37c259a2d2d5e71132b_c_1396711147_raw.jpg",
         "Date": "06.07.2024",
         "Comment": "I can tell it's the strongest beer from the menu"
+    },
+    {
+        "ID": 592,
+        "Beer": "Pilsner Urquell Tradiční / Traditional (at brewery tour)",
+        "Beer_style": "Pilsner - Czech / Bohemian",
+        "IBU": null,
+        "ABV": null,
+        "Brewery": "Plzeňský Prazdroj",
+        "Brewery_location": "49.748219824879655, 13.395953374640042",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Plzeňský kraj",
+        "Venue": "Plzeňský Prazdroj",
+        "Venue_location": "49.748219824879655, 13.395953374640042",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "4,00",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/e11a1d675746a4c2d761b26e9230c567_c_1397361122_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "Unfiltered and unpasterized, who can say that can get it?"
+    },
+    {
+        "ID": 593,
+        "Beer": "Erdinger Weißbier / Hefe-Weizen",
+        "Beer_style": "Wheat Beer - Hefeweizen",
+        "IBU": 13.0,
+        "ABV": "5,3",
+        "Brewery": "Erdinger Weissbräu",
+        "Brewery_location": "48.30671191041444, 11.90673981643058",
+        "Brewery_country": "Germany",
+        "Beer_region": "Bavaria",
+        "Venue": "Kathmandu",
+        "Venue_location": "49.742514008763244, 13.379319114176177",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "3,00",
+        "Serving_style": "Bottle",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/6352fecb9534a2ec20037a04e667c802_c_1397367811_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "Ugh I don't know what to think about it, plain.."
+    },
+    {
+        "ID": 594,
+        "Beer": "I Love You, Kitty West Coast IPA 15°I Love You, Kitty West Coast IPA 15°",
+        "Beer_style": "IPA - American",
+        "IBU": null,
+        "ABV": "6,5",
+        "Brewery": "Létající pivovar Černá Kočka",
+        "Brewery_location": "49.748301973274295, 13.379042754413662",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Plzeňský kraj",
+        "Venue": "Kegzistence",
+        "Venue_location": "49.748301973274295, 13.379042754413662",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "3,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/f89d461406b59a622368afce2f2a426c_c_1397381539_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "West coast bitternes, oh yeah"
+    },
+    {
+        "ID": 595,
+        "Beer": "FOREST SOUR / Sour Ale",
+        "Beer_style": "Sour - Fruited",
+        "IBU": 12.0,
+        "ABV": "6,0",
+        "Brewery": "Pivovar Vik",
+        "Brewery_location": "50.05760944351033, 14.543060741710807",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Kegzistence",
+        "Venue_location": "49.748301973274295, 13.379042754413662",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "3,25",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/9114dbbbd502b3cde18ca1a6dce15607_c_1397382250_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "Not so addressing"
+    },
+    {
+        "ID": 596,
+        "Beer": "Valkyria",
+        "Beer_style": "IPA - New England / Hazy",
+        "IBU": 25.0,
+        "ABV": "6,1",
+        "Brewery": "TamTam Brewing Co.",
+        "Brewery_location": "49.73060166010631, 13.396667321005177",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Plzeňský kraj",
+        "Venue": "Kegzistence",
+        "Venue_location": "49.748301973274295, 13.379042754413662",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "4,25",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/65b172acea392da15f14db132ac056f2_c_1397384166_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "Yes, sweet smell of New England"
+    },
+    {
+        "ID": 597,
+        "Beer": "Depo IPA",
+        "Beer_style": "IPA - American",
+        "IBU": 40.0,
+        "ABV": "5,5",
+        "Brewery": "Pivovar Raven",
+        "Brewery_location": "49.76901891168808, 13.375793771166355",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Plzeňský kraj",
+        "Venue": "Ústředna",
+        "Venue_location": "49.73807697440021, 13.381935898813206",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "3,25",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/be78a33c5eeb7b149a09212e1f4d84c3_c_1397397056_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "Not my cup of IPA"
+    },
+    {
+        "ID": 598,
+        "Beer": "Session S Pivstrem",
+        "Beer_style": "IPA - Session",
+        "IBU": 40.0,
+        "ABV": "5,7",
+        "Brewery": "Pivovar Zhůřák",
+        "Brewery_location": "49.53750890510675, 13.51593872869555",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Plzeňský kraj",
+        "Venue": "Pivstro",
+        "Venue_location": "49.74568717748942, 13.374387384432865",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "3,75",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/564a16c04dd6d501c4a194d70784d812_c_1397427052_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "Oh yeah, drinkable refreshing, I could be drink that for summer days"
+    },
+    {
+        "ID": 599,
+        "Beer": "Tripception",
+        "Beer_style": "Belgian Tripel",
+        "IBU": 28.0,
+        "ABV": "8,0",
+        "Brewery": "Axiom Brewery",
+        "Brewery_location": "49.47238040682596, 17.133291732319353",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Olomoucký kraj",
+        "Venue": "Pivstro",
+        "Venue_location": "49.74568717748942, 13.374387384432865",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "3,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/08f73a21ab82fdf212d056d10e9ec277_c_1397444430_raw.jpg",
+        "Date": "09.07.2024",
+        "Comment": "Clearly belgian, bearable!"
+    },
+    {
+        "ID": 600,
+        "Beer": "Euphoria 12 Southern Passion",
+        "Beer_style": "Lager - IPL (India Pale Lager)",
+        "IBU": null,
+        "ABV": "5,1",
+        "Brewery": "Rodinný pivovar Zichovec",
+        "Brewery_location": "50.35093122341257, 13.818297344198415",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Ústecký kraj",
+        "Venue": "Ježkovy voči",
+        "Venue_location": "50.07787121519462, 14.426670434271767",
+        "Friends": [
+            "TS",
+            "WS",
+            "TB"
+        ],
+        "Rating": "3,75",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_10/018ac4032a8e44fca8bcc20985f8c780_c_1397702187_raw.jpg",
+        "Date": "10.07.2024",
+        "Comment": "Geography meet up with a foreign Dartmouth host, good quality convo"
     }
 ];

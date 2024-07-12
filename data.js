@@ -183,9 +183,15 @@ var venues_lst = [{
     { "type": "Feature", "properties": { "Venue": "Havlíčkovy sady (Grébovka)" }, "geometry": { "type": "Point", "coordinates": [ 14.44627698890452, 50.070042356682492 ] } },
     { "type": "Feature", "properties": { "Venue": "Vršovická zahrada" }, "geometry": { "type": "Point", "coordinates": [ 14.447613785799073, 50.071822706321797 ] } },
     { "type": "Feature", "properties": { "Venue": "Bad Flash Bar" }, "geometry": { "type": "Point", "coordinates": [ 14.447051265503431, 50.071588529739941 ] } },
-    { "type": "Feature", "properties": { "Venue": "Café Na půl cesty" }, "geometry": { "type": "Point", "coordinates": [ 14.431552170512004, 50.049888630074527 ] } }
+    { "type": "Feature", "properties": { "Venue": "Café Na půl cesty" }, "geometry": { "type": "Point", "coordinates": [ 14.431552170512004, 50.049888630074527 ] } },
+    { "type": "Feature", "properties": { "Venue": "Plzeňský Prazdroj" }, "geometry": { "type": "Point", "coordinates": [ 13.395953374640042, 49.748219824879655 ] } },
+    { "type": "Feature", "properties": { "Venue": "Kathmandu" }, "geometry": { "type": "Point", "coordinates": [ 13.379319114176177, 49.742514008763251 ] } },
+    { "type": "Feature", "properties": { "Venue": "Kegzistence" }, "geometry": { "type": "Point", "coordinates": [ 13.379042754413662, 49.748301973274295 ] } },
+    { "type": "Feature", "properties": { "Venue": "Ústředna" }, "geometry": { "type": "Point", "coordinates": [ 13.381935898813206, 49.738076974400208 ] } },
+    { "type": "Feature", "properties": { "Venue": "Pivstro" }, "geometry": { "type": "Point", "coordinates": [ 13.374387384432865, 49.745687177489422 ] } }
     ]
     }
+    
 ];
 
 var breweries_lst = [{
@@ -324,7 +330,7 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar Turnov" }, "geometry": { "type": "Point", "coordinates": [ 15.156551344022979, 50.591841146371443 ] } },
     { "type": "Feature", "properties": { "Brewery": "Starobrno" }, "geometry": { "type": "Point", "coordinates": [ 16.592002971184211, 49.191049647923371 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Kamenice nad Lipou" }, "geometry": { "type": "Point", "coordinates": [ 15.078423357692635, 49.301901167959883 ] } },
-    { "type": "Feature", "properties": { "Brewery": "Pivovar Ferdinand" }, "geometry": { "type": "Point", "coordinates": [ 14.690448686510155, 49.779519327938615 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Ferdinulld" }, "geometry": { "type": "Point", "coordinates": [ 14.690448686510155, 49.779519327938615 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Potmehúd" }, "geometry": { "type": "Point", "coordinates": [ 14.397029376517414, 50.054616306868347 ] } },
     { "type": "Feature", "properties": { "Brewery": "Bulmers Cider" }, "geometry": { "type": "Point", "coordinates": [ -2.724048486484441, 52.061287418600003 ] } },
     { "type": "Feature", "properties": { "Brewery": "Bohem Brewery" }, "geometry": { "type": "Point", "coordinates": [ -0.058199242349892, 51.606922857809394 ] } },
@@ -487,9 +493,14 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "Pivovar Moucha" }, "geometry": { "type": "Point", "coordinates": [ 14.411284006335013, 50.030421826469649 ] } },
     { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar v Poličce" }, "geometry": { "type": "Point", "coordinates": [ 16.259893649616323, 49.710985468684349 ] } },
     { "type": "Feature", "properties": { "Brewery": "TamTam Brewing Co." }, "geometry": { "type": "Point", "coordinates": [ 13.396667321005175, 49.730601660106309 ] } },
-    { "type": "Feature", "properties": { "Brewery": "The Barn Beer Co." }, "geometry": { "type": "Point", "coordinates": [ 13.445213406266674, 49.798492881474772 ] } }
+    { "type": "Feature", "properties": { "Brewery": "The Barn Beer Co." }, "geometry": { "type": "Point", "coordinates": [ 13.445213406266674, 49.798492881474772 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Erdinger Weissbräu" }, "geometry": { "type": "Point", "coordinates": [ 11.90673981643058, 48.306711910414442 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Létající pivovar Černá Kočka" }, "geometry": { "type": "Point", "coordinates": [ 13.379042754413662, 49.748301973274295 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Vik" }, "geometry": { "type": "Point", "coordinates": [ 14.543060741710809, 50.05760944351033 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Axiom Brewery" }, "geometry": { "type": "Point", "coordinates": [ 17.133291732319353, 49.472380406825962 ] } }
     ]
-    }];
+    }
+    ];
 
 var venue_check_ins = {
     "Más Al Sur": [
@@ -497,7 +508,7 @@ var venue_check_ins = {
             "ID": 1,
             "Beer": "El Águila",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Heineken España",
             "Brewery_location": "37.393678515374795, -5.8627805030510665",
@@ -519,7 +530,7 @@ var venue_check_ins = {
             "ID": 2,
             "Beer": "Aupa Tovarisch Armagnac BA",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery": "Laugar Brewery",
             "Brewery_location": "43.18378098407038, -3.0615429250154507",
@@ -539,7 +550,7 @@ var venue_check_ins = {
             "ID": 8,
             "Beer": "MIDNIGHT HARVEST 2023 (Porto wine and Bourbon whisky wood aged)",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,0",
             "Brewery": "Laugar Brewery",
             "Brewery_location": "43.18378098407038, -3.0615429250154507",
@@ -561,7 +572,7 @@ var venue_check_ins = {
             "ID": 3,
             "Beer": "Murphy's Irish Red",
             "Beer_style": "Red Ale - Irish",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery": "Heineken Ireland",
             "Brewery_location": "51.904009545636136, -8.473099768587542",
@@ -583,7 +594,7 @@ var venue_check_ins = {
             "ID": 4,
             "Beer": "Mahou Clásica",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Grupo Mahou-San Miguel",
             "Brewery_location": "40.39088702171079, -3.6804192472672197",
@@ -627,7 +638,7 @@ var venue_check_ins = {
             "ID": 6,
             "Beer": "Lager",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Cerveza Buenaventura",
             "Brewery_location": "39.85815883007859, -4.025476831258629",
@@ -649,7 +660,7 @@ var venue_check_ins = {
             "ID": 7,
             "Beer": "Cruzcampo Especial",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery": "Cruzcampo",
             "Brewery_location": "37.380105615948494, -5.998613012683681",
@@ -690,7 +701,7 @@ var venue_check_ins = {
     ],
     "Baobab - Craft Beer Pub": [
         {
-            "ID": 399,
+            "ID": 398,
             "Beer": "Apparition - Phantasm Series",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 52.0,
@@ -715,7 +726,7 @@ var venue_check_ins = {
             "ID": 37,
             "Beer": "Bobby Dinero",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,4",
             "Brewery": "Barrier Brewing Company",
             "Brewery_location": "40.63916266096027, -73.65610604434744",
@@ -732,10 +743,10 @@ var venue_check_ins = {
             "Comment": "Holly molly heey, thumbs up USA! Thaat's delicious! New England def not far from East cost lol."
         },
         {
-            "ID": 434,
+            "ID": 433,
             "Beer": "Break On Through",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,5",
             "Brewery": "Aguarela",
             "Brewery_location": "38.70936761620745, -9.13412933115215",
@@ -755,7 +766,7 @@ var venue_check_ins = {
             "ID": 45,
             "Beer": "Burguesa NEIPA Simcoe & Mosaic",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Burguesa",
             "Brewery_location": "41.13334179626088, -8.61066813558362",
@@ -772,10 +783,10 @@ var venue_check_ins = {
             "Comment": "That's an NEIPA without any defect, well done mates!"
         },
         {
-            "ID": 397,
+            "ID": 396,
             "Beer": "Dendy Is Not Sakura",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery": "IberWolf",
             "Brewery_location": "41.25063554484712, -8.565234050008579",
@@ -793,10 +804,10 @@ var venue_check_ins = {
             "Comment": "Happy birthday Dendy!! Good start for today's night"
         },
         {
-            "ID": 398,
+            "ID": 397,
             "Beer": "Duna - Weiss",
             "Beer_style": "Wheat Beer - Hopfenweisse",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery": "DUNA",
             "Brewery_location": "39.24164861248615, -9.31291375376468",
@@ -815,10 +826,10 @@ var venue_check_ins = {
             "Comment": "I recommend this one to all weiss lovers"
         },
         {
-            "ID": 402,
+            "ID": 401,
             "Beer": "Forest of Endless Imagination",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "White Dog Brewery",
             "Brewery_location": "51.776427928830714, 4.641051112245735",
@@ -840,7 +851,7 @@ var venue_check_ins = {
             "ID": 25,
             "Beer": "Fudge Fantasy",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery": "Basqueland Brewing",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
@@ -857,7 +868,7 @@ var venue_check_ins = {
             "Comment": "This really is a fantasy. If I felt just a little less alcohol, i would give it 5/5."
         },
         {
-            "ID": 428,
+            "ID": 427,
             "Beer": "HELIUM FLASH",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 65.0,
@@ -881,7 +892,7 @@ var venue_check_ins = {
             "ID": 44,
             "Beer": "Hydrophobic",
             "Beer_style": "Stout - Imperial / Double Coffee",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,0",
             "Brewery": "Aguarela",
             "Brewery_location": "38.70936761620745, -9.13412933115215",
@@ -918,7 +929,7 @@ var venue_check_ins = {
             "Comment": "Just a mediocre hazy IPA for my taste buds."
         },
         {
-            "ID": 401,
+            "ID": 400,
             "Beer": "Indigo",
             "Beer_style": "Stout - Milk / Sweet",
             "IBU": 30.0,
@@ -940,10 +951,10 @@ var venue_check_ins = {
             "Comment": "Weak stout as expected. A little smoky, strong coffee."
         },
         {
-            "ID": 429,
+            "ID": 428,
             "Beer": "Long Way From Home",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery": "Prizm Brewing Co.",
             "Brewery_location": "43.652180280843936, 3.952059125904005",
@@ -964,7 +975,7 @@ var venue_check_ins = {
             "ID": 35,
             "Beer": "Lurker DIPA",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,0",
             "Brewery": "Duckpond Brewing",
             "Brewery_location": "57.72859071901111, 12.001405967403278",
@@ -984,7 +995,7 @@ var venue_check_ins = {
             "ID": 33,
             "Beer": "Monster Jam",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,0",
             "Brewery": "Sudden Death Brewing Co.",
             "Brewery_location": "53.87800487642535, 10.683421677927402",
@@ -1001,10 +1012,10 @@ var venue_check_ins = {
             "Comment": "Very good but too alcoholic I think, sometimes less means more"
         },
         {
-            "ID": 400,
+            "ID": 399,
             "Beer": "Night Slither",
             "Beer_style": "Porter - Imperial / Double Baltic",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "11,0",
             "Brewery": "Pühaste Brewery",
             "Brewery_location": "58.343618794348735, 26.729632626258983",
@@ -1043,10 +1054,10 @@ var venue_check_ins = {
             "Comment": "Guys, this is called a beergasm, I have never had better stout than this one, Spanish apparently know how it is done! Feeling cocoa and cofee as much as I love it. I feel like I never want to stop sipping it."
         },
         {
-            "ID": 403,
+            "ID": 402,
             "Beer": "Outono Tropical",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Barona Brewing Company",
             "Brewery_location": "39.41200250834853, -7.346635873481639",
@@ -1066,7 +1077,7 @@ var venue_check_ins = {
             "ID": 12,
             "Beer": "Parklife",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,8",
             "Brewery": "FUERST WIACEK Berlin",
             "Brewery_location": "52.53371186496115, 13.277183764258663",
@@ -1086,7 +1097,7 @@ var venue_check_ins = {
             "ID": 36,
             "Beer": "Permafrost",
             "Beer_style": "Porter - Baltic",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery": "FUERST WIACEK Berlin",
             "Brewery_location": "52.53371186496115, 13.277183764258663",
@@ -1103,10 +1114,10 @@ var venue_check_ins = {
             "Comment": "The best porter I have ever had. I didn't know porters can be that good."
         },
         {
-            "ID": 396,
+            "ID": 395,
             "Beer": "Pie Eating Contest",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "11,2",
             "Brewery": "Basqueland Brewing",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
@@ -1163,10 +1174,10 @@ var venue_check_ins = {
             "Comment": "So that's the only dissapointment here so far, literally Portuguese/Spanish commercial lager"
         },
         {
-            "ID": 427,
+            "ID": 426,
             "Beer": "Sesh!",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Dois Corvos",
             "Brewery_location": "38.75141087666912, -9.102754253226324",
@@ -1204,7 +1215,7 @@ var venue_check_ins = {
             "Comment": "Challenging Luboš P. With Luxembourgish beer. When is your dad going there to bring you some? If so, then tell him to not to take this one. Tastes probably like Krkonošký Medvěd I had back then in PJ."
         },
         {
-            "ID": 433,
+            "ID": 432,
             "Beer": "Six Months Behind Schedule (2023)",
             "Beer_style": "Stout - Imperial / Double",
             "IBU": 40.0,
@@ -1224,7 +1235,7 @@ var venue_check_ins = {
             "Comment": "First Bulgarian kerf, I felt the alcohol a lot nothing else so much"
         },
         {
-            "ID": 435,
+            "ID": 434,
             "Beer": "SPOOKY FLUIDS V2",
             "Beer_style": "IPA - Milkshake",
             "IBU": 23.0,
@@ -1279,12 +1290,12 @@ var venue_check_ins = {
             ],
             "Rating": "4,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "12.09.2023",
             "Comment": "Delicious! Owners really know which stouts to choose. You can smell the maple sirup without any doubt. And the taste itself? That's a fairy tale. Idk why, but my photo wasn't saved into my phone memory again.."
         },
         {
-            "ID": 409,
+            "ID": 408,
             "Beer": "Triple NEIPA Phantasm",
             "Beer_style": "IPA - Triple New England / Hazy",
             "IBU": 32.0,
@@ -1449,7 +1460,7 @@ var venue_check_ins = {
             "ID": 59,
             "Beer": "Cergal",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery": "Sociedade Central de Cervejas e Bebidas SA",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
@@ -1467,7 +1478,7 @@ var venue_check_ins = {
             "ID": 31,
             "Beer": "Classic Apple",
             "Beer_style": "Cider - Dry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Apple Bandit Cider",
             "Brewery_location": "52.372598799578775, 4.876744064415919",
@@ -1520,7 +1531,7 @@ var venue_check_ins = {
             "Comment": "This was the only beer from this region I knew of before going here, pretty clean and also clear light beer, def good for chugging"
         },
         {
-            "ID": 432,
+            "ID": 431,
             "Beer": "Grimbergen Double Ambrée",
             "Beer_style": "Belgian Dubbel",
             "IBU": 22.0,
@@ -1558,10 +1569,10 @@ var venue_check_ins = {
             "Comment": "Judging by color, is this still a beer? Although I hate Heineken, it's not as bad as portuguese beer"
         },
         {
-            "ID": 430,
+            "ID": 429,
             "Beer": "Sagres Preta",
             "Beer_style": "Lager - Munich Dunkel",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,1",
             "Brewery": "Sociedade Central de Cervejas e Bebidas SA",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
@@ -1601,7 +1612,7 @@ var venue_check_ins = {
             "ID": 43,
             "Beer": "Somersby Blackberry",
             "Beer_style": "Cider - Other Fruit",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Carlsberg Group",
             "Brewery_location": "55.66438864158465, 12.5308596114947",
@@ -1679,7 +1690,7 @@ var venue_check_ins = {
             "ID": 14,
             "Beer": "Catharina Passion Sour",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Bah! Craft Beer",
             "Brewery_location": "38.69758625690865, -9.380101859680762",
@@ -1719,7 +1730,7 @@ var venue_check_ins = {
             "ID": 15,
             "Beer": "Raspberry Sour",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery": "Quimera Brewpub",
             "Brewery_location": "38.705513627526535, -9.17095708650119",
@@ -1781,7 +1792,7 @@ var venue_check_ins = {
             "ID": 19,
             "Beer": "Lukla",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Lukla",
             "Brewery_location": "27.688972009197546, 86.73006174469629",
@@ -1825,7 +1836,7 @@ var venue_check_ins = {
             "ID": 21,
             "Beer": "Morgana",
             "Beer_style": "Porter - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery": "Korisca",
             "Brewery_location": "37.77500318189754, -25.559760299996032",
@@ -1847,7 +1858,7 @@ var venue_check_ins = {
             "ID": 22,
             "Beer": "Especial",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Fábrica Cervejas e Refrigerantes João Melo Abreu",
             "Brewery_location": "37.739165538593866, -25.674222921048315",
@@ -1869,7 +1880,7 @@ var venue_check_ins = {
             "ID": 23,
             "Beer": "Sagres",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Sociedade Central de Cervejas e Bebidas SA",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
@@ -1888,7 +1899,7 @@ var venue_check_ins = {
     ],
     "Tokyo Sushi": [
         {
-            "ID": 410,
+            "ID": 409,
             "Beer": "Sapporo Premium Beer",
             "Beer_style": "Lager - Pale",
             "IBU": 18.0,
@@ -1951,7 +1962,7 @@ var venue_check_ins = {
             "ID": 28,
             "Beer": "Peste & Sidra",
             "Beer_style": "Cider - Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery": "Cerveja Musa",
             "Brewery_location": "38.82245660131412, -9.103253040894943",
@@ -1993,7 +2004,7 @@ var venue_check_ins = {
             "ID": 40,
             "Beer": "Armazém da Cerveja",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Armazém da Cerveja",
             "Brewery_location": "41.147632563032474, -8.603766093247117",
@@ -2010,7 +2021,7 @@ var venue_check_ins = {
             "Comment": "Pretty solid pils, it will probably never have the body of Czech beer, but the bitterness is decent, however the first half was way better than the second one"
         },
         {
-            "ID": 441,
+            "ID": 440,
             "Beer": "PARKA",
             "Beer_style": "Porter - Other",
             "IBU": 45.0,
@@ -2035,7 +2046,7 @@ var venue_check_ins = {
             "ID": 41,
             "Beer": "Bandida Do Pomar Frutos Vermelhos",
             "Beer_style": "Cider - Other Fruit",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Sociedade Central de Cervejas e Bebidas SA",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
@@ -2057,7 +2068,7 @@ var venue_check_ins = {
             "ID": 50,
             "Beer": "Super Bock Sky",
             "Beer_style": "Wheat Beer - American Pale Wheat",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,3",
             "Brewery": "Super Bock Group",
             "Brewery_location": "41.214015698442346, -8.62659450358108",
@@ -2079,7 +2090,7 @@ var venue_check_ins = {
             "ID": 51,
             "Beer": "Black Cadillacs",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery": "OPO 74 Brewing Co.",
             "Brewery_location": "41.17686381156776, -8.626393871111757",
@@ -2096,7 +2107,7 @@ var venue_check_ins = {
             "Comment": "A gang stout, have never heard abt this style before, it's probably one of those hipster beers, unfortunately it didn't address me at all, I'll just smootly return back to the russian imperial ones"
         },
         {
-            "ID": 443,
+            "ID": 442,
             "Beer": "Hazelnut Brown Nectar",
             "Beer_style": "Brown Ale - American",
             "IBU": 33.0,
@@ -2119,7 +2130,7 @@ var venue_check_ins = {
             "ID": 52,
             "Beer": "Pot of Gold",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Basqueland Brewing",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
@@ -2163,7 +2174,7 @@ var venue_check_ins = {
             "ID": 61,
             "Beer": "La Prohibida",
             "Beer_style": "Cider - Dry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Grupo Mahou-San Miguel",
             "Brewery_location": "40.39088702171079, -3.6804192472672197",
@@ -2241,7 +2252,7 @@ var venue_check_ins = {
             "ID": 211,
             "Beer": "Archiv Lichtenhainer 9",
             "Beer_style": "Historical Beer - Lichtenhainer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,6",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2261,10 +2272,10 @@ var venue_check_ins = {
             "Comment": "koncept oživit starej zapomenutej způsob vaření velice uznávám, bohužel tohle je až moc velká divočina"
         },
         {
-            "ID": 529,
+            "ID": 528,
             "Beer": "Bajka O Vlku A Lišce 16",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2285,10 +2296,10 @@ var venue_check_ins = {
             "Comment": "Not my cup of NEIPA"
         },
         {
-            "ID": 589,
+            "ID": 588,
             "Beer": "Bounty 13",
             "Beer_style": "Lager - Dark",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2305,10 +2316,10 @@ var venue_check_ins = {
             "Comment": "Milky, I think"
         },
         {
-            "ID": 461,
+            "ID": 460,
             "Beer": "Cape of Good Hops 17",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2329,7 +2340,7 @@ var venue_check_ins = {
             "ID": 70,
             "Beer": "Chříčský Cider",
             "Beer_style": "Cider - Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Pivovar Chříč",
             "Brewery_location": "49.97139921617098, 13.647990302201796",
@@ -2346,6 +2357,28 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_08_20/a7b670aa301cea0e2dea539b9cad34f8_raw.jpg",
             "Date": "20.08.2023",
             "Comment": "From the smell profile I thought I got nothing but mead, eventually from the begining it tasted after honey and went over to dry apples"
+        },
+        {
+            "ID": 600,
+            "Beer": "Euphoria 12 Southern Passion",
+            "Beer_style": "Lager - IPL (India Pale Lager)",
+            "IBU": null,
+            "ABV": "5,1",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TS",
+                "WS",
+                "TB"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_10/018ac4032a8e44fca8bcc20985f8c780_c_1397702187_raw.jpg",
+            "Date": "10.07.2024",
+            "Comment": "Geography meet up with a foreign Dartmouth host, good quality convo"
         },
         {
             "ID": 289,
@@ -2372,7 +2405,7 @@ var venue_check_ins = {
             "ID": 208,
             "Beer": "Heyday 22",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2398,7 +2431,7 @@ var venue_check_ins = {
             "ID": 210,
             "Beer": "Hody hody doprovody 13",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2444,7 +2477,7 @@ var venue_check_ins = {
             "ID": 326,
             "Beer": "I'm Waiting Here",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2505,10 +2538,10 @@ var venue_check_ins = {
             "Comment": "NEIPA a sakra tady jdeme znovu, myslel jsem si, že jsem se jich v Rize přepil, ale nikoliv, tahle mi šmakuje"
         },
         {
-            "ID": 528,
+            "ID": 527,
             "Beer": "Karrel: New World Kölsch 11°",
             "Beer_style": "Kölsch",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2532,7 +2565,7 @@ var venue_check_ins = {
             "ID": 72,
             "Beer": "Kartel Best Bitter 11 (srpen 2023)",
             "Beer_style": "Bitter - Best",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2550,10 +2583,10 @@ var venue_check_ins = {
             "Comment": "Not a fan, too caramelly"
         },
         {
-            "ID": 462,
+            "ID": 461,
             "Beer": "Kartel Coconut Krahulík 11",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2571,10 +2604,10 @@ var venue_check_ins = {
             "Comment": "Dang, I would forbid coconut in lagers"
         },
         {
-            "ID": 588,
+            "ID": 587,
             "Beer": "Kartel Elderflower Summer Ale 11 (červenec 2024)",
             "Beer_style": "Pale Ale - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2591,10 +2624,10 @@ var venue_check_ins = {
             "Comment": "Elderflower is there! Nice attempt that I appreciate"
         },
         {
-            "ID": 499,
+            "ID": 498,
             "Beer": "Kartel Oak Aged Citra Pale Ale 12 (Květen 2024)",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2632,10 +2665,10 @@ var venue_check_ins = {
             "Comment": "tady jsem takovej rozpačitej.. asi bych toho potřeboval víc na objektivnější recenzi a zároveň míň pivek předtím"
         },
         {
-            "ID": 508,
+            "ID": 507,
             "Beer": "Like A Strawberry Daiquiri 14",
             "Beer_style": "Sour - Other Gose",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2652,7 +2685,7 @@ var venue_check_ins = {
             "Comment": "Best gose I've ever had, yummy strawberries, highly recommended"
         },
         {
-            "ID": 514,
+            "ID": 513,
             "Beer": "Magor 15",
             "Beer_style": "Bock - Single / Traditional",
             "IBU": 30.0,
@@ -2718,7 +2751,7 @@ var venue_check_ins = {
             ],
             "Rating": "4,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "05.04.2023",
             "Comment": "Filipe děkuji za postřeh, též jsem si myslel, že jsem již tento nektar ochutnal, a tak se i já přidávám se zpětnou recenzí ze včerejška, přišel nakonec jako zlatý hřeb večera, pochutnali si na něm i Američani pocházející z oblasti kde druh piva vznikl"
         },
@@ -2750,7 +2783,7 @@ var venue_check_ins = {
             "ID": 207,
             "Beer": "Session Juicy Lucy 13",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2776,7 +2809,7 @@ var venue_check_ins = {
             "ID": 71,
             "Beer": "Skotskovec 10 Dry Stout",
             "Beer_style": "Stout - Irish Dry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2798,7 +2831,7 @@ var venue_check_ins = {
             "ID": 92,
             "Beer": "Sour 12 Apricot",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2846,7 +2879,7 @@ var venue_check_ins = {
             "ID": 134,
             "Beer": "Sour 12 Strawberry Rhubarb",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2864,7 +2897,7 @@ var venue_check_ins = {
             "ID": 195,
             "Beer": "White 12",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -2924,7 +2957,7 @@ var venue_check_ins = {
             "ID": 220,
             "Beer": "Fruitstone",
             "Beer_style": "Farmhouse Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,3",
             "Brewery": "Pivovar Thrills Brewing",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
@@ -2944,7 +2977,7 @@ var venue_check_ins = {
             "ID": 280,
             "Beer": "I Love the Smell of Nectaron In the Morning",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -3021,10 +3054,10 @@ var venue_check_ins = {
             "Comment": "rybo rybičko, velice dobrá pivečka si na čepu držíš, nadprůměrná APA, děkuji za ni"
         },
         {
-            "ID": 580,
+            "ID": 579,
             "Beer": "Kořen 11°",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Pivovar Kristýna",
             "Brewery_location": "50.86236537490102, 14.824740041938714",
@@ -3080,7 +3113,7 @@ var venue_check_ins = {
             "ID": 264,
             "Beer": "Public Enemy",
             "Beer_style": "IPA - Sour",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery": "Pivovar Thrills Brewing",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
@@ -3118,7 +3151,7 @@ var venue_check_ins = {
             "ID": 192,
             "Beer": "Sour Me Now",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Pivovar Thrills Brewing",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
@@ -3138,7 +3171,7 @@ var venue_check_ins = {
             "ID": 374,
             "Beer": "Vinařská Jedenáctka",
             "Beer_style": "Farmhouse Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery": "Pivovar Thrills Brewing",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
@@ -3215,7 +3248,7 @@ var venue_check_ins = {
             "ID": 324,
             "Beer": "Braník Jedenáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Pivovary Staropramen",
             "Brewery_location": "50.069634217737196, 14.407393832536137",
@@ -3230,7 +3263,7 @@ var venue_check_ins = {
             "Comment": "u vietnamce jsem vybral kousky, co ještě nemám, tohle je ze série \"jednou a dost\", popsal bych to jako jemně karamelovej blivajz 10° lepší"
         },
         {
-            "ID": 418,
+            "ID": 417,
             "Beer": "Dynamo 10°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -3269,7 +3302,7 @@ var venue_check_ins = {
             "ID": 80,
             "Beer": "Hazy Jane",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "BrewDog",
             "Brewery_location": "57.36961067413578, -2.0504866999995963",
@@ -3341,7 +3374,7 @@ var venue_check_ins = {
             "ID": 341,
             "Beer": "Něžná IPA",
             "Beer_style": "IPA - Rye",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Chomout",
             "Brewery_location": "49.641649157121755, 17.231193699999736",
@@ -3377,7 +3410,7 @@ var venue_check_ins = {
             "ID": 336,
             "Beer": "Pernštejn Premium 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Pardubický pivovar",
             "Brewery_location": "50.03549010871371, 15.762095426991413",
@@ -3395,7 +3428,7 @@ var venue_check_ins = {
             "ID": 337,
             "Beer": "Pernštejn Vilém 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Pardubický pivovar",
             "Brewery_location": "50.03549010871371, 15.762095426991413",
@@ -3431,7 +3464,7 @@ var venue_check_ins = {
             "ID": 340,
             "Beer": "Shiva",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,7",
             "Brewery": "Pivovar Stern",
             "Brewery_location": "49.18063976044766, 16.619050813509027",
@@ -3485,7 +3518,7 @@ var venue_check_ins = {
             "ID": 323,
             "Beer": "Svijanská Desítka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery": "Svijany",
             "Brewery_location": "50.572538341676, 15.05412638463949",
@@ -3503,7 +3536,7 @@ var venue_check_ins = {
             "ID": 335,
             "Beer": "Vinnetou",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Pivovar Chříč",
             "Brewery_location": "49.97139921617098, 13.647990302201796",
@@ -3521,7 +3554,7 @@ var venue_check_ins = {
             "ID": 95,
             "Beer": "Żywiec Białe",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Grupa Żywiec",
             "Brewery_location": "49.662263849421905, 19.174396445420587",
@@ -3543,7 +3576,7 @@ var venue_check_ins = {
             "ID": 74,
             "Beer": "Birell Pomelo & Grep",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery": "Plzeňský Prazdroj",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
@@ -3587,7 +3620,7 @@ var venue_check_ins = {
             "ID": 98,
             "Beer": "Bohoušek",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,7",
             "Brewery": "Pivovar Čtyři lípy",
             "Brewery_location": "50.37628938020668, 15.22047038194565",
@@ -3627,7 +3660,7 @@ var venue_check_ins = {
             "ID": 75,
             "Beer": "New Dog On the Hop: Zamba",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Pivovar HoppyDog",
             "Brewery_location": "49.81201848355721, 18.27275872702853",
@@ -3673,7 +3706,7 @@ var venue_check_ins = {
             "ID": 77,
             "Beer": "Svijanský fanda",
             "Beer_style": "Black & Tan",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Svijany",
             "Brewery_location": "50.572538341676, 15.05412638463949",
@@ -3695,7 +3728,7 @@ var venue_check_ins = {
             "ID": 100,
             "Beer": "450",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Svijany",
             "Brewery_location": "50.572538341676, 15.05412638463949",
@@ -3717,7 +3750,7 @@ var venue_check_ins = {
             "ID": 101,
             "Beer": "Kvasničák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Svijany",
             "Brewery_location": "50.572538341676, 15.05412638463949",
@@ -3761,7 +3794,7 @@ var venue_check_ins = {
             "ID": 82,
             "Beer": "Konrad Cherryk",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery": "Pivovar Konrad",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
@@ -3771,7 +3804,7 @@ var venue_check_ins = {
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.08.2023",
             "Comment": "I'm afraid I was fooled, I thought this was alcoholic.. again kinda suffering like at the previous one"
         },
@@ -3779,7 +3812,7 @@ var venue_check_ins = {
             "ID": 83,
             "Beer": "Konrad Gepard",
             "Beer_style": "Blonde Ale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Pivovar Konrad",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
@@ -3789,7 +3822,7 @@ var venue_check_ins = {
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.08.2023",
             "Comment": "Cmon, this was an Ale? I wouldn't recognize that.. more like a punnishment than a joy"
         },
@@ -3797,7 +3830,7 @@ var venue_check_ins = {
             "ID": 81,
             "Beer": "Konrad Spytihněv",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Pivovar Konrad",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
@@ -3807,7 +3840,7 @@ var venue_check_ins = {
             "Friends": [],
             "Rating": "2,50",
             "Serving_style": "Can",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.08.2023",
             "Comment": "Let's make the taste in the mouth great again! Slightly better, definitely alcoholic, but I'm suspecting the cans from not being at optimal shape"
         }
@@ -3837,7 +3870,7 @@ var venue_check_ins = {
             "ID": 85,
             "Beer": "Konrád Briliant 11",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Pivovar Konrad",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
@@ -3857,7 +3890,7 @@ var venue_check_ins = {
             "ID": 86,
             "Beer": "Holba Keprník",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Holba",
             "Brewery_location": "50.069927945516056, 16.927842817393287",
@@ -3898,7 +3931,7 @@ var venue_check_ins = {
             "Comment": "fill up the stomach before entering the mountain zone, bitter enough, but too sweet"
         }
     ],
-    "NaN": [
+    "null": [
         {
             "ID": 358,
             "Beer": "APA",
@@ -3909,7 +3942,7 @@ var venue_check_ins = {
             "Brewery_location": "54.885789413955195, 23.92763800000501",
             "Brewery_country": "Lithuania",
             "Beer_region": "Kaunas county",
-            "Venue_location": NaN,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
@@ -3927,7 +3960,7 @@ var venue_check_ins = {
             "Brewery_location": "48.99437662043317, 14.476713544734894",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihočeský kraj",
-            "Venue_location": NaN,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
@@ -3945,7 +3978,7 @@ var venue_check_ins = {
             "Brewery_location": "48.99437662043317, 14.476713544734894",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihočeský kraj",
-            "Venue_location": NaN,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,50",
             "Serving_style": "Can",
@@ -3963,7 +3996,7 @@ var venue_check_ins = {
             "Brewery_location": "47.362559867254674, 15.093371086512553",
             "Brewery_country": "Austria",
             "Beer_region": "Steiermark",
-            "Venue_location": NaN,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "3,00",
             "Serving_style": "Can",
@@ -3975,13 +4008,13 @@ var venue_check_ins = {
             "ID": 357,
             "Beer": "Hořká Dvanáctka Ze sklepa",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Pardubický pivovar",
             "Brewery_location": "50.03549010871371, 15.762095426991413",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Pardubický kraj",
-            "Venue_location": NaN,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,25",
             "Serving_style": "Can",
@@ -3999,7 +4032,7 @@ var venue_check_ins = {
             "Brewery_location": "50.07532369998683, 14.457555284654678",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Hlavní město Praha",
-            "Venue_location": NaN,
+            "Venue_location": null,
             "Friends": [
                 "MK",
                 "JT"
@@ -4014,13 +4047,13 @@ var venue_check_ins = {
             "ID": 353,
             "Beer": "Starobrno Czech Premium Pilsner",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery": "Starobrno",
             "Brewery_location": "49.19104964792337, 16.59200297118421",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihomoravský kraj",
-            "Venue_location": NaN,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,50",
             "Serving_style": "Can",
@@ -4034,7 +4067,7 @@ var venue_check_ins = {
             "ID": 316,
             "Beer": "Bitter 12°",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Poutník",
             "Brewery_location": "49.430803111676056, 15.219297428828899",
@@ -4054,7 +4087,7 @@ var venue_check_ins = {
             "ID": 244,
             "Beer": "Harry",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Funky Fluid",
             "Brewery_location": "52.28538686313832, 21.057658499996787",
@@ -4072,7 +4105,7 @@ var venue_check_ins = {
             "ID": 259,
             "Beer": "Hopminer",
             "Beer_style": "IPA - Triple New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "9,2",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -4111,7 +4144,7 @@ var venue_check_ins = {
             "ID": 315,
             "Beer": "Jistota Ale 12°",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Pivovar Clock",
             "Brewery_location": "50.08125410516569, 16.317200948562274",
@@ -4131,8 +4164,8 @@ var venue_check_ins = {
             "ID": 318,
             "Beer": "Jistota IPL",
             "Beer_style": "Lager - IPL (India Pale Lager)",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Pivovar Ovipistán",
             "Brewery_location": "50.223764086366764, 16.04285460000085",
             "Brewery_country": "Czech Republic",
@@ -4151,7 +4184,7 @@ var venue_check_ins = {
             "ID": 227,
             "Beer": "Mauna Loa",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -4241,7 +4274,7 @@ var venue_check_ins = {
             "Friends": [],
             "Rating": "3,75",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "24.02.2023",
             "Comment": "solidní dipa, na to jak je nastřelené IBU, nepřechází do nepřiměřené sladkosti, a to je velké +"
         },
@@ -4266,7 +4299,7 @@ var venue_check_ins = {
     ],
     "Automat Matuška": [
         {
-            "ID": 451,
+            "ID": 450,
             "Beer": "Desítka",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 38.0,
@@ -4396,7 +4429,7 @@ var venue_check_ins = {
             "ID": 93,
             "Beer": "Světlý ležák 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Krakonoš",
             "Brewery_location": "50.561380291494615, 15.910637815300865",
@@ -4419,7 +4452,7 @@ var venue_check_ins = {
             "ID": 94,
             "Beer": "Warka Strong / Premium / High Quality Beer",
             "Beer_style": "Lager - Strong",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery": "Browar Warka",
             "Brewery_location": "51.801415637421506, 21.163494396358825",
@@ -4441,7 +4474,7 @@ var venue_check_ins = {
             "ID": 104,
             "Beer": "Jablko hruškový cider",
             "Beer_style": "Cider - Other Fruit",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Amity (Joker Cider)",
             "Brewery_location": "50.11885670710588, 16.217786135415793",
@@ -4464,7 +4497,7 @@ var venue_check_ins = {
             "Beer": "Sand Ale 10°",
             "Beer_style": "Pale Ale - American",
             "IBU": 31.0,
-            "ABV": NaN,
+            "ABV": null,
             "Brewery": "O.SKAR",
             "Brewery_location": "50.72502229179776, 15.181001355811112",
             "Brewery_country": "Czech Republic",
@@ -4524,7 +4557,7 @@ var venue_check_ins = {
             "Beer": "Ampér Agnus",
             "Beer_style": "Pilsner - Other",
             "IBU": 45.0,
-            "ABV": NaN,
+            "ABV": null,
             "Brewery": "Pivovar Volt",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
@@ -4580,7 +4613,7 @@ var venue_check_ins = {
             "ID": 187,
             "Beer": "Elektra",
             "Beer_style": "Sour - Fruited Gose",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Pivovar Volt",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
@@ -4675,7 +4708,7 @@ var venue_check_ins = {
             "ID": 186,
             "Beer": "Gruit",
             "Beer_style": "Historical Beer - Gruit / Ancient Herbed Ale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Pivovar Volt",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
@@ -4868,7 +4901,7 @@ var venue_check_ins = {
             ],
             "Rating": "3,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "17.02.2023",
             "Comment": "moc dobrá ovocná, příjemně překvapila"
         },
@@ -4876,8 +4909,8 @@ var venue_check_ins = {
             "ID": 103,
             "Beer": "Převodník",
             "Beer_style": "Table Beer",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Pivovar Volt",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
@@ -4937,8 +4970,8 @@ var venue_check_ins = {
             "ID": 107,
             "Beer": "Transformátor",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Pivovar Volt",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
@@ -5037,7 +5070,7 @@ var venue_check_ins = {
             "ID": 105,
             "Beer": "Hazy Lazy Sunrise",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Pivovar Antoš",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
@@ -5081,9 +5114,9 @@ var venue_check_ins = {
     "Svatováclavský pivovar": [
         {
             "ID": 110,
-            "Beer": "Ananas",
+            "Beer": "Anullas",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Svatováclavský pivovar",
             "Brewery_location": "49.59585949999869, 17.258702528837524",
@@ -5105,7 +5138,7 @@ var venue_check_ins = {
             "ID": 111,
             "Beer": "Svatováclavská 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Svatováclavský pivovar",
             "Brewery_location": "49.59585949999869, 17.258702528837524",
@@ -5151,7 +5184,7 @@ var venue_check_ins = {
             "ID": 113,
             "Beer": "Buchťákova dvanáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,2",
             "Brewery": "Pivovar Buchťák",
             "Brewery_location": "49.55447446427743, 17.228120450309714",
@@ -5197,7 +5230,7 @@ var venue_check_ins = {
             "ID": 115,
             "Beer": "Litovel Gustav 13°",
             "Beer_style": "Lager - Vienna",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,1",
             "Brewery": "Litovel",
             "Brewery_location": "49.69480570270628, 17.07579965528462",
@@ -5219,7 +5252,7 @@ var venue_check_ins = {
             "ID": 116,
             "Beer": "Višňový ležák 12",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Litovel",
             "Brewery_location": "49.69480570270628, 17.07579965528462",
@@ -5243,7 +5276,7 @@ var venue_check_ins = {
             "ID": 117,
             "Beer": "Beskydské hořké",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,5",
             "Brewery": "Beskydský pivovárek",
             "Brewery_location": "49.53200969315407, 18.394860676551513",
@@ -5315,7 +5348,7 @@ var venue_check_ins = {
             "ID": 122,
             "Beer": "Světlý ležák 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Krakonoš",
             "Brewery_location": "50.561380291494615, 15.910637815300865",
@@ -5353,7 +5386,7 @@ var venue_check_ins = {
             "ID": 334,
             "Beer": "Konrad 11° / Vratislavický ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Pivovar Konrad",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
@@ -5386,10 +5419,10 @@ var venue_check_ins = {
             "Comment": "probably a cause of too old can badly stored, I guess that it would taste much better while normal circumstances"
         },
         {
-            "ID": 423,
+            "ID": 422,
             "Beer": "Medovina",
             "Beer_style": "Mead - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery": "Kitl",
             "Brewery_location": "50.72492294716701, 15.15520790947721",
@@ -5404,10 +5437,10 @@ var venue_check_ins = {
             "Comment": "I almost forgot! That's a best mead you can get. Also Carlo appreciated it."
         },
         {
-            "ID": 420,
+            "ID": 419,
             "Beer": "Neon",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Pivovar Volt",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
@@ -5440,7 +5473,7 @@ var venue_check_ins = {
             "Comment": "the least influenced by bad storage, but since it's NEIPA, I enjoyed it"
         },
         {
-            "ID": 419,
+            "ID": 418,
             "Beer": "Severská APA",
             "Beer_style": "Pale Ale - American",
             "IBU": 38.0,
@@ -5458,7 +5491,7 @@ var venue_check_ins = {
             "Comment": "2 days old check-in, my friend from Děčín shared the bottle of his local brewery with me, fair APA, pleasant hoppy sipping"
         },
         {
-            "ID": 421,
+            "ID": 420,
             "Beer": "Václav 11°",
             "Beer_style": "Lager - Helles",
             "IBU": 30.0,
@@ -5476,10 +5509,10 @@ var venue_check_ins = {
             "Comment": "Drinkable and sweet, another gift from my friend."
         },
         {
-            "ID": 422,
+            "ID": 421,
             "Beer": "Zlatopramen",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Heineken Česká Republika",
             "Brewery_location": "50.174333243073804, 13.774932899452528",
@@ -5499,7 +5532,7 @@ var venue_check_ins = {
             "ID": 331,
             "Beer": "Kunratický Ležák 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Spojovna",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
@@ -5519,7 +5552,7 @@ var venue_check_ins = {
             "ID": 131,
             "Beer": "Kunratický Študák 11",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Spojovna",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
@@ -5539,7 +5572,7 @@ var venue_check_ins = {
             "ID": 330,
             "Beer": "Kunratický Študák 11",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Spojovna",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
@@ -5559,7 +5592,7 @@ var venue_check_ins = {
             "ID": 329,
             "Beer": "Roztylský R.I.P.A.K.",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Spojovna",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
@@ -5571,7 +5604,7 @@ var venue_check_ins = {
             ],
             "Rating": "3,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "03.01.2023",
             "Comment": "vůně pěkná, chuť přebíjí vohromná hořkost, to je něco jako moc velká pálivost v jídle, škoda.. člověk by z toho mohl mít víc"
         },
@@ -5579,7 +5612,7 @@ var venue_check_ins = {
             "ID": 126,
             "Beer": "Světlá 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Hostivar",
             "Brewery_location": "50.04935907109365, 14.56213981927509",
@@ -5599,7 +5632,7 @@ var venue_check_ins = {
             "ID": 130,
             "Beer": "Šeberovský Fešák 14",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,7",
             "Brewery": "Spojovna",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
@@ -5691,7 +5724,7 @@ var venue_check_ins = {
             "Friends": [],
             "Rating": "4,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "23.06.2023",
             "Comment": "not afraid to rate it this generously, after climbing so refreshing, I love the bitterness, simply the best 9°"
         }
@@ -5701,7 +5734,7 @@ var venue_check_ins = {
             "ID": 132,
             "Beer": "Saigon Special",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Sabeco",
             "Brewery_location": "10.758573694328406, 106.6625820255224",
@@ -5775,7 +5808,7 @@ var venue_check_ins = {
             "ID": 167,
             "Beer": "Gambrinus Patron 12 / Plná 12 / Premium 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery": "Plzeňský Prazdroj",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
@@ -5811,7 +5844,7 @@ var venue_check_ins = {
             "ID": 279,
             "Beer": "Kozel Mistrův ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Pivovar Velké Popovice",
             "Brewery_location": "49.9229860777939, 14.636082200002393",
@@ -5847,7 +5880,7 @@ var venue_check_ins = {
             "ID": 372,
             "Beer": "Mustang",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Ostravar",
             "Brewery_location": "49.838799880503714, 18.273754530676367",
@@ -5959,7 +5992,7 @@ var venue_check_ins = {
             "Comment": "apricot sour ale, I would say, idk what's in the description, I'm quite confident with the taste profile"
         },
         {
-            "ID": 569,
+            "ID": 568,
             "Beer": "Ale 11",
             "Beer_style": "Pale Ale - American",
             "IBU": 39.0,
@@ -5979,7 +6012,7 @@ var venue_check_ins = {
             "Comment": "Refreshing start of the day"
         },
         {
-            "ID": 561,
+            "ID": 560,
             "Beer": "Antošův ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 30.0,
@@ -6000,7 +6033,7 @@ var venue_check_ins = {
             "Comment": "Let the Rock for People begin"
         },
         {
-            "ID": 578,
+            "ID": 577,
             "Beer": "Belgian Witbier",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
             "IBU": 20.0,
@@ -6020,10 +6053,10 @@ var venue_check_ins = {
             "Comment": "I feel coriander"
         },
         {
-            "ID": 575,
+            "ID": 574,
             "Beer": "Bikini Ale",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Bad Flash",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
@@ -6058,10 +6091,10 @@ var venue_check_ins = {
             "Comment": "I did it! no more breweries left to collect, I can leave this place satisfied, unfortunatelly not a good choice at all, too malty and I feel a vibe of porter"
         },
         {
-            "ID": 571,
+            "ID": 570,
             "Beer": "Coffee Brown ALE",
             "Beer_style": "Brown Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Hradecký Klenot",
             "Brewery_location": "50.20940793371788, 15.834727157670889",
@@ -6081,7 +6114,7 @@ var venue_check_ins = {
             "ID": 145,
             "Beer": "Desperados Original",
             "Beer_style": "Lager - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,9",
             "Brewery": "Heineken",
             "Brewery_location": "52.13626706606647, 4.5325769228070785",
@@ -6099,7 +6132,7 @@ var venue_check_ins = {
             "ID": 151,
             "Beer": "Extra Chmelené",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Pivovar Nová Paka",
             "Brewery_location": "50.487716352301504, 15.52477221535441",
@@ -6119,7 +6152,7 @@ var venue_check_ins = {
             "ID": 140,
             "Beer": "F.H. Prager Cider 11",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "F.H. Prager",
             "Brewery_location": "49.977373680084874, 14.39379970538856",
@@ -6214,7 +6247,7 @@ var venue_check_ins = {
             "Comment": "delicious! this is what I was looking for the whole time, I guess that I'm gonna stop right here leaving this place with good taste on the tongue"
         },
         {
-            "ID": 579,
+            "ID": 578,
             "Beer": "Klenot 11 polotmavý",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 22.0,
@@ -6231,10 +6264,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/9052259ad7547444700cf6f801f51c60_c_1390106628_raw.jpg",
             "Date": "15.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 562,
+            "ID": 561,
             "Beer": "Krahulík 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 29.0,
@@ -6293,7 +6326,7 @@ var venue_check_ins = {
             "Comment": "no clue what the taste profile was"
         },
         {
-            "ID": 567,
+            "ID": 566,
             "Beer": "Mango Chilli Sour Ale",
             "Beer_style": "Sour - Fruited",
             "IBU": 8.0,
@@ -6313,10 +6346,10 @@ var venue_check_ins = {
             "Comment": "Chilli lovers, get it until they sell it all"
         },
         {
-            "ID": 572,
+            "ID": 571,
             "Beer": "Marination Nation",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Pivovar Antoš",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
@@ -6351,7 +6384,7 @@ var venue_check_ins = {
             "Comment": "bad aftertaste, AZ-kviz James Cole vs Mcgay"
         },
         {
-            "ID": 570,
+            "ID": 569,
             "Beer": "Na Pool",
             "Beer_style": "Lager - IPL (India Pale Lager)",
             "IBU": 38.0,
@@ -6371,10 +6404,10 @@ var venue_check_ins = {
             "Comment": "Pairs well with burger"
         },
         {
-            "ID": 577,
+            "ID": 576,
             "Beer": "Nealko Grep",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery": "Hradecký Klenot",
             "Brewery_location": "50.20940793371788, 15.834727157670889",
@@ -6386,13 +6419,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/954751d3ef195eda700076c5c82ad38b_c_1389931079_raw.jpg",
             "Date": "15.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
             "ID": 142,
             "Beer": "Novopacké pivo 11° Kryštof",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Pivovar Nová Paka",
             "Brewery_location": "50.487716352301504, 15.52477221535441",
@@ -6405,7 +6438,7 @@ var venue_check_ins = {
             ],
             "Rating": "2,75",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.06.2023",
             "Comment": "late night beer, no photo taken"
         },
@@ -6413,7 +6446,7 @@ var venue_check_ins = {
             "ID": 148,
             "Beer": "Pineapple NEIPA",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Rodinný pivovar Rampušák",
             "Brewery_location": "50.29340474581693, 16.16344031349508",
@@ -6433,8 +6466,8 @@ var venue_check_ins = {
             "ID": 141,
             "Beer": "Poděbradský Rádl pomeranč",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Poděbradský pivovar",
             "Brewery_location": "50.1426543794162, 15.115969813464808",
             "Brewery_country": "Czech Republic",
@@ -6461,12 +6494,12 @@ var venue_check_ins = {
             "Friends": [],
             "Rating": "3,00",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.06.2023",
             "Comment": "maybe a last beer today, the grind to get them all exhausted me quite a lot, I would go to sleep rn, but Muse band is already on the horizon, so def not a sleep time yet!"
         },
         {
-            "ID": 576,
+            "ID": 575,
             "Beer": "Počernická dvanáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 26.0,
@@ -6489,7 +6522,7 @@ var venue_check_ins = {
             "ID": 146,
             "Beer": "Počernická I.P.A.",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Počernický pivovar",
             "Brewery_location": "50.08846086535482, 14.580681299998794",
@@ -6506,7 +6539,7 @@ var venue_check_ins = {
             "Comment": "not a bargain at all, thinking about the flavor profile and can't think of nothing, but disgusting, this is not an IPA beer style I like"
         },
         {
-            "ID": 574,
+            "ID": 573,
             "Beer": "Rampušák 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 40.0,
@@ -6546,10 +6579,10 @@ var venue_check_ins = {
             "Comment": "let the \"beer\" festival begin! finally a bitter taste after all the watery austrian lagers, pretty good choice for the very begining, pennyinpraha goes down pretty smoothly"
         },
         {
-            "ID": 566,
+            "ID": 565,
             "Beer": "Sour - Raspberry & Coffee",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery": "Hradecký Klenot",
             "Brewery_location": "50.20940793371788, 15.834727157670889",
@@ -6566,10 +6599,10 @@ var venue_check_ins = {
             "Comment": "Amusing"
         },
         {
-            "ID": 564,
+            "ID": 563,
             "Beer": "Summer Ale",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -6586,10 +6619,10 @@ var venue_check_ins = {
             "Comment": "Awkwardly sour, seeking for americam hops but can't find them, you can do better Sibeeria"
         },
         {
-            "ID": 568,
+            "ID": 567,
             "Beer": "Summer Ale",
             "Beer_style": "Blonde / Golden Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,9",
             "Brewery": "Měšťanský pivovar Kutná Hora",
             "Brewery_location": "49.956575500082266, 15.270966677814036",
@@ -6627,7 +6660,7 @@ var venue_check_ins = {
             "Comment": "as Lauren would say, yummmyyyyy"
         },
         {
-            "ID": 573,
+            "ID": 572,
             "Beer": "Světlý ležák 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 35.0,
@@ -6650,7 +6683,7 @@ var venue_check_ins = {
             "ID": 144,
             "Beer": "Světlý speciál 13°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Pivovar Permon",
             "Brewery_location": "50.17874994137674, 12.63787465580559",
@@ -6668,10 +6701,10 @@ var venue_check_ins = {
             "Comment": "nothing special, had higher expectation, def need to have a next one to fix the taste again"
         },
         {
-            "ID": 565,
+            "ID": 564,
             "Beer": "Vošta",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Pivovar Clock",
             "Brewery_location": "50.08125410516569, 16.317200948562274",
@@ -6713,7 +6746,7 @@ var venue_check_ins = {
             "ID": 156,
             "Beer": "Kaiser Fasstyp / Kaiser Bier",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Brauerei Wieselburg",
             "Brewery_location": "48.13709313477016, 15.151935139184443",
@@ -6733,7 +6766,7 @@ var venue_check_ins = {
             "ID": 157,
             "Beer": "Landgraf Schankbier",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,2",
             "Brewery": "Privatbrauerei Fritz Egger",
             "Brewery_location": "48.25256426867831, 15.686023228833871",
@@ -6753,7 +6786,7 @@ var venue_check_ins = {
             "ID": 159,
             "Beer": "Märzen",
             "Beer_style": "Märzen",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Kobersdorfer Schlossbräu",
             "Brewery_location": "47.594737030498734, 16.395559094536704",
@@ -6811,7 +6844,7 @@ var venue_check_ins = {
             "Comment": "ale jo, nenadchl ani nezklamal"
         },
         {
-            "ID": 590,
+            "ID": 589,
             "Beer": "The Eagle Flies Alone",
             "Beer_style": "IPA - Rye",
             "IBU": 53.0,
@@ -6829,7 +6862,7 @@ var venue_check_ins = {
             "Comment": "Pretty warm, me no likey"
         },
         {
-            "ID": 591,
+            "ID": 590,
             "Beer": "Ummagumma",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 25.0,
@@ -6868,10 +6901,10 @@ var venue_check_ins = {
             "Comment": "tak tohle mě tolik nenadchlo, alespoň ne tolik jako mou drahou polovičku, která mimo svého piva vypila půlku toho mého"
         },
         {
-            "ID": 592,
+            "ID": 591,
             "Beer": "Yellowstone",
             "Beer_style": "IPA - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,9",
             "Brewery": "Cobolis",
             "Brewery_location": "50.127036253185786, 14.47016989999928",
@@ -7000,7 +7033,7 @@ var venue_check_ins = {
             "ID": 171,
             "Beer": "Svijanský Rytíř",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Svijany",
             "Brewery_location": "50.572538341676, 15.05412638463949",
@@ -7137,7 +7170,7 @@ var venue_check_ins = {
             "ID": 218,
             "Beer": "Strongbow Gold Apple",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Bulmers Cider",
             "Brewery_location": "52.061287418599996, -2.7240484864844414",
@@ -7216,7 +7249,7 @@ var venue_check_ins = {
             ],
             "Rating": "2,00",
             "Serving_style": "Bottle",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "03.05.2023",
             "Comment": "dal jsem si ji znovu, abych si potvrdil, že to je asi nejhorší ipa, co jsem kdy měl, jakože fakt nevím, jak tohle hodnotit.."
         },
@@ -7251,7 +7284,7 @@ var venue_check_ins = {
             "ID": 179,
             "Beer": "Bruncvík Světlý Ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Staropilsen",
             "Brewery_location": "49.75343041519828, 13.38124195956679",
@@ -7273,7 +7306,7 @@ var venue_check_ins = {
             "ID": 182,
             "Beer": "Litovel Classic",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,2",
             "Brewery": "Litovel",
             "Brewery_location": "49.69480570270628, 17.07579965528462",
@@ -7363,7 +7396,7 @@ var venue_check_ins = {
             "ID": 188,
             "Beer": "Denali NEIPA",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery": "Bad Flash",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
@@ -7375,7 +7408,7 @@ var venue_check_ins = {
             ],
             "Rating": "3,75",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "28.04.2023",
             "Comment": "bohužel bez fota, věnoval jsem se společnosti viz předchozí příspěvek, spontánní hospůdka po společném lezení"
         },
@@ -7443,7 +7476,7 @@ var venue_check_ins = {
             "ID": 271,
             "Beer": "Prostě ležák 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Bad Flash",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
@@ -7483,7 +7516,7 @@ var venue_check_ins = {
             "ID": 270,
             "Beer": "The Mad Tea-Party",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery": "Crazy Clown Brewery",
             "Brewery_location": "50.103998648147716, 14.511696880090616",
@@ -7523,7 +7556,7 @@ var venue_check_ins = {
             "ID": 285,
             "Beer": "Zlatá labuť světlá 11%",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Pivovarský dvůr Zvíkov",
             "Brewery_location": "49.43092406704987, 14.198595757660554",
@@ -7565,7 +7598,7 @@ var venue_check_ins = {
             "ID": 193,
             "Beer": "Bad Motherfu**er",
             "Beer_style": "Belgian Strong Golden Ale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Crazy Clown Brewery",
             "Brewery_location": "50.103998648147716, 14.511696880090616",
@@ -7580,10 +7613,10 @@ var venue_check_ins = {
             "Comment": "síla okamžiku asi přispěla k prožitku z daného piva, můj první Belgium stron ale a velice povedený"
         },
         {
-            "ID": 450,
+            "ID": 449,
             "Beer": "Drink and Drive Ø",
             "Beer_style": "Non-Alcoholic Beer - IPA",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -7603,7 +7636,7 @@ var venue_check_ins = {
             "ID": 194,
             "Beer": "Oyster Stout",
             "Beer_style": "Stout - Oyster",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Chroust",
             "Brewery_location": "50.130198177665946, 14.395175871162714",
@@ -7621,7 +7654,7 @@ var venue_check_ins = {
             "ID": 274,
             "Beer": "Teaches of Peaches",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery": "Crazy Clown Brewery",
             "Brewery_location": "50.103998648147716, 14.511696880090616",
@@ -7643,7 +7676,7 @@ var venue_check_ins = {
             "ID": 201,
             "Beer": "13° speciál",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Beeranek",
             "Brewery_location": "48.99332812064615, 14.475273300099731",
@@ -7664,7 +7697,7 @@ var venue_check_ins = {
             "Beer": "Adventní Speciál 13.5° 2022 (Galaxy, Ibišek)",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 28.0,
-            "ABV": NaN,
+            "ABV": null,
             "Brewery": "Starobrno",
             "Brewery_location": "49.19104964792337, 16.59200297118421",
             "Brewery_country": "Czech Republic",
@@ -7681,10 +7714,10 @@ var venue_check_ins = {
             "Comment": "asi to nejlepší, co má tato hospoda momentálně na čepu, značka nám byla nějakou dobu tajena, a to z důvodu, že kdyby v nabídce stálo Starobrno, tak by si ho nikeo nedal 😀"
         },
         {
-            "ID": 382,
+            "ID": 381,
             "Beer": "Březňák 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Velké Březno",
             "Brewery_location": "50.664562088804104, 14.13904491423387",
@@ -7701,10 +7734,10 @@ var venue_check_ins = {
             "Comment": "druhý kousek od Březňáka za dnešní večer a taky velké zklamání, zlí jazykové tvrdili, že Březňák nestojí za nic, já jim vždy oponoval, dnes jim bohužel musím dát za pravdu.. pivo je sice pitelné, ale zároveň železité, a to tu rozhodně vidět nechceme"
         },
         {
-            "ID": 383,
+            "ID": 382,
             "Beer": "Březňák Světlý ležák / Original Böhmisch Pils",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Velké Březno",
             "Brewery_location": "50.664562088804104, 14.13904491423387",
@@ -7724,7 +7757,7 @@ var venue_check_ins = {
             "ID": 214,
             "Beer": "Cold Cold West",
             "Beer_style": "IPA - Cold",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery": "Pivovar Antoš",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
@@ -7744,7 +7777,7 @@ var venue_check_ins = {
             "ID": 225,
             "Beer": "Demokrat Cider Pátečníků",
             "Beer_style": "Cider - Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Demokrat Cider",
             "Brewery_location": "50.02543691658982, 15.909156123464488",
@@ -7765,7 +7798,7 @@ var venue_check_ins = {
             "ID": 349,
             "Beer": "Staročeský Malvaz",
             "Beer_style": "Lager - Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery": "Krušovice",
             "Brewery_location": "50.17427359144863, 13.77117565259575",
@@ -7786,7 +7819,7 @@ var venue_check_ins = {
             "ID": 196,
             "Beer": "Strážské adventní medové pivo 14%",
             "Beer_style": "Honey Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Pivovar Stráž",
             "Brewery_location": "49.06900088698081, 14.907344984638613",
@@ -7824,10 +7857,10 @@ var venue_check_ins = {
     ],
     "Park Ladronka": [
         {
-            "ID": 503,
+            "ID": 502,
             "Beer": "Heyl Summer Ale 8",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,3",
             "Brewery": "Pivovar Ladronka",
             "Brewery_location": "50.07844798328466, 14.356394211436543",
@@ -7931,7 +7964,7 @@ var venue_check_ins = {
             "ID": 202,
             "Beer": "Velikonoční Speciál",
             "Beer_style": "Lager - Strong",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Bernard Family Brewery",
             "Brewery_location": "49.53995499999751, 15.359816186508956",
@@ -7953,7 +7986,7 @@ var venue_check_ins = {
             "ID": 204,
             "Beer": "Turnovská dvanáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Měšťanský pivovar Turnov",
             "Brewery_location": "50.59184114637144, 15.156551344022981",
@@ -7975,8 +8008,8 @@ var venue_check_ins = {
             "ID": 203,
             "Beer": "Turnovská Zimní Třináctka",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Měšťanský pivovar Turnov",
             "Brewery_location": "50.59184114637144, 15.156551344022981",
             "Brewery_country": "Czech Republic",
@@ -8001,7 +8034,7 @@ var venue_check_ins = {
             "Beer_style": "Lager - Strong",
             "IBU": 31.0,
             "ABV": "6,3",
-            "Brewery": "Pivovar Ferdinand",
+            "Brewery": "Pivovar Ferdinulld",
             "Brewery_location": "49.779519327938615, 14.690448686510157",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Středočeský kraj",
@@ -8019,7 +8052,7 @@ var venue_check_ins = {
             "ID": 216,
             "Beer": "New Zealand IPA 15°",
             "Beer_style": "IPA - New Zealand",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery": "Pivovar Matuška",
             "Brewery_location": "49.95507498995888, 13.851718385392074",
@@ -8062,7 +8095,7 @@ var venue_check_ins = {
             "ID": 221,
             "Beer": "Collab Neipa 14",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,7",
             "Brewery": "Bohem Brewery",
             "Brewery_location": "51.606922857809394, -0.05819924234989221",
@@ -8124,7 +8157,7 @@ var venue_check_ins = {
             "ID": 222,
             "Beer": "Zubr Grand 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Pivovar Zubr",
             "Brewery_location": "49.45075195103624, 17.447712913518522",
@@ -8148,7 +8181,7 @@ var venue_check_ins = {
             "ID": 223,
             "Beer": "Klášter Ležák 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Pivovar Klášter",
             "Brewery_location": "50.525637679289375, 14.948101169324293",
@@ -8172,7 +8205,7 @@ var venue_check_ins = {
             "ID": 224,
             "Beer": "Světlý ležák 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Pivovar Kocour Varnsdorf",
             "Brewery_location": "50.92006284042134, 14.603390237684112",
@@ -8196,7 +8229,7 @@ var venue_check_ins = {
             "ID": 230,
             "Beer": "Konrad 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery": "Pivovar Konrad",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
@@ -8232,7 +8265,7 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://assets.untappd.com/photos/2023_03_18/750d843706943786f7d719d3e3170e02_raw.jpg",
             "Date": "18.03.2023",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Proseč forest": [
@@ -8322,8 +8355,8 @@ var venue_check_ins = {
             "ID": 236,
             "Beer": "Křížek 17 NEIPA",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Pivovar Křížek",
             "Brewery_location": "49.42352355740412, 14.675540413483278",
             "Brewery_country": "Czech Republic",
@@ -8362,8 +8395,8 @@ var venue_check_ins = {
             "ID": 238,
             "Beer": "Topaz Ale",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Pivovar Trilobit",
             "Brewery_location": "50.10755755724975, 14.476027360431658",
             "Brewery_country": "Czech Republic",
@@ -8382,7 +8415,7 @@ var venue_check_ins = {
             "ID": 240,
             "Beer": "Transformátor 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Transformátor Hlavatce",
             "Brewery_location": "49.29656500977681, 14.622866457663662",
@@ -8402,7 +8435,7 @@ var venue_check_ins = {
             "ID": 234,
             "Beer": "Východní Independent",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Cobolis",
             "Brewery_location": "50.127036253185786, 14.47016989999928",
@@ -8442,7 +8475,7 @@ var venue_check_ins = {
             "ID": 257,
             "Beer": "Borůvka / Blueberry",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,4",
             "Brewery": "Pivovar Černá Hora",
             "Brewery_location": "49.41496181937333, 16.581777084598194",
@@ -8460,7 +8493,7 @@ var venue_check_ins = {
             "ID": 242,
             "Beer": "Pazdrát",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery": "Pivovar Chříč",
             "Brewery_location": "49.97139921617098, 13.647990302201796",
@@ -8506,7 +8539,7 @@ var venue_check_ins = {
             "ID": 253,
             "Beer": "Obec",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,8",
             "Brewery": "Pivovar Valeč",
             "Brewery_location": "50.17339797142514, 13.252779869297347",
@@ -8635,7 +8668,7 @@ var venue_check_ins = {
             "ID": 262,
             "Beer": "Norwegian Lowbush By Rackhouse",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "LERVIG",
             "Brewery_location": "58.945712232991696, 5.745947905074622",
@@ -8657,7 +8690,7 @@ var venue_check_ins = {
             "ID": 312,
             "Beer": "Bright",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery": "Magic Road",
             "Brewery_location": "52.23355312572883, 21.019111237467946",
@@ -8677,7 +8710,7 @@ var venue_check_ins = {
             "ID": 313,
             "Beer": "Fine Lager",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Magic Road",
             "Brewery_location": "52.23355312572883, 21.019111237467946",
@@ -8697,7 +8730,7 @@ var venue_check_ins = {
             "ID": 263,
             "Beer": "Have A Nice Journey",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Pivovar Thrills Brewing",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
@@ -8714,7 +8747,7 @@ var venue_check_ins = {
             "Comment": "tak dobré hodnocení a přitom tak hrozná chuť, to mi nejde dohromady.. nejhořčí pivo, co jsem kdy měl, na konci trochu kouřový, tohle se nepije samo a nepije lehce"
         },
         {
-            "ID": 586,
+            "ID": 585,
             "Beer": "Jura",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 35.0,
@@ -8737,7 +8770,7 @@ var venue_check_ins = {
             "ID": 311,
             "Beer": "Pretty Pineapple, Guava & Coconut",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Magic Road",
             "Brewery_location": "52.23355312572883, 21.019111237467946",
@@ -8754,10 +8787,10 @@ var venue_check_ins = {
             "Comment": "tak tohle je největší překvapení večera, on může kyseláč chutnat opravdu takhle dobře? zbožňuju kokos v pivě 😍"
         },
         {
-            "ID": 587,
+            "ID": 586,
             "Beer": "Sabro Fan Service 12",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -8806,7 +8839,7 @@ var venue_check_ins = {
             "ID": 273,
             "Beer": "Koncept White Stout 15",
             "Beer_style": "Stout - White / Golden",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -8847,10 +8880,10 @@ var venue_check_ins = {
     ],
     "BeerGeek Bar": [
         {
-            "ID": 453,
+            "ID": 452,
             "Beer": "Podzim 2023",
             "Beer_style": "Scotch Ale / Wee Heavy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -8867,10 +8900,10 @@ var venue_check_ins = {
             "Comment": "That was very good"
         },
         {
-            "ID": 452,
+            "ID": 451,
             "Beer": "Sinker Oak",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -8910,7 +8943,7 @@ var venue_check_ins = {
             "ID": 282,
             "Beer": "Yummy Pink Guava, Peach, Passion Fruit & Vanilla",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -8932,7 +8965,7 @@ var venue_check_ins = {
             "ID": 292,
             "Beer": "Madonas Alus Nefiltrēts",
             "Beer_style": "Lager - Vienna",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery": "Madonas Alus SIA",
             "Brewery_location": "56.8272012182042, 26.36263080000479",
@@ -8976,7 +9009,7 @@ var venue_check_ins = {
             "ID": 301,
             "Beer": "Dark Horse of Coffee Nitro Stout",
             "Beer_style": "Stout - Milk / Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery": "Mad Scientist",
             "Brewery_location": "47.483395048244034, 19.155764113507487",
@@ -9020,7 +9053,7 @@ var venue_check_ins = {
             "ID": 295,
             "Beer": "AMOUR",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Nurme",
             "Brewery_location": "56.95004030111951, 24.150853898026327",
@@ -9041,7 +9074,7 @@ var venue_check_ins = {
             "ID": 294,
             "Beer": "Cilpa",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Malduguns",
             "Brewery_location": "57.33012628661092, 25.618513499714286",
@@ -9062,7 +9095,7 @@ var venue_check_ins = {
             "ID": 303,
             "Beer": "CLOUD #19 / MILKSHAKE IPA",
             "Beer_style": "IPA - Milkshake",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Hopalaa",
             "Brewery_location": "56.70141406041512, 23.696773972884586",
@@ -9083,7 +9116,7 @@ var venue_check_ins = {
             "ID": 304,
             "Beer": "DDH Citra x Galaxy x Enigma Pale Ale",
             "Beer_style": "Pale Ale - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Ārpus Brewing Co.",
             "Brewery_location": "57.085707059752664, 24.297348186520278",
@@ -9129,7 +9162,7 @@ var venue_check_ins = {
             "ID": 298,
             "Beer": "Bru-1 & Ella Milkshake APA",
             "Beer_style": "Pale Ale - Milkshake",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "TEIKA",
             "Brewery_location": "56.98139852244721, 24.194319171168974",
@@ -9150,7 +9183,7 @@ var venue_check_ins = {
             "ID": 297,
             "Beer": "TEIKAS PORTERIS",
             "Beer_style": "Porter - Baltic",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,2",
             "Brewery": "TEIKA",
             "Brewery_location": "56.98139852244721, 24.194319171168974",
@@ -9242,7 +9275,7 @@ var venue_check_ins = {
             "ID": 306,
             "Beer": "Plūmju Mežonis 2020 (Plum Wildling)",
             "Beer_style": "Wild Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,7",
             "Brewery": "Labietis",
             "Brewery_location": "56.96525731187278, 24.13049715603019",
@@ -9286,7 +9319,7 @@ var venue_check_ins = {
             "ID": 333,
             "Beer": "Argus 12 Maestic",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Pivovar Protivín",
             "Brewery_location": "49.20476364671345, 14.220089473154905",
@@ -9330,7 +9363,7 @@ var venue_check_ins = {
             "ID": 342,
             "Beer": "Braník Světlý",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,1",
             "Brewery": "Pivovary Staropramen",
             "Brewery_location": "50.069634217737196, 14.407393832536137",
@@ -9354,7 +9387,7 @@ var venue_check_ins = {
             "ID": 350,
             "Beer": "Ostravar 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Ostravar",
             "Brewery_location": "49.838799880503714, 18.273754530676367",
@@ -9396,7 +9429,7 @@ var venue_check_ins = {
             "ID": 352,
             "Beer": "Na.Ex Jedenáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,4",
             "Brewery": "Chotěboř",
             "Brewery_location": "49.709461248221466, 15.696254999998617",
@@ -9478,7 +9511,7 @@ var venue_check_ins = {
             "ID": 364,
             "Beer": "Amber",
             "Beer_style": "Lager - Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,1",
             "Brewery": "Czech Royal Beer",
             "Brewery_location": "50.09024600344765, 14.426026216522985",
@@ -9520,7 +9553,7 @@ var venue_check_ins = {
             "ID": 370,
             "Beer": "Excelent",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery": "Plzeňský Prazdroj",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
@@ -9560,7 +9593,7 @@ var venue_check_ins = {
     ],
     "Hotel Petra": [
         {
-            "ID": 379,
+            "ID": 378,
             "Beer": "Bohemian Lager (Světlý ležák 11)",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 34.0,
@@ -9578,7 +9611,7 @@ var venue_check_ins = {
             "Comment": "strejdova oslava začíná, Bernard jsem měl vždycky rád a tady se k němu chovají dobře"
         },
         {
-            "ID": 378,
+            "ID": 377,
             "Beer": "Light Lager (Světlé Pivo 10)",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 28.0,
@@ -9598,10 +9631,10 @@ var venue_check_ins = {
     ],
     "Klub Na Rampě": [
         {
-            "ID": 380,
+            "ID": 379,
             "Beer": "Staropramen 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery": "Pivovary Staropramen",
             "Brewery_location": "50.069634217737196, 14.407393832536137",
@@ -9620,7 +9653,7 @@ var venue_check_ins = {
     ],
     "Šenkýrna U Milionu": [
         {
-            "ID": 381,
+            "ID": 380,
             "Beer": "Bohemian Lager 11%",
             "Beer_style": "Lager - Pale",
             "IBU": 35.0,
@@ -9640,7 +9673,7 @@ var venue_check_ins = {
     ],
     "Bar Albertov": [
         {
-            "ID": 385,
+            "ID": 384,
             "Beer": "Kozel Premium Lager / Kozel 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 25.0,
@@ -9660,10 +9693,10 @@ var venue_check_ins = {
             "Comment": "po těch všech dnešních speciálech to chutná slaďoučce jak med"
         },
         {
-            "ID": 384,
+            "ID": 383,
             "Beer": "Zlatá jedenáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Chodovar",
             "Brewery_location": "49.893292265028165, 12.727714355842318",
@@ -9682,7 +9715,7 @@ var venue_check_ins = {
     ],
     "Vinohradský pivovar": [
         {
-            "ID": 387,
+            "ID": 386,
             "Beer": "Enigma Encrypted",
             "Beer_style": "Pale Ale - Australian",
             "IBU": 30.0,
@@ -9702,10 +9735,10 @@ var venue_check_ins = {
             "Comment": "APA je asi můj nejoblíbenější speciálek a tenhle kus to jenom potvrzuje, hořkost tak akorát, ovocíčkem to jak voní, tak chutná, zkrátka tady sládci neudělali nic špatně"
         },
         {
-            "ID": 389,
+            "ID": 388,
             "Beer": "Káranská 9",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,9",
             "Brewery": "Vinohradský pivovar",
             "Brewery_location": "50.07532369998683, 14.457555284654678",
@@ -9722,10 +9755,10 @@ var venue_check_ins = {
             "Comment": "výčepák mi pivo po donesení hned zase odnesl, aby doplnil míru, cením takovou reflexi! načepované perfektně, na začátku mi tam ale něco vadí, proto nedávám kdovíjak vysoké hodnocení, 8° ze Cvikova lepší"
         },
         {
-            "ID": 386,
+            "ID": 385,
             "Beer": "Vinohradská 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Vinohradský pivovar",
             "Brewery_location": "50.07532369998683, 14.457555284654678",
@@ -9742,7 +9775,7 @@ var venue_check_ins = {
             "Comment": "tak tohle se nedá.. nejsem tedy sám, komu nešmakuje, holt 100 lidí 100 chutí.. tuto si už znovu nedám, tady je všechno špatně"
         },
         {
-            "ID": 388,
+            "ID": 387,
             "Beer": "Western Approaches",
             "Beer_style": "Lager - IPL (India Pale Lager)",
             "IBU": 45.0,
@@ -9764,10 +9797,10 @@ var venue_check_ins = {
     ],
     "Restaurace Harmony": [
         {
-            "ID": 390,
+            "ID": 389,
             "Beer": "Radegast Originál",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery": "Radegast",
             "Brewery_location": "49.66098623016816, 18.42734486825177",
@@ -9784,7 +9817,7 @@ var venue_check_ins = {
     ],
     "Verči chata": [
         {
-            "ID": 391,
+            "ID": 390,
             "Beer": "Liberator",
             "Beer_style": "Pale Ale - American",
             "IBU": 24.0,
@@ -9804,7 +9837,7 @@ var venue_check_ins = {
             "Comment": "tak tohle já můžu, top strop"
         },
         {
-            "ID": 392,
+            "ID": 391,
             "Beer": "Radegast Ratar",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 50.0,
@@ -9826,10 +9859,10 @@ var venue_check_ins = {
     ],
     "Živina": [
         {
-            "ID": 393,
+            "ID": 392,
             "Beer": "Argus 11 Granát",
             "Beer_style": "Lager - Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Pivovar Protivín",
             "Brewery_location": "49.20476364671345, 14.220089473154905",
@@ -9848,7 +9881,7 @@ var venue_check_ins = {
     ],
     "Potrefená husa Albertov": [
         {
-            "ID": 394,
+            "ID": 393,
             "Beer": "Staropramen Extra chmelená 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -9870,7 +9903,7 @@ var venue_check_ins = {
     ],
     "Restaurace Pod Juliskou": [
         {
-            "ID": 395,
+            "ID": 394,
             "Beer": "Gambrinus Originál 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 24.0,
@@ -9890,10 +9923,10 @@ var venue_check_ins = {
     ],
     "Bar da Ramada": [
         {
-            "ID": 408,
+            "ID": 407,
             "Beer": "Barleywine",
             "Beer_style": "Barleywine - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "14,0",
             "Brewery": "Old Fox",
             "Brewery_location": "41.49860556883976, -8.394645497877688",
@@ -9910,10 +9943,10 @@ var venue_check_ins = {
             "Comment": "I def didn't expect this from barleywine. I miss the wine, that's the main lack in the flavour. It feels like a belgian beer in the end, I consider it as a fraud on customer."
         },
         {
-            "ID": 405,
+            "ID": 404,
             "Beer": "Black Daschsund",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery": "Rua Nova",
             "Brewery_location": "41.441621278175624, -8.293501992743627",
@@ -9930,10 +9963,10 @@ var venue_check_ins = {
             "Comment": "Yummyy, strong coffee, smooth and full, I'm a fan."
         },
         {
-            "ID": 404,
+            "ID": 403,
             "Beer": "Czech Kolsch",
             "Beer_style": "Kölsch",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Canil",
             "Brewery_location": "38.71240605534813, -9.137233325166827",
@@ -9950,7 +9983,7 @@ var venue_check_ins = {
             "Comment": "First time kolsch and I'm not dissapointed at all. pennyinpraha goes down smoothly, a little zesty, little sour, hoppy and drinkable, simply it has it all, good for summer vibes."
         },
         {
-            "ID": 407,
+            "ID": 406,
             "Beer": "Imperial Stout",
             "Beer_style": "Stout - Imperial / Double",
             "IBU": 45.0,
@@ -9970,7 +10003,7 @@ var venue_check_ins = {
             "Comment": "First of all smells good! I'm sensing raspberries. Tastewise not distinctive, malty, caramelly, but def not bad!"
         },
         {
-            "ID": 406,
+            "ID": 405,
             "Beer": "Stout",
             "Beer_style": "Stout - Foreign / Export",
             "IBU": 17.0,
@@ -9992,10 +10025,10 @@ var venue_check_ins = {
     ],
     "Cask Beer": [
         {
-            "ID": 412,
+            "ID": 411,
             "Beer": "Affogato",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,4",
             "Brewery": "Basqueland Brewing",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
@@ -10012,10 +10045,10 @@ var venue_check_ins = {
             "Comment": "Mmm yes righteous coffeeish roasty stout. 👌"
         },
         {
-            "ID": 437,
+            "ID": 436,
             "Beer": "Cuvée Courson",
             "Beer_style": "Farmhouse Ale - Bière de Coupage",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery": "Sacrilège",
             "Brewery_location": "43.586069028239976, 3.8747562984740513",
@@ -10032,7 +10065,7 @@ var venue_check_ins = {
             "Comment": "Sour taste well hidden, so I was satisfied"
         },
         {
-            "ID": 436,
+            "ID": 435,
             "Beer": "Johnny Crash",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 54.0,
@@ -10050,7 +10083,7 @@ var venue_check_ins = {
             "Comment": "Good NEIPA, I don't see a problem"
         },
         {
-            "ID": 439,
+            "ID": 438,
             "Beer": "Pêche / Pêcheresse",
             "Beer_style": "Lambic - Fruit",
             "IBU": 10.0,
@@ -10070,10 +10103,10 @@ var venue_check_ins = {
             "Comment": "Light yummy and refreshing"
         },
         {
-            "ID": 411,
+            "ID": 410,
             "Beer": "St-Louis Premium Kriek",
             "Beer_style": "Lambic - Kriek",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,2",
             "Brewery": "Kasteel Brouwerij Vanhonsebrouck",
             "Brewery_location": "50.92337188070472, 3.234564630130173",
@@ -10090,10 +10123,10 @@ var venue_check_ins = {
             "Comment": "Wow I love this so much."
         },
         {
-            "ID": 438,
+            "ID": 437,
             "Beer": "Éclaircie",
             "Beer_style": "Stout - Foreign / Export",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Sacrilège",
             "Brewery_location": "43.586069028239976, 3.8747562984740513",
@@ -10112,7 +10145,7 @@ var venue_check_ins = {
     ],
     "Klub Ex": [
         {
-            "ID": 413,
+            "ID": 412,
             "Beer": "Půlnoční Black IPA 13°",
             "Beer_style": "IPA - Black / Cascadian Dark Ale",
             "IBU": 43.0,
@@ -10137,10 +10170,10 @@ var venue_check_ins = {
     ],
     "Rohozec": [
         {
-            "ID": 415,
+            "ID": 414,
             "Beer": "Bock",
             "Beer_style": "Bock - Single / Traditional",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery": "Malastrana Beer",
             "Brewery_location": "50.080559813133924, 14.406199842444583",
@@ -10158,10 +10191,10 @@ var venue_check_ins = {
             "Comment": "Ayayaay, mistakes were made! Not so good ratio of price and taste, but of price and alcohol without any doubt. I'm gonna keep getting over it in couple of days."
         },
         {
-            "ID": 416,
+            "ID": 415,
             "Beer": "Prometheus",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Rohozec",
             "Brewery_location": "50.61074205472704, 15.148016150811154",
@@ -10180,10 +10213,10 @@ var venue_check_ins = {
             "Comment": "Pilsner with Rohozec handwriting without any doubt. I didn't like the aftertaste tho."
         },
         {
-            "ID": 414,
+            "ID": 413,
             "Beer": "Y",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Rohozec",
             "Brewery_location": "50.61074205472704, 15.148016150811154",
@@ -10203,7 +10236,7 @@ var venue_check_ins = {
     ],
     "Mišmaš (Šamotoč)": [
         {
-            "ID": 417,
+            "ID": 416,
             "Beer": "Polotmavá 10",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 28.0,
@@ -10227,7 +10260,7 @@ var venue_check_ins = {
     ],
     "La Rovira": [
         {
-            "ID": 424,
+            "ID": 423,
             "Beer": "Montserrat",
             "Beer_style": "Stout - Irish Dry",
             "IBU": 70.0,
@@ -10247,10 +10280,10 @@ var venue_check_ins = {
     ],
     "Madeira - bungalows": [
         {
-            "ID": 425,
+            "ID": 424,
             "Beer": "Coral Cerveja",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Empresa de Cervejas da Madeira",
             "Brewery_location": "32.64966119589803, -16.96663305328473",
@@ -10265,10 +10298,10 @@ var venue_check_ins = {
             "Comment": "Not as bad as I expected in the end. First day on Madeira 😍"
         },
         {
-            "ID": 426,
+            "ID": 425,
             "Beer": "Coral Tónica Stout",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Empresa de Cervejas da Madeira",
             "Brewery_location": "32.64966119589803, -16.96663305328473",
@@ -10285,7 +10318,7 @@ var venue_check_ins = {
     ],
     "São Mamede de Infesta": [
         {
-            "ID": 431,
+            "ID": 430,
             "Beer": "Super Bock Selecção 1927 Japanese Rice Lager",
             "Beer_style": "Lager - Japanese Rice",
             "IBU": 19.0,
@@ -10307,7 +10340,7 @@ var venue_check_ins = {
     ],
     "Café Almada": [
         {
-            "ID": 440,
+            "ID": 439,
             "Beer": "Super Bock Green",
             "Beer_style": "Shandy / Radler",
             "IBU": 10.0,
@@ -10329,7 +10362,7 @@ var venue_check_ins = {
     ],
     "LETRA Brewery": [
         {
-            "ID": 444,
+            "ID": 443,
             "Beer": "Letra G",
             "Beer_style": "Stout - Imperial / Double",
             "IBU": 51.0,
@@ -10349,7 +10382,7 @@ var venue_check_ins = {
             "Comment": "Ok, with this one I'm def getting drunk"
         },
         {
-            "ID": 442,
+            "ID": 441,
             "Beer": "Rebendita - MilkShake Passion IPA",
             "Beer_style": "IPA - Milkshake",
             "IBU": 14.0,
@@ -10371,10 +10404,10 @@ var venue_check_ins = {
     ],
     "Gleis 9/10": [
         {
-            "ID": 445,
+            "ID": 444,
             "Beer": "Schwechater Bier",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Brauerei Schwechat",
             "Brewery_location": "48.14219718367509, 16.46629439141803",
@@ -10393,10 +10426,10 @@ var venue_check_ins = {
     ],
     "Jlv Čd Restaurant": [
         {
-            "ID": 446,
+            "ID": 445,
             "Beer": "Puntigamer",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Brauerei Puntigam",
             "Brewery_location": "47.02982232751749, 15.433510865415503",
@@ -10413,7 +10446,7 @@ var venue_check_ins = {
             "Comment": "Not so good"
         },
         {
-            "ID": 447,
+            "ID": 446,
             "Beer": "Union Grapefruit Milkshake IPA Chroust",
             "Beer_style": "IPA - Milkshake",
             "IBU": 25.0,
@@ -10435,10 +10468,10 @@ var venue_check_ins = {
     ],
     "Mirfinity": [
         {
-            "ID": 448,
+            "ID": 447,
             "Beer": "Birell",
             "Beer_style": "Non-Alcoholic Beer - Lager",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery": "Plzeňský Prazdroj",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
@@ -10455,10 +10488,10 @@ var venue_check_ins = {
             "Comment": "Let the 3 alcohol-free months begin"
         },
         {
-            "ID": 449,
+            "ID": 448,
             "Beer": "Birell Polotmavý",
             "Beer_style": "Non-Alcoholic Beer - Lager",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery": "Plzeňský Prazdroj",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
@@ -10477,10 +10510,10 @@ var venue_check_ins = {
     ],
     "Dno pytle": [
         {
-            "ID": 454,
+            "ID": 453,
             "Beer": "Dno Pytle 4K HD",
             "Beer_style": "IPA - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,9",
             "Brewery": "Chotoviny",
             "Brewery_location": "49.478969702156384, 14.681669483252193",
@@ -10497,10 +10530,10 @@ var venue_check_ins = {
             "Comment": "Didn't dazzle me"
         },
         {
-            "ID": 455,
+            "ID": 454,
             "Beer": "Nectar of Happiness Strata",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Rodinný pivovar Zichovec",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
@@ -10519,10 +10552,10 @@ var venue_check_ins = {
     ],
     "Pivní Bar Blanická": [
         {
-            "ID": 456,
+            "ID": 455,
             "Beer": "Podřipský Red Ale 12°",
             "Beer_style": "Red Ale - American Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery": "Podřipský rodinný minipivovar",
             "Brewery_location": "50.3726413585645, 14.306923383244081",
@@ -10541,7 +10574,7 @@ var venue_check_ins = {
     ],
     "Home - Ipak": [
         {
-            "ID": 515,
+            "ID": 514,
             "Beer": "Bakalář Za studena chmelený / Dry Hopped Lager",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 34.0,
@@ -10559,7 +10592,7 @@ var venue_check_ins = {
             "Comment": "Let's go Slováčci"
         },
         {
-            "ID": 518,
+            "ID": 517,
             "Beer": "Heady Topper",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 100.0,
@@ -10577,7 +10610,7 @@ var venue_check_ins = {
             "Comment": "One year ago Lauren told me about this glorified beer from her home state, so when I got into Vermont I must have found it. I brought it back home and waited until we humble Sweeds in icehockey semifinals. I've never had a beer so wealthy on hops, love it"
         },
         {
-            "ID": 457,
+            "ID": 456,
             "Beer": "IIPPAA",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 60.0,
@@ -10595,7 +10628,7 @@ var venue_check_ins = {
             "Comment": "West coast today, east coast hopefully on Thursday, brought this one from weekend trip to Warsaw and don't regret a single penny spent on it"
         },
         {
-            "ID": 458,
+            "ID": 457,
             "Beer": "Porter Bałtycki",
             "Beer_style": "Porter - Baltic",
             "IBU": 40.0,
@@ -10613,10 +10646,10 @@ var venue_check_ins = {
             "Comment": "Polish craft beer is just zajebiście!"
         },
         {
-            "ID": 517,
+            "ID": 516,
             "Beer": "Zagorka Special (Загорка Специално)",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Загорка (Zagorka Brewery)",
             "Brewery_location": "42.44320186861404, 25.633915317920447",
@@ -10633,10 +10666,10 @@ var venue_check_ins = {
     ],
     "Fatfuck": [
         {
-            "ID": 460,
+            "ID": 459,
             "Beer": "Ale Golden Blondie",
             "Beer_style": "Blonde / Golden Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Pivovar Uhříněves",
             "Brewery_location": "50.027974142788516, 14.607107128323797",
@@ -10651,10 +10684,10 @@ var venue_check_ins = {
             "Comment": "That was awesome! Bitterness scale just as I love it, mild fruitness, little sweet, kinda a bittersweet symphony"
         },
         {
-            "ID": 459,
+            "ID": 458,
             "Beer": "Alois 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Pivovar Uhříněves",
             "Brewery_location": "50.027974142788516, 14.607107128323797",
@@ -10671,7 +10704,7 @@ var venue_check_ins = {
     ],
     "Channing Cox Hall": [
         {
-            "ID": 463,
+            "ID": 462,
             "Beer": "Hazy Little Thing",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 35.0,
@@ -10691,7 +10724,7 @@ var venue_check_ins = {
     ],
     "Dunk’s Sports Grill": [
         {
-            "ID": 464,
+            "ID": 463,
             "Beer": "Coors Light",
             "Beer_style": "Lager - American Light",
             "IBU": 10.0,
@@ -10712,10 +10745,10 @@ var venue_check_ins = {
             "Comment": "A water, not a beer"
         },
         {
-            "ID": 472,
+            "ID": 471,
             "Beer": "Double Cloud Candy",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,8",
             "Brewery": "Mighty Squirrel Brewing Co.",
             "Brewery_location": "42.38745167238333, -71.20120486053474",
@@ -10730,10 +10763,10 @@ var venue_check_ins = {
             "Comment": "Kinda sour tbh, disctinct fruit flavor not standing out as I would assume judging by the color. Low on hops as well"
         },
         {
-            "ID": 471,
+            "ID": 470,
             "Beer": "Pale Ale",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery": "Baxter Brewing Co.",
             "Brewery_location": "44.0951804284252, -70.21921956136921",
@@ -10748,10 +10781,10 @@ var venue_check_ins = {
             "Comment": "A pure definition of an American Pale Ale"
         },
         {
-            "ID": 470,
+            "ID": 469,
             "Beer": "Pavement",
             "Beer_style": "IPA - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,2",
             "Brewery": "Foam Brewers",
             "Brewery_location": "44.47918688753912, -73.22002045861522",
@@ -10769,7 +10802,7 @@ var venue_check_ins = {
             "Comment": "I've forgotten to rate this one! $12 is my record for a pint so far, my wallet started bleeding out"
         },
         {
-            "ID": 466,
+            "ID": 465,
             "Beer": "Switchback Ale",
             "Beer_style": "Red Ale - American Amber / Red",
             "IBU": 28.0,
@@ -10790,7 +10823,7 @@ var venue_check_ins = {
             "Comment": "Mid, hoppy and malty"
         },
         {
-            "ID": 465,
+            "ID": 464,
             "Beer": "Voodoo Ranger - Captain Dynamite IPA",
             "Beer_style": "IPA - American",
             "IBU": 45.0,
@@ -10813,10 +10846,10 @@ var venue_check_ins = {
     ],
     "Sigma Nu": [
         {
-            "ID": 468,
+            "ID": 467,
             "Beer": "Catamount Imperial IPA",
             "Beer_style": "The Catamount Brewery",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,1",
             "Brewery": "The Catamount Brewery",
             "Brewery_location": "43.5131752671743, -72.40270501016583",
@@ -10831,7 +10864,7 @@ var venue_check_ins = {
             "Comment": "Mid IPA"
         },
         {
-            "ID": 484,
+            "ID": 483,
             "Beer": "Cloud Drop DIPA",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
             "IBU": 60.0,
@@ -10846,13 +10879,13 @@ var venue_check_ins = {
             "Serving_style": "Can",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_20/ecf19540833a2dde8bad7395913273fa_c_1373880790_raw.jpg",
             "Date": "20.04.2024",
-            "Comment": "The imperial part is somewhat dominant there"
+            "Comment": "The imperial part is somewhat dominullt there"
         },
         {
-            "ID": 485,
+            "ID": 484,
             "Beer": "Dandy Lion Haze",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery": "Berkshire Brewing Company (B.B.C.)",
             "Brewery_location": "42.47867603000156, -72.6094304586034",
@@ -10867,7 +10900,7 @@ var venue_check_ins = {
             "Comment": "We all were big fans!"
         },
         {
-            "ID": 469,
+            "ID": 468,
             "Beer": "Keystone Light",
             "Beer_style": "Lager - American Light",
             "IBU": 7.0,
@@ -10885,7 +10918,7 @@ var venue_check_ins = {
             "Comment": "Ppl here are being tricked for driking a beer"
         },
         {
-            "ID": 486,
+            "ID": 485,
             "Beer": "Modelo Especial",
             "Beer_style": "Lager - Mexican",
             "IBU": 18.0,
@@ -10903,7 +10936,7 @@ var venue_check_ins = {
             "Comment": "Reminds me of the honey lager from Azores"
         },
         {
-            "ID": 467,
+            "ID": 466,
             "Beer": "Sour Monkey",
             "Beer_style": "Sour - Other",
             "IBU": 10.0,
@@ -10923,7 +10956,7 @@ var venue_check_ins = {
     ],
     "QA Apartments": [
         {
-            "ID": 475,
+            "ID": 474,
             "Beer": "Mountain Haze",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 40.0,
@@ -10941,10 +10974,10 @@ var venue_check_ins = {
             "Comment": "Smoky flavour at the end surprised me big time"
         },
         {
-            "ID": 474,
+            "ID": 473,
             "Beer": "Pineapple Fruit Freak Ale",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery": "Smuttynose Brewing Co.",
             "Brewery_location": "42.94540969655868, -70.85473469811471",
@@ -10959,10 +10992,10 @@ var venue_check_ins = {
             "Comment": "Pineapple sucks"
         },
         {
-            "ID": 473,
+            "ID": 472,
             "Beer": "Trail Juice IPA",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Great North Aleworks",
             "Brewery_location": "42.97745564145459, -71.40055722875003",
@@ -10979,7 +11012,7 @@ var venue_check_ins = {
     ],
     "Still North Books & Bar": [
         {
-            "ID": 478,
+            "ID": 477,
             "Beer": "Magic Rain",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 50.0,
@@ -10997,7 +11030,7 @@ var venue_check_ins = {
             "Comment": "Mm so good so good! Sweet Caroline.."
         },
         {
-            "ID": 476,
+            "ID": 475,
             "Beer": "Pale Ale",
             "Beer_style": "Pale Ale - American",
             "IBU": 24.0,
@@ -11015,10 +11048,10 @@ var venue_check_ins = {
             "Comment": "Very stale, but a good deal during happy hour"
         },
         {
-            "ID": 489,
+            "ID": 488,
             "Beer": "Peaches & Dreams",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery": "True North Ale Company",
             "Brewery_location": "42.6695676655203, -70.83603925893097",
@@ -11033,10 +11066,10 @@ var venue_check_ins = {
             "Comment": "Had all the beers on the tap, had to go for sour then"
         },
         {
-            "ID": 477,
+            "ID": 476,
             "Beer": "Quaker State",
             "Beer_style": "Stout - Oatmeal",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Barreled Souls Brewing Company",
             "Brewery_location": "43.52363060406002, -70.427471401527",
@@ -11053,10 +11086,10 @@ var venue_check_ins = {
     ],
     "Filling Station Bar & Grille": [
         {
-            "ID": 479,
+            "ID": 478,
             "Beer": "Mas Verde",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery": "River Roost Brewery",
             "Brewery_location": "43.64574986835147, -72.31830789301432",
@@ -11073,7 +11106,7 @@ var venue_check_ins = {
     ],
     "Fahey Hall": [
         {
-            "ID": 480,
+            "ID": 479,
             "Beer": "Shed Mountain Hazy IPA",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 40.0,
@@ -11093,10 +11126,10 @@ var venue_check_ins = {
     ],
     "Collis Center": [
         {
-            "ID": 481,
+            "ID": 480,
             "Beer": "Unified Press",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery": "Citizen Cider",
             "Brewery_location": "44.47071954239343, -73.21452112940216",
@@ -11113,7 +11146,7 @@ var venue_check_ins = {
     ],
     "Aquinas House": [
         {
-            "ID": 482,
+            "ID": 481,
             "Beer": "Boston Lager Remastered",
             "Beer_style": "Lager - American",
             "IBU": 30.0,
@@ -11131,7 +11164,7 @@ var venue_check_ins = {
             "Comment": "I was very surprised! A good lager beer in America"
         },
         {
-            "ID": 483,
+            "ID": 482,
             "Beer": "Green State Lager",
             "Beer_style": "Pilsner - Other",
             "IBU": 25.0,
@@ -11151,10 +11184,10 @@ var venue_check_ins = {
     ],
     "Tom Dent Cabin": [
         {
-            "ID": 488,
+            "ID": 487,
             "Beer": "Little Sip",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery": "Lawson's Finest Liquids",
             "Brewery_location": "44.18790022858452, -72.83523729986179",
@@ -11169,10 +11202,10 @@ var venue_check_ins = {
             "Comment": "That was indeed a finest liquid. Beverage on the photo is not matching, didn't want to add another from the dark dance floor. Feel the vibes of a little college party."
         },
         {
-            "ID": 487,
+            "ID": 486,
             "Beer": "Original Blend",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Downeast Cider House",
             "Brewery_location": "42.36428343705075, -71.03249265967128",
@@ -11189,7 +11222,7 @@ var venue_check_ins = {
     ],
     "Molly's Bar And Grill": [
         {
-            "ID": 492,
+            "ID": 491,
             "Beer": "Built To Spill",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 80.0,
@@ -11207,7 +11240,7 @@ var venue_check_ins = {
             "Comment": "Oh wow, it's gonna be tough leaving such a yummy environment"
         },
         {
-            "ID": 491,
+            "ID": 490,
             "Beer": "Fiddlehead IPA",
             "Beer_style": "IPA - American",
             "IBU": 53.0,
@@ -11225,10 +11258,10 @@ var venue_check_ins = {
             "Comment": "Oh wow, that one felt good, a New England masterpiece"
         },
         {
-            "ID": 490,
+            "ID": 489,
             "Beer": "U.F.O. White",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery": "Harpoon Brewery",
             "Brewery_location": "42.347074757307034, -71.03415194705283",
@@ -11245,7 +11278,7 @@ var venue_check_ins = {
     ],
     "Murphy's On the Green": [
         {
-            "ID": 493,
+            "ID": 492,
             "Beer": "Catamount IPA",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 40.0,
@@ -11265,10 +11298,10 @@ var venue_check_ins = {
     ],
     "Samuel Adams Boston Tap Room": [
         {
-            "ID": 494,
+            "ID": 493,
             "Beer": "Cascade State of Mind",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery": "Samuel Adams",
             "Brewery_location": "42.35975277719315, -71.0566359794325",
@@ -11285,10 +11318,10 @@ var venue_check_ins = {
     ],
     "SHOW Strahov 2024": [
         {
-            "ID": 498,
+            "ID": 497,
             "Beer": "Black Hill",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Pivovary Lobkowicz",
             "Brewery_location": "50.05714807441847, 14.544989359279795",
@@ -11302,15 +11335,15 @@ var venue_check_ins = {
             ],
             "Rating": "4,00",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "24.04.2024",
             "Comment": "Yummy cider, due to particular circumsatnces I don't have a photo.."
         },
         {
-            "ID": 495,
+            "ID": 494,
             "Beer": "Světlý ležák Medium 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,4",
             "Brewery": "Hubertus",
             "Brewery_location": "49.776742686609666, 15.0295500171281",
@@ -11329,7 +11362,7 @@ var venue_check_ins = {
             "Comment": "Back home listening to Peťulka playing the drums."
         },
         {
-            "ID": 496,
+            "ID": 495,
             "Beer": "Světlý ležák Premium 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 33.0,
@@ -11351,7 +11384,7 @@ var venue_check_ins = {
             "Comment": "Yuck, I miss american beer"
         },
         {
-            "ID": 497,
+            "ID": 496,
             "Beer": "Světlý ležák Premium 12° nefiltrovaný",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -11375,7 +11408,7 @@ var venue_check_ins = {
     ],
     "Pult": [
         {
-            "ID": 500,
+            "ID": 499,
             "Beer": "Anežka",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 35.0,
@@ -11393,15 +11426,15 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_07/073f637272b7fe553b81166f6480619a_c_1378616623_raw.jpg",
             "Date": "07.05.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Sibeeria Tap Room": [
         {
-            "ID": 502,
+            "ID": 501,
             "Beer": "Dark Ritual",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "11,6",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -11419,7 +11452,7 @@ var venue_check_ins = {
             "Comment": "A genuine stout, hard on alcohol af boii"
         },
         {
-            "ID": 511,
+            "ID": 510,
             "Beer": "Everyday Life",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 38.0,
@@ -11439,10 +11472,10 @@ var venue_check_ins = {
             "Comment": "Nothing but this you need after a work day, a fabulous Czech lager with Canadian ice hockey fans in the background"
         },
         {
-            "ID": 521,
+            "ID": 520,
             "Beer": "I Love the Smell of HBC 630 in the Morning",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -11459,10 +11492,10 @@ var venue_check_ins = {
             "Comment": "Low on hops and I can feel the alcohol, a feminine NEIPA cuz it's juicy, reminding drinks"
         },
         {
-            "ID": 513,
+            "ID": 512,
             "Beer": "Kazbek Cold IPA",
             "Beer_style": "IPA - Cold",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -11479,10 +11512,10 @@ var venue_check_ins = {
             "Comment": "This one def doesn't taste American! How could it though when it's made out of Czech hops! An experienced beer connoisseur would have found out!"
         },
         {
-            "ID": 512,
+            "ID": 511,
             "Beer": "Liquid Luck",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -11499,10 +11532,10 @@ var venue_check_ins = {
             "Comment": "A feeling of America on the tip of my tongue, decent ale"
         },
         {
-            "ID": 520,
+            "ID": 519,
             "Beer": "One American",
             "Beer_style": "Sour - Berliner Weisse",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -11519,10 +11552,10 @@ var venue_check_ins = {
             "Comment": "An honest sour ale, they don't lie with the description! I like it!"
         },
         {
-            "ID": 501,
+            "ID": 500,
             "Beer": "One Love",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,4",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -11540,10 +11573,10 @@ var venue_check_ins = {
             "Comment": "Those who crave raspberries would appreciate this one big time, me not so much"
         },
         {
-            "ID": 519,
+            "ID": 518,
             "Beer": "Patronus",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,8",
             "Brewery": "Sibeeria",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
@@ -11562,7 +11595,7 @@ var venue_check_ins = {
     ],
     "Hákovna": [
         {
-            "ID": 504,
+            "ID": 503,
             "Beer": "Stout šalvěj",
             "Beer_style": "Stout - Other",
             "IBU": 48.0,
@@ -11584,7 +11617,7 @@ var venue_check_ins = {
     ],
     "Dva kohouti": [
         {
-            "ID": 505,
+            "ID": 504,
             "Beer": "Ale NE",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 27.0,
@@ -11606,10 +11639,10 @@ var venue_check_ins = {
     ],
     "Waid": [
         {
-            "ID": 506,
+            "ID": 505,
             "Beer": "Frida Revolucion",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery": "Pivovar Čestmír",
             "Brewery_location": "50.189595935683556, 14.64785419834229",
@@ -11626,7 +11659,7 @@ var venue_check_ins = {
     ],
     "Hotel U Dubu": [
         {
-            "ID": 507,
+            "ID": 506,
             "Beer": "Semi-dark lager (Polotmavá 12)",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 30.0,
@@ -11650,10 +11683,10 @@ var venue_check_ins = {
     ],
     "U Medvídků": [
         {
-            "ID": 509,
+            "ID": 508,
             "Beer": "Alegott",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "U Medvídků",
             "Brewery_location": "50.082863747387556, 14.418821798806153",
@@ -11668,10 +11701,10 @@ var venue_check_ins = {
             "Comment": "Walking the Brazilians, a visit from Porto"
         },
         {
-            "ID": 510,
+            "ID": 509,
             "Beer": "Blondgott",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "U Medvídků",
             "Brewery_location": "50.082863747387556, 14.418821798806153",
@@ -11688,7 +11721,7 @@ var venue_check_ins = {
     ],
     "Restaurace Pokrok": [
         {
-            "ID": 516,
+            "ID": 515,
             "Beer": "Prefunda 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 36.0,
@@ -11708,10 +11741,10 @@ var venue_check_ins = {
     ],
     "Park Parukářka": [
         {
-            "ID": 525,
+            "ID": 524,
             "Beer": "Antošovy koule",
             "Beer_style": "Stout - Milk / Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery": "Pivovar Antoš",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
@@ -11729,11 +11762,11 @@ var venue_check_ins = {
             "Comment": "Mmm liquid Mozzart balls"
         },
         {
-            "ID": 527,
+            "ID": 526,
             "Beer": "Fénix IPA",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Minipivovar Brabčák",
             "Brewery_location": "49.772784656928685, 18.306709511748664",
             "Brewery_country": "Czech Republic",
@@ -11750,7 +11783,7 @@ var venue_check_ins = {
             "Comment": "Mid"
         },
         {
-            "ID": 526,
+            "ID": 525,
             "Beer": "Jiříkovo Vidění Oat Wheat Sour Ale",
             "Beer_style": "Sour - Other",
             "IBU": 15.0,
@@ -11770,7 +11803,7 @@ var venue_check_ins = {
             "Comment": "This is a discovery of the month, just wow"
         },
         {
-            "ID": 524,
+            "ID": 523,
             "Beer": "Leshy",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 60.0,
@@ -11791,7 +11824,7 @@ var venue_check_ins = {
             "Comment": "Yummy and hoppy, super good"
         },
         {
-            "ID": 522,
+            "ID": 521,
             "Beer": "Our Lager",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 31.0,
@@ -11811,7 +11844,7 @@ var venue_check_ins = {
             "Comment": "It's starting to rain ayay, good lager for the beginning!"
         },
         {
-            "ID": 523,
+            "ID": 522,
             "Beer": "Tekutý Manitú",
             "Beer_style": "IPA - American",
             "IBU": 40.0,
@@ -11833,10 +11866,10 @@ var venue_check_ins = {
     ],
     "Festival minipivovarů na Pražském hradě": [
         {
-            "ID": 558,
+            "ID": 557,
             "Beer": "Ale 11",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Holendr",
             "Brewery_location": "49.48161363246013, 17.966887182885216",
@@ -11853,10 +11886,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/c33138c777af383bbed4a0a7d594f910_c_1387620472_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 547,
+            "ID": 546,
             "Beer": "Beránek polotmavý 12",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 35.0,
@@ -11876,10 +11909,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3a40e2c80d5e9de281082a208ac1a4d1_c_1387551604_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 552,
+            "ID": 551,
             "Beer": "Cherry-Raspberry Kompot Sour",
             "Beer_style": "Sour - Fruited",
             "IBU": 10.0,
@@ -11899,10 +11932,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/293152986051f876c439cd8d9bee4ebb_c_1387578700_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 541,
+            "ID": 540,
             "Beer": "Cold IPA Saturn + Eris 14,5",
             "Beer_style": "IPA - Cold",
             "IBU": 50.0,
@@ -11922,10 +11955,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/56d6a7782a24cb453cc72ebc488bc355_c_1387523975_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 548,
+            "ID": 547,
             "Beer": "Domažlický Doppel",
             "Beer_style": "Bock - Doppelbock",
             "IBU": 23.0,
@@ -11945,10 +11978,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/a081c633a5249e210b9cf0bd523d83f6_c_1387559102_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 542,
+            "ID": 541,
             "Beer": "Forest Gunk",
             "Beer_style": "Pale Ale - Other",
             "IBU": 44.0,
@@ -11971,10 +12004,10 @@ var venue_check_ins = {
             "Comment": "Tastes oldschool American"
         },
         {
-            "ID": 545,
+            "ID": 544,
             "Beer": "Hawai 11",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Pivovar VŠCHT Praha",
             "Brewery_location": "50.103365351273915, 14.389808993793213",
@@ -11994,10 +12027,10 @@ var venue_check_ins = {
             "Comment": "Uuh"
         },
         {
-            "ID": 556,
+            "ID": 555,
             "Beer": "Juicy Sabro 12°",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery": "Joe's Garage Beer",
             "Brewery_location": "49.75550281815227, 13.453513911387917",
@@ -12014,14 +12047,14 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dd9c7c5be7abd884dc1b030d4d2b29b7_c_1387604595_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 546,
+            "ID": 545,
             "Beer": "Karlovsky Anniversary Strong",
             "Beer_style": "Strong Ale - Other",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Karlovský minipivovar Pod pralesem",
             "Brewery_location": "49.37007335332604, 18.3574045810908",
             "Brewery_country": "Czech Republic",
@@ -12037,13 +12070,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/39ed20cb870312ab8c670106642df9ef_c_1387544415_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 538,
+            "ID": 537,
             "Beer": "Kaštanové pivo",
             "Beer_style": "Spiced / Herbed Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery": "Pivovar Uhříněves",
             "Brewery_location": "50.027974142788516, 14.607107128323797",
@@ -12060,10 +12093,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e18177e433471f72595adb1952fa9cb7_c_1387519780_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 530,
+            "ID": 529,
             "Beer": "Kladenská Poldi 8°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 25.0,
@@ -12081,10 +12114,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/7ce80dd3c119cc21a204dee3cba8501e_c_1387511339_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 557,
+            "ID": 556,
             "Beer": "Klokan",
             "Beer_style": "Pale Ale - Australian",
             "IBU": 23.0,
@@ -12104,13 +12137,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/cd3ab62448966a335c954a18a656d7f4_c_1387609489_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 535,
+            "ID": 534,
             "Beer": "Kmet - Dubský Zeleňák",
             "Beer_style": "Historical Beer - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Pivovar Malenovice",
             "Brewery_location": "49.205604504628596, 17.597158940266876",
@@ -12126,13 +12159,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/ca78e05ca40b1da3bdb06f03167093fa_c_1387515017_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 531,
+            "ID": 530,
             "Beer": "Křemen 10",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,9",
             "Brewery": "Pivovar Kristýna",
             "Brewery_location": "50.86236537490102, 14.824740041938714",
@@ -12147,10 +12180,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e1f36fa4f4a8dc950b42c9c4ff3a8db2_c_1387511802_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 536,
+            "ID": 535,
             "Beer": "Lehký Střízlík",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 30.0,
@@ -12172,7 +12205,7 @@ var venue_check_ins = {
             "Comment": "Máslo, už musím prokládat"
         },
         {
-            "ID": 555,
+            "ID": 554,
             "Beer": "Lvice 12 %",
             "Beer_style": "IPA - Other",
             "IBU": 40.0,
@@ -12192,10 +12225,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/025bcd3da6baec036ddd46cb48f1f48f_c_1387600992_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 559,
+            "ID": 558,
             "Beer": "Maxmilian Polibek",
             "Beer_style": "IPA - Session",
             "IBU": 34.0,
@@ -12215,10 +12248,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/27b5ea04eb73bf306825677963f3752e_c_1387631543_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 539,
+            "ID": 538,
             "Beer": "Māhutonga",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 30.0,
@@ -12241,10 +12274,10 @@ var venue_check_ins = {
             "Comment": "Just wow"
         },
         {
-            "ID": 540,
+            "ID": 539,
             "Beer": "Pastry Sour - Carrot Cake - Mrkvový Dort",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Pivovar Obora",
             "Brewery_location": "49.338898000982084, 14.639135934721343",
@@ -12261,13 +12294,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83a446c8f57eded6828e31ebcb6242ae_c_1387522891_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 549,
+            "ID": 548,
             "Beer": "Pikard Red Ale",
             "Beer_style": "Bitter - Session / Ordinary",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery": "Zámecký pivovar Zábřeh",
             "Brewery_location": "49.80701399483334, 18.240302734204242",
@@ -12284,10 +12317,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dce33be48f624d284bd92574cb2364f5_c_1387562141_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 544,
+            "ID": 543,
             "Beer": "Poupětův Američan 11°",
             "Beer_style": "Pale Ale - American",
             "IBU": 30.0,
@@ -12307,13 +12340,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/95a273f3cec41b59af186765a90ddcf7_c_1387534953_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 551,
+            "ID": 550,
             "Beer": "Pouťová A.P.A.",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery": "Klášterní pivovar Želiv",
             "Brewery_location": "49.52968526152458, 15.213886768392497",
@@ -12330,10 +12363,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/2426cc86a096fcd1c827680cb66ceea8_c_1387570665_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 554,
+            "ID": 553,
             "Beer": "Prorok 11 NEIPA",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 9.0,
@@ -12353,13 +12386,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/b5bbbbcf6d33ee133c999a93afe27fd4_c_1387593885_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 550,
+            "ID": 549,
             "Beer": "Rytíř Gutmann 16°",
             "Beer_style": "Bock - Single / Traditional",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery": "Rožnovský pivovar",
             "Brewery_location": "49.45671829534698, 18.136823740990586",
@@ -12376,10 +12409,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/038f46be03ecf2aaed6d8fb6d48690a7_c_1387567231_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 534,
+            "ID": 533,
             "Beer": "Tahoun",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -12401,7 +12434,7 @@ var venue_check_ins = {
             "Comment": "Plzeň 11°"
         },
         {
-            "ID": 537,
+            "ID": 536,
             "Beer": "Topolské výčepní pivo 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 24.0,
@@ -12421,13 +12454,13 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3da421866174f0201279e3a3d27d0b52_c_1387518574_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 553,
+            "ID": 552,
             "Beer": "Torpid Mind",
             "Beer_style": "Stout - Russian Imperial",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,5",
             "Brewery": "Bad Flash",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
@@ -12447,11 +12480,11 @@ var venue_check_ins = {
             "Comment": "Hihi imperial stout"
         },
         {
-            "ID": 532,
+            "ID": 531,
             "Beer": "Vojtěch 11°",
             "Beer_style": "Lager - Other",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery": "Zmolský Pivovar",
             "Brewery_location": "48.9816326957962, 16.141154352958623",
             "Brewery_country": "Czech Republic",
@@ -12468,7 +12501,7 @@ var venue_check_ins = {
             "Comment": "I drink faster than I'm able to take photos"
         },
         {
-            "ID": 543,
+            "ID": 542,
             "Beer": "Welzl 14 APA",
             "Beer_style": "Pale Ale - American",
             "IBU": 65.0,
@@ -12488,10 +12521,10 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83b560099b888c12f3fdd2eefd4a1f08_c_1387531302_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 533,
+            "ID": 532,
             "Beer": "Únětický speciál 8° Letní",
             "Beer_style": "Lager - Pale",
             "IBU": 40.0,
@@ -12509,12 +12542,12 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/d0efd99a1133f6ff1e3b74d041deb433_c_1387513069_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Klášterní pivovar Strahov": [
         {
-            "ID": 560,
+            "ID": 559,
             "Beer": "Sv. Norbert Sakura Amber Ale",
             "Beer_style": "Red Ale - American Amber / Red",
             "IBU": 25.0,
@@ -12532,15 +12565,15 @@ var venue_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/972d1d4f83accf2cd4febc23e679ff0b_c_1387702597_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Správčák": [
         {
-            "ID": 563,
+            "ID": 562,
             "Beer": "Výroční 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery": "Rezek",
             "Brewery_location": "50.69666654180602, 15.26838064260705",
@@ -12559,10 +12592,10 @@ var venue_check_ins = {
     ],
     "Obrazovic zahrada": [
         {
-            "ID": 581,
+            "ID": 580,
             "Beer": "Česká Moucha 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,1",
             "Brewery": "Pivovar Moucha",
             "Brewery_location": "50.03042182646965, 14.411284006335011",
@@ -12581,7 +12614,7 @@ var venue_check_ins = {
     ],
     "Havlíčkovy sady (Grébovka)": [
         {
-            "ID": 582,
+            "ID": 581,
             "Beer": "Záviš 12%",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 28.0,
@@ -12603,10 +12636,10 @@ var venue_check_ins = {
     ],
     "Vršovická zahrada": [
         {
-            "ID": 583,
+            "ID": 582,
             "Beer": "Pražská Moucha 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery": "Pivovar Moucha",
             "Brewery_location": "50.03042182646965, 14.411284006335011",
@@ -12625,10 +12658,10 @@ var venue_check_ins = {
     ],
     "Bad Flash Bar": [
         {
-            "ID": 584,
+            "ID": 583,
             "Beer": "BlackCurrant & PinkPepper",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery": "Bad Flash",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
@@ -12647,10 +12680,10 @@ var venue_check_ins = {
     ],
     "Café Na půl cesty": [
         {
-            "ID": 585,
+            "ID": 584,
             "Beer": "Frajerka",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery": "Pivovar Trautenberk",
             "Brewery_location": "50.74550203385104, 15.821954734382674",
@@ -12664,6 +12697,184 @@ var venue_check_ins = {
             "Date": "28.06.2024",
             "Comment": "Reminds me a really good Ale I had at Dartmouth"
         }
+    ],
+    "Plzeňský Prazdroj": [
+        {
+            "ID": 592,
+            "Beer": "Pilsner Urquell Tradiční / Traditional (at brewery tour)",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": null,
+            "ABV": null,
+            "Brewery": "Plzeňský Prazdroj",
+            "Brewery_location": "49.748219824879655, 13.395953374640042",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "49.748219824879655, 13.395953374640042",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/e11a1d675746a4c2d761b26e9230c567_c_1397361122_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Unfiltered and unpasterized, who can say that can get it?"
+        }
+    ],
+    "Kathmandu": [
+        {
+            "ID": 593,
+            "Beer": "Erdinger Weißbier / Hefe-Weizen",
+            "Beer_style": "Wheat Beer - Hefeweizen",
+            "IBU": 13.0,
+            "ABV": "5,3",
+            "Brewery": "Erdinger Weissbräu",
+            "Brewery_location": "48.30671191041444, 11.90673981643058",
+            "Brewery_country": "Germany",
+            "Beer_region": "Bavaria",
+            "Venue_location": "49.742514008763244, 13.379319114176177",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Bottle",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/6352fecb9534a2ec20037a04e667c802_c_1397367811_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Ugh I don't know what to think about it, plain.."
+        }
+    ],
+    "Kegzistence": [
+        {
+            "ID": 595,
+            "Beer": "FOREST SOUR / Sour Ale",
+            "Beer_style": "Sour - Fruited",
+            "IBU": 12.0,
+            "ABV": "6,0",
+            "Brewery": "Pivovar Vik",
+            "Brewery_location": "50.05760944351033, 14.543060741710807",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "49.748301973274295, 13.379042754413662",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/9114dbbbd502b3cde18ca1a6dce15607_c_1397382250_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Not so addressing"
+        },
+        {
+            "ID": 594,
+            "Beer": "I Love You, Kitty West Coast IPA 15°",
+            "Beer_style": "IPA - American",
+            "IBU": null,
+            "ABV": "6,5",
+            "Brewery": "Létající pivovar Černá Kočka",
+            "Brewery_location": "49.748301973274295, 13.379042754413662",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "49.748301973274295, 13.379042754413662",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/f89d461406b59a622368afce2f2a426c_c_1397381539_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "West coast bitternes, oh yeah"
+        },
+        {
+            "ID": 596,
+            "Beer": "Valkyria",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 25.0,
+            "ABV": "6,1",
+            "Brewery": "TamTam Brewing Co.",
+            "Brewery_location": "49.73060166010631, 13.396667321005177",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "49.748301973274295, 13.379042754413662",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/65b172acea392da15f14db132ac056f2_c_1397384166_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Yes, sweet smell of New England"
+        }
+    ],
+    "Ústředna": [
+        {
+            "ID": 597,
+            "Beer": "Depo IPA",
+            "Beer_style": "IPA - American",
+            "IBU": 40.0,
+            "ABV": "5,5",
+            "Brewery": "Pivovar Raven",
+            "Brewery_location": "49.76901891168808, 13.375793771166355",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "49.73807697440021, 13.381935898813206",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/be78a33c5eeb7b149a09212e1f4d84c3_c_1397397056_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Not my cup of IPA"
+        }
+    ],
+    "Pivstro": [
+        {
+            "ID": 598,
+            "Beer": "Session S Pivstrem",
+            "Beer_style": "IPA - Session",
+            "IBU": 40.0,
+            "ABV": "5,7",
+            "Brewery": "Pivovar Zhůřák",
+            "Brewery_location": "49.53750890510675, 13.51593872869555",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "49.74568717748942, 13.374387384432865",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/564a16c04dd6d501c4a194d70784d812_c_1397427052_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Oh yeah, drinkable refreshing, I could be drink that for summer days"
+        },
+        {
+            "ID": 599,
+            "Beer": "Tripception",
+            "Beer_style": "Belgian Tripel",
+            "IBU": 28.0,
+            "ABV": "8,0",
+            "Brewery": "Axiom Brewery",
+            "Brewery_location": "49.47238040682596, 17.133291732319353",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Olomoucký kraj",
+            "Venue_location": "49.74568717748942, 13.374387384432865",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/08f73a21ab82fdf212d056d10e9ec277_c_1397444430_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Clearly belgian, bearable!"
+        }
     ]
 };
 
@@ -12673,7 +12884,7 @@ var brewery_check_ins = {
             "ID": 1,
             "Beer": "El Águila",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "37.393678515374795, -5.8627805030510665",
             "Brewery_country": "Spain",
@@ -12695,7 +12906,7 @@ var brewery_check_ins = {
             "ID": 2,
             "Beer": "Aupa Tovarisch Armagnac BA",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery_location": "43.18378098407038, -3.0615429250154507",
             "Brewery_country": "Spain",
@@ -12715,7 +12926,7 @@ var brewery_check_ins = {
             "ID": 8,
             "Beer": "MIDNIGHT HARVEST 2023 (Porto wine and Bourbon whisky wood aged)",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,0",
             "Brewery_location": "43.18378098407038, -3.0615429250154507",
             "Brewery_country": "Spain",
@@ -12737,7 +12948,7 @@ var brewery_check_ins = {
             "ID": 3,
             "Beer": "Murphy's Irish Red",
             "Beer_style": "Red Ale - Irish",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery_location": "51.904009545636136, -8.473099768587542",
             "Brewery_country": "Ireland",
@@ -12759,7 +12970,7 @@ var brewery_check_ins = {
             "ID": 61,
             "Beer": "La Prohibida",
             "Beer_style": "Cider - Dry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "40.39088702171079, -3.6804192472672197",
             "Brewery_country": "Spain",
@@ -12777,7 +12988,7 @@ var brewery_check_ins = {
             "ID": 4,
             "Beer": "Mahou Clásica",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "40.39088702171079, -3.6804192472672197",
             "Brewery_country": "Spain",
@@ -12859,7 +13070,7 @@ var brewery_check_ins = {
             "ID": 6,
             "Beer": "Lager",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "39.85815883007859, -4.025476831258629",
             "Brewery_country": "Spain",
@@ -12881,7 +13092,7 @@ var brewery_check_ins = {
             "ID": 7,
             "Beer": "Cruzcampo Especial",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery_location": "37.380105615948494, -5.998613012683681",
             "Brewery_country": "Spain",
@@ -12940,10 +13151,10 @@ var brewery_check_ins = {
             "Comment": "I was forced into buying this belgian piece of shit."
         },
         {
-            "ID": 411,
+            "ID": 410,
             "Beer": "St-Louis Premium Kriek",
             "Beer_style": "Lambic - Kriek",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,2",
             "Brewery_location": "50.92337188070472, 3.234564630130173",
             "Brewery_country": "Belgium",
@@ -12965,7 +13176,7 @@ var brewery_check_ins = {
             "ID": 12,
             "Beer": "Parklife",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,8",
             "Brewery_location": "52.53371186496115, 13.277183764258663",
             "Brewery_country": "Germany",
@@ -12985,7 +13196,7 @@ var brewery_check_ins = {
             "ID": 36,
             "Beer": "Permafrost",
             "Beer_style": "Porter - Baltic",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery_location": "52.53371186496115, 13.277183764258663",
             "Brewery_country": "Germany",
@@ -13029,7 +13240,7 @@ var brewery_check_ins = {
             "ID": 14,
             "Beer": "Catharina Passion Sour",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "38.69758625690865, -9.380101859680762",
             "Brewery_country": "Portugal",
@@ -13051,7 +13262,7 @@ var brewery_check_ins = {
             "ID": 15,
             "Beer": "Raspberry Sour",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery_location": "38.705513627526535, -9.17095708650119",
             "Brewery_country": "Portugal",
@@ -13137,7 +13348,7 @@ var brewery_check_ins = {
             "ID": 19,
             "Beer": "Lukla",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "27.688972009197546, 86.73006174469629",
             "Brewery_country": "Nepal",
@@ -13181,7 +13392,7 @@ var brewery_check_ins = {
             "ID": 21,
             "Beer": "Morgana",
             "Beer_style": "Porter - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery_location": "37.77500318189754, -25.559760299996032",
             "Brewery_country": "Portugal",
@@ -13203,7 +13414,7 @@ var brewery_check_ins = {
             "ID": 22,
             "Beer": "Especial",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "37.739165538593866, -25.674222921048315",
             "Brewery_country": "Portugal",
@@ -13225,7 +13436,7 @@ var brewery_check_ins = {
             "ID": 41,
             "Beer": "Bandida Do Pomar Frutos Vermelhos",
             "Beer_style": "Cider - Other Fruit",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
             "Brewery_country": "Portugal",
@@ -13245,7 +13456,7 @@ var brewery_check_ins = {
             "ID": 59,
             "Beer": "Cergal",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
             "Brewery_country": "Portugal",
@@ -13263,7 +13474,7 @@ var brewery_check_ins = {
             "ID": 23,
             "Beer": "Sagres",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
             "Brewery_country": "Portugal",
@@ -13280,10 +13491,10 @@ var brewery_check_ins = {
             "Comment": "Horrible, but good burger"
         },
         {
-            "ID": 430,
+            "ID": 429,
             "Beer": "Sagres Preta",
             "Beer_style": "Lager - Munich Dunkel",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,1",
             "Brewery_location": "38.8826035728861, -9.057098378333214",
             "Brewery_country": "Portugal",
@@ -13324,10 +13535,10 @@ var brewery_check_ins = {
     ],
     "Basqueland Brewing": [
         {
-            "ID": 412,
+            "ID": 411,
             "Beer": "Affogato",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,4",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
             "Brewery_country": "Spain",
@@ -13347,7 +13558,7 @@ var brewery_check_ins = {
             "ID": 25,
             "Beer": "Fudge Fantasy",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
             "Brewery_country": "Spain",
@@ -13364,10 +13575,10 @@ var brewery_check_ins = {
             "Comment": "This really is a fantasy. If I felt just a little less alcohol, i would give it 5/5."
         },
         {
-            "ID": 396,
+            "ID": 395,
             "Beer": "Pie Eating Contest",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "11,2",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
             "Brewery_country": "Spain",
@@ -13387,7 +13598,7 @@ var brewery_check_ins = {
             "ID": 52,
             "Beer": "Pot of Gold",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "43.26671381285174, -1.9649468981231384",
             "Brewery_country": "Spain",
@@ -13453,7 +13664,7 @@ var brewery_check_ins = {
             "ID": 28,
             "Beer": "Peste & Sidra",
             "Beer_style": "Cider - Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery_location": "38.82245660131412, -9.103253040894943",
             "Brewery_country": "Portugal",
@@ -13493,7 +13704,7 @@ var brewery_check_ins = {
             "ID": 45,
             "Beer": "Burguesa NEIPA Simcoe & Mosaic",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "41.13334179626088, -8.61066813558362",
             "Brewery_country": "Portugal",
@@ -13535,7 +13746,7 @@ var brewery_check_ins = {
             "ID": 31,
             "Beer": "Classic Apple",
             "Beer_style": "Cider - Dry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "52.372598799578775, 4.876744064415919",
             "Brewery_country": "Netherlands",
@@ -13572,10 +13783,10 @@ var brewery_check_ins = {
             "Comment": "So that's the only dissapointment here so far, literally Portuguese/Spanish commercial lager"
         },
         {
-            "ID": 427,
+            "ID": 426,
             "Beer": "Sesh!",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "38.75141087666912, -9.102754253226324",
             "Brewery_country": "Portugal",
@@ -13598,7 +13809,7 @@ var brewery_check_ins = {
             "ID": 33,
             "Beer": "Monster Jam",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,0",
             "Brewery_location": "53.87800487642535, 10.683421677927402",
             "Brewery_country": "Germany",
@@ -13642,7 +13853,7 @@ var brewery_check_ins = {
             "ID": 35,
             "Beer": "Lurker DIPA",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,0",
             "Brewery_location": "57.72859071901111, 12.001405967403278",
             "Brewery_country": "Sweden",
@@ -13664,7 +13875,7 @@ var brewery_check_ins = {
             "ID": 37,
             "Beer": "Bobby Dinero",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,4",
             "Brewery_location": "40.63916266096027, -73.65610604434744",
             "Brewery_country": "United States",
@@ -13741,7 +13952,7 @@ var brewery_check_ins = {
             "Comment": "I'm no longer drinking this crappy stuff, starting from now I'm gonna worship Czech beer before going to bed"
         },
         {
-            "ID": 440,
+            "ID": 439,
             "Beer": "Super Bock Green",
             "Beer_style": "Shandy / Radler",
             "IBU": 10.0,
@@ -13761,7 +13972,7 @@ var brewery_check_ins = {
             "Comment": "Having super bock the last day is must have"
         },
         {
-            "ID": 431,
+            "ID": 430,
             "Beer": "Super Bock Selecção 1927 Japanese Rice Lager",
             "Beer_style": "Lager - Japanese Rice",
             "IBU": 19.0,
@@ -13804,7 +14015,7 @@ var brewery_check_ins = {
             "ID": 50,
             "Beer": "Super Bock Sky",
             "Beer_style": "Wheat Beer - American Pale Wheat",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,3",
             "Brewery_location": "41.214015698442346, -8.62659450358108",
             "Brewery_country": "Portugal",
@@ -13844,7 +14055,7 @@ var brewery_check_ins = {
             "ID": 40,
             "Beer": "Armazém da Cerveja",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "41.147632563032474, -8.603766093247117",
             "Brewery_country": "Portugal",
@@ -13908,7 +14119,7 @@ var brewery_check_ins = {
             "ID": 43,
             "Beer": "Somersby Blackberry",
             "Beer_style": "Cider - Other Fruit",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "55.66438864158465, 12.5308596114947",
             "Brewery_country": "Denmark",
@@ -13927,10 +14138,10 @@ var brewery_check_ins = {
     ],
     "Aguarela": [
         {
-            "ID": 434,
+            "ID": 433,
             "Beer": "Break On Through",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,5",
             "Brewery_location": "38.70936761620745, -9.13412933115215",
             "Brewery_country": "Portugal",
@@ -13950,7 +14161,7 @@ var brewery_check_ins = {
             "ID": 44,
             "Beer": "Hydrophobic",
             "Beer_style": "Stout - Imperial / Double Coffee",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,0",
             "Brewery_location": "38.70936761620745, -9.13412933115215",
             "Brewery_country": "Portugal",
@@ -14038,7 +14249,7 @@ var brewery_check_ins = {
             "ID": 51,
             "Beer": "Black Cadillacs",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery_location": "41.17686381156776, -8.626393871111757",
             "Brewery_country": "Portugal",
@@ -14060,7 +14271,7 @@ var brewery_check_ins = {
             "ID": 145,
             "Beer": "Desperados Original",
             "Beer_style": "Lager - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,9",
             "Brewery_location": "52.13626706606647, 4.5325769228070785",
             "Brewery_country": "Netherlands",
@@ -14118,7 +14329,7 @@ var brewery_check_ins = {
             "ID": 262,
             "Beer": "Norwegian Lowbush By Rackhouse",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "58.945712232991696, 5.745947905074622",
             "Brewery_country": "Norway",
@@ -14150,7 +14361,7 @@ var brewery_check_ins = {
             ],
             "Rating": "4,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "12.09.2023",
             "Comment": "Delicious! Owners really know which stouts to choose. You can smell the maple sirup without any doubt. And the taste itself? That's a fairy tale. Idk why, but my photo wasn't saved into my phone memory again.."
         }
@@ -14244,7 +14455,7 @@ var brewery_check_ins = {
             "ID": 211,
             "Beer": "Archiv Lichtenhainer 9",
             "Beer_style": "Historical Beer - Lichtenhainer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,6",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14264,10 +14475,10 @@ var brewery_check_ins = {
             "Comment": "koncept oživit starej zapomenutej způsob vaření velice uznávám, bohužel tohle je až moc velká divočina"
         },
         {
-            "ID": 529,
+            "ID": 528,
             "Beer": "Bajka O Vlku A Lišce 16",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14288,10 +14499,10 @@ var brewery_check_ins = {
             "Comment": "Not my cup of NEIPA"
         },
         {
-            "ID": 589,
+            "ID": 588,
             "Beer": "Bounty 13",
             "Beer_style": "Lager - Dark",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14308,10 +14519,10 @@ var brewery_check_ins = {
             "Comment": "Milky, I think"
         },
         {
-            "ID": 461,
+            "ID": 460,
             "Beer": "Cape of Good Hops 17",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14329,10 +14540,10 @@ var brewery_check_ins = {
             "Comment": "Hoppy af, not happy though"
         },
         {
-            "ID": 450,
+            "ID": 449,
             "Beer": "Drink and Drive Ø",
             "Beer_style": "Non-Alcoholic Beer - IPA",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14347,6 +14558,28 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_02_23/41d8f02e8f88adf262cc58d0f4c0857f_c_1358111699_raw.jpg",
             "Date": "23.02.2024",
             "Comment": "First alcohol-free NEIPA I have ever had, I must rate it as a successful atempt!"
+        },
+        {
+            "ID": 600,
+            "Beer": "Euphoria 12 Southern Passion",
+            "Beer_style": "Lager - IPL (India Pale Lager)",
+            "IBU": null,
+            "ABV": "5,1",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Ježkovy voči",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "TS",
+                "WS",
+                "TB"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_10/018ac4032a8e44fca8bcc20985f8c780_c_1397702187_raw.jpg",
+            "Date": "10.07.2024",
+            "Comment": "Geography meet up with a foreign Dartmouth host, good quality convo"
         },
         {
             "ID": 289,
@@ -14373,7 +14606,7 @@ var brewery_check_ins = {
             "ID": 208,
             "Beer": "Heyday 22",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14399,7 +14632,7 @@ var brewery_check_ins = {
             "ID": 210,
             "Beer": "Hody hody doprovody 13",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14445,7 +14678,7 @@ var brewery_check_ins = {
             "ID": 326,
             "Beer": "I'm Waiting Here",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14506,10 +14739,10 @@ var brewery_check_ins = {
             "Comment": "NEIPA a sakra tady jdeme znovu, myslel jsem si, že jsem se jich v Rize přepil, ale nikoliv, tahle mi šmakuje"
         },
         {
-            "ID": 528,
+            "ID": 527,
             "Beer": "Karrel: New World Kölsch 11°",
             "Beer_style": "Kölsch",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14533,7 +14766,7 @@ var brewery_check_ins = {
             "ID": 72,
             "Beer": "Kartel Best Bitter 11 (srpen 2023)",
             "Beer_style": "Bitter - Best",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14551,10 +14784,10 @@ var brewery_check_ins = {
             "Comment": "Not a fan, too caramelly"
         },
         {
-            "ID": 462,
+            "ID": 461,
             "Beer": "Kartel Coconut Krahulík 11",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14572,10 +14805,10 @@ var brewery_check_ins = {
             "Comment": "Dang, I would forbid coconut in lagers"
         },
         {
-            "ID": 588,
+            "ID": 587,
             "Beer": "Kartel Elderflower Summer Ale 11 (červenec 2024)",
             "Beer_style": "Pale Ale - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14592,10 +14825,10 @@ var brewery_check_ins = {
             "Comment": "Elderflower is there! Nice attempt that I appreciate"
         },
         {
-            "ID": 499,
+            "ID": 498,
             "Beer": "Kartel Oak Aged Citra Pale Ale 12 (Květen 2024)",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14616,7 +14849,7 @@ var brewery_check_ins = {
             "ID": 273,
             "Beer": "Koncept White Stout 15",
             "Beer_style": "Stout - White / Golden",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14633,7 +14866,7 @@ var brewery_check_ins = {
             "Comment": "k těm stoutům se člověk propíjí opravdu pomalu, tenhle je oproti ostatním, které jsem měl možnost dosud ochutnat, co se týče alkoholu značně lehčí, nicméně na konci je docela těžce kávově hořký"
         },
         {
-            "ID": 562,
+            "ID": 561,
             "Beer": "Krahulík 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 29.0,
@@ -14691,10 +14924,10 @@ var brewery_check_ins = {
             "Comment": "tady jsem takovej rozpačitej.. asi bych toho potřeboval víc na objektivnější recenzi a zároveň míň pivek předtím"
         },
         {
-            "ID": 508,
+            "ID": 507,
             "Beer": "Like A Strawberry Daiquiri 14",
             "Beer_style": "Sour - Other Gose",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14711,7 +14944,7 @@ var brewery_check_ins = {
             "Comment": "Best gose I've ever had, yummy strawberries, highly recommended"
         },
         {
-            "ID": 514,
+            "ID": 513,
             "Beer": "Magor 15",
             "Beer_style": "Bock - Single / Traditional",
             "IBU": 30.0,
@@ -14777,15 +15010,15 @@ var brewery_check_ins = {
             ],
             "Rating": "4,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "05.04.2023",
             "Comment": "Filipe děkuji za postřeh, též jsem si myslel, že jsem již tento nektar ochutnal, a tak se i já přidávám se zpětnou recenzí ze včerejška, přišel nakonec jako zlatý hřeb večera, pochutnali si na něm i Američani pocházející z oblasti kde druh piva vznikl"
         },
         {
-            "ID": 455,
+            "ID": 454,
             "Beer": "Nectar of Happiness Strata",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14826,10 +15059,10 @@ var brewery_check_ins = {
             "Comment": "Nothing special, refreshing watery APA"
         },
         {
-            "ID": 587,
+            "ID": 586,
             "Beer": "Sabro Fan Service 12",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14849,7 +15082,7 @@ var brewery_check_ins = {
             "ID": 207,
             "Beer": "Session Juicy Lucy 13",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14872,10 +15105,10 @@ var brewery_check_ins = {
             "Comment": "mňami"
         },
         {
-            "ID": 452,
+            "ID": 451,
             "Beer": "Sinker Oak",
             "Beer_style": "Pilsner - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14895,7 +15128,7 @@ var brewery_check_ins = {
             "ID": 71,
             "Beer": "Skotskovec 10 Dry Stout",
             "Beer_style": "Stout - Irish Dry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14917,7 +15150,7 @@ var brewery_check_ins = {
             "ID": 92,
             "Beer": "Sour 12 Apricot",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -14965,7 +15198,7 @@ var brewery_check_ins = {
             "ID": 134,
             "Beer": "Sour 12 Strawberry Rhubarb",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -15004,7 +15237,7 @@ var brewery_check_ins = {
             "ID": 195,
             "Beer": "White 12",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery_location": "50.35093122341257, 13.818297344198415",
             "Brewery_country": "Czech Republic",
@@ -15084,7 +15317,7 @@ var brewery_check_ins = {
             "ID": 220,
             "Beer": "Fruitstone",
             "Beer_style": "Farmhouse Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,3",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
             "Brewery_country": "Czech Republic",
@@ -15104,7 +15337,7 @@ var brewery_check_ins = {
             "ID": 263,
             "Beer": "Have A Nice Journey",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
             "Brewery_country": "Czech Republic",
@@ -15144,7 +15377,7 @@ var brewery_check_ins = {
             "ID": 264,
             "Beer": "Public Enemy",
             "Beer_style": "IPA - Sour",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
             "Brewery_country": "Czech Republic",
@@ -15164,7 +15397,7 @@ var brewery_check_ins = {
             "ID": 192,
             "Beer": "Sour Me Now",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
             "Brewery_country": "Czech Republic",
@@ -15184,7 +15417,7 @@ var brewery_check_ins = {
             "ID": 374,
             "Beer": "Vinařská Jedenáctka",
             "Beer_style": "Farmhouse Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery_location": "48.89395336864251, 16.81952579326769",
             "Brewery_country": "Czech Republic",
@@ -15227,7 +15460,7 @@ var brewery_check_ins = {
             "ID": 70,
             "Beer": "Chříčský Cider",
             "Beer_style": "Cider - Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "49.97139921617098, 13.647990302201796",
             "Brewery_country": "Czech Republic",
@@ -15249,7 +15482,7 @@ var brewery_check_ins = {
             "ID": 242,
             "Beer": "Pazdrát",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery_location": "49.97139921617098, 13.647990302201796",
             "Brewery_country": "Czech Republic",
@@ -15272,7 +15505,7 @@ var brewery_check_ins = {
             "ID": 335,
             "Beer": "Vinnetou",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "49.97139921617098, 13.647990302201796",
             "Brewery_country": "Czech Republic",
@@ -15289,10 +15522,10 @@ var brewery_check_ins = {
     ],
     "Plzeňský Prazdroj": [
         {
-            "ID": 448,
+            "ID": 447,
             "Beer": "Birell",
             "Beer_style": "Non-Alcoholic Beer - Lager",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
             "Brewery_country": "Czech Republic",
@@ -15309,10 +15542,10 @@ var brewery_check_ins = {
             "Comment": "Let the 3 alcohol-free months begin"
         },
         {
-            "ID": 449,
+            "ID": 448,
             "Beer": "Birell Polotmavý",
             "Beer_style": "Non-Alcoholic Beer - Lager",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
             "Brewery_country": "Czech Republic",
@@ -15332,7 +15565,7 @@ var brewery_check_ins = {
             "ID": 74,
             "Beer": "Birell Pomelo & Grep",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
             "Brewery_country": "Czech Republic",
@@ -15353,7 +15586,7 @@ var brewery_check_ins = {
             "ID": 370,
             "Beer": "Excelent",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
             "Brewery_country": "Czech Republic",
@@ -15370,7 +15603,7 @@ var brewery_check_ins = {
             "Comment": "na cestu z metra na hokej, správně jsem si pamatoval, že toto pivo je nepoživatelné"
         },
         {
-            "ID": 395,
+            "ID": 394,
             "Beer": "Gambrinus Originál 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 24.0,
@@ -15391,7 +15624,7 @@ var brewery_check_ins = {
             "ID": 167,
             "Beer": "Gambrinus Patron 12 / Plná 12 / Premium 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
             "Brewery_country": "Czech Republic",
@@ -15427,7 +15660,28 @@ var brewery_check_ins = {
             "Comment": "Best Pilsner you can get"
         },
         {
-            "ID": 413,
+            "ID": 592,
+            "Beer": "Pilsner Urquell Tradiční / Traditional (at brewery tour)",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": null,
+            "ABV": null,
+            "Brewery_location": "49.748219824879655, 13.395953374640042",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Plzeňský Prazdroj",
+            "Venue_location": "49.748219824879655, 13.395953374640042",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/e11a1d675746a4c2d761b26e9230c567_c_1397361122_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Unfiltered and unpasterized, who can say that can get it?"
+        },
+        {
+            "ID": 412,
             "Beer": "Půlnoční Black IPA 13°",
             "Beer_style": "IPA - Black / Cascadian Dark Ale",
             "IBU": 43.0,
@@ -15473,7 +15727,7 @@ var brewery_check_ins = {
             "ID": 75,
             "Beer": "New Dog On the Hop: Zamba",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "49.81201848355721, 18.27275872702853",
             "Brewery_country": "Czech Republic",
@@ -15496,7 +15750,7 @@ var brewery_check_ins = {
             "ID": 100,
             "Beer": "450",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.572538341676, 15.05412638463949",
             "Brewery_country": "Czech Republic",
@@ -15518,7 +15772,7 @@ var brewery_check_ins = {
             "ID": 101,
             "Beer": "Kvasničák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "50.572538341676, 15.05412638463949",
             "Brewery_country": "Czech Republic",
@@ -15540,7 +15794,7 @@ var brewery_check_ins = {
             "ID": 323,
             "Beer": "Svijanská Desítka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery_location": "50.572538341676, 15.05412638463949",
             "Brewery_country": "Czech Republic",
@@ -15578,7 +15832,7 @@ var brewery_check_ins = {
             "ID": 77,
             "Beer": "Svijanský fanda",
             "Beer_style": "Black & Tan",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.572538341676, 15.05412638463949",
             "Brewery_country": "Czech Republic",
@@ -15639,7 +15893,7 @@ var brewery_check_ins = {
             "ID": 171,
             "Beer": "Svijanský Rytíř",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "50.572538341676, 15.05412638463949",
             "Brewery_country": "Czech Republic",
@@ -15697,7 +15951,7 @@ var brewery_check_ins = {
             "ID": 80,
             "Beer": "Hazy Jane",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "57.36961067413578, -2.0504866999995963",
             "Brewery_country": "UK",
@@ -15735,7 +15989,7 @@ var brewery_check_ins = {
             "ID": 334,
             "Beer": "Konrad 11° / Vratislavický ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
             "Brewery_country": "Czech Republic",
@@ -15753,7 +16007,7 @@ var brewery_check_ins = {
             "ID": 230,
             "Beer": "Konrad 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
             "Brewery_country": "Czech Republic",
@@ -15773,7 +16027,7 @@ var brewery_check_ins = {
             "ID": 82,
             "Beer": "Konrad Cherryk",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
             "Brewery_country": "Czech Republic",
@@ -15783,7 +16037,7 @@ var brewery_check_ins = {
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.08.2023",
             "Comment": "I'm afraid I was fooled, I thought this was alcoholic.. again kinda suffering like at the previous one"
         },
@@ -15791,7 +16045,7 @@ var brewery_check_ins = {
             "ID": 83,
             "Beer": "Konrad Gepard",
             "Beer_style": "Blonde Ale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
             "Brewery_country": "Czech Republic",
@@ -15801,7 +16055,7 @@ var brewery_check_ins = {
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.08.2023",
             "Comment": "Cmon, this was an Ale? I wouldn't recognize that.. more like a punnishment than a joy"
         },
@@ -15809,7 +16063,7 @@ var brewery_check_ins = {
             "ID": 81,
             "Beer": "Konrad Spytihněv",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "50.752314974646325, 15.08968022484184",
             "Brewery_country": "Czech Republic",
@@ -15819,7 +16073,7 @@ var brewery_check_ins = {
             "Friends": [],
             "Rating": "2,50",
             "Serving_style": "Can",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.08.2023",
             "Comment": "Let's make the taste in the mouth great again! Slightly better, definitely alcoholic, but I'm suspecting the cans from not being at optimal shape"
         },
@@ -15827,7 +16081,7 @@ var brewery_check_ins = {
             "ID": 85,
             "Beer": "Konrád Briliant 11",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "49.748219824879655, 13.395953374640042",
             "Brewery_country": "Czech Republic",
@@ -15847,7 +16101,7 @@ var brewery_check_ins = {
             "ID": 86,
             "Beer": "Holba Keprník",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "50.069927945516056, 16.927842817393287",
             "Brewery_country": "Czech Republic",
@@ -15924,7 +16178,7 @@ var brewery_check_ins = {
             "Comment": "slightly better than the previous one"
         },
         {
-            "ID": 387,
+            "ID": 386,
             "Beer": "Enigma Encrypted",
             "Beer_style": "Pale Ale - Australian",
             "IBU": 30.0,
@@ -15944,10 +16198,10 @@ var brewery_check_ins = {
             "Comment": "APA je asi můj nejoblíbenější speciálek a tenhle kus to jenom potvrzuje, hořkost tak akorát, ovocíčkem to jak voní, tak chutná, zkrátka tady sládci neudělali nic špatně"
         },
         {
-            "ID": 389,
+            "ID": 388,
             "Beer": "Káranská 9",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,9",
             "Brewery_location": "50.07532369998683, 14.457555284654678",
             "Brewery_country": "Czech Republic",
@@ -15982,7 +16236,7 @@ var brewery_check_ins = {
             "Comment": "probably a cause of too old can badly stored, I guess that it would taste much better while normal circumstances"
         },
         {
-            "ID": 391,
+            "ID": 390,
             "Beer": "Liberator",
             "Beer_style": "Pale Ale - American",
             "IBU": 24.0,
@@ -16002,7 +16256,7 @@ var brewery_check_ins = {
             "Comment": "tak tohle já můžu, top strop"
         },
         {
-            "ID": 539,
+            "ID": 538,
             "Beer": "Māhutonga",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 30.0,
@@ -16051,8 +16305,8 @@ var brewery_check_ins = {
             "Brewery_location": "50.07532369998683, 14.457555284654678",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Hlavní město Praha",
-            "Venue": NaN,
-            "Venue_location": NaN,
+            "Venue": null,
+            "Venue_location": null,
             "Friends": [
                 "MK",
                 "JT"
@@ -16064,10 +16318,10 @@ var brewery_check_ins = {
             "Comment": "on the way to the most rural parts of Czechia, gose is still too far to taste good on my tongue, will have to train it furthermore, but as we say don't stare at the gifted horse's teeth, thanks Michal K. for the supplies"
         },
         {
-            "ID": 386,
+            "ID": 385,
             "Beer": "Vinohradská 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.07532369998683, 14.457555284654678",
             "Brewery_country": "Czech Republic",
@@ -16084,7 +16338,7 @@ var brewery_check_ins = {
             "Comment": "tak tohle se nedá.. nejsem tedy sám, komu nešmakuje, holt 100 lidí 100 chutí.. tuto si už znovu nedám, tady je všechno špatně"
         },
         {
-            "ID": 388,
+            "ID": 387,
             "Beer": "Western Approaches",
             "Beer_style": "Lager - IPL (India Pale Lager)",
             "IBU": 45.0,
@@ -16109,8 +16363,8 @@ var brewery_check_ins = {
             "ID": 318,
             "Beer": "Jistota IPL",
             "Beer_style": "Lager - IPL (India Pale Lager)",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "50.223764086366764, 16.04285460000085",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Královéhradecký kraj",
@@ -16189,7 +16443,7 @@ var brewery_check_ins = {
             "Comment": "první kousek tady v aplikaci od průkopníka českého minipivovarnictví, asi ji mám poprvý a docela překvapila, hořkost podle mého gusta, ovoce z toho necítím tak, jako jsem u těchto speciálů zvyklý"
         },
         {
-            "ID": 451,
+            "ID": 450,
             "Beer": "Desítka",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 38.0,
@@ -16254,7 +16508,7 @@ var brewery_check_ins = {
             "ID": 216,
             "Beer": "New Zealand IPA 15°",
             "Beer_style": "IPA - New Zealand",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery_location": "49.95507498995888, 13.851718385392074",
             "Brewery_country": "Czech Republic",
@@ -16397,7 +16651,7 @@ var brewery_check_ins = {
             "ID": 122,
             "Beer": "Světlý ležák 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "50.561380291494615, 15.910637815300865",
             "Brewery_country": "Czech Republic",
@@ -16415,7 +16669,7 @@ var brewery_check_ins = {
             "ID": 93,
             "Beer": "Světlý ležák 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.561380291494615, 15.910637815300865",
             "Brewery_country": "Czech Republic",
@@ -16438,7 +16692,7 @@ var brewery_check_ins = {
             "ID": 94,
             "Beer": "Warka Strong / Premium / High Quality Beer",
             "Beer_style": "Lager - Strong",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery_location": "51.801415637421506, 21.163494396358825",
             "Brewery_country": "Poland",
@@ -16460,7 +16714,7 @@ var brewery_check_ins = {
             "ID": 95,
             "Beer": "Żywiec Białe",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "49.662263849421905, 19.174396445420587",
             "Brewery_country": "Poland",
@@ -16483,7 +16737,7 @@ var brewery_check_ins = {
             "Beer": "Sand Ale 10°",
             "Beer_style": "Pale Ale - American",
             "IBU": 31.0,
-            "ABV": NaN,
+            "ABV": null,
             "Brewery_location": "50.72502229179776, 15.181001355811112",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Liberecký kraj",
@@ -16541,7 +16795,7 @@ var brewery_check_ins = {
             "Comment": "give me more, it's not enough"
         },
         {
-            "ID": 417,
+            "ID": 416,
             "Beer": "Polotmavá 10",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 28.0,
@@ -16568,7 +16822,7 @@ var brewery_check_ins = {
             "ID": 98,
             "Beer": "Bohoušek",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,7",
             "Brewery_location": "50.37628938020668, 15.22047038194565",
             "Brewery_country": "Czech Republic",
@@ -16629,7 +16883,7 @@ var brewery_check_ins = {
             "Beer": "Ampér Agnus",
             "Beer_style": "Pilsner - Other",
             "IBU": 45.0,
-            "ABV": NaN,
+            "ABV": null,
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Liberecký kraj",
@@ -16682,7 +16936,7 @@ var brewery_check_ins = {
             "Comment": "tak tady si podle mě milovníci stoutu přijdou na své, čistý, nefalšovaný stout at its best, tady není co vytknout, tento typ piva si stále ještě bohužel nedokážu naplno užít, pomalu ale jistě se k tomu blížím, zatím mě užije jen na dámské slaďoučké verze"
         },
         {
-            "ID": 418,
+            "ID": 417,
             "Beer": "Dynamo 10°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -16703,7 +16957,7 @@ var brewery_check_ins = {
             "ID": 187,
             "Beer": "Elektra",
             "Beer_style": "Sour - Fruited Gose",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
@@ -16798,7 +17052,7 @@ var brewery_check_ins = {
             "ID": 186,
             "Beer": "Gruit",
             "Beer_style": "Historical Beer - Gruit / Ancient Herbed Ale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
@@ -16894,10 +17148,10 @@ var brewery_check_ins = {
             "Comment": "opět bylo třeba přidat pivko do databáze, tak snad se tu objeví vícero rezencí než ta ode mě"
         },
         {
-            "ID": 420,
+            "ID": 419,
             "Beer": "Neon",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
@@ -17009,7 +17263,7 @@ var brewery_check_ins = {
             ],
             "Rating": "3,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "17.02.2023",
             "Comment": "moc dobrá ovocná, příjemně překvapila"
         },
@@ -17017,8 +17271,8 @@ var brewery_check_ins = {
             "ID": 103,
             "Beer": "Převodník",
             "Beer_style": "Table Beer",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Liberecký kraj",
@@ -17078,8 +17332,8 @@ var brewery_check_ins = {
             "ID": 107,
             "Beer": "Transformátor",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "50.73178067251658, 15.1699117999991",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Liberecký kraj",
@@ -17178,7 +17432,7 @@ var brewery_check_ins = {
             "ID": 104,
             "Beer": "Jablko hruškový cider",
             "Beer_style": "Cider - Other Fruit",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.11885670710588, 16.217786135415793",
             "Brewery_country": "Czech Republic",
@@ -17199,10 +17453,10 @@ var brewery_check_ins = {
     ],
     "Pivovar Antoš": [
         {
-            "ID": 525,
+            "ID": 524,
             "Beer": "Antošovy koule",
             "Beer_style": "Stout - Milk / Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
             "Brewery_country": "Czech Republic",
@@ -17220,7 +17474,7 @@ var brewery_check_ins = {
             "Comment": "Mmm liquid Mozzart balls"
         },
         {
-            "ID": 561,
+            "ID": 560,
             "Beer": "Antošův ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 30.0,
@@ -17264,7 +17518,7 @@ var brewery_check_ins = {
             "ID": 214,
             "Beer": "Cold Cold West",
             "Beer_style": "IPA - Cold",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
             "Brewery_country": "Czech Republic",
@@ -17284,7 +17538,7 @@ var brewery_check_ins = {
             "ID": 105,
             "Beer": "Hazy Lazy Sunrise",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
             "Brewery_country": "Czech Republic",
@@ -17302,10 +17556,10 @@ var brewery_check_ins = {
             "Comment": "not my cup of beer, but pretty refreshing in the year's hottest day"
         },
         {
-            "ID": 572,
+            "ID": 571,
             "Beer": "Marination Nation",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.2255915531768, 14.105106184229815",
             "Brewery_country": "Czech Republic",
@@ -17405,12 +17659,12 @@ var brewery_check_ins = {
             ],
             "Rating": "2,00",
             "Serving_style": "Bottle",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "03.05.2023",
             "Comment": "dal jsem si ji znovu, abych si potvrdil, že to je asi nejhorší ipa, co jsem kdy měl, jakože fakt nevím, jak tohle hodnotit.."
         },
         {
-            "ID": 379,
+            "ID": 378,
             "Beer": "Bohemian Lager (Světlý ležák 11)",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 34.0,
@@ -17467,7 +17721,7 @@ var brewery_check_ins = {
             "Comment": "tak tohle nee, od Clocka chutnalo bezlepkový víc"
         },
         {
-            "ID": 378,
+            "ID": 377,
             "Beer": "Light Lager (Světlé Pivo 10)",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 28.0,
@@ -17485,7 +17739,7 @@ var brewery_check_ins = {
             "Comment": "zpě na místě dění průměrná 10°, dal jsem si ji pouze kvůli doplnění kolekce, příště zase za 11"
         },
         {
-            "ID": 507,
+            "ID": 506,
             "Beer": "Semi-dark lager (Polotmavá 12)",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 30.0,
@@ -17510,7 +17764,7 @@ var brewery_check_ins = {
             "ID": 202,
             "Beer": "Velikonoční Speciál",
             "Beer_style": "Lager - Strong",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "49.53995499999751, 15.359816186508956",
             "Brewery_country": "Czech Republic",
@@ -17530,9 +17784,9 @@ var brewery_check_ins = {
     "Svatováclavský pivovar": [
         {
             "ID": 110,
-            "Beer": "Ananas",
+            "Beer": "Anullas",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "49.59585949999869, 17.258702528837524",
             "Brewery_country": "Czech Republic",
@@ -17554,7 +17808,7 @@ var brewery_check_ins = {
             "ID": 111,
             "Beer": "Svatováclavská 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "49.59585949999869, 17.258702528837524",
             "Brewery_country": "Czech Republic",
@@ -17602,7 +17856,7 @@ var brewery_check_ins = {
             "ID": 113,
             "Beer": "Buchťákova dvanáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,2",
             "Brewery_location": "49.55447446427743, 17.228120450309714",
             "Brewery_country": "Czech Republic",
@@ -17650,7 +17904,7 @@ var brewery_check_ins = {
             "ID": 182,
             "Beer": "Litovel Classic",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,2",
             "Brewery_location": "49.69480570270628, 17.07579965528462",
             "Brewery_country": "Czech Republic",
@@ -17672,7 +17926,7 @@ var brewery_check_ins = {
             "ID": 115,
             "Beer": "Litovel Gustav 13°",
             "Beer_style": "Lager - Vienna",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,1",
             "Brewery_location": "49.69480570270628, 17.07579965528462",
             "Brewery_country": "Czech Republic",
@@ -17694,7 +17948,7 @@ var brewery_check_ins = {
             "ID": 116,
             "Beer": "Višňový ležák 12",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "49.69480570270628, 17.07579965528462",
             "Brewery_country": "Czech Republic",
@@ -17718,7 +17972,7 @@ var brewery_check_ins = {
             "ID": 117,
             "Beer": "Beskydské hořké",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,5",
             "Brewery_location": "49.53200969315407, 18.394860676551513",
             "Brewery_country": "Czech Republic",
@@ -17783,10 +18037,10 @@ var brewery_check_ins = {
             "Comment": "skvěle hutné, jak název napovídá, příjemně hořké, velice povedená volba, Radegast - ten ví"
         },
         {
-            "ID": 390,
+            "ID": 389,
             "Beer": "Radegast Originál",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery_location": "49.66098623016816, 18.42734486825177",
             "Brewery_country": "Czech Republic",
@@ -17801,7 +18055,7 @@ var brewery_check_ins = {
             "Comment": "na to, že je to 10°, tak luxus, tady vědí, jak se k tomu pivku chovat, k fotbálku ideal"
         },
         {
-            "ID": 392,
+            "ID": 391,
             "Beer": "Radegast Ratar",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 50.0,
@@ -17927,7 +18181,7 @@ var brewery_check_ins = {
             "ID": 126,
             "Beer": "Světlá 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "50.04935907109365, 14.56213981927509",
             "Brewery_country": "Czech Republic",
@@ -17964,10 +18218,10 @@ var brewery_check_ins = {
     ],
     "Pivovar Trautenberk": [
         {
-            "ID": 585,
+            "ID": 584,
             "Beer": "Frajerka",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.74550203385104, 15.821954734382674",
             "Brewery_country": "Czech Republic",
@@ -18027,7 +18281,7 @@ var brewery_check_ins = {
             "ID": 372,
             "Beer": "Mustang",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "49.838799880503714, 18.273754530676367",
             "Brewery_country": "Czech Republic",
@@ -18045,7 +18299,7 @@ var brewery_check_ins = {
             "ID": 350,
             "Beer": "Ostravar 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "49.838799880503714, 18.273754530676367",
             "Brewery_country": "Czech Republic",
@@ -18073,7 +18327,7 @@ var brewery_check_ins = {
             "Friends": [],
             "Rating": "4,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "23.06.2023",
             "Comment": "not afraid to rate it this generously, after climbing so refreshing, I love the bitterness, simply the best 9°"
         }
@@ -18083,7 +18337,7 @@ var brewery_check_ins = {
             "ID": 331,
             "Beer": "Kunratický Ležák 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
             "Brewery_country": "Czech Republic",
@@ -18103,7 +18357,7 @@ var brewery_check_ins = {
             "ID": 131,
             "Beer": "Kunratický Študák 11",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
             "Brewery_country": "Czech Republic",
@@ -18123,7 +18377,7 @@ var brewery_check_ins = {
             "ID": 330,
             "Beer": "Kunratický Študák 11",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
             "Brewery_country": "Czech Republic",
@@ -18143,7 +18397,7 @@ var brewery_check_ins = {
             "ID": 329,
             "Beer": "Roztylský R.I.P.A.K.",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
             "Brewery_country": "Czech Republic",
@@ -18155,7 +18409,7 @@ var brewery_check_ins = {
             ],
             "Rating": "3,50",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "03.01.2023",
             "Comment": "vůně pěkná, chuť přebíjí vohromná hořkost, to je něco jako moc velká pálivost v jídle, škoda.. člověk by z toho mohl mít víc"
         },
@@ -18163,7 +18417,7 @@ var brewery_check_ins = {
             "ID": 130,
             "Beer": "Šeberovský Fešák 14",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,7",
             "Brewery_location": "50.020245970791834, 14.499054861902271",
             "Brewery_country": "Czech Republic",
@@ -18185,7 +18439,7 @@ var brewery_check_ins = {
             "ID": 132,
             "Beer": "Saigon Special",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "10.758573694328406, 106.6625820255224",
             "Brewery_country": "Vietnam",
@@ -18329,8 +18583,8 @@ var brewery_check_ins = {
             "ID": 141,
             "Beer": "Poděbradský Rádl pomeranč",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "50.1426543794162, 15.115969813464808",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Středočeský kraj",
@@ -18357,7 +18611,7 @@ var brewery_check_ins = {
             "Friends": [],
             "Rating": "3,00",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.06.2023",
             "Comment": "maybe a last beer today, the grind to get them all exhausted me quite a lot, I would go to sleep rn, but Muse band is already on the horizon, so def not a sleep time yet!"
         }
@@ -18407,7 +18661,7 @@ var brewery_check_ins = {
             "ID": 140,
             "Beer": "F.H. Prager Cider 11",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "49.977373680084874, 14.39379970538856",
             "Brewery_country": "Czech Republic",
@@ -18427,7 +18681,7 @@ var brewery_check_ins = {
             "ID": 151,
             "Beer": "Extra Chmelené",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "50.487716352301504, 15.52477221535441",
             "Brewery_country": "Czech Republic",
@@ -18447,7 +18701,7 @@ var brewery_check_ins = {
             "ID": 142,
             "Beer": "Novopacké pivo 11° Kryštof",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.487716352301504, 15.52477221535441",
             "Brewery_country": "Czech Republic",
@@ -18460,14 +18714,14 @@ var brewery_check_ins = {
             ],
             "Rating": "2,75",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "11.06.2023",
             "Comment": "late night beer, no photo taken"
         }
     ],
     "Pivovar Permon": [
         {
-            "ID": 573,
+            "ID": 572,
             "Beer": "Světlý ležák 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 35.0,
@@ -18490,7 +18744,7 @@ var brewery_check_ins = {
             "ID": 144,
             "Beer": "Světlý speciál 13°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.17874994137674, 12.63787465580559",
             "Brewery_country": "Czech Republic",
@@ -18521,14 +18775,14 @@ var brewery_check_ins = {
             "Friends": [],
             "Rating": "3,75",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "24.02.2023",
             "Comment": "solidní dipa, na to jak je nastřelené IBU, nepřechází do nepřiměřené sladkosti, a to je velké +"
         }
     ],
     "Počernický pivovar": [
         {
-            "ID": 576,
+            "ID": 575,
             "Beer": "Počernická dvanáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 26.0,
@@ -18551,7 +18805,7 @@ var brewery_check_ins = {
             "ID": 146,
             "Beer": "Počernická I.P.A.",
             "Beer_style": "IPA - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "50.08846086535482, 14.580681299998794",
             "Brewery_country": "Czech Republic",
@@ -18570,7 +18824,7 @@ var brewery_check_ins = {
     ],
     "Pivovar Clock": [
         {
-            "ID": 500,
+            "ID": 499,
             "Beer": "Anežka",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 35.0,
@@ -18588,7 +18842,7 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_07/073f637272b7fe553b81166f6480619a_c_1378616623_raw.jpg",
             "Date": "07.05.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
             "ID": 272,
@@ -18639,7 +18893,7 @@ var brewery_check_ins = {
             "ID": 315,
             "Beer": "Jistota Ale 12°",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "50.08125410516569, 16.317200948562274",
             "Brewery_country": "Czech Republic",
@@ -18697,10 +18951,10 @@ var brewery_check_ins = {
             "Comment": "ojediněle přidávám po druhé, protože je mnohem lepší než na první dobrou, skvěle načepované, plná hořká chuť nepřebíjí ovocnost, velice solidní"
         },
         {
-            "ID": 565,
+            "ID": 564,
             "Beer": "Vošta",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.08125410516569, 16.317200948562274",
             "Brewery_country": "Czech Republic",
@@ -18722,7 +18976,7 @@ var brewery_check_ins = {
             "ID": 148,
             "Beer": "Pineapple NEIPA",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "50.29340474581693, 16.16344031349508",
             "Brewery_country": "Czech Republic",
@@ -18739,7 +18993,7 @@ var brewery_check_ins = {
             "Comment": "first beer of the day, pretty juicy and yummy, me likey"
         },
         {
-            "ID": 574,
+            "ID": 573,
             "Beer": "Rampušák 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 40.0,
@@ -18782,7 +19036,7 @@ var brewery_check_ins = {
             "Comment": "apricot sour ale, I would say, idk what's in the description, I'm quite confident with the taste profile"
         },
         {
-            "ID": 569,
+            "ID": 568,
             "Beer": "Ale 11",
             "Beer_style": "Pale Ale - American",
             "IBU": 39.0,
@@ -18802,10 +19056,10 @@ var brewery_check_ins = {
             "Comment": "Refreshing start of the day"
         },
         {
-            "ID": 571,
+            "ID": 570,
             "Beer": "Coffee Brown ALE",
             "Beer_style": "Brown Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.20940793371788, 15.834727157670889",
             "Brewery_country": "Czech Republic",
@@ -18843,7 +19097,7 @@ var brewery_check_ins = {
             "Comment": "Billy Talent + this IPA? divine combination"
         },
         {
-            "ID": 579,
+            "ID": 578,
             "Beer": "Klenot 11 polotmavý",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 22.0,
@@ -18860,13 +19114,13 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/9052259ad7547444700cf6f801f51c60_c_1390106628_raw.jpg",
             "Date": "15.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 577,
+            "ID": 576,
             "Beer": "Nealko Grep",
             "Beer_style": "Non-Alcoholic Beer - Shandy / Radler",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "0,5",
             "Brewery_location": "50.20940793371788, 15.834727157670889",
             "Brewery_country": "Czech Republic",
@@ -18878,13 +19132,13 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_15/954751d3ef195eda700076c5c82ad38b_c_1389931079_raw.jpg",
             "Date": "15.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 566,
+            "ID": 565,
             "Beer": "Sour - Raspberry & Coffee",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery_location": "50.20940793371788, 15.834727157670889",
             "Brewery_country": "Czech Republic",
@@ -18926,7 +19180,7 @@ var brewery_check_ins = {
             "ID": 156,
             "Beer": "Kaiser Fasstyp / Kaiser Bier",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "48.13709313477016, 15.151935139184443",
             "Brewery_country": "Austria",
@@ -18946,7 +19200,7 @@ var brewery_check_ins = {
             "ID": 157,
             "Beer": "Landgraf Schankbier",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,2",
             "Brewery_location": "48.25256426867831, 15.686023228833871",
             "Brewery_country": "Austria",
@@ -18971,8 +19225,8 @@ var brewery_check_ins = {
             "Brewery_location": "47.362559867254674, 15.093371086512553",
             "Brewery_country": "Austria",
             "Beer_region": "Steiermark",
-            "Venue": NaN,
-            "Venue_location": NaN,
+            "Venue": null,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "3,00",
             "Serving_style": "Can",
@@ -18986,7 +19240,7 @@ var brewery_check_ins = {
             "ID": 159,
             "Beer": "Märzen",
             "Beer_style": "Märzen",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "47.594737030498734, 16.395559094536704",
             "Brewery_country": "Austria",
@@ -19003,7 +19257,7 @@ var brewery_check_ins = {
     ],
     "Pivovar Obora": [
         {
-            "ID": 505,
+            "ID": 504,
             "Beer": "Ale NE",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 27.0,
@@ -19023,10 +19277,10 @@ var brewery_check_ins = {
             "Comment": "Probably just wasn't in beer mood that day"
         },
         {
-            "ID": 540,
+            "ID": 539,
             "Beer": "Pastry Sour - Carrot Cake - Mrkvový Dort",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "49.338898000982084, 14.639135934721343",
             "Brewery_country": "Czech Republic",
@@ -19043,7 +19297,7 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83a446c8f57eded6828e31ebcb6242ae_c_1387522891_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
             "ID": 160,
@@ -19065,6 +19319,27 @@ var brewery_check_ins = {
         }
     ],
     "Pivovar Raven": [
+        {
+            "ID": 597,
+            "Beer": "Depo IPA",
+            "Beer_style": "IPA - American",
+            "IBU": 40.0,
+            "ABV": "5,5",
+            "Brewery_location": "49.76901891168808, 13.375793771166355",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Ústředna",
+            "Venue_location": "49.73807697440021, 13.381935898813206",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/be78a33c5eeb7b149a09212e1f4d84c3_c_1397397056_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Not my cup of IPA"
+        },
         {
             "ID": 338,
             "Beer": "Orange IPA",
@@ -19250,7 +19525,7 @@ var brewery_check_ins = {
             "Comment": "nic moc, aspoň že jsem ho nepil sám"
         },
         {
-            "ID": 533,
+            "ID": 532,
             "Beer": "Únětický speciál 8° Letní",
             "Beer_style": "Lager - Pale",
             "IBU": 40.0,
@@ -19268,7 +19543,7 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/d0efd99a1133f6ff1e3b74d041deb433_c_1387513069_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Primátor": [
@@ -19493,7 +19768,7 @@ var brewery_check_ins = {
             "ID": 349,
             "Beer": "Staročeský Malvaz",
             "Beer_style": "Lager - Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery_location": "50.17427359144863, 13.77117565259575",
             "Brewery_country": "Czech Republic",
@@ -19548,8 +19823,8 @@ var brewery_check_ins = {
             "Brewery_location": "48.99437662043317, 14.476713544734894",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihočeský kraj",
-            "Venue": NaN,
-            "Venue_location": NaN,
+            "Venue": null,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
@@ -19584,8 +19859,8 @@ var brewery_check_ins = {
             "Brewery_location": "48.99437662043317, 14.476713544734894",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihočeský kraj",
-            "Venue": NaN,
-            "Venue_location": NaN,
+            "Venue": null,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,50",
             "Serving_style": "Can",
@@ -19594,7 +19869,7 @@ var brewery_check_ins = {
             "Comment": "exáč v rámci pivních ve vlaku, jako bych pil perlivou vodu.. příště si 2x rozmyslím, jestli na jih Čech zavítám a jestli si tam dokonce dám pivo"
         },
         {
-            "ID": 570,
+            "ID": 569,
             "Beer": "Na Pool",
             "Beer_style": "Lager - IPL (India Pale Lager)",
             "IBU": 38.0,
@@ -19641,7 +19916,7 @@ var brewery_check_ins = {
             "ID": 179,
             "Beer": "Bruncvík Světlý Ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "49.75343041519828, 13.38124195956679",
             "Brewery_country": "Czech Republic",
@@ -19662,10 +19937,10 @@ var brewery_check_ins = {
     ],
     "Pivovar Protivín": [
         {
-            "ID": 393,
+            "ID": 392,
             "Beer": "Argus 11 Granát",
             "Beer_style": "Lager - Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "49.20476364671345, 14.220089473154905",
             "Brewery_country": "Czech Republic",
@@ -19685,7 +19960,7 @@ var brewery_check_ins = {
             "ID": 333,
             "Beer": "Argus 12 Maestic",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "49.20476364671345, 14.220089473154905",
             "Brewery_country": "Czech Republic",
@@ -19751,10 +20026,10 @@ var brewery_check_ins = {
     ],
     "Bad Flash": [
         {
-            "ID": 575,
+            "ID": 574,
             "Beer": "Bikini Ale",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
             "Brewery_country": "Czech Republic",
@@ -19771,10 +20046,10 @@ var brewery_check_ins = {
             "Comment": "Maty Svítok módní návrhář"
         },
         {
-            "ID": 584,
+            "ID": 583,
             "Beer": "BlackCurrant & PinkPepper",
             "Beer_style": "Sour - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
             "Brewery_country": "Czech Republic",
@@ -19794,7 +20069,7 @@ var brewery_check_ins = {
             "ID": 188,
             "Beer": "Denali NEIPA",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
             "Brewery_country": "Czech Republic",
@@ -19806,12 +20081,12 @@ var brewery_check_ins = {
             ],
             "Rating": "3,75",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "28.04.2023",
             "Comment": "bohužel bez fota, věnoval jsem se společnosti viz předchozí příspěvek, spontánní hospůdka po společném lezení"
         },
         {
-            "ID": 567,
+            "ID": 566,
             "Beer": "Mango Chilli Sour Ale",
             "Beer_style": "Sour - Fruited",
             "IBU": 8.0,
@@ -19834,7 +20109,7 @@ var brewery_check_ins = {
             "ID": 271,
             "Beer": "Prostě ležák 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
             "Brewery_country": "Czech Republic",
@@ -19851,10 +20126,10 @@ var brewery_check_ins = {
             "Comment": "po týdnu jsem zase zpět připraven přinášet novinky z pivního světa, začínám opatrně ležáčkem a mile překvapil, příjemná hořkost, příjemný říz, jen tak dál"
         },
         {
-            "ID": 553,
+            "ID": 552,
             "Beer": "Torpid Mind",
             "Beer_style": "Stout - Russian Imperial",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "10,5",
             "Brewery_location": "50.128906103778206, 14.454356221643813",
             "Brewery_country": "Czech Republic",
@@ -19876,10 +20151,10 @@ var brewery_check_ins = {
     ],
     "Sibeeria": [
         {
-            "ID": 502,
+            "ID": 501,
             "Beer": "Dark Ritual",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "11,6",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -19897,7 +20172,7 @@ var brewery_check_ins = {
             "Comment": "A genuine stout, hard on alcohol af boii"
         },
         {
-            "ID": 511,
+            "ID": 510,
             "Beer": "Everyday Life",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 38.0,
@@ -19940,7 +20215,7 @@ var brewery_check_ins = {
             "ID": 259,
             "Beer": "Hopminer",
             "Beer_style": "IPA - Triple New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "9,2",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -19955,10 +20230,10 @@ var brewery_check_ins = {
             "Comment": "ve skutečnosti jsem čekal větší mrdici, než jsem dostal.."
         },
         {
-            "ID": 521,
+            "ID": 520,
             "Beer": "I Love the Smell of HBC 630 in the Morning",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -19978,7 +20253,7 @@ var brewery_check_ins = {
             "ID": 280,
             "Beer": "I Love the Smell of Nectaron In the Morning",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -19993,10 +20268,10 @@ var brewery_check_ins = {
             "Comment": "pokus zkusit štěstí vyšel na jedničku, speciálkem dnešního (tý)dne je NEIPička od Sibeerie, to byla skoro sázka na jistotu, že tady si pochutnám, asi největší konkurence Zichovce ani od jednoho z nich tento žlutavý nektar nemá chybu"
         },
         {
-            "ID": 513,
+            "ID": 512,
             "Beer": "Kazbek Cold IPA",
             "Beer_style": "IPA - Cold",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,3",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20033,10 +20308,10 @@ var brewery_check_ins = {
             "Comment": "tak konečně první kousek od Sibeerie, takovej lepší Vypínač od Voltu a se 21° taky pěkně vypíná, myslím si, že až ho dopiju, tak půjdu někam tancovat"
         },
         {
-            "ID": 512,
+            "ID": 511,
             "Beer": "Liquid Luck",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20056,7 +20331,7 @@ var brewery_check_ins = {
             "ID": 227,
             "Beer": "Mauna Loa",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20074,10 +20349,10 @@ var brewery_check_ins = {
             "Comment": "moc dobrá, příjemně ovocná, slaďoučká"
         },
         {
-            "ID": 520,
+            "ID": 519,
             "Beer": "One American",
             "Beer_style": "Sour - Berliner Weisse",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20094,10 +20369,10 @@ var brewery_check_ins = {
             "Comment": "An honest sour ale, they don't lie with the description! I like it!"
         },
         {
-            "ID": 501,
+            "ID": 500,
             "Beer": "One Love",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,4",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20115,10 +20390,10 @@ var brewery_check_ins = {
             "Comment": "Those who crave raspberries would appreciate this one big time, me not so much"
         },
         {
-            "ID": 519,
+            "ID": 518,
             "Beer": "Patronus",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,8",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20135,10 +20410,10 @@ var brewery_check_ins = {
             "Comment": "So drinkable woow and hoppy as well a flawless 10°"
         },
         {
-            "ID": 453,
+            "ID": 452,
             "Beer": "Podzim 2023",
             "Beer_style": "Scotch Ale / Wee Heavy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20155,10 +20430,10 @@ var brewery_check_ins = {
             "Comment": "That was very good"
         },
         {
-            "ID": 564,
+            "ID": 563,
             "Beer": "Summer Ale",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20178,7 +20453,7 @@ var brewery_check_ins = {
             "ID": 282,
             "Beer": "Yummy Pink Guava, Peach, Passion Fruit & Vanilla",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery_location": "50.11247022086971, 14.512630026947043",
             "Brewery_country": "Czech Republic",
@@ -20215,7 +20490,7 @@ var brewery_check_ins = {
             "Comment": "nebýt tam ta nepříjemná pachuť, dokázal bych si představit, že jich v létě u vody zvládnu vykalit karton"
         },
         {
-            "ID": 486,
+            "ID": 485,
             "Beer": "Modelo Especial",
             "Beer_style": "Lager - Mexican",
             "IBU": 18.0,
@@ -20238,7 +20513,7 @@ var brewery_check_ins = {
             "ID": 193,
             "Beer": "Bad Motherfu**er",
             "Beer_style": "Belgian Strong Golden Ale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "50.103998648147716, 14.511696880090616",
             "Brewery_country": "Czech Republic",
@@ -20256,7 +20531,7 @@ var brewery_check_ins = {
             "ID": 274,
             "Beer": "Teaches of Peaches",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery_location": "50.103998648147716, 14.511696880090616",
             "Brewery_country": "Czech Republic",
@@ -20276,7 +20551,7 @@ var brewery_check_ins = {
             "ID": 270,
             "Beer": "The Mad Tea-Party",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery_location": "50.103998648147716, 14.511696880090616",
             "Brewery_country": "Czech Republic",
@@ -20295,7 +20570,7 @@ var brewery_check_ins = {
     ],
     "Chroust": [
         {
-            "ID": 586,
+            "ID": 585,
             "Beer": "Jura",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 35.0,
@@ -20318,7 +20593,7 @@ var brewery_check_ins = {
             "ID": 194,
             "Beer": "Oyster Stout",
             "Beer_style": "Stout - Oyster",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.130198177665946, 14.395175871162714",
             "Brewery_country": "Czech Republic",
@@ -20333,7 +20608,7 @@ var brewery_check_ins = {
             "Comment": "asi zatím nejlepší stout, co se týče těch poctivě kávových, nikterak neštípal ani nekopal, pil se velice hezky"
         },
         {
-            "ID": 447,
+            "ID": 446,
             "Beer": "Union Grapefruit Milkshake IPA Chroust",
             "Beer_style": "IPA - Milkshake",
             "IBU": 25.0,
@@ -20358,7 +20633,7 @@ var brewery_check_ins = {
             "ID": 196,
             "Beer": "Strážské adventní medové pivo 14%",
             "Beer_style": "Honey Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "49.06900088698081, 14.907344984638613",
             "Brewery_country": "Czech Republic",
@@ -20375,7 +20650,7 @@ var brewery_check_ins = {
     ],
     "Akciový pivovar Libertas": [
         {
-            "ID": 381,
+            "ID": 380,
             "Beer": "Bohemian Lager 11%",
             "Beer_style": "Lager - Pale",
             "IBU": 35.0,
@@ -20438,7 +20713,7 @@ var brewery_check_ins = {
             "ID": 201,
             "Beer": "13° speciál",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "48.99332812064615, 14.475273300099731",
             "Brewery_country": "Czech Republic",
@@ -20460,7 +20735,7 @@ var brewery_check_ins = {
             "ID": 204,
             "Beer": "Turnovská dvanáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "50.59184114637144, 15.156551344022981",
             "Brewery_country": "Czech Republic",
@@ -20482,8 +20757,8 @@ var brewery_check_ins = {
             "ID": 203,
             "Beer": "Turnovská Zimní Třináctka",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "50.59184114637144, 15.156551344022981",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Liberecký kraj",
@@ -20507,7 +20782,7 @@ var brewery_check_ins = {
             "Beer": "Adventní Speciál 13.5° 2022 (Galaxy, Ibišek)",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 28.0,
-            "ABV": NaN,
+            "ABV": null,
             "Brewery_location": "49.19104964792337, 16.59200297118421",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihomoravský kraj",
@@ -20527,13 +20802,13 @@ var brewery_check_ins = {
             "ID": 353,
             "Beer": "Starobrno Czech Premium Pilsner",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery_location": "49.19104964792337, 16.59200297118421",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihomoravský kraj",
-            "Venue": NaN,
-            "Venue_location": NaN,
+            "Venue": null,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,50",
             "Serving_style": "Can",
@@ -20624,7 +20899,7 @@ var brewery_check_ins = {
             "Comment": "nejlepší 10° co jsem zatím měl, doporučuju všem milovníkům správně hořkého piva, protože tohle je vodě hodně vzdálené!"
         }
     ],
-    "Pivovar Ferdinand": [
+    "Pivovar Ferdinulld": [
         {
             "ID": 215,
             "Beer": "Pěkný číslo",
@@ -20671,7 +20946,7 @@ var brewery_check_ins = {
             "ID": 218,
             "Beer": "Strongbow Gold Apple",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "52.061287418599996, -2.7240484864844414",
             "Brewery_country": "UK",
@@ -20693,7 +20968,7 @@ var brewery_check_ins = {
             "ID": 221,
             "Beer": "Collab Neipa 14",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,7",
             "Brewery_location": "51.606922857809394, -0.05819924234989221",
             "Brewery_country": "UK",
@@ -20715,7 +20990,7 @@ var brewery_check_ins = {
             "ID": 222,
             "Beer": "Zubr Grand 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "49.45075195103624, 17.447712913518522",
             "Brewery_country": "Czech Republic",
@@ -20739,7 +21014,7 @@ var brewery_check_ins = {
             "ID": 223,
             "Beer": "Klášter Ležák 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.525637679289375, 14.948101169324293",
             "Brewery_country": "Czech Republic",
@@ -20783,7 +21058,7 @@ var brewery_check_ins = {
             "ID": 224,
             "Beer": "Světlý ležák 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "50.92006284042134, 14.603390237684112",
             "Brewery_country": "Czech Republic",
@@ -20807,7 +21082,7 @@ var brewery_check_ins = {
             "ID": 225,
             "Beer": "Demokrat Cider Pátečníků",
             "Beer_style": "Cider - Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.02543691658982, 15.909156123464488",
             "Brewery_country": "Czech Republic",
@@ -20887,7 +21162,7 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://assets.untappd.com/photos/2023_03_18/750d843706943786f7d719d3e3170e02_raw.jpg",
             "Date": "18.03.2023",
-            "Comment": NaN
+            "Comment": null
         },
         {
             "ID": 365,
@@ -20935,7 +21210,7 @@ var brewery_check_ins = {
             "ID": 234,
             "Beer": "Východní Independent",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "50.127036253185786, 14.47016989999928",
             "Brewery_country": "Czech Republic",
@@ -20952,10 +21227,10 @@ var brewery_check_ins = {
             "Comment": "pivečko na podporu Ukrajiny na závěr, měl to být zlatý hřeb večera, NEIPIČKA od Cobolisu, člověk by řekl, že záruka kvality, což o to, chuť perfektní, ale zase řídký, jak si my milovnící NEIPY nepřejeme, snad je to jen místní pípou.."
         },
         {
-            "ID": 592,
+            "ID": 591,
             "Beer": "Yellowstone",
             "Beer_style": "IPA - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,9",
             "Brewery_location": "50.127036253185786, 14.47016989999928",
             "Brewery_country": "Czech Republic",
@@ -20997,8 +21272,8 @@ var brewery_check_ins = {
             "ID": 236,
             "Beer": "Křížek 17 NEIPA",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "49.42352355740412, 14.675540413483278",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihočeský kraj",
@@ -21041,8 +21316,8 @@ var brewery_check_ins = {
             "ID": 238,
             "Beer": "Topaz Ale",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "50.10755755724975, 14.476027360431658",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Hlavní město Praha",
@@ -21085,7 +21360,7 @@ var brewery_check_ins = {
             "ID": 240,
             "Beer": "Transformátor 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "49.29656500977681, 14.622866457663662",
             "Brewery_country": "Czech Republic",
@@ -21147,10 +21422,10 @@ var brewery_check_ins = {
             "Comment": "pomalý rozjezd, začínáme s 10°, trošku kovová jinak fajn"
         },
         {
-            "ID": 495,
+            "ID": 494,
             "Beer": "Světlý ležák Medium 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,4",
             "Brewery_location": "49.776742686609666, 15.0295500171281",
             "Brewery_country": "Czech Republic",
@@ -21169,7 +21444,7 @@ var brewery_check_ins = {
             "Comment": "Back home listening to Peťulka playing the drums."
         },
         {
-            "ID": 496,
+            "ID": 495,
             "Beer": "Světlý ležák Premium 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 33.0,
@@ -21191,7 +21466,7 @@ var brewery_check_ins = {
             "Comment": "Yuck, I miss american beer"
         },
         {
-            "ID": 497,
+            "ID": 496,
             "Beer": "Světlý ležák Premium 12° nefiltrovaný",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -21218,7 +21493,7 @@ var brewery_check_ins = {
             "ID": 244,
             "Beer": "Harry",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "52.28538686313832, 21.057658499996787",
             "Brewery_country": "Poland",
@@ -21260,7 +21535,7 @@ var brewery_check_ins = {
             "ID": 253,
             "Beer": "Obec",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,8",
             "Brewery_location": "50.17339797142514, 13.252779869297347",
             "Brewery_country": "Czech Republic",
@@ -21300,7 +21575,7 @@ var brewery_check_ins = {
             "ID": 257,
             "Beer": "Borůvka / Blueberry",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,4",
             "Brewery_location": "49.41496181937333, 16.581777084598194",
             "Brewery_country": "Czech Republic",
@@ -21317,7 +21592,7 @@ var brewery_check_ins = {
     ],
     "Pivovarský dům Benedict": [
         {
-            "ID": 578,
+            "ID": 577,
             "Beer": "Belgian Witbier",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
             "IBU": 20.0,
@@ -21404,7 +21679,7 @@ var brewery_check_ins = {
             "ID": 279,
             "Beer": "Kozel Mistrův ležák",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "49.9229860777939, 14.636082200002393",
             "Brewery_country": "Czech Republic",
@@ -21419,7 +21694,7 @@ var brewery_check_ins = {
             "Comment": "tento kousek si snad není potřeba představovat, za mě slabší výtvor z dílny Kozla, za hranicí přijatelnosti karamelovosti, dal jsem si ho jen kvůli zvýšení koncentrace při lepení ochranného krycího skla na zbrusu nový mobil"
         },
         {
-            "ID": 385,
+            "ID": 384,
             "Beer": "Kozel Premium Lager / Kozel 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 25.0,
@@ -21466,7 +21741,7 @@ var brewery_check_ins = {
             "ID": 285,
             "Beer": "Zlatá labuť světlá 11%",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "49.43092406704987, 14.198595757660554",
             "Brewery_country": "Czech Republic",
@@ -21488,7 +21763,7 @@ var brewery_check_ins = {
             "ID": 292,
             "Beer": "Madonas Alus Nefiltrēts",
             "Beer_style": "Lager - Vienna",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery_location": "56.8272012182042, 26.36263080000479",
             "Brewery_country": "Latvia",
@@ -21534,7 +21809,7 @@ var brewery_check_ins = {
             "ID": 294,
             "Beer": "Cilpa",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "57.33012628661092, 25.618513499714286",
             "Brewery_country": "Latvia",
@@ -21557,7 +21832,7 @@ var brewery_check_ins = {
             "ID": 295,
             "Beer": "AMOUR",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "56.95004030111951, 24.150853898026327",
             "Brewery_country": "Latvia",
@@ -21603,7 +21878,7 @@ var brewery_check_ins = {
             "ID": 298,
             "Beer": "Bru-1 & Ella Milkshake APA",
             "Beer_style": "Pale Ale - Milkshake",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "56.98139852244721, 24.194319171168974",
             "Brewery_country": "Latvia",
@@ -21624,7 +21899,7 @@ var brewery_check_ins = {
             "ID": 297,
             "Beer": "TEIKAS PORTERIS",
             "Beer_style": "Porter - Baltic",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,2",
             "Brewery_location": "56.98139852244721, 24.194319171168974",
             "Brewery_country": "Latvia",
@@ -21693,7 +21968,7 @@ var brewery_check_ins = {
             "ID": 301,
             "Beer": "Dark Horse of Coffee Nitro Stout",
             "Beer_style": "Stout - Milk / Sweet",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery_location": "47.483395048244034, 19.155764113507487",
             "Brewery_country": "Hungary",
@@ -21739,7 +22014,7 @@ var brewery_check_ins = {
             "ID": 303,
             "Beer": "CLOUD #19 / MILKSHAKE IPA",
             "Beer_style": "IPA - Milkshake",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "56.70141406041512, 23.696773972884586",
             "Brewery_country": "Latvia",
@@ -21762,7 +22037,7 @@ var brewery_check_ins = {
             "ID": 304,
             "Beer": "DDH Citra x Galaxy x Enigma Pale Ale",
             "Beer_style": "Pale Ale - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "57.085707059752664, 24.297348186520278",
             "Brewery_country": "Latvia",
@@ -21808,7 +22083,7 @@ var brewery_check_ins = {
             "ID": 306,
             "Beer": "Plūmju Mežonis 2020 (Plum Wildling)",
             "Beer_style": "Wild Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,7",
             "Brewery_location": "56.96525731187278, 24.13049715603019",
             "Brewery_country": "Latvia",
@@ -21852,7 +22127,7 @@ var brewery_check_ins = {
             "ID": 312,
             "Beer": "Bright",
             "Beer_style": "IPA - Session",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery_location": "52.23355312572883, 21.019111237467946",
             "Brewery_country": "Poland",
@@ -21872,7 +22147,7 @@ var brewery_check_ins = {
             "ID": 313,
             "Beer": "Fine Lager",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "52.23355312572883, 21.019111237467946",
             "Brewery_country": "Poland",
@@ -21892,7 +22167,7 @@ var brewery_check_ins = {
             "ID": 311,
             "Beer": "Pretty Pineapple, Guava & Coconut",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "52.23355312572883, 21.019111237467946",
             "Brewery_country": "Poland",
@@ -21914,7 +22189,7 @@ var brewery_check_ins = {
             "ID": 324,
             "Beer": "Braník Jedenáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "50.069634217737196, 14.407393832536137",
             "Brewery_country": "Czech Republic",
@@ -21932,7 +22207,7 @@ var brewery_check_ins = {
             "ID": 342,
             "Beer": "Braník Světlý",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,1",
             "Brewery_location": "50.069634217737196, 14.407393832536137",
             "Brewery_country": "Czech Republic",
@@ -21951,10 +22226,10 @@ var brewery_check_ins = {
             "Comment": "6 plzniček po kterých následovala cesta do místního klubu, po cestě pauza na benzínce na paras, během čekačky nejlevnější pivečko z chlaďáku, brankář světlý jsem zatím jen exoval, dnes poprvé vychutnávám"
         },
         {
-            "ID": 380,
+            "ID": 379,
             "Beer": "Staropramen 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,7",
             "Brewery_location": "50.069634217737196, 14.407393832536137",
             "Brewery_country": "Czech Republic",
@@ -21971,7 +22246,7 @@ var brewery_check_ins = {
             "Comment": "hospoda, kde nemaj sklo, tak to jsem nezažil.. šel jsem sem na nefiltra, abych ho doplnil do sbírky, ale oni maj jen 11°, kterou už jsem si jednou vytrpěl, co k tomu dodat, na ní si zkrátka pochutnat nejde"
         },
         {
-            "ID": 394,
+            "ID": 393,
             "Beer": "Staropramen Extra chmelená 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -22014,7 +22289,7 @@ var brewery_check_ins = {
             "ID": 316,
             "Beer": "Bitter 12°",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "49.430803111676056, 15.219297428828899",
             "Brewery_country": "Czech Republic",
@@ -22059,13 +22334,13 @@ var brewery_check_ins = {
             "ID": 357,
             "Beer": "Hořká Dvanáctka Ze sklepa",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "50.03549010871371, 15.762095426991413",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Pardubický kraj",
-            "Venue": NaN,
-            "Venue_location": NaN,
+            "Venue": null,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,25",
             "Serving_style": "Can",
@@ -22077,7 +22352,7 @@ var brewery_check_ins = {
             "ID": 336,
             "Beer": "Pernštejn Premium 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "50.03549010871371, 15.762095426991413",
             "Brewery_country": "Czech Republic",
@@ -22095,7 +22370,7 @@ var brewery_check_ins = {
             "ID": 337,
             "Beer": "Pernštejn Vilém 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.03549010871371, 15.762095426991413",
             "Brewery_country": "Czech Republic",
@@ -22115,7 +22390,7 @@ var brewery_check_ins = {
             "ID": 340,
             "Beer": "Shiva",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,7",
             "Brewery_location": "49.18063976044766, 16.619050813509027",
             "Brewery_country": "Czech Republic",
@@ -22135,7 +22410,7 @@ var brewery_check_ins = {
             "ID": 341,
             "Beer": "Něžná IPA",
             "Beer_style": "IPA - Rye",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "49.641649157121755, 17.231193699999736",
             "Brewery_country": "Czech Republic",
@@ -22175,7 +22450,7 @@ var brewery_check_ins = {
             "ID": 352,
             "Beer": "Na.Ex Jedenáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,4",
             "Brewery_location": "49.709461248221466, 15.696254999998617",
             "Brewery_country": "Czech Republic",
@@ -22202,8 +22477,8 @@ var brewery_check_ins = {
             "Brewery_location": "54.885789413955195, 23.92763800000501",
             "Brewery_country": "Lithuania",
             "Beer_region": "Kaunas county",
-            "Venue": NaN,
-            "Venue_location": NaN,
+            "Venue": null,
+            "Venue_location": null,
             "Friends": [],
             "Rating": "1,75",
             "Serving_style": "Can",
@@ -22237,7 +22512,7 @@ var brewery_check_ins = {
             "ID": 364,
             "Beer": "Amber",
             "Beer_style": "Lager - Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,1",
             "Brewery_location": "50.09024600344765, 14.426026216522985",
             "Brewery_country": "Czech Republic",
@@ -22276,10 +22551,10 @@ var brewery_check_ins = {
     ],
     "Velké Březno": [
         {
-            "ID": 382,
+            "ID": 381,
             "Beer": "Březňák 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.664562088804104, 14.13904491423387",
             "Brewery_country": "Czech Republic",
@@ -22296,10 +22571,10 @@ var brewery_check_ins = {
             "Comment": "druhý kousek od Březňáka za dnešní večer a taky velké zklamání, zlí jazykové tvrdili, že Březňák nestojí za nic, já jim vždy oponoval, dnes jim bohužel musím dát za pravdu.. pivo je sice pitelné, ale zároveň železité, a to tu rozhodně vidět nechceme"
         },
         {
-            "ID": 383,
+            "ID": 382,
             "Beer": "Březňák Světlý ležák / Original Böhmisch Pils",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "50.664562088804104, 14.13904491423387",
             "Brewery_country": "Czech Republic",
@@ -22318,10 +22593,10 @@ var brewery_check_ins = {
     ],
     "Chodovar": [
         {
-            "ID": 384,
+            "ID": 383,
             "Beer": "Zlatá jedenáctka",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "49.893292265028165, 12.727714355842318",
             "Brewery_country": "Czech Republic",
@@ -22340,10 +22615,10 @@ var brewery_check_ins = {
     ],
     "IberWolf": [
         {
-            "ID": 397,
+            "ID": 396,
             "Beer": "Dendy Is Not Sakura",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery_location": "41.25063554484712, -8.565234050008579",
             "Brewery_country": "Portugal",
@@ -22363,10 +22638,10 @@ var brewery_check_ins = {
     ],
     "DUNA": [
         {
-            "ID": 398,
+            "ID": 397,
             "Beer": "Duna - Weiss",
             "Beer_style": "Wheat Beer - Hopfenweisse",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery_location": "39.24164861248615, -9.31291375376468",
             "Brewery_country": "Portugal",
@@ -22387,7 +22662,7 @@ var brewery_check_ins = {
     ],
     "Prizm Brewing Co.": [
         {
-            "ID": 399,
+            "ID": 398,
             "Beer": "Apparition - Phantasm Series",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 52.0,
@@ -22409,10 +22684,10 @@ var brewery_check_ins = {
             "Comment": "Yummy NEIPA, first French beer, let's go!"
         },
         {
-            "ID": 429,
+            "ID": 428,
             "Beer": "Long Way From Home",
             "Beer_style": "Stout - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery_location": "43.652180280843936, 3.952059125904005",
             "Brewery_country": "France",
@@ -22432,10 +22707,10 @@ var brewery_check_ins = {
     ],
     "Pühaste Brewery": [
         {
-            "ID": 400,
+            "ID": 399,
             "Beer": "Night Slither",
             "Beer_style": "Porter - Imperial / Double Baltic",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "11,0",
             "Brewery_location": "58.343618794348735, 26.729632626258983",
             "Brewery_country": "Estonia",
@@ -22456,7 +22731,7 @@ var brewery_check_ins = {
     ],
     "Ophiussa Brewing Co.": [
         {
-            "ID": 401,
+            "ID": 400,
             "Beer": "Indigo",
             "Beer_style": "Stout - Milk / Sweet",
             "IBU": 30.0,
@@ -22480,10 +22755,10 @@ var brewery_check_ins = {
     ],
     "White Dog Brewery": [
         {
-            "ID": 402,
+            "ID": 401,
             "Beer": "Forest of Endless Imagination",
             "Beer_style": "Sour - Smoothie / Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "51.776427928830714, 4.641051112245735",
             "Brewery_country": "Netherlands",
@@ -22504,10 +22779,10 @@ var brewery_check_ins = {
     ],
     "Barona Brewing Company": [
         {
-            "ID": 403,
+            "ID": 402,
             "Beer": "Outono Tropical",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "39.41200250834853, -7.346635873481639",
             "Brewery_country": "Portugal",
@@ -22526,10 +22801,10 @@ var brewery_check_ins = {
     ],
     "Canil": [
         {
-            "ID": 404,
+            "ID": 403,
             "Beer": "Czech Kolsch",
             "Beer_style": "Kölsch",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "38.71240605534813, -9.137233325166827",
             "Brewery_country": "Portugal",
@@ -22548,10 +22823,10 @@ var brewery_check_ins = {
     ],
     "Rua Nova": [
         {
-            "ID": 405,
+            "ID": 404,
             "Beer": "Black Daschsund",
             "Beer_style": "Stout - Imperial / Double Pastry",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery_location": "41.441621278175624, -8.293501992743627",
             "Brewery_country": "Portugal",
@@ -22570,7 +22845,7 @@ var brewery_check_ins = {
     ],
     "A Fábrica Brewpub": [
         {
-            "ID": 406,
+            "ID": 405,
             "Beer": "Stout",
             "Beer_style": "Stout - Foreign / Export",
             "IBU": 17.0,
@@ -22592,7 +22867,7 @@ var brewery_check_ins = {
     ],
     "Praxis": [
         {
-            "ID": 407,
+            "ID": 406,
             "Beer": "Imperial Stout",
             "Beer_style": "Stout - Imperial / Double",
             "IBU": 45.0,
@@ -22614,10 +22889,10 @@ var brewery_check_ins = {
     ],
     "Old Fox": [
         {
-            "ID": 408,
+            "ID": 407,
             "Beer": "Barleywine",
             "Beer_style": "Barleywine - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "14,0",
             "Brewery_location": "41.49860556883976, -8.394645497877688",
             "Brewery_country": "Portugal",
@@ -22636,7 +22911,7 @@ var brewery_check_ins = {
     ],
     "Lupum": [
         {
-            "ID": 409,
+            "ID": 408,
             "Beer": "Triple NEIPA Phantasm",
             "Beer_style": "IPA - Triple New England / Hazy",
             "IBU": 32.0,
@@ -22658,7 +22933,7 @@ var brewery_check_ins = {
     ],
     "Sapporo Breweries": [
         {
-            "ID": 410,
+            "ID": 409,
             "Beer": "Sapporo Premium Beer",
             "Beer_style": "Lager - Pale",
             "IBU": 18.0,
@@ -22680,10 +22955,10 @@ var brewery_check_ins = {
     ],
     "Rohozec": [
         {
-            "ID": 416,
+            "ID": 415,
             "Beer": "Prometheus",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "50.61074205472704, 15.148016150811154",
             "Brewery_country": "Czech Republic",
@@ -22702,10 +22977,10 @@ var brewery_check_ins = {
             "Comment": "Pilsner with Rohozec handwriting without any doubt. I didn't like the aftertaste tho."
         },
         {
-            "ID": 414,
+            "ID": 413,
             "Beer": "Y",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.61074205472704, 15.148016150811154",
             "Brewery_country": "Czech Republic",
@@ -22725,10 +23000,10 @@ var brewery_check_ins = {
     ],
     "Malastrana Beer": [
         {
-            "ID": 415,
+            "ID": 414,
             "Beer": "Bock",
             "Beer_style": "Bock - Single / Traditional",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,5",
             "Brewery_location": "50.080559813133924, 14.406199842444583",
             "Brewery_country": "Czech Republic",
@@ -22748,7 +23023,7 @@ var brewery_check_ins = {
     ],
     "Pivovar Sever": [
         {
-            "ID": 419,
+            "ID": 418,
             "Beer": "Severská APA",
             "Beer_style": "Pale Ale - American",
             "IBU": 38.0,
@@ -22766,7 +23041,7 @@ var brewery_check_ins = {
             "Comment": "2 days old check-in, my friend from Děčín shared the bottle of his local brewery with me, fair APA, pleasant hoppy sipping"
         },
         {
-            "ID": 421,
+            "ID": 420,
             "Beer": "Václav 11°",
             "Beer_style": "Lager - Helles",
             "IBU": 30.0,
@@ -22786,7 +23061,7 @@ var brewery_check_ins = {
     ],
     "Heineken Česká Republika": [
         {
-            "ID": 547,
+            "ID": 546,
             "Beer": "Beránek polotmavý 12",
             "Beer_style": "Lager - Amber / Red",
             "IBU": 35.0,
@@ -22806,13 +23081,13 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3a40e2c80d5e9de281082a208ac1a4d1_c_1387551604_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 422,
+            "ID": 421,
             "Beer": "Zlatopramen",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "50.174333243073804, 13.774932899452528",
             "Brewery_country": "Czech Republic",
@@ -22829,10 +23104,10 @@ var brewery_check_ins = {
     ],
     "Kitl": [
         {
-            "ID": 423,
+            "ID": 422,
             "Beer": "Medovina",
             "Beer_style": "Mead - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "12,0",
             "Brewery_location": "50.72492294716701, 15.15520790947721",
             "Brewery_country": "Czech Republic",
@@ -22849,7 +23124,7 @@ var brewery_check_ins = {
     ],
     "Cervesa Guineu": [
         {
-            "ID": 424,
+            "ID": 423,
             "Beer": "Montserrat",
             "Beer_style": "Stout - Irish Dry",
             "IBU": 70.0,
@@ -22869,10 +23144,10 @@ var brewery_check_ins = {
     ],
     "Empresa de Cervejas da Madeira": [
         {
-            "ID": 425,
+            "ID": 424,
             "Beer": "Coral Cerveja",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "32.64966119589803, -16.96663305328473",
             "Brewery_country": "Portugal",
@@ -22887,10 +23162,10 @@ var brewery_check_ins = {
             "Comment": "Not as bad as I expected in the end. First day on Madeira 😍"
         },
         {
-            "ID": 426,
+            "ID": 425,
             "Beer": "Coral Tónica Stout",
             "Beer_style": "Stout - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "32.64966119589803, -16.96663305328473",
             "Brewery_country": "Portugal",
@@ -22907,7 +23182,7 @@ var brewery_check_ins = {
     ],
     "Garage Beer Co.": [
         {
-            "ID": 428,
+            "ID": 427,
             "Beer": "HELIUM FLASH",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 65.0,
@@ -22928,7 +23203,7 @@ var brewery_check_ins = {
             "Comment": "Best DOUBLE NEIPA I've ever tried, sweet and hoppy, very good job here."
         },
         {
-            "ID": 441,
+            "ID": 440,
             "Beer": "PARKA",
             "Beer_style": "Porter - Other",
             "IBU": 45.0,
@@ -22950,7 +23225,7 @@ var brewery_check_ins = {
     ],
     "Kronenbourg Brewery": [
         {
-            "ID": 432,
+            "ID": 431,
             "Beer": "Grimbergen Double Ambrée",
             "Beer_style": "Belgian Dubbel",
             "IBU": 22.0,
@@ -22972,7 +23247,7 @@ var brewery_check_ins = {
     ],
     "Sofia Electric Brewing": [
         {
-            "ID": 433,
+            "ID": 432,
             "Beer": "Six Months Behind Schedule (2023)",
             "Beer_style": "Stout - Imperial / Double",
             "IBU": 40.0,
@@ -22994,7 +23269,7 @@ var brewery_check_ins = {
     ],
     "Grizzly Brewing": [
         {
-            "ID": 435,
+            "ID": 434,
             "Beer": "SPOOKY FLUIDS V2",
             "Beer_style": "IPA - Milkshake",
             "IBU": 23.0,
@@ -23016,7 +23291,7 @@ var brewery_check_ins = {
     ],
     "Cervesa Espiga": [
         {
-            "ID": 436,
+            "ID": 435,
             "Beer": "Johnny Crash",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 54.0,
@@ -23036,10 +23311,10 @@ var brewery_check_ins = {
     ],
     "Sacrilège": [
         {
-            "ID": 437,
+            "ID": 436,
             "Beer": "Cuvée Courson",
             "Beer_style": "Farmhouse Ale - Bière de Coupage",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,6",
             "Brewery_location": "43.586069028239976, 3.8747562984740513",
             "Brewery_country": "France",
@@ -23056,10 +23331,10 @@ var brewery_check_ins = {
             "Comment": "Sour taste well hidden, so I was satisfied"
         },
         {
-            "ID": 438,
+            "ID": 437,
             "Beer": "Éclaircie",
             "Beer_style": "Stout - Foreign / Export",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "43.586069028239976, 3.8747562984740513",
             "Brewery_country": "France",
@@ -23078,7 +23353,7 @@ var brewery_check_ins = {
     ],
     "Brouwerij Lindemans": [
         {
-            "ID": 439,
+            "ID": 438,
             "Beer": "Pêche / Pêcheresse",
             "Beer_style": "Lambic - Fruit",
             "IBU": 10.0,
@@ -23100,7 +23375,7 @@ var brewery_check_ins = {
     ],
     "LETRA Brewery": [
         {
-            "ID": 444,
+            "ID": 443,
             "Beer": "Letra G",
             "Beer_style": "Stout - Imperial / Double",
             "IBU": 51.0,
@@ -23120,7 +23395,7 @@ var brewery_check_ins = {
             "Comment": "Ok, with this one I'm def getting drunk"
         },
         {
-            "ID": 442,
+            "ID": 441,
             "Beer": "Rebendita - MilkShake Passion IPA",
             "Beer_style": "IPA - Milkshake",
             "IBU": 14.0,
@@ -23142,7 +23417,7 @@ var brewery_check_ins = {
     ],
     "Rogue Ales": [
         {
-            "ID": 443,
+            "ID": 442,
             "Beer": "Hazelnut Brown Nectar",
             "Beer_style": "Brown Ale - American",
             "IBU": 33.0,
@@ -23164,10 +23439,10 @@ var brewery_check_ins = {
     ],
     "Brauerei Schwechat": [
         {
-            "ID": 445,
+            "ID": 444,
             "Beer": "Schwechater Bier",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "48.14219718367509, 16.46629439141803",
             "Brewery_country": "Austria",
@@ -23186,10 +23461,10 @@ var brewery_check_ins = {
     ],
     "Brauerei Puntigam": [
         {
-            "ID": 446,
+            "ID": 445,
             "Beer": "Puntigamer",
             "Beer_style": "Lager - Helles",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "47.02982232751749, 15.433510865415503",
             "Brewery_country": "Austria",
@@ -23208,10 +23483,10 @@ var brewery_check_ins = {
     ],
     "Chotoviny": [
         {
-            "ID": 454,
+            "ID": 453,
             "Beer": "Dno Pytle 4K HD",
             "Beer_style": "IPA - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,9",
             "Brewery_location": "49.478969702156384, 14.681669483252193",
             "Brewery_country": "Czech Republic",
@@ -23230,10 +23505,10 @@ var brewery_check_ins = {
     ],
     "Podřipský rodinný minipivovar": [
         {
-            "ID": 456,
+            "ID": 455,
             "Beer": "Podřipský Red Ale 12°",
             "Beer_style": "Red Ale - American Amber / Red",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery_location": "50.3726413585645, 14.306923383244081",
             "Brewery_country": "Czech Republic",
@@ -23252,7 +23527,7 @@ var brewery_check_ins = {
     ],
     "PINTA": [
         {
-            "ID": 457,
+            "ID": 456,
             "Beer": "IIPPAA",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 60.0,
@@ -23272,7 +23547,7 @@ var brewery_check_ins = {
     ],
     "Browar Zamkowy Cieszyn": [
         {
-            "ID": 458,
+            "ID": 457,
             "Beer": "Porter Bałtycki",
             "Beer_style": "Porter - Baltic",
             "IBU": 40.0,
@@ -23292,10 +23567,10 @@ var brewery_check_ins = {
     ],
     "Pivovar Uhříněves": [
         {
-            "ID": 460,
+            "ID": 459,
             "Beer": "Ale Golden Blondie",
             "Beer_style": "Blonde / Golden Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.027974142788516, 14.607107128323797",
             "Brewery_country": "Czech Republic",
@@ -23310,10 +23585,10 @@ var brewery_check_ins = {
             "Comment": "That was awesome! Bitterness scale just as I love it, mild fruitness, little sweet, kinda a bittersweet symphony"
         },
         {
-            "ID": 459,
+            "ID": 458,
             "Beer": "Alois 11",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.027974142788516, 14.607107128323797",
             "Brewery_country": "Czech Republic",
@@ -23328,10 +23603,10 @@ var brewery_check_ins = {
             "Comment": "Righteous Czech Pils, I recommend"
         },
         {
-            "ID": 538,
+            "ID": 537,
             "Beer": "Kaštanové pivo",
             "Beer_style": "Spiced / Herbed Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,0",
             "Brewery_location": "50.027974142788516, 14.607107128323797",
             "Brewery_country": "Czech Republic",
@@ -23348,12 +23623,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e18177e433471f72595adb1952fa9cb7_c_1387519780_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Sierra Nevada Brewing Co.": [
         {
-            "ID": 463,
+            "ID": 462,
             "Beer": "Hazy Little Thing",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 35.0,
@@ -23373,7 +23648,7 @@ var brewery_check_ins = {
     ],
     "Coors Brewing Company": [
         {
-            "ID": 464,
+            "ID": 463,
             "Beer": "Coors Light",
             "Beer_style": "Lager - American Light",
             "IBU": 10.0,
@@ -23394,7 +23669,7 @@ var brewery_check_ins = {
             "Comment": "A water, not a beer"
         },
         {
-            "ID": 469,
+            "ID": 468,
             "Beer": "Keystone Light",
             "Beer_style": "Lager - American Light",
             "IBU": 7.0,
@@ -23414,7 +23689,7 @@ var brewery_check_ins = {
     ],
     "New Belgium Brewing Company": [
         {
-            "ID": 465,
+            "ID": 464,
             "Beer": "Voodoo Ranger - Captain Dynamite IPA",
             "Beer_style": "IPA - American",
             "IBU": 45.0,
@@ -23437,7 +23712,7 @@ var brewery_check_ins = {
     ],
     "Switchback Brewing Company": [
         {
-            "ID": 466,
+            "ID": 465,
             "Beer": "Switchback Ale",
             "Beer_style": "Red Ale - American Amber / Red",
             "IBU": 28.0,
@@ -23460,7 +23735,7 @@ var brewery_check_ins = {
     ],
     "Victory Brewing Company": [
         {
-            "ID": 467,
+            "ID": 466,
             "Beer": "Sour Monkey",
             "Beer_style": "Sour - Other",
             "IBU": 10.0,
@@ -23480,10 +23755,10 @@ var brewery_check_ins = {
     ],
     "The Catamount Brewery": [
         {
-            "ID": 468,
+            "ID": 467,
             "Beer": "Catamount Imperial IPA",
             "Beer_style": "The Catamount Brewery",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,1",
             "Brewery_location": "43.5131752671743, -72.40270501016583",
             "Brewery_country": "United States",
@@ -23498,7 +23773,7 @@ var brewery_check_ins = {
             "Comment": "Mid IPA"
         },
         {
-            "ID": 493,
+            "ID": 492,
             "Beer": "Catamount IPA",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 40.0,
@@ -23518,7 +23793,7 @@ var brewery_check_ins = {
     ],
     "Foam Brewers": [
         {
-            "ID": 492,
+            "ID": 491,
             "Beer": "Built To Spill",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 80.0,
@@ -23536,10 +23811,10 @@ var brewery_check_ins = {
             "Comment": "Oh wow, it's gonna be tough leaving such a yummy environment"
         },
         {
-            "ID": 470,
+            "ID": 469,
             "Beer": "Pavement",
             "Beer_style": "IPA - Imperial / Double",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "8,2",
             "Brewery_location": "44.47918688753912, -73.22002045861522",
             "Brewery_country": "United States",
@@ -23559,10 +23834,10 @@ var brewery_check_ins = {
     ],
     "Baxter Brewing Co.": [
         {
-            "ID": 471,
+            "ID": 470,
             "Beer": "Pale Ale",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery_location": "44.0951804284252, -70.21921956136921",
             "Brewery_country": "United States",
@@ -23579,10 +23854,10 @@ var brewery_check_ins = {
     ],
     "Mighty Squirrel Brewing Co.": [
         {
-            "ID": 472,
+            "ID": 471,
             "Beer": "Double Cloud Candy",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "7,8",
             "Brewery_location": "42.38745167238333, -71.20120486053474",
             "Brewery_country": "United States",
@@ -23597,7 +23872,7 @@ var brewery_check_ins = {
             "Comment": "Kinda sour tbh, disctinct fruit flavor not standing out as I would assume judging by the color. Low on hops as well"
         },
         {
-            "ID": 478,
+            "ID": 477,
             "Beer": "Magic Rain",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 50.0,
@@ -23617,10 +23892,10 @@ var brewery_check_ins = {
     ],
     "Great North Aleworks": [
         {
-            "ID": 473,
+            "ID": 472,
             "Beer": "Trail Juice IPA",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "42.97745564145459, -71.40055722875003",
             "Brewery_country": "United States",
@@ -23637,10 +23912,10 @@ var brewery_check_ins = {
     ],
     "Smuttynose Brewing Co.": [
         {
-            "ID": 474,
+            "ID": 473,
             "Beer": "Pineapple Fruit Freak Ale",
             "Beer_style": "Fruit Beer",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,8",
             "Brewery_location": "42.94540969655868, -70.85473469811471",
             "Brewery_country": "United States",
@@ -23657,7 +23932,7 @@ var brewery_check_ins = {
     ],
     "Woodstock Inn Brewery": [
         {
-            "ID": 475,
+            "ID": 474,
             "Beer": "Mountain Haze",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 40.0,
@@ -23677,7 +23952,7 @@ var brewery_check_ins = {
     ],
     "Tuckerman Brewing Company": [
         {
-            "ID": 476,
+            "ID": 475,
             "Beer": "Pale Ale",
             "Beer_style": "Pale Ale - American",
             "IBU": 24.0,
@@ -23697,10 +23972,10 @@ var brewery_check_ins = {
     ],
     "Barreled Souls Brewing Company": [
         {
-            "ID": 477,
+            "ID": 476,
             "Beer": "Quaker State",
             "Beer_style": "Stout - Oatmeal",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "43.52363060406002, -70.427471401527",
             "Brewery_country": "United States",
@@ -23717,10 +23992,10 @@ var brewery_check_ins = {
     ],
     "River Roost Brewery": [
         {
-            "ID": 479,
+            "ID": 478,
             "Beer": "Mas Verde",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery_location": "43.64574986835147, -72.31830789301432",
             "Brewery_country": "United States",
@@ -23737,7 +24012,7 @@ var brewery_check_ins = {
     ],
     "The Shed Brewery": [
         {
-            "ID": 480,
+            "ID": 479,
             "Beer": "Shed Mountain Hazy IPA",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 40.0,
@@ -23757,10 +24032,10 @@ var brewery_check_ins = {
     ],
     "Citizen Cider": [
         {
-            "ID": 481,
+            "ID": 480,
             "Beer": "Unified Press",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,2",
             "Brewery_location": "44.47071954239343, -73.21452112940216",
             "Brewery_country": "United States",
@@ -23777,7 +24052,7 @@ var brewery_check_ins = {
     ],
     "Samuel Adams": [
         {
-            "ID": 482,
+            "ID": 481,
             "Beer": "Boston Lager Remastered",
             "Beer_style": "Lager - American",
             "IBU": 30.0,
@@ -23795,10 +24070,10 @@ var brewery_check_ins = {
             "Comment": "I was very surprised! A good lager beer in America"
         },
         {
-            "ID": 494,
+            "ID": 493,
             "Beer": "Cascade State of Mind",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,8",
             "Brewery_location": "42.35975277719315, -71.0566359794325",
             "Brewery_country": "United States",
@@ -23815,7 +24090,7 @@ var brewery_check_ins = {
     ],
     "Zero Gravity Craft Brewery": [
         {
-            "ID": 483,
+            "ID": 482,
             "Beer": "Green State Lager",
             "Beer_style": "Pilsner - Other",
             "IBU": 25.0,
@@ -23835,7 +24110,7 @@ var brewery_check_ins = {
     ],
     "Upper Pass Beer Company": [
         {
-            "ID": 484,
+            "ID": 483,
             "Beer": "Cloud Drop DIPA",
             "Beer_style": "IPA - Imperial / Double New England / Hazy",
             "IBU": 60.0,
@@ -23850,15 +24125,15 @@ var brewery_check_ins = {
             "Serving_style": "Can",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_20/ecf19540833a2dde8bad7395913273fa_c_1373880790_raw.jpg",
             "Date": "20.04.2024",
-            "Comment": "The imperial part is somewhat dominant there"
+            "Comment": "The imperial part is somewhat dominullt there"
         }
     ],
     "Berkshire Brewing Company (B.B.C.)": [
         {
-            "ID": 485,
+            "ID": 484,
             "Beer": "Dandy Lion Haze",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,7",
             "Brewery_location": "42.47867603000156, -72.6094304586034",
             "Brewery_country": "United States",
@@ -23875,10 +24150,10 @@ var brewery_check_ins = {
     ],
     "Downeast Cider House": [
         {
-            "ID": 487,
+            "ID": 486,
             "Beer": "Original Blend",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "42.36428343705075, -71.03249265967128",
             "Brewery_country": "United States",
@@ -23895,10 +24170,10 @@ var brewery_check_ins = {
     ],
     "Lawson's Finest Liquids": [
         {
-            "ID": 488,
+            "ID": 487,
             "Beer": "Little Sip",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,2",
             "Brewery_location": "44.18790022858452, -72.83523729986179",
             "Brewery_country": "United States",
@@ -23915,10 +24190,10 @@ var brewery_check_ins = {
     ],
     "True North Ale Company": [
         {
-            "ID": 489,
+            "ID": 488,
             "Beer": "Peaches & Dreams",
             "Beer_style": "Sour - Fruited",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,4",
             "Brewery_location": "42.6695676655203, -70.83603925893097",
             "Brewery_country": "United States",
@@ -23935,10 +24210,10 @@ var brewery_check_ins = {
     ],
     "Harpoon Brewery": [
         {
-            "ID": 490,
+            "ID": 489,
             "Beer": "U.F.O. White",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "42.347074757307034, -71.03415194705283",
             "Brewery_country": "United States",
@@ -23955,7 +24230,7 @@ var brewery_check_ins = {
     ],
     "Fiddlehead Brewing Company": [
         {
-            "ID": 491,
+            "ID": 490,
             "Beer": "Fiddlehead IPA",
             "Beer_style": "IPA - American",
             "IBU": 53.0,
@@ -23975,10 +24250,10 @@ var brewery_check_ins = {
     ],
     "Pivovary Lobkowicz": [
         {
-            "ID": 498,
+            "ID": 497,
             "Beer": "Black Hill",
             "Beer_style": "Cider - Traditional / Apfelwein",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "50.05714807441847, 14.544989359279795",
             "Brewery_country": "Czech Republic",
@@ -23992,17 +24267,17 @@ var brewery_check_ins = {
             ],
             "Rating": "4,00",
             "Serving_style": "Draft",
-            "Photo_url": NaN,
+            "Photo_url": null,
             "Date": "24.04.2024",
             "Comment": "Yummy cider, due to particular circumsatnces I don't have a photo.."
         }
     ],
     "Pivovar Ladronka": [
         {
-            "ID": 503,
+            "ID": 502,
             "Beer": "Heyl Summer Ale 8",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,3",
             "Brewery_location": "50.07844798328466, 14.356394211436543",
             "Brewery_country": "Czech Republic",
@@ -24021,7 +24296,7 @@ var brewery_check_ins = {
     ],
     "Hákův parní pivovar": [
         {
-            "ID": 504,
+            "ID": 503,
             "Beer": "Stout šalvěj",
             "Beer_style": "Stout - Other",
             "IBU": 48.0,
@@ -24043,10 +24318,10 @@ var brewery_check_ins = {
     ],
     "Pivovar Čestmír": [
         {
-            "ID": 506,
+            "ID": 505,
             "Beer": "Frida Revolucion",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,3",
             "Brewery_location": "50.189595935683556, 14.64785419834229",
             "Brewery_country": "Czech Republic",
@@ -24063,10 +24338,10 @@ var brewery_check_ins = {
     ],
     "U Medvídků": [
         {
-            "ID": 509,
+            "ID": 508,
             "Beer": "Alegott",
             "Beer_style": "Pale Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,9",
             "Brewery_location": "50.082863747387556, 14.418821798806153",
             "Brewery_country": "Czech Republic",
@@ -24081,10 +24356,10 @@ var brewery_check_ins = {
             "Comment": "Walking the Brazilians, a visit from Porto"
         },
         {
-            "ID": 510,
+            "ID": 509,
             "Beer": "Blondgott",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.082863747387556, 14.418821798806153",
             "Brewery_country": "Czech Republic",
@@ -24101,7 +24376,7 @@ var brewery_check_ins = {
     ],
     "Tradiční pivovar v Rakovníku": [
         {
-            "ID": 515,
+            "ID": 514,
             "Beer": "Bakalář Za studena chmelený / Dry Hopped Lager",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 34.0,
@@ -24121,7 +24396,7 @@ var brewery_check_ins = {
     ],
     "Pivovar Řeporyje": [
         {
-            "ID": 516,
+            "ID": 515,
             "Beer": "Prefunda 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 36.0,
@@ -24141,10 +24416,10 @@ var brewery_check_ins = {
     ],
     "Загорка (Zagorka Brewery)": [
         {
-            "ID": 517,
+            "ID": 516,
             "Beer": "Zagorka Special (Загорка Специално)",
             "Beer_style": "Lager - Pale",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,0",
             "Brewery_location": "42.44320186861404, 25.633915317920447",
             "Brewery_country": "Bulgaria",
@@ -24161,7 +24436,7 @@ var brewery_check_ins = {
     ],
     "The Alchemist": [
         {
-            "ID": 518,
+            "ID": 517,
             "Beer": "Heady Topper",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 100.0,
@@ -24181,7 +24456,7 @@ var brewery_check_ins = {
     ],
     "Haksna Brewery": [
         {
-            "ID": 522,
+            "ID": 521,
             "Beer": "Our Lager",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 31.0,
@@ -24203,7 +24478,7 @@ var brewery_check_ins = {
     ],
     "Pivovar Kraft": [
         {
-            "ID": 523,
+            "ID": 522,
             "Beer": "Tekutý Manitú",
             "Beer_style": "IPA - American",
             "IBU": 40.0,
@@ -24225,7 +24500,7 @@ var brewery_check_ins = {
     ],
     "Švabín Brewery": [
         {
-            "ID": 524,
+            "ID": 523,
             "Beer": "Leshy",
             "Beer_style": "IPA - Imperial / Double",
             "IBU": 60.0,
@@ -24248,7 +24523,7 @@ var brewery_check_ins = {
     ],
     "Psychovar": [
         {
-            "ID": 526,
+            "ID": 525,
             "Beer": "Jiříkovo Vidění Oat Wheat Sour Ale",
             "Beer_style": "Sour - Other",
             "IBU": 15.0,
@@ -24270,11 +24545,11 @@ var brewery_check_ins = {
     ],
     "Minipivovar Brabčák": [
         {
-            "ID": 527,
+            "ID": 526,
             "Beer": "Fénix IPA",
             "Beer_style": "IPA - American",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "49.772784656928685, 18.306709511748664",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Moravskoslezský kraj",
@@ -24293,7 +24568,7 @@ var brewery_check_ins = {
     ],
     "Pivovar Kladno Kročehlavy": [
         {
-            "ID": 530,
+            "ID": 529,
             "Beer": "Kladenská Poldi 8°",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 25.0,
@@ -24311,15 +24586,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/7ce80dd3c119cc21a204dee3cba8501e_c_1387511339_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar Kristýna": [
         {
-            "ID": 580,
+            "ID": 579,
             "Beer": "Kořen 11°",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "50.86236537490102, 14.824740041938714",
             "Brewery_country": "Czech Republic",
@@ -24334,10 +24609,10 @@ var brewery_check_ins = {
             "Comment": "Is Kristýna expanding or what? Saw them 2 weeks ago for the first time at the Prague Castle beer festival. Now they've plenty of kegs stored in Mrtvá Ryba, will stay on tap for quite some time I guess, on the way from Lidl back to work hehe"
         },
         {
-            "ID": 531,
+            "ID": 530,
             "Beer": "Křemen 10",
             "Beer_style": "Lager - Světlé (Czech Pale)",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,9",
             "Brewery_location": "50.86236537490102, 14.824740041938714",
             "Brewery_country": "Czech Republic",
@@ -24352,16 +24627,16 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/e1f36fa4f4a8dc950b42c9c4ff3a8db2_c_1387511802_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Zmolský Pivovar": [
         {
-            "ID": 532,
+            "ID": 531,
             "Beer": "Vojtěch 11°",
             "Beer_style": "Lager - Other",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "48.9816326957962, 16.141154352958623",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Jihomoravský kraj",
@@ -24380,7 +24655,7 @@ var brewery_check_ins = {
     ],
     "Tahoun": [
         {
-            "ID": 534,
+            "ID": 533,
             "Beer": "Tahoun",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 32.0,
@@ -24404,10 +24679,10 @@ var brewery_check_ins = {
     ],
     "Pivovar Malenovice": [
         {
-            "ID": 535,
+            "ID": 534,
             "Beer": "Kmet - Dubský Zeleňák",
             "Beer_style": "Historical Beer - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "49.205604504628596, 17.597158940266876",
             "Brewery_country": "Czech Republic",
@@ -24423,12 +24698,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/ca78e05ca40b1da3bdb06f03167093fa_c_1387515017_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar Červený vlk": [
         {
-            "ID": 536,
+            "ID": 535,
             "Beer": "Lehký Střízlík",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 30.0,
@@ -24452,7 +24727,7 @@ var brewery_check_ins = {
     ],
     "Topolský pivovar": [
         {
-            "ID": 555,
+            "ID": 554,
             "Beer": "Lvice 12 %",
             "Beer_style": "IPA - Other",
             "IBU": 40.0,
@@ -24472,10 +24747,10 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/025bcd3da6baec036ddd46cb48f1f48f_c_1387600992_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         },
         {
-            "ID": 537,
+            "ID": 536,
             "Beer": "Topolské výčepní pivo 10",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 24.0,
@@ -24495,12 +24770,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/3da421866174f0201279e3a3d27d0b52_c_1387518574_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pokusný minipivovar ve Chmelařském institutu": [
         {
-            "ID": 541,
+            "ID": 540,
             "Beer": "Cold IPA Saturn + Eris 14,5",
             "Beer_style": "IPA - Cold",
             "IBU": 50.0,
@@ -24520,12 +24795,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/56d6a7782a24cb453cc72ebc488bc355_c_1387523975_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar Purkmistr": [
         {
-            "ID": 542,
+            "ID": 541,
             "Beer": "Forest Gunk",
             "Beer_style": "Pale Ale - Other",
             "IBU": 44.0,
@@ -24550,7 +24825,7 @@ var brewery_check_ins = {
     ],
     "Pivovar Zábřeh": [
         {
-            "ID": 543,
+            "ID": 542,
             "Beer": "Welzl 14 APA",
             "Beer_style": "Pale Ale - American",
             "IBU": 65.0,
@@ -24570,12 +24845,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/83b560099b888c12f3fdd2eefd4a1f08_c_1387531302_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovarský dům Poupě": [
         {
-            "ID": 544,
+            "ID": 543,
             "Beer": "Poupětův Američan 11°",
             "Beer_style": "Pale Ale - American",
             "IBU": 30.0,
@@ -24595,15 +24870,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/95a273f3cec41b59af186765a90ddcf7_c_1387534953_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar VŠCHT Praha": [
         {
-            "ID": 545,
+            "ID": 544,
             "Beer": "Hawai 11",
             "Beer_style": "Wheat Beer - Witbier / Blanche",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.103365351273915, 14.389808993793213",
             "Brewery_country": "Czech Republic",
@@ -24625,11 +24900,11 @@ var brewery_check_ins = {
     ],
     "Karlovský minipivovar Pod pralesem": [
         {
-            "ID": 546,
+            "ID": 545,
             "Beer": "Karlovsky Anniversary Strong",
             "Beer_style": "Strong Ale - Other",
-            "IBU": NaN,
-            "ABV": NaN,
+            "IBU": null,
+            "ABV": null,
             "Brewery_location": "49.37007335332604, 18.3574045810908",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Zlínský kraj",
@@ -24645,12 +24920,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/39ed20cb870312ab8c670106642df9ef_c_1387544415_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Městský pivovar Domažlice": [
         {
-            "ID": 548,
+            "ID": 547,
             "Beer": "Domažlický Doppel",
             "Beer_style": "Bock - Doppelbock",
             "IBU": 23.0,
@@ -24670,15 +24945,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/a081c633a5249e210b9cf0bd523d83f6_c_1387559102_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Zámecký pivovar Zábřeh": [
         {
-            "ID": 549,
+            "ID": 548,
             "Beer": "Pikard Red Ale",
             "Beer_style": "Bitter - Session / Ordinary",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,0",
             "Brewery_location": "49.80701399483334, 18.240302734204242",
             "Brewery_country": "Czech Republic",
@@ -24695,15 +24970,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dce33be48f624d284bd92574cb2364f5_c_1387562141_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Rožnovský pivovar": [
         {
-            "ID": 550,
+            "ID": 549,
             "Beer": "Rytíř Gutmann 16°",
             "Beer_style": "Bock - Single / Traditional",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "6,0",
             "Brewery_location": "49.45671829534698, 18.136823740990586",
             "Brewery_country": "Czech Republic",
@@ -24720,15 +24995,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/038f46be03ecf2aaed6d8fb6d48690a7_c_1387567231_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Klášterní pivovar Želiv": [
         {
-            "ID": 551,
+            "ID": 550,
             "Beer": "Pouťová A.P.A.",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,3",
             "Brewery_location": "49.52968526152458, 15.213886768392497",
             "Brewery_country": "Czech Republic",
@@ -24745,12 +25020,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/2426cc86a096fcd1c827680cb66ceea8_c_1387570665_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar Zhůřák": [
         {
-            "ID": 552,
+            "ID": 551,
             "Beer": "Cherry-Raspberry Kompot Sour",
             "Beer_style": "Sour - Fruited",
             "IBU": 10.0,
@@ -24770,12 +25045,33 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/293152986051f876c439cd8d9bee4ebb_c_1387578700_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
+        },
+        {
+            "ID": 598,
+            "Beer": "Session S Pivstrem",
+            "Beer_style": "IPA - Session",
+            "IBU": 40.0,
+            "ABV": "5,7",
+            "Brewery_location": "49.53750890510675, 13.51593872869555",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Pivstro",
+            "Venue_location": "49.74568717748942, 13.374387384432865",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/564a16c04dd6d501c4a194d70784d812_c_1397427052_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Oh yeah, drinkable refreshing, I could be drink that for summer days"
         }
     ],
     "Pivovar Neratov": [
         {
-            "ID": 554,
+            "ID": 553,
             "Beer": "Prorok 11 NEIPA",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 9.0,
@@ -24795,15 +25091,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/b5bbbbcf6d33ee133c999a93afe27fd4_c_1387593885_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Joe's Garage Beer": [
         {
-            "ID": 556,
+            "ID": 555,
             "Beer": "Juicy Sabro 12°",
             "Beer_style": "IPA - New England / Hazy",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,5",
             "Brewery_location": "49.75550281815227, 13.453513911387917",
             "Brewery_country": "Czech Republic",
@@ -24820,12 +25116,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/dd9c7c5be7abd884dc1b030d4d2b29b7_c_1387604595_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar Podlesí": [
         {
-            "ID": 557,
+            "ID": 556,
             "Beer": "Klokan",
             "Beer_style": "Pale Ale - Australian",
             "IBU": 23.0,
@@ -24845,15 +25141,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/cd3ab62448966a335c954a18a656d7f4_c_1387609489_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Holendr": [
         {
-            "ID": 558,
+            "ID": 557,
             "Beer": "Ale 11",
             "Beer_style": "Pale Ale - American",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,1",
             "Brewery_location": "49.48161363246013, 17.966887182885216",
             "Brewery_country": "Czech Republic",
@@ -24870,12 +25166,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/c33138c777af383bbed4a0a7d594f910_c_1387620472_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar Kroměříž": [
         {
-            "ID": 559,
+            "ID": 558,
             "Beer": "Maxmilian Polibek",
             "Beer_style": "IPA - Session",
             "IBU": 34.0,
@@ -24895,12 +25191,12 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/27b5ea04eb73bf306825677963f3752e_c_1387631543_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Pivovar Strahov": [
         {
-            "ID": 560,
+            "ID": 559,
             "Beer": "Sv. Norbert Sakura Amber Ale",
             "Beer_style": "Red Ale - American Amber / Red",
             "IBU": 25.0,
@@ -24918,15 +25214,15 @@ var brewery_check_ins = {
             "Serving_style": "Draft",
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_06_07/972d1d4f83accf2cd4febc23e679ff0b_c_1387702597_raw.jpg",
             "Date": "07.06.2024",
-            "Comment": NaN
+            "Comment": null
         }
     ],
     "Rezek": [
         {
-            "ID": 563,
+            "ID": 562,
             "Beer": "Výroční 12",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "5,5",
             "Brewery_location": "50.69666654180602, 15.26838064260705",
             "Brewery_country": "Czech Republic",
@@ -24945,10 +25241,10 @@ var brewery_check_ins = {
     ],
     "Měšťanský pivovar Kutná Hora": [
         {
-            "ID": 568,
+            "ID": 567,
             "Beer": "Summer Ale",
             "Beer_style": "Blonde / Golden Ale - Other",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "3,9",
             "Brewery_location": "49.956575500082266, 15.270966677814036",
             "Brewery_country": "Czech Republic",
@@ -24967,10 +25263,10 @@ var brewery_check_ins = {
     ],
     "Pivovar Moucha": [
         {
-            "ID": 583,
+            "ID": 582,
             "Beer": "Pražská Moucha 12°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,6",
             "Brewery_location": "50.03042182646965, 14.411284006335011",
             "Brewery_country": "Czech Republic",
@@ -24987,10 +25283,10 @@ var brewery_check_ins = {
             "Comment": "Hehe Moucha 11 on the weekend Moucha 12 on Tuesday"
         },
         {
-            "ID": 581,
+            "ID": 580,
             "Beer": "Česká Moucha 11°",
             "Beer_style": "Pilsner - Czech / Bohemian",
-            "IBU": NaN,
+            "IBU": null,
             "ABV": "4,1",
             "Brewery_location": "50.03042182646965, 14.411284006335011",
             "Brewery_country": "Czech Republic",
@@ -25009,7 +25305,7 @@ var brewery_check_ins = {
     ],
     "Měšťanský pivovar v Poličce": [
         {
-            "ID": 582,
+            "ID": 581,
             "Beer": "Záviš 12%",
             "Beer_style": "Pilsner - Czech / Bohemian",
             "IBU": 28.0,
@@ -25031,7 +25327,7 @@ var brewery_check_ins = {
     ],
     "TamTam Brewing Co.": [
         {
-            "ID": 590,
+            "ID": 589,
             "Beer": "The Eagle Flies Alone",
             "Beer_style": "IPA - Rye",
             "IBU": 53.0,
@@ -25047,11 +25343,32 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/bdb20a084566f449869650c293e7ab37_c_1396675983_raw.jpg",
             "Date": "06.07.2024",
             "Comment": "Pretty warm, me no likey"
+        },
+        {
+            "ID": 596,
+            "Beer": "Valkyria",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": 25.0,
+            "ABV": "6,1",
+            "Brewery_location": "49.73060166010631, 13.396667321005177",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Kegzistence",
+            "Venue_location": "49.748301973274295, 13.379042754413662",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/65b172acea392da15f14db132ac056f2_c_1397384166_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Yes, sweet smell of New England"
         }
     ],
     "The Barn Beer Co.": [
         {
-            "ID": 591,
+            "ID": 590,
             "Beer": "Ummagumma",
             "Beer_style": "IPA - New England / Hazy",
             "IBU": 25.0,
@@ -25067,6 +25384,98 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_06/1dc9022f3cadbe197041b72fced9a4e1_c_1396689235_raw.jpg",
             "Date": "06.07.2024",
             "Comment": "Not too warm, fruity as hell, a taste rollecoaster"
+        }
+    ],
+    "Erdinger Weissbräu": [
+        {
+            "ID": 593,
+            "Beer": "Erdinger Weißbier / Hefe-Weizen",
+            "Beer_style": "Wheat Beer - Hefeweizen",
+            "IBU": 13.0,
+            "ABV": "5,3",
+            "Brewery_location": "48.30671191041444, 11.90673981643058",
+            "Brewery_country": "Germany",
+            "Beer_region": "Bavaria",
+            "Venue": "Kathmandu",
+            "Venue_location": "49.742514008763244, 13.379319114176177",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,00",
+            "Serving_style": "Bottle",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/6352fecb9534a2ec20037a04e667c802_c_1397367811_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Ugh I don't know what to think about it, plain.."
+        }
+    ],
+    "Létající pivovar Černá Kočka": [
+        {
+            "ID": 594,
+            "Beer": "I Love You, Kitty West Coast IPA 15°",
+            "Beer_style": "IPA - American",
+            "IBU": null,
+            "ABV": "6,5",
+            "Brewery_location": "49.748301973274295, 13.379042754413662",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Kegzistence",
+            "Venue_location": "49.748301973274295, 13.379042754413662",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/f89d461406b59a622368afce2f2a426c_c_1397381539_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "West coast bitternes, oh yeah"
+        }
+    ],
+    "Pivovar Vik": [
+        {
+            "ID": 595,
+            "Beer": "FOREST SOUR / Sour Ale",
+            "Beer_style": "Sour - Fruited",
+            "IBU": 12.0,
+            "ABV": "6,0",
+            "Brewery_location": "50.05760944351033, 14.543060741710807",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Kegzistence",
+            "Venue_location": "49.748301973274295, 13.379042754413662",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/9114dbbbd502b3cde18ca1a6dce15607_c_1397382250_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Not so addressing"
+        }
+    ],
+    "Axiom Brewery": [
+        {
+            "ID": 599,
+            "Beer": "Tripception",
+            "Beer_style": "Belgian Tripel",
+            "IBU": 28.0,
+            "ABV": "8,0",
+            "Brewery_location": "49.47238040682596, 17.133291732319353",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Olomoucký kraj",
+            "Venue": "Pivstro",
+            "Venue_location": "49.74568717748942, 13.374387384432865",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/08f73a21ab82fdf212d056d10e9ec277_c_1397444430_raw.jpg",
+            "Date": "09.07.2024",
+            "Comment": "Clearly belgian, bearable!"
         }
     ]
 };
