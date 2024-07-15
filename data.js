@@ -188,10 +188,11 @@ var venues_lst = [{
     { "type": "Feature", "properties": { "Venue": "Kathmandu" }, "geometry": { "type": "Point", "coordinates": [ 13.379319114176177, 49.742514008763251 ] } },
     { "type": "Feature", "properties": { "Venue": "Kegzistence" }, "geometry": { "type": "Point", "coordinates": [ 13.379042754413662, 49.748301973274295 ] } },
     { "type": "Feature", "properties": { "Venue": "Ústředna" }, "geometry": { "type": "Point", "coordinates": [ 13.381935898813206, 49.738076974400208 ] } },
-    { "type": "Feature", "properties": { "Venue": "Pivstro" }, "geometry": { "type": "Point", "coordinates": [ 13.374387384432865, 49.745687177489422 ] } }
+    { "type": "Feature", "properties": { "Venue": "Pivstro" }, "geometry": { "type": "Point", "coordinates": [ 13.374387384432865, 49.745687177489422 ] } },
+    { "type": "Feature", "properties": { "Venue": "Pivovar U Vacků na Náplavce" }, "geometry": { "type": "Point", "coordinates": [ 14.414436004856432, 50.069226370752709 ] } },
+    { "type": "Feature", "properties": { "Venue": "Manifesto Market Anděl" }, "geometry": { "type": "Point", "coordinates": [ 14.404225069940509, 50.069280940793945 ] } }
     ]
     }
-    
 ];
 
 var breweries_lst = [{
@@ -330,7 +331,7 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "Měšťanský pivovar Turnov" }, "geometry": { "type": "Point", "coordinates": [ 15.156551344022979, 50.591841146371443 ] } },
     { "type": "Feature", "properties": { "Brewery": "Starobrno" }, "geometry": { "type": "Point", "coordinates": [ 16.592002971184211, 49.191049647923371 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Kamenice nad Lipou" }, "geometry": { "type": "Point", "coordinates": [ 15.078423357692635, 49.301901167959883 ] } },
-    { "type": "Feature", "properties": { "Brewery": "Pivovar Ferdinulld" }, "geometry": { "type": "Point", "coordinates": [ 14.690448686510155, 49.779519327938615 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Pivovar Ferdinand" }, "geometry": { "type": "Point", "coordinates": [ 14.690448686510155, 49.779519327938615 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Potmehúd" }, "geometry": { "type": "Point", "coordinates": [ 14.397029376517414, 50.054616306868347 ] } },
     { "type": "Feature", "properties": { "Brewery": "Bulmers Cider" }, "geometry": { "type": "Point", "coordinates": [ -2.724048486484441, 52.061287418600003 ] } },
     { "type": "Feature", "properties": { "Brewery": "Bohem Brewery" }, "geometry": { "type": "Point", "coordinates": [ -0.058199242349892, 51.606922857809394 ] } },
@@ -497,10 +498,11 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "Erdinger Weissbräu" }, "geometry": { "type": "Point", "coordinates": [ 11.90673981643058, 48.306711910414442 ] } },
     { "type": "Feature", "properties": { "Brewery": "Létající pivovar Černá Kočka" }, "geometry": { "type": "Point", "coordinates": [ 13.379042754413662, 49.748301973274295 ] } },
     { "type": "Feature", "properties": { "Brewery": "Pivovar Vik" }, "geometry": { "type": "Point", "coordinates": [ 14.543060741710809, 50.05760944351033 ] } },
-    { "type": "Feature", "properties": { "Brewery": "Axiom Brewery" }, "geometry": { "type": "Point", "coordinates": [ 17.133291732319353, 49.472380406825962 ] } }
+    { "type": "Feature", "properties": { "Brewery": "Axiom Brewery" }, "geometry": { "type": "Point", "coordinates": [ 17.133291732319353, 49.472380406825962 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Rodinný pivovar u Vacků" }, "geometry": { "type": "Point", "coordinates": [ 15.459227536216655, 50.154657686629562 ] } }
     ]
     }
-    ];
+];
 
 var venue_check_ins = {
     "Más Al Sur": [
@@ -2892,6 +2894,28 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_15/6ebb12362525b312ffecd5540c4122b6_raw.jpg",
             "Date": "15.06.2023",
             "Comment": "Sudden circumstances got me into this pub again. It was not planned, I swear! Finally a strawberry sour and it works! Well done Zichovec."
+        },
+        {
+            "ID": 603,
+            "Beer": "Sour Calamansi 12",
+            "Beer_style": "Sour - Fruited",
+            "IBU": null,
+            "ABV": "5,1",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "WS",
+                "TS",
+                "TB"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/72cc7411f9bcc83e865d6fe365daa4d2_c_1398801926_raw.jpg",
+            "Date": "13.07.2024",
+            "Comment": "Not a fan of sours in general, but this one was well done as we both with pennyinpraha have agreed, I appreciate the inovative fruit usage"
         },
         {
             "ID": 195,
@@ -8034,7 +8058,7 @@ var venue_check_ins = {
             "Beer_style": "Lager - Strong",
             "IBU": 31.0,
             "ABV": "6,3",
-            "Brewery": "Pivovar Ferdinulld",
+            "Brewery": "Pivovar Ferdinand",
             "Brewery_location": "49.779519327938615, 14.690448686510157",
             "Brewery_country": "Czech Republic",
             "Beer_region": "Středočeský kraj",
@@ -11431,6 +11455,27 @@ var venue_check_ins = {
     ],
     "Sibeeria Tap Room": [
         {
+            "ID": 605,
+            "Beer": "Beakbeat",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "6,3",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_14/fdeedc05dc62051e98d4d1ea74006a1f_c_1398868246_raw.jpg",
+            "Date": "14.07.2024",
+            "Comment": "Rattlin ball, let's go!!"
+        },
+        {
             "ID": 501,
             "Beer": "Dark Ritual",
             "Beer_style": "Stout - Imperial / Double",
@@ -11530,6 +11575,27 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_20/3f7f590e401a2df18dd2122580ae5d34_c_1382733907_raw.jpg",
             "Date": "20.05.2024",
             "Comment": "A feeling of America on the tip of my tongue, decent ale"
+        },
+        {
+            "ID": 604,
+            "Beer": "Léto 2024",
+            "Beer_style": "IPA - Session",
+            "IBU": null,
+            "ABV": "4,1",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_14/fdeedc05dc62051e98d4d1ea74006a1f_c_1398868246_raw.jpg",
+            "Date": "14.07.2024",
+            "Comment": "Yeah, Sibeeria knows"
         },
         {
             "ID": 519,
@@ -12874,6 +12940,52 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/08f73a21ab82fdf212d056d10e9ec277_c_1397444430_raw.jpg",
             "Date": "09.07.2024",
             "Comment": "Clearly belgian, bearable!"
+        }
+    ],
+    "Pivovar U Vacků na Náplavce": [
+        {
+            "ID": 601,
+            "Beer": "Světlý ležák 12",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 30.0,
+            "ABV": "4,6",
+            "Brewery": "Rodinný pivovar u Vacků",
+            "Brewery_location": "50.15465768662956, 15.459227536216655",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.06922637075271, 14.414436004856432",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/ec82f1402fdd4f866262ef5fd215f68a_c_1398469758_raw.jpg",
+            "Date": "13.07.2024",
+            "Comment": "Lahoda za lidovku"
+        }
+    ],
+    "Manifesto Market Anděl": [
+        {
+            "ID": 602,
+            "Beer": "Proud Ležák",
+            "Beer_style": "Lager - Other",
+            "IBU": null,
+            "ABV": "3,9",
+            "Brewery": "Plzeňský Prazdroj",
+            "Brewery_location": "49.748219824879655, 13.395953374640042",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue_location": "50.069280940793945, 14.404225069940509",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "2,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/3ef6c942fd07c9d3ac5ee455c7b6753d_c_1398694961_raw.jpg",
+            "Date": "13.07.2024",
+            "Comment": "Some fruit flavour prevails, but I can't name it, it's a good option for people not so much into beer, personally, I would buy an another one"
         }
     ]
 };
@@ -15213,6 +15325,28 @@ var brewery_check_ins = {
             "Comment": "Sudden circumstances got me into this pub again. It was not planned, I swear! Finally a strawberry sour and it works! Well done Zichovec."
         },
         {
+            "ID": 603,
+            "Beer": "Sour Calamansi 12",
+            "Beer_style": "Sour - Fruited",
+            "IBU": null,
+            "ABV": "5,1",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Ježkovy voči",
+            "Venue_location": "50.07787121519462, 14.426670434271767",
+            "Friends": [
+                "WS",
+                "TS",
+                "TB"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/72cc7411f9bcc83e865d6fe365daa4d2_c_1398801926_raw.jpg",
+            "Date": "13.07.2024",
+            "Comment": "Not a fan of sours in general, but this one was well done as we both with pennyinpraha have agreed, I appreciate the inovative fruit usage"
+        },
+        {
             "ID": 152,
             "Beer": "Summer Vibes 10",
             "Beer_style": "IPA - Session",
@@ -15679,6 +15813,27 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/e11a1d675746a4c2d761b26e9230c567_c_1397361122_raw.jpg",
             "Date": "09.07.2024",
             "Comment": "Unfiltered and unpasterized, who can say that can get it?"
+        },
+        {
+            "ID": 602,
+            "Beer": "Proud Ležák",
+            "Beer_style": "Lager - Other",
+            "IBU": null,
+            "ABV": "3,9",
+            "Brewery_location": "49.748219824879655, 13.395953374640042",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Plzeňský kraj",
+            "Venue": "Manifesto Market Anděl",
+            "Venue_location": "50.069280940793945, 14.404225069940509",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "2,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/3ef6c942fd07c9d3ac5ee455c7b6753d_c_1398694961_raw.jpg",
+            "Date": "13.07.2024",
+            "Comment": "Some fruit flavour prevails, but I can't name it, it's a good option for people not so much into beer, personally, I would buy an another one"
         },
         {
             "ID": 412,
@@ -20151,6 +20306,27 @@ var brewery_check_ins = {
     ],
     "Sibeeria": [
         {
+            "ID": 605,
+            "Beer": "Beakbeat",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "6,3",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_14/fdeedc05dc62051e98d4d1ea74006a1f_c_1398868246_raw.jpg",
+            "Date": "14.07.2024",
+            "Comment": "Rattlin ball, let's go!!"
+        },
+        {
             "ID": 501,
             "Beer": "Dark Ritual",
             "Beer_style": "Stout - Imperial / Double",
@@ -20326,6 +20502,27 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_20/3f7f590e401a2df18dd2122580ae5d34_c_1382733907_raw.jpg",
             "Date": "20.05.2024",
             "Comment": "A feeling of America on the tip of my tongue, decent ale"
+        },
+        {
+            "ID": 604,
+            "Beer": "Léto 2024",
+            "Beer_style": "IPA - Session",
+            "IBU": null,
+            "ABV": "4,1",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "3,50",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_14/fdeedc05dc62051e98d4d1ea74006a1f_c_1398868246_raw.jpg",
+            "Date": "14.07.2024",
+            "Comment": "Yeah, Sibeeria knows"
         },
         {
             "ID": 227,
@@ -20899,7 +21096,7 @@ var brewery_check_ins = {
             "Comment": "nejlepší 10° co jsem zatím měl, doporučuju všem milovníkům správně hořkého piva, protože tohle je vodě hodně vzdálené!"
         }
     ],
-    "Pivovar Ferdinulld": [
+    "Pivovar Ferdinand": [
         {
             "ID": 215,
             "Beer": "Pěkný číslo",
@@ -25476,6 +25673,29 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_09/08f73a21ab82fdf212d056d10e9ec277_c_1397444430_raw.jpg",
             "Date": "09.07.2024",
             "Comment": "Clearly belgian, bearable!"
+        }
+    ],
+    "Rodinný pivovar u Vacků": [
+        {
+            "ID": 601,
+            "Beer": "Světlý ležák 12",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": 30.0,
+            "ABV": "4,6",
+            "Brewery_location": "50.15465768662956, 15.459227536216655",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "Pivovar U Vacků na Náplavce",
+            "Venue_location": "50.06922637075271, 14.414436004856432",
+            "Friends": [
+                "WS",
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/ec82f1402fdd4f866262ef5fd215f68a_c_1398469758_raw.jpg",
+            "Date": "13.07.2024",
+            "Comment": "Lahoda za lidovku"
         }
     ]
 };

@@ -12445,7 +12445,7 @@ var data = [
     },
     {
         "ID": 594,
-        "Beer": "I Love You, Kitty West Coast IPA 15°I Love You, Kitty West Coast IPA 15°",
+        "Beer": "I Love You, Kitty West Coast IPA 15°",
         "Beer_style": "IPA - American",
         "IBU": null,
         "ABV": "6,5",
@@ -12597,5 +12597,116 @@ var data = [
         "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_10/018ac4032a8e44fca8bcc20985f8c780_c_1397702187_raw.jpg",
         "Date": "10.07.2024",
         "Comment": "Geography meet up with a foreign Dartmouth host, good quality convo"
+    },
+    {
+        "ID": 601,
+        "Beer": "Světlý ležák 12",
+        "Beer_style": "Pilsner - Czech / Bohemian",
+        "IBU": 30.0,
+        "ABV": "4,6",
+        "Brewery": "Rodinný pivovar u Vacků",
+        "Brewery_location": "50.15465768662956, 15.459227536216655",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Královéhradecký kraj",
+        "Venue": "Pivovar U Vacků na Náplavce",
+        "Venue_location": "50.06922637075271, 14.414436004856432",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "4,00",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/ec82f1402fdd4f866262ef5fd215f68a_c_1398469758_raw.jpg",
+        "Date": "13.07.2024",
+        "Comment": "Lahoda za lidovku"
+    },
+    {
+        "ID": 602,
+        "Beer": "Proud Ležák",
+        "Beer_style": "Lager - Other",
+        "IBU": null,
+        "ABV": "3,9",
+        "Brewery": "Plzeňský Prazdroj",
+        "Brewery_location": "49.748219824879655, 13.395953374640042",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Plzeňský kraj",
+        "Venue": "Manifesto Market Anděl",
+        "Venue_location": "50.069280940793945, 14.404225069940509",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "2,75",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/3ef6c942fd07c9d3ac5ee455c7b6753d_c_1398694961_raw.jpg",
+        "Date": "13.07.2024",
+        "Comment": "Some fruit flavour prevails, but I can't name it, it's a good option for people not so much into beer, personally, I would buy an another one"
+    },
+    {
+        "ID": 603,
+        "Beer": "Sour Calamansi 12",
+        "Beer_style": "Sour - Fruited",
+        "IBU": null,
+        "ABV": "5,1",
+        "Brewery": "Rodinný pivovar Zichovec",
+        "Brewery_location": "50.35093122341257, 13.818297344198415",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Ústecký kraj",
+        "Venue": "Ježkovy voči",
+        "Venue_location": "50.07787121519462, 14.426670434271767",
+        "Friends": [
+            "WS",
+            "TS",
+            "TB"
+        ],
+        "Rating": "3,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_13/72cc7411f9bcc83e865d6fe365daa4d2_c_1398801926_raw.jpg",
+        "Date": "13.07.2024",
+        "Comment": "Not a fan of sours in general, but this one was well done as we both with pennyinpraha have agreed, I appreciate the inovative fruit usage"
+    },
+    {
+        "ID": 604,
+        "Beer": "Léto 2024",
+        "Beer_style": "IPA - Session",
+        "IBU": null,
+        "ABV": "4,1",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "3,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_14/fdeedc05dc62051e98d4d1ea74006a1f_c_1398868246_raw.jpg",
+        "Date": "14.07.2024",
+        "Comment": "Yeah, Sibeeria knows"
+    },
+    {
+        "ID": 605,
+        "Beer": "Beakbeat",
+        "Beer_style": "IPA - New England / Hazy",
+        "IBU": null,
+        "ABV": "6,3",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "WS",
+            "TS"
+        ],
+        "Rating": "4,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_07_14/fdeedc05dc62051e98d4d1ea74006a1f_c_1398868246_raw.jpg",
+        "Date": "14.07.2024",
+        "Comment": "Rattlin ball, let's go!!"
     }
 ];
