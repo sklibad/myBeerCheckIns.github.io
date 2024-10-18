@@ -1526,7 +1526,7 @@ var data = [
             "TS",
             "FZ"
         ],
-        "Rating": "5,00",
+        "Rating": "4,25",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2023_08_19/10bff09e5f8c5e64e481d8c600ab6318_raw.jpg",
         "Date": "19.08.2023",
@@ -1726,7 +1726,7 @@ var data = [
         "Venue": "Kozlovna Skleník",
         "Venue_location": "50.689877146362406, 14.526193099678885",
         "Friends": [],
-        "Rating": "5,00",
+        "Rating": "4,00",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2023_08_04/f22710de44c80ddcb3ad8aa80ce9683f_raw.jpg",
         "Date": "04.08.2023",
@@ -2164,7 +2164,7 @@ var data = [
             "ME",
             "TV"
         ],
-        "Rating": "4,75",
+        "Rating": "4,25",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2023_07_15/df1cc948b77680eb75c1eae92a31182a_raw.jpg",
         "Date": "15.07.2023",
@@ -3592,7 +3592,7 @@ var data = [
         "Friends": [
             "FZ"
         ],
-        "Rating": "4,75",
+        "Rating": "4,50",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2023_05_12/92aff35ad9b43acafcdec049c4fe1d12_raw.jpg",
         "Date": "12.05.2023",
@@ -5279,7 +5279,7 @@ var data = [
             "MS",
             "AM"
         ],
-        "Rating": "5,00",
+        "Rating": "4,50",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2023_03_02/27955ce013cf6bc53ea7252771d8cfac_raw.jpg",
         "Date": "02.03.2023",
@@ -5582,7 +5582,7 @@ var data = [
         "Friends": [
             "MK"
         ],
-        "Rating": "3,50",
+        "Rating": "4,00",
         "Serving_style": "Draft",
         "Photo_url": null,
         "Date": "17.02.2023",
@@ -5603,7 +5603,7 @@ var data = [
         "Friends": [
             "MK"
         ],
-        "Rating": "3,25",
+        "Rating": "3,50",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2023_02_17/bf93f8add3381aca21f263d5ad9b7396_raw.jpg",
         "Date": "17.02.2023",
@@ -6367,7 +6367,7 @@ var data = [
             "PL",
             "LP"
         ],
-        "Rating": "5,00",
+        "Rating": "4,50",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2023_01_13/1dad108dcc995daabc0425f85c212d9d_raw.jpg",
         "Date": "13.01.2023",
@@ -7267,7 +7267,7 @@ var data = [
         "Friends": [
             "FZ"
         ],
-        "Rating": "5,00",
+        "Rating": "4,50",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2022_12_05/cf4eb0a92c896a719131b6a4d1b2f84c_raw.jpg",
         "Date": "05.12.2022",
@@ -7549,7 +7549,7 @@ var data = [
             "PL",
             "JT"
         ],
-        "Rating": "2,00",
+        "Rating": "3,75",
         "Serving_style": "Draft",
         "Photo_url": "https://assets.untappd.com/photos/2022_11_18/d6bbeee7b7a217d5633e8e9ff02d1b9a_raw.jpg",
         "Date": "18.11.2022",
@@ -14216,5 +14216,234 @@ var data = [
         "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_09/9b72e0577a73480dbc7b44bf0e246459_c_1424004137_raw.jpg",
         "Date": "09.10.2024",
         "Comment": "You just can't give Kartel other rating than 3,5, I feel English tones init"
+    },
+    {
+        "ID": 678,
+        "Beer": "Vorkloster Klášterní 12",
+        "Beer_style": "Pilsner - Czech / Bohemian",
+        "IBU": 35.0,
+        "ABV": "4,8",
+        "Brewery": "Klášterní pivovar Porta Coeli",
+        "Brewery_location": "49.3525611161902, 16.400159946706612",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Jihomoravský kraj",
+        "Venue": "Pult",
+        "Venue_location": "50.088178833773306, 14.430521199175626",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "3,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/3c2d8e00a7e67fcf8a0098af97b5786d_c_1425737023_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "Tastes like a homebrew lager"
+    },
+    {
+        "ID": 679,
+        "Beer": "Taumata",
+        "Beer_style": "Pilsner - New Zealand",
+        "IBU": null,
+        "ABV": "4,8",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "3,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/740fc5deb29d1f21028e3f8e75af6537_c_1425769730_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "Yummy, fruity it fullfilled my anticipation"
+    },
+    {
+        "ID": 680,
+        "Beer": "I Love the Smell of Superdelic in the Morning",
+        "Beer_style": "IPA - New England / Hazy",
+        "IBU": null,
+        "ABV": "6,3",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "3,75",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/31b134bd067c5b4218ae3f9270a4e71d_c_1425770781_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "My taste budds dected too sweet NEIPA, after visiting the New England itself, it's no longer my preference"
+    },
+    {
+        "ID": 681,
+        "Beer": "I Love the Smell of Krush In the Morning",
+        "Beer_style": "IPA - American",
+        "IBU": null,
+        "ABV": "6,1",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "4,00",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/7a1293464b833c8156b7ec61a25d4223_c_1425799118_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "Way better!"
+    },
+    {
+        "ID": 682,
+        "Beer": "Podzim 2024",
+        "Beer_style": "Bock - Weizendoppelbock",
+        "IBU": null,
+        "ABV": "8,5",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "3,75",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/1957dfd1f99a4507f2cb9d0b81c59a7d_c_1425799373_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "Zachutnalo"
+    },
+    {
+        "ID": 683,
+        "Beer": "One American",
+        "Beer_style": "Sour - Berliner Weisse",
+        "IBU": null,
+        "ABV": "4,5",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "3,50",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/1d7fc025c27f5527584776bcdacb9562_c_1425799737_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "No bad"
+    },
+    {
+        "ID": 684,
+        "Beer": "Tapawera",
+        "Beer_style": "IPA - New England / Hazy",
+        "IBU": null,
+        "ABV": "7,1",
+        "Brewery": "Sibeeria",
+        "Brewery_location": "50.11247022086971, 14.512630026947043",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Hlavní město Praha",
+        "Venue": "Sibeeria Tap Room",
+        "Venue_location": "50.09070408567411, 14.42836788479626",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "4,00",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/821f01b49a15e5525bf3590f577c668d_c_1425800043_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "It was worth to stay for one more"
+    },
+    {
+        "ID": 685,
+        "Beer": "Tekutý Rohlík 11",
+        "Beer_style": "Pale Ale - Other",
+        "IBU": null,
+        "ABV": "4,6",
+        "Brewery": "Rodinný pivovar Zichovec",
+        "Brewery_location": "50.35093122341257, 13.818297344198415",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Ústecký kraj",
+        "Venue": "Myslíš?",
+        "Venue_location": "50.08387275364765, 14.419119281014794",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "3,25",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/9f74331582ae1ef96f2477be42a1284f_c_1425801038_raw.jpg",
+        "Date": "15.10.2024",
+        "Comment": "Didn't address me so well"
+    },
+    {
+        "ID": 686,
+        "Beer": "No Idols! 14° West Coast IPA",
+        "Beer_style": "IPA - American",
+        "IBU": 65.0,
+        "ABV": "6,1",
+        "Brewery": "Pivovar Clock",
+        "Brewery_location": "50.08125410516569, 16.317200948562274",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Královéhradecký kraj",
+        "Venue": "Myslíš?",
+        "Venue_location": "50.08387275364765, 14.419119281014794",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "3,75",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/ac0c1451e2fe6147b40905f93bf95c29_c_1425816474_raw.jpg",
+        "Date": "16.10.2024",
+        "Comment": "Mediocre IPA"
+    },
+    {
+        "ID": 687,
+        "Beer": "Pumpkin Shot",
+        "Beer_style": "Sour - Fruited",
+        "IBU": null,
+        "ABV": "5,3",
+        "Brewery": "Pivovar Antoš",
+        "Brewery_location": "50.2255915531768, 14.105106184229815",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Středočeský kraj",
+        "Venue": "Myslíš?",
+        "Venue_location": "50.08387275364765, 14.419119281014794",
+        "Friends": [
+            "TS"
+        ],
+        "Rating": "4,00",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/1261005640bbc14e88c6af0d37f2523e_c_1425816891_raw.jpg",
+        "Date": "16.10.2024",
+        "Comment": "The best pumpkin beer I've ever had"
+    },
+    {
+        "ID": 688,
+        "Beer": "Predátor",
+        "Beer_style": "IPA - American",
+        "IBU": null,
+        "ABV": "6,8",
+        "Brewery": "Pivovar Antoš",
+        "Brewery_location": "50.2255915531768, 14.105106184229815",
+        "Brewery_country": "Czech Republic",
+        "Beer_region": "Středočeský kraj",
+        "Venue": "Klub Blanice",
+        "Venue_location": "50.02023484254277, 14.497739957799634",
+        "Friends": [],
+        "Rating": "4,00",
+        "Serving_style": "Draft",
+        "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_17/2d41d8635fcc1f77656e85bb0b7b51b6_c_1426092330_raw.jpg",
+        "Date": "16.10.2024",
+        "Comment": "Oh my dear Antoš, that's what I like about IPAs"
     }
 ];
