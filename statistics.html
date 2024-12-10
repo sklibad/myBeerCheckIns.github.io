@@ -1774,9 +1774,10 @@
     }
     for (let i = 0; i < data.length; i++){
         let beer = data[i];
+
         let beerStyle = beer.Beer_style;
 
-        if (beerStyle.includes("Lager") || beerStyle.includes("Pilsner")){
+        if (beerStyle.includes("Lager") || beerStyle.includes("Pilsner") || beerStyle === 'Märzen' || beerStyle === 'Festbier'){
             beerStyle = "lager";
         } else if (beerStyle.includes("Ale")){
             beerStyle = "ale";
