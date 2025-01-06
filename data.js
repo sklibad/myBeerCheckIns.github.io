@@ -557,10 +557,10 @@ var breweries_lst = [{
     { "type": "Feature", "properties": { "Brewery": "Dva kohouti" }, "geometry": { "type": "Point", "coordinates": [ 14.44681331257183, 50.093472736384363 ] } },
     { "type": "Feature", "properties": { "Brewery": "Nanopivovar Automat Matuška" }, "geometry": { "type": "Point", "coordinates": [ 14.404213525587576, 50.098019602185822 ] } },
     { "type": "Feature", "properties": { "Brewery": "Twisted Cat" }, "geometry": { "type": "Point", "coordinates": [ 6.080637556472056, 49.472779227253163 ] } },
-    { "type": "Feature", "properties": { "Brewery": "Schneider Weisse G. Schneider & Sohn" }, "geometry": { "type": "Point", "coordinates": [ 11.874155624048605, 48.917865973814308 ] } }
+    { "type": "Feature", "properties": { "Brewery": "Schneider Weisse G. Schneider & Sohn" }, "geometry": { "type": "Point", "coordinates": [ 11.874155624048605, 48.917865973814308 ] } },
+    { "type": "Feature", "properties": { "Brewery": "Williams Brothers Brewing Co." }, "geometry": { "type": "Point", "coordinates": [ -3.815365257437737, 56.112788017430702 ] } }
     ]
-    }
-];
+}];
 
 var venue_check_ins = {
     "Más Al Sur": [
@@ -3596,6 +3596,24 @@ var venue_check_ins = {
             "Comment": "u vietnamce jsem vybral kousky, co ještě nemám, tohle je ze série \"jednou a dost\", popsal bych to jako jemně karamelovej blivajz 10° lepší"
         },
         {
+            "ID": 747,
+            "Beer": "Drink And Harvest 2024 Ø",
+            "Beer_style": "Non-Alcoholic - Lager",
+            "IBU": null,
+            "ABV": "0,5",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.72814057267898, 15.182728983964028",
+            "Friends": [],
+            "Rating": "2,50",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_24/737ac7f212e37e2443b47d58b69c0310_c_1444020590_raw.jpg",
+            "Date": "24.12.2024",
+            "Comment": "Ugh I really did not enjoy this one, too sour"
+        },
+        {
             "ID": 417,
             "Beer": "Dynamo 10°",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -3720,6 +3738,42 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_07_04/a5b18c2f5084ec0334fe65fa48369bd1_raw.jpg",
             "Date": "04.07.2023",
             "Comment": "pretty wild, first time having Belgian beer, I would probably avoid it next time, but everything is about getting used to"
+        },
+        {
+            "ID": 746,
+            "Beer": "Malý Ježíšek 10",
+            "Beer_style": "IPA - Session",
+            "IBU": null,
+            "ABV": "4,1",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.72814057267898, 15.182728983964028",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_21/c8d00888f9318a0fa3f90155c293cd08_c_1443002711_raw.jpg",
+            "Date": "21.12.2024",
+            "Comment": "Split the can with my mum, it's so well made for just 10° IPA, sweetness at the beginning transitions into IPA hoppyness in the end"
+        },
+        {
+            "ID": 748,
+            "Beer": "Marshall - Amped Up Lager",
+            "Beer_style": "Lager - Pale",
+            "IBU": 30.0,
+            "ABV": "4,6",
+            "Brewery": "Williams Brothers Brewing Co.",
+            "Brewery_location": "56.1127880174307, -3.8153652574377372",
+            "Brewery_country": "Scotland",
+            "Beer_region": "Clackmannanshire",
+            "Venue_location": "50.72814057267898, 15.182728983964028",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_24/528408fba4104c2ace9cf0f5b02a1e1a_c_1444234098_raw.jpg",
+            "Date": "24.12.2024",
+            "Comment": "This must be the most interesting pale lager I've ever had! The smell is a bit unusual, for a pale lager it's hoppy and bitter which implies it might the best I've had so far since I come from a region of bitter Pilsners. Thank you so much terisvobodova!"
         },
         {
             "ID": 341,
@@ -4304,7 +4358,7 @@ var venue_check_ins = {
             "Comment": "fill up the stomach before entering the mountain zone, bitter enough, but too sweet"
         }
     ],
-    "null": [
+    "NaN": [
         {
             "ID": 358,
             "Beer": "APA",
@@ -5836,6 +5890,24 @@ var venue_check_ins = {
     ],
     "Šárčina chata": [
         {
+            "ID": 753,
+            "Beer": "Bière De Noël 21",
+            "Beer_style": "Belgian Quadrupel",
+            "IBU": null,
+            "ABV": "10,5",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "3,50",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/b730324ebedca7685cec087a2a33a5ce_c_1446565108_raw.jpg",
+            "Date": "31.12.2024",
+            "Comment": "Strong af I really needed water dosing while drinking this"
+        },
+        {
             "ID": 124,
             "Beer": "Conquistadors",
             "Beer_style": "IPA - Other",
@@ -5852,6 +5924,42 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_30/4b605b2cfc30bbee546800daddc8c29b_raw.jpg",
             "Date": "30.06.2023",
             "Comment": "slightly better than the previous one"
+        },
+        {
+            "ID": 751,
+            "Beer": "Foggy Morning 15",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "6,5",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "4,00",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/9cfbc2f2c8d9cf5029f3e29b5ea947cf_c_1446479769_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Mmm yummy yes pes NEIPA"
+        },
+        {
+            "ID": 755,
+            "Beer": "Ježíšek 20",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": 80.0,
+            "ABV": "9,0",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "4,25",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_31/af382edf623ed8e66cad19b27c787b2c_c_1446920205_raw.jpg",
+            "Date": "31.12.2024",
+            "Comment": "Too sweet, the rest is well welcoming"
         },
         {
             "ID": 334,
@@ -5888,6 +5996,24 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_06_30/c85882d51788962a902f5ac34f1a00eb_raw.jpg",
             "Date": "30.06.2023",
             "Comment": "probably a cause of too old can badly stored, I guess that it would taste much better while normal circumstances"
+        },
+        {
+            "ID": 749,
+            "Beer": "Like A Svařák 14",
+            "Beer_style": "Sour - Fruited",
+            "IBU": null,
+            "ABV": "6,0",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/609762177fdaeacb86b38df5654f95b0_c_1446439118_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Kicking off the New Year's Eve cottage with Svařák, I really like it"
         },
         {
             "ID": 422,
@@ -5944,6 +6070,24 @@ var venue_check_ins = {
             "Comment": "the least influenced by bad storage, but since it's NEIPA, I enjoyed it"
         },
         {
+            "ID": 750,
+            "Beer": "Punč 14",
+            "Beer_style": "Sour - Other",
+            "IBU": null,
+            "ABV": "6,0",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/9597827ea8e997a450675292394f5387_c_1446466895_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Reminds me of the previous I had, a good one as well"
+        },
+        {
             "ID": 418,
             "Beer": "Severská APA",
             "Beer_style": "Pale Ale - American",
@@ -5980,6 +6124,24 @@ var venue_check_ins = {
             "Comment": "Drinkable and sweet, another gift from my friend."
         },
         {
+            "ID": 752,
+            "Beer": "Vánoční Kometa 17",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "7,0",
+            "Brewery": "Rodinný pivovar Zichovec",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "4,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/a13745b8c0e68c95956081f6e0a6ae8f_c_1446526536_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Aaaaah"
+        },
+        {
             "ID": 421,
             "Beer": "Zlatopramen",
             "Beer_style": "Pilsner - Czech / Bohemian",
@@ -5996,6 +6158,24 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2024_01_01/ccea6ef1315fb797ee638d8de39e7788_raw.jpg",
             "Date": "31.12.2023",
             "Comment": "Bought it for the chugging trivia game. Wasn't so shitty in the end!! I will have to probabably re-evaluate it next time 😄"
+        },
+        {
+            "ID": 754,
+            "Beer": "Zlatopramen Světlé výčepní pivo",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": null,
+            "ABV": "3,8",
+            "Brewery": "Heineken Česká Republika",
+            "Brewery_location": "50.174333243073804, 13.774932899452528",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "2,00",
+            "Serving_style": "Bottle",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_31/ef3448de98d4bc73cd7b4ef8d54e21fd_c_1446914632_raw.jpg",
+            "Date": "31.12.2024",
+            "Comment": "Chugging beer of this night"
         }
     ],
     "Spojovna": [
@@ -9777,6 +9957,26 @@ var venue_check_ins = {
             "Comment": "Finally a stout hurray! This one represent those honest coffee ones. It took some time to get back on track and used to that flavor I was enjoying back in Portugal. Dear stouts, I missed you."
         },
         {
+            "ID": 743,
+            "Beer": "Guilty Pleasure",
+            "Beer_style": "Stout - Imperial / Double",
+            "IBU": 80.0,
+            "ABV": "11,4",
+            "Brewery": "Pivovar Clock",
+            "Brewery_location": "50.08125410516569, 16.317200948562274",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue_location": "50.07707237407872, 14.449943097243553",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/da925dce463f8045b4e329d17a01269c_c_1442433908_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Moving to the BeerGeek, trying local stout, again so roasty, like it doesn't have any defect you know, but my Baobab has spoilt tongue can't say \"yes this is it\" it's def more bearable than the previous one still not my cup of stout though"
+        },
+        {
             "ID": 726,
             "Beer": "Hazy Discovery Montpellier",
             "Beer_style": "IPA - New England / Hazy",
@@ -9897,6 +10097,46 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_11_27/992ed1235fbe43b9cc0935ece40d44d6_c_1436621939_raw.jpg",
             "Date": "27.11.2024",
             "Comment": "A charning character I must admit! I like the bit unusual smell for a lager type beer as I'm not used to Märzen at all."
+        },
+        {
+            "ID": 744,
+            "Beer": "Patience (2024)",
+            "Beer_style": "Stout - Imperial / Double",
+            "IBU": null,
+            "ABV": "11,0",
+            "Brewery": "PINTA",
+            "Brewery_location": "49.649229645352975, 19.172641940284475",
+            "Brewery_country": "Poland",
+            "Beer_region": "województwo śląskie",
+            "Venue_location": "50.07707237407872, 14.449943097243553",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/232332e39459f91391c32ed59b8d51a6_c_1442443615_raw.jpg",
+            "Date": "20.12.2024",
+            "Comment": "Oh wow this one hits strong and I can tell it's way higher quality than those previous ones, however it didn't match my type, it's too sweet, I can feel some well-known flavor but can't address it, imo coconut + maple syrup"
+        },
+        {
+            "ID": 745,
+            "Beer": "PF 2025",
+            "Beer_style": "IPA - Imperial / Double New England / Hazy",
+            "IBU": 32.0,
+            "ABV": "7,0",
+            "Brewery": "Pivovar Antoš",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue_location": "50.07707237407872, 14.449943097243553",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/e6548ffa081ca71decf000f1034b8d4a_c_1442452063_raw.jpg",
+            "Date": "20.12.2024",
+            "Comment": "That's what I've been waiting for NEIPA ftw"
         },
         {
             "ID": 676,
@@ -12665,6 +12905,26 @@ var venue_check_ins = {
             "Comment": "Rattlin ball, let's go!!"
         },
         {
+            "ID": 742,
+            "Beer": "Candynskij",
+            "Beer_style": "Stout - Imperial / Double Pastry",
+            "IBU": null,
+            "ABV": "10,6",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "2,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/6aa8260d7065369702408392de56e553_c_1442406555_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Tooooooooo roasted maaan, this can't be real I was so looking forward to tasting this one which backfired hard"
+        },
+        {
             "ID": 626,
             "Beer": "Cotopaxi",
             "Beer_style": "IPA - New England / Hazy",
@@ -12724,6 +12984,26 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_20/189c7d7dd6bd25a58c84acffad088d14_c_1382733013_raw.jpg",
             "Date": "20.05.2024",
             "Comment": "Nothing but this you need after a work day, a fabulous Czech lager with Canadian ice hockey fans in the background"
+        },
+        {
+            "ID": 739,
+            "Beer": "Fogtown",
+            "Beer_style": "Pale Ale - New England / Hazy",
+            "IBU": null,
+            "ABV": "4,6",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/784c926ed5d68a4a5cc706da90a8209a_c_1442371413_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Wow that surprised me bigtime, for such a low percentage ale it's so flavourful"
         },
         {
             "ID": 625,
@@ -12927,6 +13207,26 @@ var venue_check_ins = {
             "Comment": "Korean beer"
         },
         {
+            "ID": 741,
+            "Beer": "Napečeno",
+            "Beer_style": "Porter - Imperial / Double",
+            "IBU": null,
+            "ABV": "7,0",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/f2fe5cd90448a140f1921e150c65156f_c_1442397750_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Mild coffee, still enjoying though!"
+        },
+        {
             "ID": 519,
             "Beer": "One American",
             "Beer_style": "Sour - Berliner Weisse",
@@ -13047,6 +13347,26 @@ var venue_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/1957dfd1f99a4507f2cb9d0b81c59a7d_c_1425799373_raw.jpg",
             "Date": "15.10.2024",
             "Comment": "Zachutnalo"
+        },
+        {
+            "ID": 740,
+            "Beer": "Shoshone",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "6,2",
+            "Brewery": "Sibeeria",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/144a7b4281ccc7346aff455db2ff15ec_c_1442376603_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Just fine not so impressive"
         },
         {
             "ID": 684,
@@ -17500,6 +17820,24 @@ var brewery_check_ins = {
             "Comment": "Not my cup of NEIPA"
         },
         {
+            "ID": 753,
+            "Beer": "Bière De Noël 21",
+            "Beer_style": "Belgian Quadrupel",
+            "IBU": null,
+            "ABV": "10,5",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Šárčina chata",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "3,50",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/b730324ebedca7685cec087a2a33a5ce_c_1446565108_raw.jpg",
+            "Date": "31.12.2024",
+            "Comment": "Strong af I really needed water dosing while drinking this"
+        },
+        {
             "ID": 588,
             "Beer": "Bounty 13",
             "Beer_style": "Lager - Dark",
@@ -17559,6 +17897,24 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_02_23/41d8f02e8f88adf262cc58d0f4c0857f_c_1358111699_raw.jpg",
             "Date": "23.02.2024",
             "Comment": "First alcohol-free NEIPA I have ever had, I must rate it as a successful atempt!"
+        },
+        {
+            "ID": 747,
+            "Beer": "Drink And Harvest 2024 Ø",
+            "Beer_style": "Non-Alcoholic - Lager",
+            "IBU": null,
+            "ABV": "0,5",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Home - Jablonec nad Nisou",
+            "Venue_location": "50.72814057267898, 15.182728983964028",
+            "Friends": [],
+            "Rating": "2,50",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_24/737ac7f212e37e2443b47d58b69c0310_c_1444020590_raw.jpg",
+            "Date": "24.12.2024",
+            "Comment": "Ugh I really did not enjoy this one, too sour"
         },
         {
             "ID": 600,
@@ -17622,6 +17978,24 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_11_09/4f347abc36a57f2b465991449c8f2bd2_c_1432498939_raw.jpg",
             "Date": "09.11.2024",
             "Comment": "On the tip of the tongue it's sweet as you release it to other parts the mouthfeel changes into bitter grape, I think is really well made"
+        },
+        {
+            "ID": 751,
+            "Beer": "Foggy Morning 15",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "6,5",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Šárčina chata",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "4,00",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/9cfbc2f2c8d9cf5029f3e29b5ea947cf_c_1446479769_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Mmm yummy yes pes NEIPA"
         },
         {
             "ID": 737,
@@ -17776,6 +18150,24 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_01_12/4173122a488f24bc5c1e181f087fe51a_raw.jpg",
             "Date": "12.01.2023",
             "Comment": "omg yes, NEIPA je asi můj oblíbenej speciál, začátek naprosto famózní, konec to bohužel trochu kazí"
+        },
+        {
+            "ID": 755,
+            "Beer": "Ježíšek 20",
+            "Beer_style": "IPA - Imperial / Double",
+            "IBU": 80.0,
+            "ABV": "9,0",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Šárčina chata",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "4,25",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_31/af382edf623ed8e66cad19b27c787b2c_c_1446920205_raw.jpg",
+            "Date": "31.12.2024",
+            "Comment": "Too sweet, the rest is well welcoming"
         },
         {
             "ID": 288,
@@ -18121,6 +18513,24 @@ var brewery_check_ins = {
             "Comment": "Best gose I've ever had, yummy strawberries, highly recommended"
         },
         {
+            "ID": 749,
+            "Beer": "Like A Svařák 14",
+            "Beer_style": "Sour - Fruited",
+            "IBU": null,
+            "ABV": "6,0",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Šárčina chata",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/609762177fdaeacb86b38df5654f95b0_c_1446439118_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Kicking off the New Year's Eve cottage with Svařák, I really like it"
+        },
+        {
             "ID": 513,
             "Beer": "Magor 15",
             "Beer_style": "Bock - Single / Traditional",
@@ -18142,6 +18552,24 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_05_22/59da1b574ddfb905461420f84e646d8f_c_1383065766_raw.jpg",
             "Date": "22.05.2024",
             "Comment": "The best bock I've ever had"
+        },
+        {
+            "ID": 746,
+            "Beer": "Malý Ježíšek 10",
+            "Beer_style": "IPA - Session",
+            "IBU": null,
+            "ABV": "4,1",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Home - Jablonec nad Nisou",
+            "Venue_location": "50.72814057267898, 15.182728983964028",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_21/c8d00888f9318a0fa3f90155c293cd08_c_1443002711_raw.jpg",
+            "Date": "21.12.2024",
+            "Comment": "Split the can with my mum, it's so well made for just 10° IPA, sweetness at the beginning transitions into IPA hoppyness in the end"
         },
         {
             "ID": 614,
@@ -18292,6 +18720,24 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_11_02/10fe1c692c28a4b8543aa28a54e58239_c_1430489439_raw.jpg",
             "Date": "02.11.2024",
             "Comment": "The best pumpkin beer I've ever had!"
+        },
+        {
+            "ID": 750,
+            "Beer": "Punč 14",
+            "Beer_style": "Sour - Other",
+            "IBU": null,
+            "ABV": "6,0",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Šárčina chata",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/9597827ea8e997a450675292394f5387_c_1446466895_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Reminds me of the previous I had, a good one as well"
         },
         {
             "ID": 732,
@@ -18629,6 +19075,24 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_09/9b31735756df692705cdd2e34cb22566_c_1440034469_raw.jpg",
             "Date": "09.12.2024",
             "Comment": "Very few hops, malty, strong and dry. I wouldn't go for a second one, there's nothing amusing abt it"
+        },
+        {
+            "ID": 752,
+            "Beer": "Vánoční Kometa 17",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "7,0",
+            "Brewery_location": "50.35093122341257, 13.818297344198415",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Šárčina chata",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "4,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_30/a13745b8c0e68c95956081f6e0a6ae8f_c_1446526536_raw.jpg",
+            "Date": "30.12.2024",
+            "Comment": "Aaaaah"
         },
         {
             "ID": 195,
@@ -21216,6 +21680,26 @@ var brewery_check_ins = {
             "Comment": "Antoš strikes again"
         },
         {
+            "ID": 745,
+            "Beer": "PF 2025",
+            "Beer_style": "IPA - Imperial / Double New England / Hazy",
+            "IBU": 32.0,
+            "ABV": "7,0",
+            "Brewery_location": "50.2255915531768, 14.105106184229815",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Středočeský kraj",
+            "Venue": "BeerGeek Bar",
+            "Venue_location": "50.07707237407872, 14.449943097243553",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/e6548ffa081ca71decf000f1034b8d4a_c_1442452063_raw.jpg",
+            "Date": "20.12.2024",
+            "Comment": "That's what I've been waiting for NEIPA ftw"
+        },
+        {
             "ID": 219,
             "Beer": "Polotmavá třináctka",
             "Beer_style": "Lager - Amber / Red",
@@ -22646,6 +23130,26 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_02_04/ae8e9cc7970434d55bbd129c9301a24d_raw.jpg",
             "Date": "04.02.2023",
             "Comment": "zpětně přidávám festivalové pilotní pivko nadcházejícího rfp, tímto děkuji Matymu za možnost koštu a já se těším na jeho příští ochutnávku snad přímo v areálu festivalu"
+        },
+        {
+            "ID": 743,
+            "Beer": "Guilty Pleasure",
+            "Beer_style": "Stout - Imperial / Double",
+            "IBU": 80.0,
+            "ABV": "11,4",
+            "Brewery_location": "50.08125410516569, 16.317200948562274",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Královéhradecký kraj",
+            "Venue": "BeerGeek Bar",
+            "Venue_location": "50.07707237407872, 14.449943097243553",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/da925dce463f8045b4e329d17a01269c_c_1442433908_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Moving to the BeerGeek, trying local stout, again so roasty, like it doesn't have any defect you know, but my Baobab has spoilt tongue can't say \"yes this is it\" it's def more bearable than the previous one still not my cup of stout though"
         },
         {
             "ID": 147,
@@ -24085,6 +24589,26 @@ var brewery_check_ins = {
             "Comment": "Rattlin ball, let's go!!"
         },
         {
+            "ID": 742,
+            "Beer": "Candynskij",
+            "Beer_style": "Stout - Imperial / Double Pastry",
+            "IBU": null,
+            "ABV": "10,6",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "2,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/6aa8260d7065369702408392de56e553_c_1442406555_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Tooooooooo roasted maaan, this can't be real I was so looking forward to tasting this one which backfired hard"
+        },
+        {
             "ID": 626,
             "Beer": "Cotopaxi",
             "Beer_style": "IPA - New England / Hazy",
@@ -24185,6 +24709,26 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_01/5a53d5999a3a72b026c55e3593014f26_c_1421946325_raw.jpg",
             "Date": "01.10.2024",
             "Comment": "Finally a stout hurray! This one represent those honest coffee ones. It took some time to get back on track and used to that flavor I was enjoying back in Portugal. Dear stouts, I missed you."
+        },
+        {
+            "ID": 739,
+            "Beer": "Fogtown",
+            "Beer_style": "Pale Ale - New England / Hazy",
+            "IBU": null,
+            "ABV": "4,6",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/784c926ed5d68a4a5cc706da90a8209a_c_1442371413_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Wow that surprised me bigtime, for such a low percentage ale it's so flavourful"
         },
         {
             "ID": 625,
@@ -24505,6 +25049,26 @@ var brewery_check_ins = {
             "Comment": "Korean beer"
         },
         {
+            "ID": 741,
+            "Beer": "Napečeno",
+            "Beer_style": "Porter - Imperial / Double",
+            "IBU": null,
+            "ABV": "7,0",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "3,75",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/f2fe5cd90448a140f1921e150c65156f_c_1442397750_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Mild coffee, still enjoying though!"
+        },
+        {
             "ID": 519,
             "Beer": "One American",
             "Beer_style": "Sour - Berliner Weisse",
@@ -24645,6 +25209,26 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_15/1957dfd1f99a4507f2cb9d0b81c59a7d_c_1425799373_raw.jpg",
             "Date": "15.10.2024",
             "Comment": "Zachutnalo"
+        },
+        {
+            "ID": 740,
+            "Beer": "Shoshone",
+            "Beer_style": "IPA - New England / Hazy",
+            "IBU": null,
+            "ABV": "6,2",
+            "Brewery_location": "50.11247022086971, 14.512630026947043",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Hlavní město Praha",
+            "Venue": "Sibeeria Tap Room",
+            "Venue_location": "50.09070408567411, 14.42836788479626",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,00",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/144a7b4281ccc7346aff455db2ff15ec_c_1442376603_raw.jpg",
+            "Date": "19.12.2024",
+            "Comment": "Just fine not so impressive"
         },
         {
             "ID": 563,
@@ -27812,6 +28396,24 @@ var brewery_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2024_01_01/ccea6ef1315fb797ee638d8de39e7788_raw.jpg",
             "Date": "31.12.2023",
             "Comment": "Bought it for the chugging trivia game. Wasn't so shitty in the end!! I will have to probabably re-evaluate it next time 😄"
+        },
+        {
+            "ID": 754,
+            "Beer": "Zlatopramen Světlé výčepní pivo",
+            "Beer_style": "Pilsner - Czech / Bohemian",
+            "IBU": null,
+            "ABV": "3,8",
+            "Brewery_location": "50.174333243073804, 13.774932899452528",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Ústecký kraj",
+            "Venue": "Šárčina chata",
+            "Venue_location": "50.67400835506671, 15.386068107086825",
+            "Friends": [],
+            "Rating": "2,00",
+            "Serving_style": "Bottle",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_31/ef3448de98d4bc73cd7b4ef8d54e21fd_c_1446914632_raw.jpg",
+            "Date": "31.12.2024",
+            "Comment": "Chugging beer of this night"
         }
     ],
     "Kitl": [
@@ -28275,6 +28877,26 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_04_08/20a79f0521c6cfe70282a3f768a87ecb_c_1370649160_raw.jpg",
             "Date": "08.04.2024",
             "Comment": "West coast today, east coast hopefully on Thursday, brought this one from weekend trip to Warsaw and don't regret a single penny spent on it"
+        },
+        {
+            "ID": 744,
+            "Beer": "Patience (2024)",
+            "Beer_style": "Stout - Imperial / Double",
+            "IBU": null,
+            "ABV": "11,0",
+            "Brewery_location": "49.649229645352975, 19.172641940284475",
+            "Brewery_country": "Poland",
+            "Beer_region": "województwo śląskie",
+            "Venue": "BeerGeek Bar",
+            "Venue_location": "50.07707237407872, 14.449943097243553",
+            "Friends": [
+                "TS"
+            ],
+            "Rating": "4,25",
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_19/232332e39459f91391c32ed59b8d51a6_c_1442443615_raw.jpg",
+            "Date": "20.12.2024",
+            "Comment": "Oh wow this one hits strong and I can tell it's way higher quality than those previous ones, however it didn't match my type, it's too sweet, I can feel some well-known flavor but can't address it, imo coconut + maple syrup"
         }
     ],
     "Browar Zamkowy Cieszyn": [
@@ -31148,6 +31770,26 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_11_27/543ccaa46b4bae2e4b89805d889fb4ad_c_1436665027_raw.jpg",
             "Date": "27.11.2024",
             "Comment": "Belgian style beers are still hard ones to withstand, I would need to move there for some time to finally start understanding its meaning"
+        }
+    ],
+    "Williams Brothers Brewing Co.": [
+        {
+            "ID": 748,
+            "Beer": "Marshall - Amped Up Lager",
+            "Beer_style": "Lager - Pale",
+            "IBU": 30.0,
+            "ABV": "4,6",
+            "Brewery_location": "56.1127880174307, -3.8153652574377372",
+            "Brewery_country": "Scotland",
+            "Beer_region": "Clackmannanshire",
+            "Venue": "Home - Jablonec nad Nisou",
+            "Venue_location": "50.72814057267898, 15.182728983964028",
+            "Friends": [],
+            "Rating": "3,75",
+            "Serving_style": "Can",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_12_24/528408fba4104c2ace9cf0f5b02a1e1a_c_1444234098_raw.jpg",
+            "Date": "24.12.2024",
+            "Comment": "This must be the most interesting pale lager I've ever had! The smell is a bit unusual, for a pale lager it's hoppy and bitter which implies it might the best I've had so far since I come from a region of bitter Pilsners. Thank you so much terisvobodova!"
         }
     ]
 };
