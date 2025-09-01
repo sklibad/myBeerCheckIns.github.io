@@ -329,9 +329,11 @@
             }
 
             var placeName = layerId.replace(/ /g, "_");
+
             // Get the list of dictionaries for the current brewery
             var checkInsList = check_ins[layerId];
             var beerCount = checkInsList.length;
+
             // Construct HTML content for the popup
             var popupContent = "<div class='popup-container'>";
             popupContent += "<div class='popup-header'><b>" + layerId + "</b></div>";
@@ -452,7 +454,7 @@
             // Clear previous circles
             $('#ratingCircles').empty();
 
-            rating = parseFloat(rating.replace(',', '.'));
+            //rating = parseFloat(rating.replace(',', '.'));
             // Define the total number of circles
             var totalCircles = 5;
 
