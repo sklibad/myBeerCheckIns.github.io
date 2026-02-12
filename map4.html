@@ -143,7 +143,7 @@
                     <option value = "ES">Eliška Sieglová</option>
                     <option value = "FZ">Filip Zadražil</option>
                     <option value = "JT">Jan Tarabec</option>
-                    <option value = "JŽ">Jana Žemličková</option>
+                    <option value = "JZ">Jana Žemličková</option>
                     <option value = "LP">Luboš Petržilka</option>
                     <option value = "ME">Malcolm Edwards</option>
                     <option value = "MJ">Míra Janeček</option>
@@ -180,6 +180,8 @@
                     </select>
                     <select id="from-year">
                         <option value = "year">Year</option>
+                        <option value = "2026">2026</option>
+                        <option value = "2025">2025</option>
                         <option value = "2024">2024</option>
                         <option value = "2023">2023</option>
                         <option value = "2022">2022</option>
@@ -209,6 +211,8 @@
                     </select>
                     <select id="to-year">
                         <option value = "year">Year</option>
+                        <option value = "2026">2026</option>
+                        <option value = "2025">2025</option>
                         <option value = "2024">2024</option>
                         <option value = "2023">2023</option>
                         <option value = "2022">2022</option>
@@ -643,7 +647,7 @@
             // Iterate over the list of dictionaries
             for (var i = 0; i < beerListLen; i++) {
                 var dict_n = beerList[i];
-                const [day, month, year] = dict_n["Date"].split('.');
+                const [day, month, year] = dict_n["Date"].split('/');
                 const itemDate = new Date(year, month - 1, day); 
                 if (friend == 'ALL' || dict_n["Friends"].includes(friend)){
                     if (servingStyle.includes(dict_n["Serving_style"])){
@@ -662,8 +666,8 @@
                             bS = "Other"
                         }
                         let beerStyleCompliance = beerStyle.includes(bS);
-                        let minRatingCompliance = parseFloat(dict_n["Rating"].replace(",", ".")) >= minRating;
-                        let maxRatingCompliance = parseFloat(dict_n["Rating"].replace(",", ".")) <= maxRating;
+                        let minRatingCompliance = parseFloat(dict_n["Rating"]) >= minRating;
+                        let maxRatingCompliance = parseFloat(dict_n["Rating"]) <= maxRating;
                         let fromDateCompliance = itemDate >= fromDate;
                         let toDateCompliance = itemDate <= toDate;
                         if (minRatingCompliance && maxRatingCompliance && fromDateCompliance && toDateCompliance && beerStyleCompliance){
@@ -706,11 +710,17 @@
             }
 
             var compliesConditions = beerList.some(function (item) {
-                let minRatingCompliance = parseFloat(item.Rating.replace(",", ".")) >= minRating;
-                let maxRatingCompliance = parseFloat(item.Rating.replace(",", ".")) <= maxRating;
+                let minRatingCompliance = item.Rating >= minRating;
+                let maxRatingCompliance = item.Rating <= maxRating;
                 let servingCompliance = servingStyle.includes(item.Serving_style);
-                let friendCompliance = item.Friends.includes(friend);
-                const [day, month, year] = item.Date.split('.');
+                let friendCompliance;
+                if (friend == "ALL") {
+                    friendCompliance = true;
+                }
+                else {
+                    friendCompliance = item.Friends.includes(friend);
+                }
+                const [day, month, year] = item.Date.split('/');
                 const itemDate = new Date(year, month - 1, day);
                 let fromDateCompliance = itemDate >= fromDate;
                 let toDateCompliance = itemDate <= toDate;
@@ -852,7 +862,7 @@
             }
             
             if (toMonth === 'month' || toYear === "year"){
-                selectedFilters["toDate"] = new Date(2024, 11, 31);
+                selectedFilters["toDate"] = new Date();
             } else {
                 selectedFilters["toDate"] = getLastDateInMonth(toYear, toMonth);
             }
