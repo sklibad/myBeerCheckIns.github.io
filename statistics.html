@@ -1009,6 +1009,132 @@
                     </tbody>
                 </table>
             </div>
+            <div class="module">
+            <div class="header">
+                <span>Countries</span>
+            </div>
+            <div class = "align-tables">
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Number of check-ins</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Country</th>
+                            <th>Total beers</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</td>
+                            <td id = "country_name1" class="align-center"></td>
+                            <td id = "total1A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</td>
+                            <td id = "country_name2" class="align-center"></td>
+                            <td id = "total2A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</td>
+                            <td id = "country_name3" class="align-center"></td>
+                            <td id = "total3A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</td>
+                            <td id = "country_name4" class="align-center"></td>
+                            <td id = "total4A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</td>
+                            <td id = "country_name5" class="align-center"></td>
+                            <td id = "total5A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</td>
+                            <td id = "country_name6" class="align-center"></td>
+                            <td id = "total6A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</td>
+                            <td id = "country_name7" class="align-center"></td>
+                            <td id = "total7A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</td>
+                            <td id = "country_name8" class="align-center"></td>
+                            <td id = "total8A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</td>
+                            <td id = "country_name9" class="align-center"></td>
+                            <td id = "total9A" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</td>
+                            <td id = "country_name10" class="align-center"></td>
+                            <td id = "total10A" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="friends-table">
+                    <tbody>
+                        <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Country</th>
+                            <th>Average rating</th>
+                        </tr>
+                        <tr>
+                            <td class="align-center">1.</td>
+                            <td id = "country_name1A" class="align-center"></td>
+                            <td id = "avg1D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">2.</td>
+                            <td id = "country_name2A" class="align-center"></td>
+                            <td id = "avg2D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">3.</td>
+                            <td id = "country_name3A" class="align-center"></td>
+                            <td id = "avg3D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">4.</td>
+                            <td id = "country_name4A" class="align-center"></td>
+                            <td id = "avg4D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">5.</td>
+                            <td id = "country_name5A" class="align-center"></td>
+                            <td id = "avg5D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">6.</td>
+                            <td id = "country_name6A" class="align-center"></td>
+                            <td id = "avg6D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">7.</td>
+                            <td id = "country_name7A" class="align-center"></td>
+                            <td id = "avg7D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">8.</td>
+                            <td id = "country_name8A" class="align-center"></td>
+                            <td id = "avg8D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">9.</td>
+                            <td id = "country_name9A" class="align-center"></td>
+                            <td id = "avg9D" class="align-center"></td>
+                        </tr>
+                        <tr>
+                            <td class="align-center">10.</td>
+                            <td id = "country_name10A" class="align-center"></td>
+                            <td id = "avg10D" class="align-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class = "module">
                 <div class="header">
                     <span>Wind rose diagram by check-ins (venues)</span>
@@ -2346,6 +2472,65 @@
         element.innerText = key;
         element = document.getElementById("total-beers" + String(counter) + "B");
         element.innerText = count;
+        counter += 1;
+    }
+
+    /*------------------------------------------------------------------------------------------------------------------------------------*/
+    var countries = {};
+    for (var i = 0; i < data.length; i++) {
+        // Access each dictionary
+        var country = data[i].Brewery_country;
+        var rating = data[i].Rating;
+        if (countries.hasOwnProperty(country)){
+            countries[country].push(rating);
+        } else {
+            countries[country] = [rating];
+        }
+    }
+
+    var countryAvgRating = {};
+    for (let key in countries) {
+        ratingList = countries[key];
+        ratingSum = 0;
+        ratingLen = ratingList.length;
+        if (ratingLen >= 5){
+            for (var i = 0; i < ratingList.length; i++) {
+                ratingSum += ratingList[i]
+            }
+            ratingAvg = ratingSum/ratingLen;
+            countryAvgRating[key] = {"avg": ratingAvg, "count": ratingLen}
+        }  
+    }
+
+    itemsArray = Object.entries(countryAvgRating);
+
+    itemsArray.sort(function (a, b) {
+        return b[1].count - a[1].count; // Descending order, change the order if needed
+    });
+
+    let countryByCount = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in countryByCount) {
+        count = countryByCount[key]["count"]
+        element = document.getElementById("country_name" + String(counter));
+        element.innerText = key;
+        element = document.getElementById("total" + String(counter) + "A");
+        element.innerText = count;
+        counter += 1;
+    }
+
+    itemsArray.sort(function (a, b) {
+        return b[1].avg - a[1].avg; // Descending order, change the order if needed
+    });
+
+    let countriesByRating = Object.fromEntries(itemsArray.slice(0, 10));
+    counter = 1;
+    for (let key in countriesByRating) {
+        avg = countriesByRating[key]["avg"].toFixed(2);
+        element = document.getElementById("country_name" + String(counter) + "A");
+        element.innerText = key;
+        element = document.getElementById("avg" + String(counter) + "D");
+        element.innerText = String(avg).replace(".", ",");
         counter += 1;
     }
 
