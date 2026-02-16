@@ -289,7 +289,7 @@ div#profilestatscontainer table.pstable th, table.friends-table th {
 div#profilestatscontainer table.pstable th, td, table.friends-table th, td {
     background-color: #f0eae5;
     white-space: nowrap;
-    vertical-align: top
+    vertical-align: center
 }
 
 div#profilestatscontainer table.pstable td, th {   
@@ -2642,5 +2642,4 @@ div.dashboard-card-content p.dashboard-link {
     font-style: italic;
 }
 
-
-
+.chart-wrap { height: 280px; }

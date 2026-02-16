@@ -42,7 +42,7 @@
                 title: "Show me the fullscreen !",
                 titleCancel: "Exit fullscreen mode"
             }
-        }).setView([46.24735658625215, 10.380466726996248], 4);
+        }).setView([30, 25], 2);
     
         var OSmap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -91,7 +91,7 @@
         }
 
         function onEachFeature(feature, layer) {
-            var districtName = feature.properties.NAME_0;
+            var districtName = feature.properties.ADMIN;
             var timeoutId;
 
             layer.on('mouseover', function () {
@@ -130,14 +130,13 @@
             else if (numericValue > 386.2) {
                 return '#993404';
             }
-        }
 
-        function checkInFilter(feature, layer) {
-            return feature.properties.check_ins !== 0;
+            else {
+                return '#D9D9D9'; // Return a default color for values outside the specified range
+            }
         }
 
         var countriesCheckIns = L.geoJSON(countries, {
-            filter: checkInFilter,
             style: function (feature) {
                 return {
                 fillColor: defCountriesCheckInsColor(feature.properties.cart_check),
@@ -148,7 +147,7 @@
             },
             onEachFeature: function (feature, layer) {
                 onEachFeature(feature, layer);
-                var districtName = feature.properties.NAME_0;
+                var districtName = feature.properties.ADMIN;
 
                 // Check if the district name is a key in czechVenues dictionary
                 if (districtName in venues) {
@@ -204,6 +203,10 @@
             else if (numericValue > 38.46) {
                 return '#993404';
             }
+
+            else {
+                return '#D9D9D9'; // Return a default color for values outside the specified range
+            }
         }
     
         var countriesBreweries = L.geoJSON(countries, {
@@ -217,7 +220,7 @@
             },
             onEachFeature: function (feature, layer) {
                 onEachFeature(feature, layer);
-                var districtName = feature.properties.NAME_0;
+                var districtName = feature.properties.ADMIN;
 
                 // Check if the district name is a key in czechVenues dictionary
                 if (districtName in breweries) {
@@ -377,11 +380,11 @@
                 var zoom, center;
 
                 if (selectedLayer === "Check-Ins density") {
-                    zoom = 4;  // Set your desired zoom level
-                    center = [46.24735658625215, 10.380466726996248];  // Set the desired center coordinates
+                    zoom = 2;  // Set your desired zoom level
+                    center = [30, 25];  // Set the desired center coordinates
                 } else if (selectedLayer === "Brewery density") {
                     zoom = 2;  // Set your desired zoom level
-                    center = [48.13369565381394, -1.646409653405219];  // Set the desired center coordinates
+                    center = [30, 25];  // Set the desired center coordinates
                 }
 
                 // Update the map's view based on the selected layer
