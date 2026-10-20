@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=12" />
-    <link rel="stylesheet" href="map4.css?v=12" />
+    <link rel="stylesheet" href="common.css?v=13" />
+    <link rel="stylesheet" href="map4.css?v=13" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=12" type="text/javascript"></script>
+    <script src="data.js?v=13" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=12" defer></script>
+    <script src="nav.js?v=13" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -222,6 +222,17 @@
         <div id="map-container">
             <div id="map"></div>
             <button type="button" id="filters-toggle" aria-controls="filter-panel" aria-expanded="false">&#9776; Filters</button>
+            <div class="timeline-bar" id="timeline-bar" hidden>
+                <button type="button" class="timeline-play" id="timeline-play" aria-label="Play"></button>
+                <div class="timeline-main">
+                    <input type="range" id="timeline-range" min="0" max="0" step="1" value="0" aria-label="Month">
+                    <div class="timeline-info">
+                        <span class="timeline-date" id="timeline-date"></span>
+                        <span class="timeline-count" id="timeline-count"></span>
+                    </div>
+                </div>
+                <button type="button" class="timeline-close" id="timeline-close" aria-label="Close timeline">&times;</button>
+            </div>
         </div>
 
         <!-- Content box -->
@@ -885,10 +896,13 @@
             filterTimer = setTimeout(runFilters, delay || 0);
         }
 
-        function runFilters() {
+        function runFilters(highlightNew) {
             clearTimeout(filterTimer);
             filterTimer = null;
-            updateResultCount(applyFilters(readFilters(), selectedLayer));
+            updateResultCount(applyFilters(capFiltersToTimeline(readFilters()), selectedLayer));
+            if (timeline.active) {
+                updateTimelineInfo(highlightNew === true);
+            }
         }
 
         // "Show 33 breweries" on the phone button, "33 breweries" next to Reset on larger screens
@@ -1023,6 +1037,12 @@
                     map.setView(center, zoom);
                 }
                 updateResultCount(markers.getLayers().length);
+
+                // the timeline keeps showing only places up to its month
+                if (timeline.active) {
+                    timeline.shownPlaces = null;
+                    renderTimelineStep(false);
+                }
             });
 
             return div;
@@ -1334,6 +1354,185 @@
         map.on('popupopen', function () {
             if (routeLayer) clearRoute();
         });
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // Timeline: replays month by month how venues / breweries were added to the map
+        var PLAY_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+        var PAUSE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>';
+
+        // "28/11/2023" -> Date
+        function parseCheckinDate(dmy) {
+            var parts = dmy.split('/');
+            return new Date(parts[2], parts[1] - 1, parts[0]);
+        }
+
+        // First day of every month from the first to the last check-in
+        var timelineMonths = (function () {
+            var first = null, last = null;
+            Object.keys(brewery_check_ins).forEach(function (brewery) {
+                brewery_check_ins[brewery].forEach(function (checkIn) {
+                    var date = parseCheckinDate(checkIn["Date"]);
+                    if (!first || date < first) first = date;
+                    if (!last || date > last) last = date;
+                });
+            });
+            var months = [];
+            var month = new Date(first.getFullYear(), first.getMonth(), 1);
+            while (month <= last) {
+                months.push(new Date(month));
+                month.setMonth(month.getMonth() + 1);
+            }
+            return months;
+        })();
+
+        var timeline = {
+            active: false,
+            index: timelineMonths.length - 1,
+            timer: null,
+            shownPlaces: null,          // names shown in the previous step, to find the new ones
+            pulseLayer: L.layerGroup()  // short highlight of places added in the current month
+        };
+
+        function timelineMonthEnd(index) {
+            var month = timelineMonths[index];
+            return new Date(month.getFullYear(), month.getMonth() + 1, 0, 23, 59, 59);
+        }
+
+        // While the timeline is open, nothing after its current month is shown
+        function capFiltersToTimeline(filters) {
+            if (timeline.active) {
+                var end = timelineMonthEnd(timeline.index);
+                if (filters["toDate"] > end) {
+                    filters["toDate"] = end;
+                }
+            }
+            return filters;
+        }
+
+        function placeName(marker) {
+            return marker.feature.properties[selectedLayer === "Venues" ? "Venue" : "Brewery"];
+        }
+
+        function renderTimelineStep(highlightNew) {
+            runFilters(highlightNew);
+        }
+
+        // Month, number of places and the pulse of places added since the previous step
+        function updateTimelineInfo(highlightNew) {
+            var names = new Set();
+            var newPlaces = [];
+            activeMarkers().getLayers().forEach(function (marker) {
+                var name = placeName(marker);
+                names.add(name);
+                if (timeline.shownPlaces && !timeline.shownPlaces.has(name)) {
+                    newPlaces.push(marker);
+                }
+            });
+            timeline.shownPlaces = names;
+
+            timeline.pulseLayer.clearLayers();
+            if (highlightNew) {
+                newPlaces.forEach(function (marker) {
+                    L.marker(marker.getLatLng(), {
+                        icon: L.divIcon({ className: 'timeline-pulse', html: '<span></span>', iconSize: [28, 28] }),
+                        interactive: false,
+                        keyboard: false,
+                        zIndexOffset: 1000
+                    }).addTo(timeline.pulseLayer);
+                });
+            }
+
+            var noun = selectedLayer === "Venues" ? (names.size === 1 ? "venue" : "venues") : (names.size === 1 ? "brewery" : "breweries");
+            document.getElementById('timeline-date').textContent =
+                timelineMonths[timeline.index].toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+            document.getElementById('timeline-count').textContent =
+                names.size + ' ' + noun + (highlightNew && newPlaces.length ? ' \u00b7 +' + newPlaces.length + ' new' : '');
+            document.getElementById('timeline-range').value = timeline.index;
+        }
+
+        function setTimelinePlaying(playing) {
+            clearInterval(timeline.timer);
+            timeline.timer = null;
+            var button = document.getElementById('timeline-play');
+            button.innerHTML = playing ? PAUSE_ICON : PLAY_ICON;
+            button.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+            if (!playing) return;
+
+            timeline.timer = setInterval(function () {
+                if (timeline.index >= timelineMonths.length - 1) {
+                    setTimelinePlaying(false);
+                    return;
+                }
+                timeline.index++;
+                renderTimelineStep(true);
+            }, 700);
+        }
+
+        function playTimeline() {
+            // at the end: start again from the first month
+            if (timeline.index >= timelineMonths.length - 1) {
+                timeline.index = 0;
+                timeline.shownPlaces = null;
+                renderTimelineStep(false);
+            }
+            setTimelinePlaying(true);
+        }
+
+        function openTimeline() {
+            timeline.active = true;
+            timeline.index = 0;
+            timeline.shownPlaces = null;
+            document.getElementById('timeline-bar').hidden = false;
+            document.body.classList.add('timeline-on');
+            timelineControl.getContainer().classList.add('active');
+            timeline.pulseLayer.addTo(map);
+            renderTimelineStep(false);
+            playTimeline();
+        }
+
+        function closeTimeline() {
+            setTimelinePlaying(false);
+            timeline.active = false;
+            timeline.shownPlaces = null;
+            timeline.pulseLayer.clearLayers();
+            map.removeLayer(timeline.pulseLayer);
+            document.getElementById('timeline-bar').hidden = true;
+            document.body.classList.remove('timeline-on');
+            timelineControl.getContainer().classList.remove('active');
+            runFilters(); // everything again
+        }
+
+        // "Timeline" button on the map (top left, below the zoom buttons on larger screens)
+        var timelineControl = L.control({ position: 'topleft' });
+        timelineControl.onAdd = function () {
+            var button = L.DomUtil.create('button', 'timeline-toggle');
+            button.type = 'button';
+            button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Timeline</span>';
+            L.DomEvent.disableClickPropagation(button);
+            L.DomEvent.on(button, 'click', function () {
+                if (timeline.active) {
+                    closeTimeline();
+                } else {
+                    openTimeline();
+                }
+            });
+            return button;
+        };
+        timelineControl.addTo(map);
+
+        document.getElementById('timeline-range').max = timelineMonths.length - 1;
+        document.getElementById('timeline-play').addEventListener('click', function () {
+            if (timeline.timer) {
+                setTimelinePlaying(false);
+            } else {
+                playTimeline();
+            }
+        });
+        document.getElementById('timeline-range').addEventListener('input', function () {
+            setTimelinePlaying(false);
+            timeline.index = parseInt(this.value);
+            renderTimelineStep(false);
+        });
+        document.getElementById('timeline-close').addEventListener('click', closeTimeline);
         // Rating slider: two range inputs over one track, values shown as 0.25–5
         function initRatingSlider() {
             var slider = document.getElementById('slider-distance');
