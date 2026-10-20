@@ -292,6 +292,8 @@
     <script type="text/javascript">
 
         var map = L.map('map', {
+                // Finer zoom steps on phones so that fitting all markers does not fall back to zoom 0
+                zoomSnap: isSmallScreen() ? 0.25 : 1
             }
         ).setView([40, 0], 2);
 
@@ -387,6 +389,7 @@
             }
             // Same look as the default cluster icon, only larger
             return L.markerClusterGroup({
+                maxClusterRadius: 60,
                 iconCreateFunction: function (cluster) {
                     var count = cluster.getChildCount();
                     var size = count < 10 ? 'small' : count < 100 ? 'medium' : 'large';
@@ -441,6 +444,21 @@
 
         // Add the marker cluster group to the map
         map.addLayer(breweryMarkers);
+        fitMarkersOnSmallScreen(breweryMarkers);
+
+        // Phones and tablets: zoom so that all markers / clusters are visible,
+        // keeping clear of the layer switch at the top and the Filters button at the bottom
+        function fitMarkersOnSmallScreen(markers) {
+            if (!isSmallScreen() || markers.getLayers().length === 0) {
+                return false;
+            }
+            map.fitBounds(markers.getBounds(), {
+                paddingTopLeft: [30, 80],
+                paddingBottomRight: [30, 90],
+                animate: false
+            });
+            return true;
+        }
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         function getLastDateInMonth(year, month) {
             // Month parameter is 0-indexed in JavaScript (0 for January, 1 for February, etc.)
@@ -924,7 +942,10 @@
                 }
 
                 // Update the map's view based on the selected layer
-                map.setView(center, zoom);
+                var markers = selectedLayer === "Venues" ? venueMarkers : breweryMarkers;
+                if (!fitMarkersOnSmallScreen(markers)) {
+                    map.setView(center, zoom);
+                }
             });
 
             return div;
