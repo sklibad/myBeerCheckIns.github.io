@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=7" />
-    <link rel="stylesheet" href="map4.css?v=7" />
+    <link rel="stylesheet" href="common.css?v=8" />
+    <link rel="stylesheet" href="map4.css?v=8" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=7" type="text/javascript"></script>
+    <script src="data.js?v=8" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=7" defer></script>
+    <script src="nav.js?v=8" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -214,6 +214,7 @@
             </div>
             <div class="filter-actions">
                 <button type="button" id="reset-filters">Reset</button>
+                <span class="filter-count" id="filter-count" aria-live="polite"></span>
                 <button type="button" id="apply-filters">Apply filters</button>
             </div>
         </div>
@@ -800,13 +801,13 @@
                 addHoverEffectToLayers(newLayer, "ikony/pub.png");
                 venueMarkers.addLayer(newLayer)
                 map.addLayer(venueMarkers);
-            }    
+            }
+
+            return newLayer.getLayers().length;
         };
         
-        document.getElementById("reset-filters").addEventListener("click", function() {
-            resetFilters();
-        });
-        document.getElementById("apply-filters").addEventListener("click", function() {
+        // Current values of all filters in the panel
+        function readFilters() {
             var selectedFilters = {"Serving_style": [], "Beer_style": []};
             var checkboxes = document.querySelectorAll('input[type="checkbox"].serving-style:checked');
             checkboxes.forEach(function (checkbox) {
@@ -853,7 +854,62 @@
                 selectedFilters["toDate"] = getLastDateInMonth(toYear, toMonth);
             }
             
-            applyFilters(selectedFilters, selectedLayer);
+            return selectedFilters;
+        }
+
+        // Filters apply as soon as they change; the rating slider waits until it stops moving
+        var filterTimer = null;
+        var autoApplyPaused = false;
+
+        function updateFilters(delay) {
+            if (autoApplyPaused) return;
+            clearTimeout(filterTimer);
+            filterTimer = setTimeout(runFilters, delay || 0);
+        }
+
+        function runFilters() {
+            clearTimeout(filterTimer);
+            filterTimer = null;
+            updateResultCount(applyFilters(readFilters(), selectedLayer));
+        }
+
+        // "Show 33 breweries" on the phone button, "33 breweries" next to Reset on larger screens
+        function updateResultCount(count) {
+            var noun = selectedLayer === "Venues" ? (count === 1 ? "venue" : "venues") : (count === 1 ? "brewery" : "breweries");
+            document.getElementById('apply-filters').textContent = count === 0 ? "No matches" : "Show " + count + " " + noun;
+            document.getElementById('filter-count').textContent = count === 0 ? "No matches" : count + " " + noun;
+        }
+
+        // Reset all filters at once, then update the map a single time
+        function resetFiltersQuietly() {
+            autoApplyPaused = true;
+            resetFilters();
+            autoApplyPaused = false;
+            clearTimeout(filterTimer);
+            filterTimer = null;
+        }
+
+        document.querySelectorAll('#filter-panel input[type="checkbox"], #filter-panel select').forEach(function (input) {
+            input.addEventListener('change', function () {
+                updateFilters(0);
+            });
+        });
+        document.querySelectorAll('#slider-distance input[type="range"]').forEach(function (input) {
+            input.addEventListener('input', function () {
+                updateFilters(250);
+            });
+        });
+
+        document.getElementById("reset-filters").addEventListener("click", function() {
+            resetFiltersQuietly();
+            runFilters();
+        });
+
+        // Phones: the button only shows the result and closes the panel
+        document.getElementById("apply-filters").addEventListener("click", function() {
+            if (filterTimer) {
+                runFilters();
+            }
             setFiltersOpen(false);
         });
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -894,7 +950,7 @@
             div.addEventListener('change', function (e) {
                 selectedLayer = e.target.value;
                 var zoom, center;
-                resetFilters();
+                resetFiltersQuietly();
 
                 if (selectedLayer === "Breweries") {
                     if (map.hasLayer(venueMarkers)) {
@@ -947,6 +1003,7 @@
                 if (!fitMarkersOnSmallScreen(markers)) {
                     map.setView(center, zoom);
                 }
+                updateResultCount(markers.getLayers().length);
             });
 
             return div;
@@ -1053,6 +1110,7 @@
         }
 
         initRatingSlider();
+        updateResultCount(breweryMarkers.getLayers().length);
 
         // Filters drawer (small screens)
         var filterPanel = document.getElementById('filter-panel');

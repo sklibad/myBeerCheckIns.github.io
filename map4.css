@@ -194,7 +194,17 @@ body {
     background-color: rgba(87, 62, 62, 0.08);
 }
 
+/* Larger screens: filters apply immediately, so only the result count is shown */
+.filter-count {
+    flex: 1;
+    align-self: center;
+    text-align: right;
+    font-weight: bold;
+    color: rgb(87, 62, 62);
+}
+
 #apply-filters {
+    display: none;
     border: 1px solid rgb(87, 62, 62);
     background-color: rgb(87, 62, 62);
     color: white;
@@ -864,6 +874,15 @@ body {
 
   .filter-actions button {
     padding: 12px;
+  }
+
+  /* Phones: the count is on the button that closes the panel */
+  .filter-count {
+    display: none;
+  }
+
+  #apply-filters {
+    display: block;
   }
 
   #filter-panel.open {
