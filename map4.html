@@ -958,7 +958,27 @@
         function updateFilters(delay) {
             if (autoApplyPaused) return;
             clearTimeout(filterTimer);
-            filterTimer = setTimeout(runFilters, delay || 0);
+            filterTimer = setTimeout(runFiltersAndFit, delay || 0);
+        }
+
+        // A filter changed by the user: apply it and show the whole new selection
+        function runFiltersAndFit() {
+            runFilters();
+            fitSelection();
+        }
+
+        // Zoom so that all places of the selection fit into the free part of the map
+        // (not during the timeline or a route, which keep their own view)
+        function fitSelection() {
+            var markers = activeMarkers();
+            if (timeline.active || routeLayer || !markers.getLayers().length) return;
+            var small = isSmallScreen();
+            map.fitBounds(markers.getBounds(), {
+                // room for the map buttons: top on all screens, left on desktop, bottom and right on phones
+                paddingTopLeft: small ? [30, 80] : [70, 60],
+                paddingBottomRight: small ? [70, 90] : [40, 40],
+                maxZoom: 15
+            });
         }
 
         function runFilters(highlightNew) {
@@ -1005,13 +1025,13 @@
 
         document.getElementById("reset-filters").addEventListener("click", function() {
             resetFiltersQuietly();
-            runFilters();
+            runFiltersAndFit();
         });
 
         // Phones: the button only shows the result and closes the panel
         document.getElementById("apply-filters").addEventListener("click", function() {
             if (filterTimer) {
-                runFilters();
+                runFiltersAndFit();
             }
             setFiltersOpen(false);
         });
