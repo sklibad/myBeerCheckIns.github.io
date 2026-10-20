@@ -1792,8 +1792,16 @@
             return Math.min(18, 4 + 1.6 * Math.sqrt(beerCount || 1));
         }
 
+        // Index -1 is the month before the first check-in: the empty map the timeline starts from
+        var TIMELINE_START = -1;
+
+        function timelineMonth(index) {
+            var first = timelineMonths[0];
+            return new Date(first.getFullYear(), first.getMonth() + index, 1);
+        }
+
         function timelineMonthEnd(index) {
-            var month = timelineMonths[index];
+            var month = timelineMonth(index);
             return new Date(month.getFullYear(), month.getMonth() + 1, 0, 23, 59, 59);
         }
 
@@ -1844,7 +1852,7 @@
 
             var noun = selectedLayer === "Venues" ? (names.size === 1 ? "venue" : "venues") : (names.size === 1 ? "brewery" : "breweries");
             document.getElementById('timeline-date').textContent =
-                timelineMonths[timeline.index].toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+                timelineMonth(timeline.index).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
             document.getElementById('timeline-count').textContent =
                 names.size + ' ' + noun + (highlightNew && newPlaces.length ? ' \u00b7 +' + newPlaces.length + ' new' : '');
             document.getElementById('timeline-range').value = timeline.index;
@@ -1901,9 +1909,9 @@
         }
 
         function playTimeline() {
-            // at the end: start again from the first month
+            // at the end: start again from the empty map
             if (timeline.index >= timelineMonths.length - 1) {
-                timeline.index = 0;
+                timeline.index = TIMELINE_START;
                 timeline.shownPlaces = null;
                 renderTimelineStep(false);
             }
@@ -1912,7 +1920,7 @@
 
         function openTimeline() {
             timeline.active = true;
-            timeline.index = 0;
+            timeline.index = TIMELINE_START; // no places until the playback adds them
             timeline.shownPlaces = null;
             document.getElementById('timeline-bar').hidden = false;
             document.body.classList.add('timeline-on');
@@ -1962,6 +1970,7 @@
         };
         timelineControl.addTo(map);
 
+        document.getElementById('timeline-range').min = TIMELINE_START;
         document.getElementById('timeline-range').max = timelineMonths.length - 1;
         document.getElementById('timeline-play').addEventListener('click', function () {
             if (timeline.timer) {
