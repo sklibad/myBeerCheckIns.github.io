@@ -2036,9 +2036,10 @@
         checkInDates[" date." + day] += 1;
     }
 
-    const filteredChID = Object.keys(beerStyleRating).filter(key => key.includes("_"));
-    const minChID = Math.min(...filteredChID.map(key => beerStyleRating[key]));
-    const maxChID = Math.max(...filteredChID.map(key => beerStyleRating[key]));
+    const filteredChID = Object.keys(checkInDates).filter(key => key.includes("_"));
+    const minChID = Math.min(...filteredChID.map(key => checkInDates[key]));
+    const maxChID = Math.max(...filteredChID.map(key => checkInDates[key]));
+
 
     for (let key in checkInDates) {
         var element = document.getElementById(key);
@@ -2684,15 +2685,12 @@
         label: "Beers / month",
         data: values,
 
-        // LINE
-        borderColor: "#22c55e",        // line color
+        borderColor: "#22c55e",
         borderWidth: 3,
 
-        // AREA UNDER LINE (optional)
         fill: true,
         backgroundColor: "rgba(34,197,94,0.15)",
 
-        // POINTS
         pointRadius: 4,
         pointHoverRadius: 6,
         pointBackgroundColor: "#22c55e",
@@ -2707,38 +2705,53 @@
     options: {
         responsive: true,
         maintainAspectRatio: false,
+
         plugins: {
         legend: { display: false },
-        tooltip: { enabled: true }
+
+        tooltip: {
+            enabled: true,
+            backgroundColor: "rgba(15, 23, 42, 0.92)",
+            titleColor: "#ffffff",
+            bodyColor: "#ffffff",
+            borderColor: "rgba(255,255,255,0.15)",
+            borderWidth: 1
+        }
         },
+
         scales: {
         x: {
             ticks: {
-            color: "#2f3133",          // x labels color
+            color: "#2f3133",
             maxRotation: 0,
             autoSkip: true,
             maxTicksLimit: 10
             },
-            grid: {
-            color: "rgba(148,163,184,0.15)" // x grid color
-            }
-        },
-        y: {
-            beginAtZero: true,
-            ticks: {
-            color: "#2f3133",          // y labels color
-            precision: 0
+            title: {
+            display: false,
+            color: "#2f3133"
             },
             grid: {
-            color: "rgba(148,163,184,0.15)" // y grid color
+            color: "rgba(148,163,184,0.15)"
+            },
+            border: {
+            color: "rgba(148,163,184,0.35)" // axis line color (Chart.js v4)
             }
+        },
+
+        y: {
+            beginAtZero: true,
+            ticks: { color: "#2f3133", precision: 0 },
+            title: {
+            display: false,
+            color: "#2f3133"
+            },
+            grid: { color: "rgba(148,163,184,0.15)" },
+            border: { color: "rgba(148,163,184,0.35)" }
         }
         }
     }
     });
-
-
-
 </script>
 </body>
 </html>
