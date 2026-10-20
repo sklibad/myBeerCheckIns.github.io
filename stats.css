@@ -189,13 +189,16 @@ th {
         gap: 12px;
     }
 
-    /* Wind rose: square chart, no offset for the side legend */
+    /* Wind rose: box has the same proportions as the map of Europe,
+       so there is no empty space above or below it */
     .highcharts-figure {
-        height: min(80vh, calc(100vw + 60px));
+        height: auto;
         margin: 0;
     }
 
     #container {
+        height: auto;
+        aspect-ratio: 7335 / 5785; /* size of ikony/europe_cut.svg */
         padding-left: 0;
     }
 

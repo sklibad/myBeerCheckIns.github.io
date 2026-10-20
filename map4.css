@@ -346,39 +346,6 @@ body {
     background-color: #FFD700;
 }
 
-.popup-container {
-    max-width: 600px;
-    width: auto;
-    white-space: nowrap;
-    overflow-x: hidden;
-}
-
-.popup-header,
-.popup-footer {
-    width: 100%;
-    text-align: center;
-    box-sizing: border-box;
-    margin: 0;
-    position: sticky;
-    height: 30px;
-}
-
-.popup-footer {
-    margin-top: 10px;
-}
-
-.popup-content {
-    max-height: 200px;
-    max-width: 600px;
-    overflow-y: auto;
-    white-space: nowrap;
-}
-
-.left-aligned-list {
-    padding: 0;
-    margin-left: 20px;
-}
-
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -392,23 +359,106 @@ body {
     border-radius: 10px;
 }
 
-a.box-content {
-  outline-color: transparent;
+/* ---------- Brewery / venue popups ---------- */
+
+.beer-popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: rgb(238, 231, 212);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.beer-popup .leaflet-popup-tip {
+  background-color: rgb(238, 231, 212);
+}
+
+.beer-popup .leaflet-popup-content {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.beer-popup .popup-header {
+  padding: 10px 40px 10px 14px;
+  background-color: rgb(87, 62, 62);
+  color: white;
+}
+
+.popup-title {
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.popup-subtitle {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.beer-popup a.leaflet-popup-close-button {
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  font-size: 22px;
+  line-height: 24px;
+  color: white;
+}
+
+.beer-popup a.leaflet-popup-close-button:hover,
+.beer-popup a.leaflet-popup-close-button:focus {
+  color: #f3d9a4;
+}
+
+.popup-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.popup-list li + li {
+  border-top: 1px solid rgba(87, 62, 62, 0.15);
+}
+
+.popup-list a.box-content,
+.popup-list a.box-content:visited {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  border-left: 3px solid transparent;
+  color: rgb(60, 40, 40);
   text-decoration: none;
-  padding: 2px 1px 0;
-}
-a.box-content:visited {
-  color: blue;
+  outline: none;
 }
 
-a.box-content:focus,
-a.box-content:hover {
-  border-bottom: 1px solid;
+/* Chevron hints that a beer opens its detail */
+.popup-list a.box-content::after {
+  content: "\203A";
+  font-size: 20px;
+  line-height: 1;
+  color: rgba(87, 62, 62, 0.45);
 }
 
-a.box-content:active {
-  color: red;
+.popup-list a.box-content:hover,
+.popup-list a.box-content:focus-visible {
+  background-color: rgba(87, 62, 62, 0.08);
 }
+
+/* Beer whose detail is shown */
+.popup-list a.box-content.active {
+  border-left-color: rgb(165, 42, 42);
+  background-color: rgba(165, 42, 42, 0.12);
+  font-weight: bold;
+}
+
 /* ---------- Overlay switch (Breweries / Venues) ---------- */
 
 .overlay-switch {
@@ -594,31 +644,26 @@ a.box-content:active {
     height: 56px;
   }
 
-  /* Larger popups with bigger text and tap targets */
-  .leaflet-popup-content {
+  /* Larger popup text and tap targets */
+  .beer-popup .leaflet-popup-content {
     font-size: 16px;
-    line-height: 1.4;
-    margin: 14px 18px;
   }
 
-  .popup-header {
+  .popup-title {
     font-size: 17px;
-    height: auto;
-    min-height: 30px;
-    margin-bottom: 6px;
   }
 
-  .popup-content {
+  .popup-subtitle {
+    font-size: 13px;
+  }
+
+  .popup-list {
     max-height: 40vh;
   }
 
-  .popup-content li {
-    padding: 6px 0;
-  }
-
-  .popup-container,
-  .popup-content {
-    white-space: normal;
+  .popup-list a.box-content,
+  .popup-list a.box-content:visited {
+    padding: 12px 16px;
   }
 
   /* Larger marker clusters, still round */

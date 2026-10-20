@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=2" />
-    <link rel="stylesheet" href="map4.css?v=2" />
+    <link rel="stylesheet" href="common.css?v=3" />
+    <link rel="stylesheet" href="map4.css?v=3" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=2" type="text/javascript"></script>
+    <script src="data.js?v=3" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=2" defer></script>
+    <script src="nav.js?v=3" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -329,33 +329,30 @@
                 var check_ins = venue_check_ins;
             }
 
-            var placeName = layerId.replace(/ /g, "_");
+            var beers = check_ins[layerId].map(function (checkIn, i) {
+                return { index: i, name: checkIn['Beer'] };
+            });
 
-            // Get the list of dictionaries for the current brewery
-            var checkInsList = check_ins[layerId];
-            var beerCount = checkInsList.length;
+            layer.bindPopup(buildPopupContent(layerId, beers), popupOptions());
+        }
 
-            // Construct HTML content for the popup
-            var popupContent = "<div class='popup-container'>";
-            popupContent += "<div class='popup-header'><b>" + layerId + "</b></div>";
-            popupContent += "<div class='popup-content'><ul class='left-aligned-list'>";
+        // Popup of a brewery / venue: brown header with the place name, list of beers below
+        function buildPopupContent(layerId, beers) {
+            var placeName = layerId.replace(/ /g, "_").replace(/"/g, "&quot;");
+            var kind = selectedLayer === "Venues" ? "Venue" : "Brewery";
+            var countText = beers.length + (beers.length === 1 ? " beer" : " beers");
 
-            // Iterate over the list of dictionaries
-            for (var i = 0; i < beerCount; i++) {
-                var dict_n = checkInsList[i];
-                // Access the 'Beer' property and add it to the popup content
-                popupContent += '<li><a href="#" class = "box-content" id =' + placeName + "," + i + '>' + dict_n['Beer'] + '</a></li>';           
-            }
-            popupContent += "</ul></div>";
-
-            // Pin the total number of check-ins to the bottom
-            if (beerCount > 5) {
-                popupContent += "<div class='popup-footer'><hr>Total number of beers: " + beerCount + "</div>";
-                popupContent += "</div>";
-            }
-
-            // Bind the popup content to the layer
-            layer.bindPopup(popupContent, popupOptions());
+            var html = "<div class='popup-container'>";
+            html += "<div class='popup-header'>";
+            html += "<span class='popup-title'>" + layerId + "</span>";
+            html += "<span class='popup-subtitle'>" + kind + " &middot; " + countText + "</span>";
+            html += "</div>";
+            html += "<ul class='popup-list'>";
+            beers.forEach(function (beer) {
+                html += '<li><a href="#" class="box-content" id="' + placeName + ',' + beer.index + '">' + beer.name + '</a></li>';
+            });
+            html += "</ul></div>";
+            return html;
         }
         
         // Devices without a mouse (phones, tablets) cannot hover
@@ -371,7 +368,8 @@
             return {
                 maxWidth: maxWidth,
                 minWidth: Math.min(isSmallScreen() ? 260 : 200, maxWidth),
-                autoPanPadding: [12, 12]
+                autoPanPadding: [12, 12],
+                className: 'beer-popup'
             };
         }
 
@@ -506,6 +504,10 @@
         function handleBoxContentClick(e) {
             e.preventDefault();
             var clickedId = this.id;
+
+            // Highlight the beer whose detail is shown
+            $('.box-content.active').removeClass('active');
+            $(this).addClass('active');
             var splitResult = clickedId.split(',');
             var breweryName = splitResult[0].replace(/_/g, " ");
             var popupItemIndex = splitResult[1];
@@ -664,14 +666,8 @@
                 var layerId = feature.properties.Venue;
                 var beerList = venue_check_ins[layerId];
             }
-            var placeName = layerId.replace(/ /g, "_");
-            
-            var beerCount = 0;
+            var beers = [];
             var beerListLen = beerList.length;
-            // Construct HTML content for the popup
-            var popupContent = "<div class='popup-container'>";
-            popupContent += "<div class='popup-header'><b>" + layerId + "</b></div>";
-            popupContent += "<div class='popup-content'><ul class='left-aligned-list'>";
 
             // Iterate over the list of dictionaries
             for (var i = 0; i < beerListLen; i++) {
@@ -700,24 +696,13 @@
                         let fromDateCompliance = itemDate >= fromDate;
                         let toDateCompliance = itemDate <= toDate;
                         if (minRatingCompliance && maxRatingCompliance && fromDateCompliance && toDateCompliance && beerStyleCompliance){
-                        popupContent += '<li><a href="#" class = "box-content " id =' + placeName + "," + i + '>' + dict_n['Beer'] + '</a></li>';
-                        beerCount += 1;
+                            beers.push({ index: i, name: dict_n['Beer'] });
                         }
                     }
                 }
-                // Access the 'Beer' property and add it to the popup content
-                          
-            }
-            popupContent += "</ul></div>";
-
-            // Pin the total number of check-ins to the bottom
-            if (beerCount > 5) {
-                popupContent += "<div class='popup-footer'><hr>Total number of beers: " + beerCount + "</div>";
-                popupContent += "</div>";
             }
 
-            // Bind the popup content to the layer
-            layer.bindPopup(popupContent, popupOptions());
+            layer.bindPopup(buildPopupContent(layerId, beers), popupOptions());
         }
         var breweries = L.geoJSON();
 
