@@ -1380,6 +1380,44 @@ body {
   text-align: center;
 }
 
+/* ---------- Heatmap ---------- */
+
+/* Same pill as Timeline; the flame icon is filled */
+#map .heat-toggle svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+#map .heat-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 120px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background-color: rgb(238, 231, 212);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  font: 11px Arial, sans-serif;
+  color: rgb(87, 62, 62);
+}
+
+.heat-legend-title {
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.heat-legend-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #fee6a5, #fec46c, #fe9929, #d95f0e, #993404);
+}
+
+.heat-legend-scale {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* ---------- Phones and tablets ---------- */
 
 @media (max-width: 1000px) {

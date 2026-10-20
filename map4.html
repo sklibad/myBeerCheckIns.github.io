@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=15" />
-    <link rel="stylesheet" href="map4.css?v=15" />
+    <link rel="stylesheet" href="common.css?v=16" />
+    <link rel="stylesheet" href="map4.css?v=16" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -22,10 +22,13 @@
 
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+    <!-- Leaflet.heat (heatmap of check-ins) -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
     
-    <script src="data.js?v=15" type="text/javascript"></script>
+    <script src="data.js?v=16" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=15" defer></script>
+    <script src="nav.js?v=16" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -852,8 +855,8 @@
                 venueMarkers.addLayer(newLayer)
                 map.addLayer(venueMarkers);
             }
-            if (routeLayer || timeline.active) {
-                // a route shows only its venue and brewery; the timeline draws dots instead
+            if (routeLayer || timeline.active || heat.active) {
+                // a route shows only its venue and brewery; the timeline and the heatmap draw the places themselves
                 map.removeLayer(activeMarkers());
             }
 
@@ -930,6 +933,9 @@
             }
             if (typeof isGalleryOpen === 'function' && isGalleryOpen()) {
                 renderGallery();
+            }
+            if (heat.active) {
+                updateHeat();
             }
         }
 
@@ -1077,6 +1083,10 @@
                 }
                 if (isGalleryOpen()) {
                     renderGallery();
+                }
+                if (heat.active) {
+                    map.removeLayer(markers);
+                    updateHeat();
                 }
             });
 
@@ -1333,10 +1343,15 @@
         function hidePlaces() {
             map.removeLayer(activeMarkers());
             map.removeLayer(timeline.dotLayer);
+            if (heat.layer) map.removeLayer(heat.layer);
         }
 
+        // Places are shown as a heatmap, timeline dots or clusters (in this order of priority)
         function showPlaces() {
-            if (timeline.active) {
+            if (heat.active) {
+                updateHeat();
+                map.addLayer(heat.layer);
+            } else if (timeline.active) {
                 map.addLayer(timeline.dotLayer);
             } else if (!map.hasLayer(activeMarkers())) {
                 map.addLayer(activeMarkers());
@@ -1676,6 +1691,11 @@
         // switched off, zoom in, open its popup and, with beerIndex, also the check-in detail
         function showPlaceOnMap(layer, place, beerIndex) {
             var notes = [];
+            if (heat.active) {
+                // the place's popup needs its marker
+                setHeatmap(false);
+                notes.push('Heatmap off');
+            }
             if (timeline.active) {
                 closeTimeline();
                 notes.push('Timeline closed');
@@ -1910,7 +1930,7 @@
                 timeline.dotByName[placeName(marker)] = dot;
             });
 
-            if (!routeLayer && !map.hasLayer(timeline.dotLayer)) {
+            if (!routeLayer && !heat.active && !map.hasLayer(timeline.dotLayer)) {
                 map.addLayer(timeline.dotLayer);
             }
         }
@@ -2142,6 +2162,86 @@
         galleryControl.addTo(map);
         document.getElementById('gallery-close').addEventListener('click', closeGallery);
         document.getElementById('gallery-area').addEventListener('change', renderGallery);
+
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // Heatmap: where the most beers were drunk (Venues) or come from (Breweries)
+        var HEAT_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.2 1-3.6 2.2-4.8.2 1.6.9 2.6 1.8 3.1C11.4 9 11 6 12 3z"/></svg>';
+        // Same orange-brown scale as the cartograms
+        var HEAT_GRADIENT = { 0.2: '#fee6a5', 0.4: '#fec46c', 0.6: '#fe9929', 0.8: '#d95f0e', 1: '#993404' };
+
+        var heat = {
+            active: false,
+            layer: null
+        };
+
+        // One point per shown place, weighted by its beers that pass the filters
+        function heatPoints() {
+            return activeMarkers().getLayers().map(function (marker) {
+                var position = marker.getLatLng();
+                return [position.lat, position.lng, marker.beerCount || 1];
+            });
+        }
+
+        function updateHeat() {
+            if (!heat.layer) {
+                heat.layer = L.heatLayer([], {
+                    radius: isSmallScreen() ? 22 : 26,
+                    blur: 18,
+                    minOpacity: 0.35,
+                    maxZoom: 12,
+                    max: 8,
+                    gradient: HEAT_GRADIENT
+                });
+            }
+            heat.layer.setLatLngs(heatPoints());
+            if (!routeLayer && !map.hasLayer(heat.layer)) {
+                map.addLayer(heat.layer);
+            }
+        }
+
+        function setHeatmap(on) {
+            if (on === heat.active) return;
+            hidePlaces();
+            heat.active = on;
+            if (on) {
+                map.closePopup();
+            }
+            showPlaces();
+            if (timeline.active) {
+                // timeline dots or heatmap
+                renderTimelineStep(false);
+            }
+            heatControl.getContainer().classList.toggle('active', on);
+            if (on) {
+                heatLegend.addTo(map);
+            } else {
+                heatLegend.remove();
+            }
+        }
+
+        // "Heatmap" button on the map (top left, below Photos)
+        var heatControl = L.control({ position: 'topleft' });
+        heatControl.onAdd = function () {
+            var button = L.DomUtil.create('button', 'timeline-toggle heat-toggle');
+            button.type = 'button';
+            button.innerHTML = HEAT_ICON + '<span>Heatmap</span>';
+            L.DomEvent.disableClickPropagation(button);
+            L.DomEvent.on(button, 'click', function () {
+                setHeatmap(!heat.active);
+            });
+            return button;
+        };
+        heatControl.addTo(map);
+
+        // Small legend under the layer switch while the heatmap is on
+        var heatLegend = L.control({ position: 'topright' });
+        heatLegend.onAdd = function () {
+            var legend = L.DomUtil.create('div', 'heat-legend');
+            legend.innerHTML = '<span class="heat-legend-title">Beers</span>' +
+                '<span class="heat-legend-bar"></span>' +
+                '<span class="heat-legend-scale"><span>few</span><span>many</span></span>';
+            return legend;
+        };
 
         // Rating slider: two range inputs over one track, values shown as 0.25–5
         function initRatingSlider() {
