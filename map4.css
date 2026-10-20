@@ -87,7 +87,7 @@ body {
     color: rgb(87, 62, 62);
 }
 
-/* One grid per group: every column starts at the left edge of its checkboxes */
+/* Beer style grid: every column starts at the left edge of its checkboxes */
 .checkbox-group {
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -96,17 +96,11 @@ body {
     gap: 8px 10px;
 }
 
-/* Headings inside the grid span all columns, so beer and serving styles share the same columns */
-.checkbox-group .grid-heading {
-    grid-column: 1 / -1;
-    justify-self: stretch;
-    margin: 0 0 2px;
-}
-
-.checkbox-group .grid-heading-split {
-    margin-top: 6px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(87, 62, 62, 0.15);
+/* Serving style is laid out on its own: equal space between the options */
+.checkbox-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .checkbox-pair {
@@ -404,6 +398,149 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: rgb(50, 35, 35);
+}
+
+#bottle {
+  max-height: 400px;
+  margin-top: 130px;
+  filter: contrast(60%);
+}
+
+/* ---------- Check-in detail ---------- */
+
+#checkin-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#checkin-detail[hidden] {
+  display: none;
+}
+
+.detail-label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgb(87, 62, 62);
+  opacity: 0.85;
+}
+
+.detail-head {
+  text-align: center;
+}
+
+.detail-date {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: rgba(50, 35, 35, 0.65);
+}
+
+.detail-beer {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.2;
+  color: rgb(87, 62, 62);
+}
+
+.detail-style {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgb(87, 62, 62);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.detail-places {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(87, 62, 62, 0.15);
+  border-bottom: 1px solid rgba(87, 62, 62, 0.15);
+}
+
+.detail-place {
+  text-align: center;
+}
+
+.detail-place-name {
+  display: block;
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+/* Light cards on the cream panel */
+.detail-card {
+  padding: 10px 8px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 3px rgba(87, 62, 62, 0.15);
+  text-align: center;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+#ratingCircles {
+  display: flex;
+  gap: 4px;
+}
+
+.rating-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgb(87, 62, 62);
+}
+
+.filled {
+  background-color: #FFD700;
+}
+
+.rating-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(87, 62, 62);
+}
+
+.detail-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat-value {
+  display: block;
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.detail-section {
+  text-align: center;
+}
+
+.detail-comment {
+  margin: 6px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid rgb(165, 42, 42);
+  border-radius: 0 8px 8px 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  text-align: left;
 }
 
 #friends {
@@ -411,55 +548,41 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
+  margin-top: 8px;
 }
 
-.box-item.same-row {
-    display: flex;
-    justify-content: space-between;
-}
-
-.box-item.same-row2 {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 40px;
-    margin-right: 40px;
-}
-
-#checkinPhoto {
-    width: 70%;
-    max-width: 350px;
-    height: auto;
-    margin-top: 20px;
-}
-
-.box-item {
-    display: none;
-}
-
-#bottle {
-    max-height: 400px;
-    margin-top: 130px;
-    filter: contrast(60%);
-}
-
-.rating-circle {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #000;
-    margin-right: 5px;
-    display: inline-block;
+.friend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 60px;
 }
 
 .friend-picture {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
 }
 
-.filled {
-    background-color: #FFD700;
+.friend-name {
+  font-size: 12px;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail-photo img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 ::-webkit-scrollbar {
@@ -578,15 +701,51 @@ body {
 /* ---------- Overlay switch (Breweries / Venues) ---------- */
 
 .overlay-switch {
-  background-color: white;
-  padding: 8px 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  line-height: 1.6;
+  display: flex;
+  padding: 3px;
+  border-radius: 999px;
+  background-color: rgb(238, 231, 212);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+
+/* The radio buttons stay for keyboard and screen readers, the labels are the visible pills */
+.overlay-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .overlay-switch label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 6px;
+  border-radius: 999px;
+  color: rgb(87, 62, 62);
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.overlay-switch label img {
+  width: 22px;
+  height: 22px;
+}
+
+.overlay-switch label:hover {
+  background-color: rgba(87, 62, 62, 0.1);
+}
+
+.overlay-switch input:checked + label {
+  background-color: rgb(87, 62, 62);
+  color: white;
+}
+
+.overlay-switch input:focus-visible + label {
+  outline: 2px solid rgb(87, 62, 62);
+  outline-offset: 2px;
 }
 
 /* ---------- Phones and tablets ---------- */
@@ -764,35 +923,36 @@ body {
     display: none;
   }
 
-  #contentBox h2 {
-    font-size: 1.1em;
-    margin: 14px 0 4px;
+  .detail-beer {
+    font-size: 24px;
   }
 
-  #contentBox p {
-    margin: 0 0 4px;
+  .detail-label {
+    font-size: 12px;
   }
 
-  /* Everything centred, rating on its own row below serving style */
-  .box-item.same-row2 {
+  .detail-places {
+    flex-direction: row;
     justify-content: center;
-    gap: 56px;
-    margin: 0;
-  }
-
-  .box-item.same-row {
-    flex-direction: column;
-    align-items: center;
+    gap: 24px;
   }
 
   .rating-circle {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .stat-value {
+    font-size: 18px;
   }
 
   .friend-picture {
     width: 56px;
     height: 56px;
+  }
+
+  .detail-photo img {
+    max-height: 50vh;
   }
 
   /* Larger popup text and tap targets */
@@ -837,6 +997,15 @@ body {
   }
 
   .overlay-switch {
-    font-size: 13px;
+    font-size: 14px;
+  }
+
+  .overlay-switch label {
+    padding: 7px 14px 7px 8px;
+  }
+
+  .overlay-switch label img {
+    width: 26px;
+    height: 26px;
   }
 }

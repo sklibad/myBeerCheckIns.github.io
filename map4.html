@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=5" />
-    <link rel="stylesheet" href="map4.css?v=5" />
+    <link rel="stylesheet" href="common.css?v=6" />
+    <link rel="stylesheet" href="map4.css?v=6" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=5" type="text/javascript"></script>
+    <script src="data.js?v=6" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=5" defer></script>
+    <script src="nav.js?v=6" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -59,8 +59,8 @@
             </div>
             <div class="filter-body">
                 <div class="filter-group">
+                    <h3>Beer style</h3>
                     <div class="checkbox-group">
-                        <h3 class="grid-heading">Beer style</h3>
                         <div class="checkbox-pair">
                             <input type="checkbox" class="beer-style" id="Lager" checked>
                             <label for="Lager">Lager</label>
@@ -85,7 +85,11 @@
                             <input type="checkbox" class="beer-style" id="Other" checked>
                             <label for="Other">Other</label>
                         </div>
-                        <h3 class="grid-heading grid-heading-split">Serving style</h3>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Serving style</h3>
+                    <div class="checkbox-row">
                         <div class="checkbox-pair">
                             <input type="checkbox" class="serving-style" id="Draft" checked>
                             <label for="Draft">Draft</label>
@@ -226,67 +230,62 @@
                 <button type="button" class="panel-close" id="detail-close" aria-label="Close detail">&times;</button>
             </div>
             <img id = "bottle" src="ikony/bottle.svg" alt="">
-            <div class="box-item">
-                <h2>Beer</h2>
-                <p id="beerName"></p>
-            </div>
-        
-            <div class="box-item">
-                <h2>Beer Style</h2>
-                <p id="beerStyle"></p>
-            </div>
-        
-            <div class="box-item" id = "brewery-div">
-                <h2>Brewery</h2>
-                <p id="breweryName"></p>
-            </div>
+            <div id="checkin-detail" hidden>
+                <div class="detail-head">
+                    <p class="detail-date" id="checkinDate"></p>
+                    <h2 class="detail-beer" id="beerName"></h2>
+                    <span class="detail-style" id="beerStyle"></span>
+                </div>
 
-            <div class="box-item" id = "venue-div">
-                <h2 id = "venue">Venue</h2>
-                <p id="venueName"></p>
-            </div>
+                <div class="detail-places">
+                    <div class="detail-place" id="brewery-div">
+                        <span class="detail-label">Brewery</span>
+                        <span class="detail-place-name" id="breweryName"></span>
+                    </div>
+                    <div class="detail-place" id="venue-div">
+                        <span class="detail-label">Venue</span>
+                        <span class="detail-place-name" id="venueName"></span>
+                    </div>
+                </div>
 
-            <div class="box-item same-row2">
-                <div class="box-item">
-                    <h2>IBU</h2>
-                    <p id="ibuValue"></p>
+                <div class="detail-card detail-rating">
+                    <span class="detail-label">Rating</span>
+                    <div class="rating-row">
+                        <div id="ratingCircles"></div>
+                        <span class="rating-value" id="ratingValue"></span>
+                    </div>
                 </div>
-                <div class="box-item">
-                    <h2>ABV</h2>
-                    <p id="abvValue"></p>
+
+                <div class="detail-stats">
+                    <div class="detail-card stat">
+                        <span class="detail-label">ABV</span>
+                        <span class="stat-value" id="abvValue"></span>
+                    </div>
+                    <div class="detail-card stat">
+                        <span class="detail-label">IBU</span>
+                        <span class="stat-value" id="ibuValue"></span>
+                    </div>
+                    <div class="detail-card stat">
+                        <span class="detail-label">Serving</span>
+                        <span class="stat-value" id="servingStyle"></span>
+                    </div>
                 </div>
-            </div>
-        
-            <div class="box-item same-row"> 
-                <div>
-                    <h2 class="box-item">Serving Style</h2>
-                    <p id="servingStyle"></p>
+
+                <div class="detail-section" id="comment-div">
+                    <span class="detail-label">Comment</span>
+                    <p class="detail-comment" id="comment"></p>
                 </div>
-                <div class="box-item">
-                    <h2>Rating</h2>
-                    <div id="ratingCircles"></div>
+
+                <div class="detail-section" id="friends-div">
+                    <span class="detail-label">Friends</span>
+                    <div id="friends"></div>
                 </div>
-            </div>
-        
-            <div class="box-item" id="friends-div" style="display: none;">
-                <h2>Friends</h2>
-                <div id = "friends"></div>
-            </div>
-        
-            <div class="box-item">
-                <h2 id = "comment-text">Comment</h2>
-                <p id="comment"></p>
-            </div>
-        
-            <div class="box-item">
-                <h2>Date</h2>
-                <p id="checkinDate"></p>
-            </div>
-        
-            <div class="box-item checkinPhoto">
-                <a href="#" data-lightbox="checkin" data-title="Check-in Photo">
-                    <img class="checkinPhoto" id="checkinPhoto" alt="Check-in photo">
-                </a>
+
+                <div class="detail-section detail-photo checkinPhoto">
+                    <a href="#" data-lightbox="checkin" data-title="Check-in Photo">
+                        <img class="checkinPhoto" id="checkinPhoto" alt="Check-in photo">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -449,30 +448,29 @@
             return lastDayOfMonth;
         }
         
-        // Function to assign icon paths to friends' attributes
-        function assignFriendIcons(friendsList) {
-            var friendIcons = [];
-            
-            for (var i = 0; i < friendsList.length; i++) {
-                // Assume friendsList[i] is a unique identifier for each friend
-                // You may need to modify this based on your actual data structure
-                var friendId = friendsList[i];
-                
-                // Assign an icon path for each friend
-                friendIcons.push('ikony/' + friendId + '.jpg');
-            }
-
-            return friendIcons;
+        // "17/04/2025" -> "17 Apr 2025"
+        function formatCheckinDate(dmy) {
+            var parts = dmy.split('/');
+            var date = new Date(parts[2], parts[1] - 1, parts[0]);
+            if (isNaN(date)) return dmy;
+            return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         }
 
-        function displayFriendIcons(friendIcons) {
-            // Clear previous friend icons
-            $('#friends').empty();  // Use the correct selector
+        // Full name of a friend from the beer buddy filter, e.g. "FZ" -> "Filip Zadražil"
+        function friendName(friendId) {
+            var option = document.querySelector('#filter-dropdown option[value="' + friendId + '"]');
+            return option ? option.textContent : friendId;
+        }
 
-            // Spacing and wrapping of the icons is handled by CSS (#friends)
-            for (var i = 0; i < friendIcons.length; i++) {
-                $('#friends').append($('<img class="friend-picture" alt="Friend Icon">').attr('src', friendIcons[i]));
-            }
+        function displayFriends(friendIds) {
+            $('#friends').empty();
+            friendIds.forEach(function (friendId) {
+                var name = friendName(friendId);
+                var friend = $('<div class="friend"></div>').attr('title', name);
+                friend.append($('<img class="friend-picture">').attr('src', 'ikony/' + friendId + '.jpg').attr('alt', name));
+                friend.append($('<span class="friend-name"></span>').text(name.split(' ')[0]));
+                $('#friends').append(friend);
+            });
         }
 
         // Function to update the rating circles
@@ -501,101 +499,63 @@
         
         function handleBoxContentClick(e) {
             e.preventDefault();
-            var clickedId = this.id;
 
             // Highlight the beer whose detail is shown
             $('.box-content.active').removeClass('active');
             $(this).addClass('active');
-            var splitResult = clickedId.split(',');
-            var breweryName = splitResult[0].replace(/_/g, " ");
+
+            var splitResult = this.id.split(',');
+            var placeName = splitResult[0].replace(/_/g, " ");
             var popupItemIndex = splitResult[1];
-            if (selectedLayer === "Breweries"){
-                var check_in = brewery_check_ins[breweryName][popupItemIndex];
-                if (check_in["Venue"] === null){
-                    $('#venue').hide();
-                    $('#venueName').hide();
-                } else {
-                    $('#venue').show();
-                    $('#venueName').text(check_in["Venue"]);
-                    $('#venueName').show();
-                }
-            } else if (selectedLayer === "Venues"){
-                var check_in = venue_check_ins[breweryName][popupItemIndex];
-                $('#breweryName').text(check_in["Brewery"]);
+            var check_in, breweryName, venueName;
+            if (selectedLayer === "Venues") {
+                check_in = venue_check_ins[placeName][popupItemIndex];
+                breweryName = check_in["Brewery"];
+                venueName = placeName;
+            } else {
+                check_in = brewery_check_ins[placeName][popupItemIndex];
+                breweryName = placeName;
+                venueName = check_in["Venue"];
             }
-            
-            // Update content dynamically
+
+            $('#checkinDate').text(formatCheckinDate(check_in["Date"]));
             $('#beerName').text(check_in["Beer"]);
             $('#beerStyle').text(check_in["Beer_style"]);
-            
-            if (check_in["IBU"] === null){
-                $('#ibuValue').text("-");
-            } else {
-                $('#ibuValue').text(check_in["IBU"]);
-            }
 
-            if (check_in["ABV"] === null){
-                $('#abvValue').text("-");
-            } else {
-                $('#abvValue').text(check_in["ABV"]);
-            }
-            
-            $('#servingStyle').text(check_in["Serving_style"]);
-            if (check_in["Comment"] === null){
-                $('#comment-text').hide();
-                $('#comment').hide();
-            } else {
-                $('#comment').text(check_in["Comment"]);
-                $('#comment-text').show();
-                $('#comment').show();
-            }
-             
-            $('#checkinDate').text(check_in["Date"]);
+            // Brewery (with its country) and venue
+            var country = check_in["Brewery_country"];
+            $('#breweryName').text(breweryName ? breweryName + (country ? ' \u00b7 ' + country : '') : '');
+            $('#brewery-div').toggle(!!breweryName);
+            $('#venueName').text(venueName || '');
+            $('#venue-div').toggle(!!venueName);
 
-            // Fill the rating circles
             updateRatingCircles(check_in["Rating"]);
+            $('#ratingValue').text(Number(check_in["Rating"]) + ' / 5');
 
-            // Show the content box
-            $('#bottle').hide();
-            $('.box-item').show();
-            $('#contentBox').show();
+            $('#abvValue').text(check_in["ABV"] === null ? '\u2013' : check_in["ABV"] + ' %');
+            $('#ibuValue').text(check_in["IBU"] === null ? '\u2013' : check_in["IBU"]);
+            $('#servingStyle').text(check_in["Serving_style"]);
 
-            if (selectedLayer === "Breweries"){
-                $('#brewery-div').hide();
-            }
+            $('#comment').text(check_in["Comment"] || '');
+            $('#comment-div').toggle(check_in["Comment"] !== null);
 
-            if (selectedLayer === "Venues"){
-                $('#venue-div').hide();
-            }
-
-            // Check if the Photo URL is defined
-            if (check_in["Photo_url"] !== null) {
-                // Set photo source
-                $('.checkinPhoto img').attr('src', check_in["Photo_url"]);
-                // Show the photo item
-                $('.checkinPhoto').show();
-
-                // Enable Lightbox for the photo
-                $('.checkinPhoto a').attr('href', check_in["Photo_url"]); // Set the larger image link
-                $('.checkinPhoto a').attr('data-lightbox', 'checkin'); // Set a common data attribute
-            } else {
-                // Hide the photo item
-                $('.checkinPhoto').hide();
-            }
-
-            // Check if Friends is defined
             if (check_in["Friends"].length > 0) {
-                // Show the friends item
-                displayFriendIcons(assignFriendIcons(check_in["Friends"]));
+                displayFriends(check_in["Friends"]);
+            }
+            $('#friends-div').toggle(check_in["Friends"].length > 0);
 
-                $('#friends').show();
-                $('#friends-div').show();
+            if (check_in["Photo_url"] !== null) {
+                $('.checkinPhoto img').attr('src', check_in["Photo_url"]);
+                $('.checkinPhoto a').attr('href', check_in["Photo_url"]);
+                $('.checkinPhoto a').attr('data-lightbox', 'checkin');
+                $('.detail-photo').show();
             } else {
-                // Hide the friends item
-                $('#friends').hide();
-                $('#friends-div').hide();            }
+                $('.detail-photo').hide();
+            }
 
-            // Scroll to the top of the contentBox
+            // Show the detail instead of the empty bottle
+            $('#bottle').hide();
+            $('#checkin-detail').prop('hidden', false);
             $('#contentBox').scrollTop(0);
 
             // On small screens the detail slides up from the bottom
@@ -896,7 +856,11 @@
         var overlayControl = L.control({ position: 'topright' });
 
         overlayControl.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'info legend overlay-switch');
+            // Segmented switch: two pills with the marker icon of each layer
+            var div = L.DomUtil.create('div', 'overlay-switch');
+            div.setAttribute('role', 'radiogroup');
+            div.setAttribute('aria-label', 'Show on map');
+            var layerIcons = { "Breweries": "ikony/beer.png", "Venues": "ikony/pub.png" };
 
             for (var i = 0; i < Object.keys(overlayLayers).length; i++) {
                 var layerName = Object.keys(overlayLayers)[i];
@@ -904,8 +868,9 @@
 
                 div.innerHTML +=
                     '<input type="radio" name="layer" value="' + layerName + '" id="' + layerName + '" ' + checkedAttribute + '>' +
-                    '<label for="' + layerName + '">' + layerName + '</label><br>';
+                    '<label for="' + layerName + '"><img src="' + layerIcons[layerName] + '" alt="">' + layerName + '</label>';
             }
+            L.DomEvent.disableClickPropagation(div);
             
             div.addEventListener('change', function (e) {
                 selectedLayer = e.target.value;
