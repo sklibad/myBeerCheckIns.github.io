@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=18" />
-    <link rel="stylesheet" href="map4.css?v=18" />
+    <link rel="stylesheet" href="common.css?v=19" />
+    <link rel="stylesheet" href="map4.css?v=19" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=18" type="text/javascript"></script>
+    <script src="data.js?v=19" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=18" defer></script>
+    <script src="nav.js?v=19" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -149,66 +149,25 @@
                 </select>
                 </div>
                 <div class="filter-group">
-                    <h3>Date range</h3>
-                    <div class="date-row">
-                        <span class="date-label">From</span>
-                        <div class="date-filters">
-                            <select id="from-month" aria-label="From month">
-                        <option value = "month">Month</option>
-                        <option value = "1">January</option>
-                        <option value = "2">February</option>
-                        <option value = "3">March</option>
-                        <option value = "4">April</option>
-                        <option value = "5">May</option>
-                        <option value = "6">June</option>
-                        <option value = "7">July</option>
-                        <option value = "8">August</option>
-                        <option value = "9">September</option>
-                        <option value = "10">October</option>
-                        <option value = "11">November</option>
-                        <option value = "12">December</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                            <select id="from-year" aria-label="From year">
-                        <option value = "year">Year</option>
-                        <option value = "2026">2026</option>
-                        <option value = "2025">2025</option>
-                        <option value = "2024">2024</option>
-                        <option value = "2023">2023</option>
-                        <option value = "2022">2022</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                        </div>
+                    <div class="date-heading">
+                        <h3>Date range</h3>
+                        <span class="date-range-label" id="date-range-label"></span>
                     </div>
-                    <div class="date-row">
-                        <span class="date-label">To</span>
-                        <div class="date-filters">
-                            <select id="to-month" aria-label="To month">
-                        <option value = "month">Month</option>
-                        <option value = "1">January</option>
-                        <option value = "2">February</option>
-                        <option value = "3">March</option>
-                        <option value = "4">April</option>
-                        <option value = "5">May</option>
-                        <option value = "6">June</option>
-                        <option value = "7">July</option>
-                        <option value = "8">August</option>
-                        <option value = "9">September</option>
-                        <option value = "10">October</option>
-                        <option value = "11">November</option>
-                        <option value = "12">December</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                            <select id="to-year" aria-label="To year">
-                        <option value = "year">Year</option>
-                        <option value = "2026">2026</option>
-                        <option value = "2025">2025</option>
-                        <option value = "2024">2024</option>
-                        <option value = "2023">2023</option>
-                        <option value = "2022">2022</option>
-                        <!-- Add more options as needed -->
-                    </select>
+                    <div class="date-chips" role="group" aria-label="Quick date ranges">
+                        <button type="button" class="date-chip" data-range="all">All time</button>
+                        <button type="button" class="date-chip" data-range="year">This year</button>
+                        <button type="button" class="date-chip" data-range="12m">Last 12 months</button>
+                    </div>
+                    <div slider id="slider-date">
+                        <div>
+                        <div inverse-left></div>
+                        <div inverse-right></div>
+                        <div range></div>
+                        <span thumb></span>
+                        <span thumb></span>
                         </div>
+                        <input type="range" aria-label="From month" tabindex="0" value="0" max="0" min="0" step="1" />
+                        <input type="range" aria-label="To month" tabindex="0" value="0" max="0" min="0" step="1" />
                     </div>
                 </div>
             </div>
@@ -547,12 +506,6 @@
             return true;
         }
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function getLastDateInMonth(year, month) {
-            // Month parameter is 0-indexed in JavaScript (0 for January, 1 for February, etc.)
-            const lastDayOfMonth = new Date(year, month, 0);
-            return lastDayOfMonth;
-        }
-        
         // "17/04/2025" -> "17 Apr 2025"
         function formatCheckinDate(dmy) {
             var parts = dmy.split('/');
@@ -707,13 +660,8 @@
             // Select a beer buddy dropdown
             document.getElementById("filter-dropdown").value = "ALL";
 
-            // From date dropdowns
-            document.getElementById("from-month").value = "month";
-            document.getElementById("from-year").value = "year";
-
-            // To date dropdowns
-            document.getElementById("to-month").value = "month";
-            document.getElementById("to-year").value = "year";
+            // Whole date range
+            setDateRange(0, timelineMonths.length - 1);
         }
 
         function onEachFilteredBrewery(feature, layer, filters, layerName) {
@@ -931,22 +879,10 @@
             var dropdown = document.getElementById('filter-dropdown');
             selectedFilters['Friend'] = dropdown.value;
 
-            var fromMonth = document.getElementById('from-month').value;
-            var fromYear = document.getElementById('from-year').value;
-            var toMonth = document.getElementById('to-month').value;
-            var toYear = document.getElementById('to-year').value;
-            
-            if (fromMonth === 'month' || fromYear === "year"){
-                selectedFilters["fromDate"] = new Date(2022, 0, 1);
-            } else {
-                selectedFilters["fromDate"] = new Date(fromYear, fromMonth - 1, 1);
-            }
-            
-            if (toMonth === 'month' || toYear === "year"){
-                selectedFilters["toDate"] = new Date();
-            } else {
-                selectedFilters["toDate"] = getLastDateInMonth(toYear, toMonth);
-            }
+            // Month range slider: first day of the "from" month to the last day of the "to" month
+            var range = dateRange();
+            selectedFilters["fromDate"] = timelineMonth(range[0]);
+            selectedFilters["toDate"] = timelineMonthEnd(range[1]);
             
             return selectedFilters;
         }
@@ -1017,7 +953,7 @@
                 updateFilters(0);
             });
         });
-        document.querySelectorAll('#slider-distance input[type="range"]').forEach(function (input) {
+        document.querySelectorAll('#filter-panel [slider] input[type="range"]').forEach(function (input) {
             input.addEventListener('input', function () {
                 updateFilters(250);
             });
@@ -2440,9 +2376,9 @@
             }
         });
 
-        // Rating slider: two range inputs over one track, values shown as 0.25–5
-        function initRatingSlider() {
-            var slider = document.getElementById('slider-distance');
+        // Two range inputs over one track (rating and date range). minGap: smallest distance
+        // between the thumbs; onUpdate(min, max) is called with the values after every change.
+        function initDualSlider(slider, minGap, onUpdate) {
             var inputs = slider.querySelectorAll('input[type="range"]');
             var minInput = inputs[0];
             var maxInput = inputs[1];
@@ -2451,20 +2387,19 @@
             var range = slider.querySelector('[range]');
             var thumbs = slider.querySelectorAll('[thumb]');
             var signs = slider.querySelectorAll('[sign]');
-            var step = parseInt(minInput.step);
 
             function toPercent(input) {
                 var min = parseInt(input.min);
                 var max = parseInt(input.max);
-                return (parseInt(input.value) - min) / (max - min) * 100;
+                return max === min ? 0 : (parseInt(input.value) - min) / (max - min) * 100;
             }
 
             function update(e) {
                 // Keep the minimum below the maximum
                 if (e && e.target === minInput) {
-                    minInput.value = Math.min(minInput.value, maxInput.value - step);
+                    minInput.value = Math.min(minInput.value, maxInput.value - minGap);
                 } else if (e && e.target === maxInput) {
-                    maxInput.value = Math.max(maxInput.value, parseInt(minInput.value) + step);
+                    maxInput.value = Math.max(maxInput.value, parseInt(minInput.value) + minGap);
                 }
 
                 var left = toPercent(minInput);
@@ -2476,18 +2411,80 @@
                 range.style.right = (100 - right) + '%';
                 thumbs[0].style.left = left + '%';
                 thumbs[1].style.left = right + '%';
-                signs[0].style.left = left + '%';
-                signs[1].style.left = right + '%';
-                document.getElementById('min-value').textContent = minInput.value / 100;
-                document.getElementById('max-value').textContent = maxInput.value / 100;
+                if (signs.length) {
+                    signs[0].style.left = left + '%';
+                    signs[1].style.left = right + '%';
+                }
+                onUpdate(parseInt(minInput.value), parseInt(maxInput.value));
             }
 
             minInput.addEventListener('input', update);
             maxInput.addEventListener('input', update);
             update();
+            return update;
         }
 
-        initRatingSlider();
+        // Rating: values 25–500 shown as 0.25–5
+        initDualSlider(document.getElementById('slider-distance'), 25, function (min, max) {
+            document.getElementById('min-value').textContent = min / 100;
+            document.getElementById('max-value').textContent = max / 100;
+        });
+
+        // Date range: one step per month from the first to the last check-in
+        var dateSlider = document.getElementById('slider-date');
+        var dateInputs = dateSlider.querySelectorAll('input[type="range"]');
+        dateInputs.forEach(function (input) {
+            input.max = timelineMonths.length - 1;
+        });
+        dateInputs[1].value = timelineMonths.length - 1;
+
+        function monthLabel(index) {
+            return timelineMonth(index).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+        }
+
+        function dateRange() {
+            return [parseInt(dateInputs[0].value), parseInt(dateInputs[1].value)];
+        }
+
+        // Month index of a date, clamped to the months with check-ins
+        function monthIndex(date) {
+            var first = timelineMonths[0];
+            var index = (date.getFullYear() - first.getFullYear()) * 12 + date.getMonth() - first.getMonth();
+            return Math.max(0, Math.min(timelineMonths.length - 1, index));
+        }
+
+        // Quick choices: [from, to] month indexes
+        function quickDateRange(name) {
+            var last = timelineMonths.length - 1;
+            var today = new Date();
+            if (name === 'year') return [monthIndex(new Date(today.getFullYear(), 0, 1)), last];
+            if (name === '12m') return [monthIndex(new Date(today.getFullYear(), today.getMonth() - 11, 1)), last];
+            return [0, last];
+        }
+
+        var updateDateSlider = initDualSlider(dateSlider, 0, function (from, to) {
+            document.getElementById('date-range-label').textContent =
+                from === to ? monthLabel(from) : monthLabel(from) + ' \u2013 ' + monthLabel(to);
+            // highlight the quick choice that matches the range
+            document.querySelectorAll('.date-chip').forEach(function (chip) {
+                var range = quickDateRange(chip.dataset.range);
+                chip.classList.toggle('active', range[0] === from && range[1] === to);
+            });
+        });
+
+        function setDateRange(from, to) {
+            dateInputs[0].value = from;
+            dateInputs[1].value = to;
+            updateDateSlider();
+        }
+
+        document.querySelectorAll('.date-chip').forEach(function (chip) {
+            chip.addEventListener('click', function () {
+                var range = quickDateRange(chip.dataset.range);
+                setDateRange(range[0], range[1]);
+                updateFilters(0);
+            });
+        });
         updateResultCount(venueMarkers.getLayers().length);
 
         // Filters drawer (small screens)

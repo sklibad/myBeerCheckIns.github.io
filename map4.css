@@ -138,31 +138,45 @@ body {
     outline-offset: 1px;
 }
 
-.date-row {
+.date-heading {
     display: flex;
-    align-items: center;
+    align-items: baseline;
+    justify-content: space-between;
     gap: 8px;
 }
 
-.date-row + .date-row {
-    margin-top: 8px;
-}
-
-.date-label {
-    width: 38px;
-    flex-shrink: 0;
+.date-range-label {
+    font-size: 12px;
+    font-weight: bold;
     color: rgb(87, 62, 62);
 }
 
-.date-filters {
-    flex: 1;
+.date-chips {
     display: flex;
+    flex-wrap: wrap;
     gap: 6px;
 }
 
-.date-filters select {
-    flex: 1;
-    min-width: 0;
+.date-chip {
+    padding: 5px 10px;
+    border: 1px solid rgba(87, 62, 62, 0.4);
+    border-radius: 999px;
+    background-color: white;
+    color: rgb(87, 62, 62);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.date-chip.active {
+    border-color: rgb(87, 62, 62);
+    background-color: rgb(87, 62, 62);
+    color: white;
+}
+
+/* The date slider has no value bubbles above the thumbs */
+#slider-date {
+    margin: 22px 0 12px 0;
 }
 
 /* Buttons stay at the bottom of the panel */
@@ -1640,8 +1654,9 @@ body.timeline-on .mini-stats {
     padding: 9px 10px;
   }
 
-  .date-label {
-    width: 44px;
+  .date-chip {
+    padding: 7px 12px;
+    font-size: 13px;
   }
 
   .filter-actions button {
