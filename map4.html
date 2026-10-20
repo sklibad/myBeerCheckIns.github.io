@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=6" />
-    <link rel="stylesheet" href="map4.css?v=6" />
+    <link rel="stylesheet" href="common.css?v=7" />
+    <link rel="stylesheet" href="map4.css?v=7" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=6" type="text/javascript"></script>
+    <script src="data.js?v=7" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=6" defer></script>
+    <script src="nav.js?v=7" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -293,7 +293,8 @@
 
         var map = L.map('map', {
                 // Finer zoom steps on phones so that fitting all markers does not fall back to zoom 0
-                zoomSnap: isSmallScreen() ? 0.25 : 1
+                zoomSnap: isSmallScreen() ? 0.25 : 1,
+                zoomControl: false
             }
         ).setView([40, 0], 2);
 
@@ -367,7 +368,7 @@
             return {
                 maxWidth: maxWidth,
                 minWidth: Math.min(isSmallScreen() ? 260 : 200, maxWidth),
-                autoPanPadding: [12, 12],
+                autoPan: false, // centerPopup() moves the map instead
                 className: 'beer-popup'
             };
         }
@@ -954,7 +955,45 @@
         // Add the custom control to the map
         overlayControl.addTo(map);
 
-        L.control.layers(baseLayers).addTo(map);
+        // Zoom and basemap buttons: bottom right on phones (within thumb reach, away from the
+        // Breweries / Venues switch), top left / top right on larger screens
+        L.control.zoom({ position: isSmallScreen() ? 'bottomright' : 'topleft' }).addTo(map);
+        L.control.layers(baseLayers, null, { position: isSmallScreen() ? 'bottomright' : 'topright' }).addTo(map);
+
+        // Move an opened popup to the middle of the free map area (between the map controls),
+        // so that it is always fully visible
+        function centerPopup(popup) {
+            var popupElement = popup.getElement();
+            if (!popupElement) return;
+
+            var mapRect = map.getContainer().getBoundingClientRect();
+            var top = mapRect.top;
+            var bottom = mapRect.bottom;
+            map.getContainer().querySelectorAll('.leaflet-top .leaflet-control').forEach(function (control) {
+                top = Math.max(top, control.getBoundingClientRect().bottom);
+            });
+            var bottomControls = Array.from(map.getContainer().querySelectorAll('.leaflet-bottom .leaflet-control:not(.leaflet-control-attribution)'));
+            if (filtersToggle.offsetParent) {
+                bottomControls.push(filtersToggle);
+            }
+            bottomControls.forEach(function (control) {
+                bottom = Math.min(bottom, control.getBoundingClientRect().top);
+            });
+
+            var popupRect = popupElement.getBoundingClientRect();
+            var dx = (popupRect.left + popupRect.right) / 2 - (mapRect.left + mapRect.right) / 2;
+            var dy = (popupRect.top + popupRect.bottom) / 2 - (top + bottom) / 2;
+            if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+                map.panBy([dx, dy]);
+            }
+        }
+
+        map.on('popupopen', function (e) {
+            // wait until the popup is laid out
+            requestAnimationFrame(function () {
+                centerPopup(e.popup);
+            });
+        });
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         // Rating slider: two range inputs over one track, values shown as 0.25–5
         function initRatingSlider() {

@@ -748,6 +748,63 @@ body {
   outline-offset: 2px;
 }
 
+/* ---------- Zoom and basemap buttons in the site colours ---------- */
+
+#map .leaflet-bar,
+#map .leaflet-control-layers {
+  border: none;
+  border-radius: 12px;
+  background-color: rgb(238, 231, 212);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+#map .leaflet-bar a {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-bottom: 1px solid rgba(87, 62, 62, 0.2);
+  background-color: rgb(238, 231, 212);
+  color: rgb(87, 62, 62);
+  font-size: 20px;
+}
+
+#map .leaflet-bar a:last-child {
+  border-bottom: none;
+}
+
+#map .leaflet-bar a:hover {
+  background-color: rgb(226, 216, 190);
+}
+
+#map .leaflet-bar a.leaflet-disabled {
+  background-color: rgb(238, 231, 212);
+  color: rgba(87, 62, 62, 0.3);
+}
+
+#map .leaflet-control-layers-toggle {
+  width: 36px;
+  height: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M12 3 2 8l10 5 10-5-10-5z'/%3E%3Cpath d='m2 12.5 10 5 10-5'/%3E%3Cpath d='m2 17 10 5 10-5'/%3E%3C/svg%3E");
+  background-size: 22px 22px;
+}
+
+#map .leaflet-control-layers-expanded {
+  padding: 8px 14px 8px 10px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: rgb(87, 62, 62);
+}
+
+#map .leaflet-control-layers-base label {
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+#map .leaflet-control-layers-selector {
+  accent-color: rgb(87, 62, 62);
+}
+
 /* ---------- Phones and tablets ---------- */
 
 @media (max-width: 1000px) {
@@ -994,6 +1051,22 @@ body {
 
   .marker-cluster.marker-cluster-touch span {
     line-height: 46px;
+  }
+
+  /* Larger zoom and basemap buttons; the bottom right stack sits above the attribution */
+  #map .leaflet-bar a,
+  #map .leaflet-control-layers-toggle {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+  }
+
+  #map .leaflet-bottom.leaflet-right .leaflet-control {
+    margin-right: 10px;
+  }
+
+  #map .leaflet-control-layers-expanded {
+    font-size: 15px;
   }
 
   .overlay-switch {
