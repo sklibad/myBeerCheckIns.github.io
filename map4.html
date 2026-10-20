@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=10" />
-    <link rel="stylesheet" href="map4.css?v=10" />
+    <link rel="stylesheet" href="common.css?v=11" />
+    <link rel="stylesheet" href="map4.css?v=11" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=10" type="text/javascript"></script>
+    <script src="data.js?v=11" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=10" defer></script>
+    <script src="nav.js?v=11" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -1168,27 +1168,20 @@
 
             var breweryLabel = routeCheckIn["Brewery"] + (routeCheckIn["Brewery_country"] ? ' \u00b7 ' + routeCheckIn["Brewery_country"] : '');
             var venueLabel = venueOfRoute();
-            // Labels above the icons lean towards the middle of the route, so the map only
-            // needs room for the icons at its edges and the route can span the whole width
+            // Name labels centred above the icons
             var iconSize = isSmallScreen() ? 66 : 50;
-            function labelOptions(text, pointsEast) {
-                var shift = Math.max(0, labelWidth(text) / 2 - 24);
-                return {
-                    permanent: true,
-                    direction: 'top',
-                    offset: [pointsEast ? shift : -shift, -iconSize],
-                    className: 'route-tooltip'
-                };
-            }
-            var venueIsWest = venue.lng <= brewery.lng;
+            var labelOptions = { permanent: true, direction: 'top', offset: [0, -iconSize], className: 'route-tooltip' };
             routeLayer = L.layerGroup([
                 L.polyline(points, { color: 'white', weight: 7, opacity: 0.85, interactive: false }),
                 L.polyline(points, { color: 'rgb(165, 42, 42)', weight: 3, dashArray: '8 7', interactive: false }),
-                L.marker(venue, { icon: markerIcon('ikony/pub.png'), interactive: false })
-                    .bindTooltip(venueLabel, labelOptions(venueLabel, venueIsWest)),
-                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false })
-                    .bindTooltip(breweryLabel, labelOptions(breweryLabel, !venueIsWest))
+                L.marker(venue, { icon: markerIcon('ikony/pub.png'), interactive: false }).bindTooltip(venueLabel, labelOptions),
+                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
             ]).addTo(map);
+
+            // Each map edge only needs room for half of the label of the place on that side
+            var venueIsWest = venue.lng <= brewery.lng;
+            var westLabel = venueIsWest ? venueLabel : breweryLabel;
+            var eastLabel = venueIsWest ? breweryLabel : venueLabel;
 
             routeReturn = {
                 center: map.getCenter(),
@@ -1204,7 +1197,7 @@
             if (isSmallScreen() && contentBox.classList.contains('open')) {
                 setSheetState('peek');
             }
-            fitRoute(L.latLngBounds(points), iconSize);
+            fitRoute(L.latLngBounds(points), iconSize, labelWidth(westLabel) / 2, labelWidth(eastLabel) / 2);
             updateRouteButton();
         }
 
@@ -1230,9 +1223,10 @@
 
         // Fit the whole route, including the icons with their labels above them,
         // into the free part of the map (above the detail sheet on phones)
-        function fitRoute(bounds, iconSize) {
-            var sidePadding = iconSize / 2 + 16;
-            var topPadding = iconSize + 40 + 60; // icon + label + layer switch
+        function fitRoute(bounds, iconSize, westRoom, eastRoom) {
+            var leftPadding = Math.max(iconSize / 2, westRoom) + 10;
+            var rightPadding = Math.max(iconSize / 2, eastRoom) + 10;
+            var topPadding = iconSize + 50 + 60; // icon + label (up to two lines) + layer switch
             var bottomPadding = 60;
             if (isSmallScreen() && contentBox.classList.contains('open')) {
                 // the sheet may still be sliding, so use its final height
@@ -1240,8 +1234,8 @@
                 bottomPadding = sheetHeight + 30;
             }
             map.fitBounds(bounds, {
-                paddingTopLeft: [sidePadding, topPadding],
-                paddingBottomRight: [sidePadding, bottomPadding],
+                paddingTopLeft: [leftPadding, topPadding],
+                paddingBottomRight: [rightPadding, bottomPadding],
                 maxZoom: 15
             });
         }

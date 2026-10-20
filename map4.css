@@ -534,10 +534,16 @@ body {
   color: rgba(50, 35, 35, 0.75);
 }
 
+/* Long names wrap to a second line, so the labels stay narrow */
 .route-tooltip {
+  width: max-content; /* the tooltip pane has no width, so without this every word would wrap */
+  max-width: 140px;
   padding: 4px 10px;
   border: none;
-  border-radius: 999px;
+  border-radius: 12px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
   background-color: rgb(87, 62, 62);
   color: white;
   font-family: Arial, sans-serif;
