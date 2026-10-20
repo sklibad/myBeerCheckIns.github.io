@@ -223,7 +223,10 @@
 
         <!-- Content box -->
         <div id="contentBox">
-            <button type="button" class="panel-close" id="detail-close" aria-label="Close detail">&times;</button>
+            <div class="sheet-handle" id="sheet-handle">
+                <span aria-hidden="true"></span>
+                <button type="button" class="panel-close" id="detail-close" aria-label="Close detail">&times;</button>
+            </div>
             <img id = "bottle" src="ikony/bottle.svg" alt="">
             <div class="box-item">
                 <h2>Beer</h2>
@@ -367,9 +370,38 @@
             var maxWidth = Math.min(600, window.innerWidth - 60);
             return {
                 maxWidth: maxWidth,
-                minWidth: Math.min(200, maxWidth),
+                minWidth: Math.min(isSmallScreen() ? 260 : 200, maxWidth),
                 autoPanPadding: [12, 12]
             };
+        }
+
+        // Bigger markers on phones and tablets so they are easy to tap
+        function markerIcon(iconUrl) {
+            var size = isSmallScreen() ? 66 : 50;
+            return L.icon({
+                iconUrl: iconUrl,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size],
+                popupAnchor: [0, -size]
+            });
+        }
+
+        function createClusterGroup() {
+            if (!isSmallScreen()) {
+                return L.markerClusterGroup();
+            }
+            // Same look as the default cluster icon, only larger
+            return L.markerClusterGroup({
+                iconCreateFunction: function (cluster) {
+                    var count = cluster.getChildCount();
+                    var size = count < 10 ? 'small' : count < 100 ? 'medium' : 'large';
+                    return L.divIcon({
+                        html: '<div><span>' + count + '</span></div>',
+                        className: 'marker-cluster marker-cluster-' + size + ' marker-cluster-touch',
+                        iconSize: L.point(56, 56)
+                    });
+                }
+            });
         }
 
         function addHoverEffectToLayers(layers, iconUrl) {
@@ -387,19 +419,14 @@
                 });
 
                 layer.on('mouseout', function () {
-                    this.setIcon(L.icon({
-                        iconUrl: iconUrl,
-                        iconSize: [50, 50],
-                        iconAnchor: [25, 50],
-                        popupAnchor: [0, -50]
-                    }));
+                    this.setIcon(markerIcon(iconUrl));
                 });
             });
         }
 
         // Create a marker cluster group
-        var breweryMarkers = L.markerClusterGroup();
-        var venueMarkers = L.markerClusterGroup();
+        var breweryMarkers = createClusterGroup();
+        var venueMarkers = createClusterGroup();
 
         // Create a GeoJSON layer with onEachFeature and pointToLayer
         var breweries = L.geoJSON(breweries_lst[0], {
@@ -407,12 +434,7 @@
                 onEachLayer(feature, layer, selectedLayer)},
             pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {
-                    icon: L.icon({
-                        iconUrl: 'ikony/beer.png',
-                        iconSize: [50, 50],
-                        iconAnchor: [25, 50],
-                        popupAnchor: [0, -50]
-                    })
+                    icon: markerIcon('ikony/beer.png')
                 });
             }
         });
@@ -787,11 +809,11 @@
             if (selectedLayer === "Breweries"){
                 dataJsFile = breweries_lst;
                 icon = "ikony/beer.png";
-                breweryMarkers = L.markerClusterGroup();
+                breweryMarkers = createClusterGroup();
             } else if (selectedLayer === "Venues"){
                 dataJsFile = venues_lst;
                 icon = "ikony/pub.png";
-                venueMarkers = L.markerClusterGroup();
+                venueMarkers = createClusterGroup();
             }
             
             var newLayer = L.geoJSON(dataJsFile, {
@@ -803,12 +825,7 @@
             },
             pointToLayer : function(feature, latlng) {
                         return L.marker(latlng, {
-                            icon: L.icon({
-                            iconUrl: icon,
-                            iconSize: [50, 50], // width and height of the image in pixels
-                            iconAnchor: [25, 50], // point of the icon which will correspond to marker's location
-                            popupAnchor:  [0, -50],
-                            })
+                            icon: markerIcon(icon)
                         });
                 }       
             });
@@ -922,18 +939,13 @@
                             onEachLayer(feature, layer, selectedLayer)},
                         pointToLayer: function (feature, latlng) {
                             return L.marker(latlng, {
-                                icon: L.icon({
-                                    iconUrl: 'ikony/beer.png',
-                                    iconSize: [50, 50],
-                                    iconAnchor: [25, 50],
-                                    popupAnchor: [0, -50],
-                                })
+                                icon: markerIcon('ikony/beer.png')
                             });
                         }
                     });
                     addHoverEffectToLayers(breweries, "ikony/beer.png");
 
-                    breweryMarkers = L.markerClusterGroup();
+                    breweryMarkers = createClusterGroup();
                     breweryMarkers.addLayer(breweries);
 
                     map.addLayer(breweryMarkers);
@@ -949,18 +961,13 @@
                             onEachLayer(feature, layer, selectedLayer)},
                         pointToLayer: function (feature, latlng) {
                             return L.marker(latlng, {
-                                icon: L.icon({
-                                    iconUrl: 'ikony/pub.png',
-                                    iconSize: [50, 50],
-                                    iconAnchor: [25, 50],
-                                    popupAnchor: [0, -50],
-                                })
+                                icon: markerIcon('ikony/pub.png')
                             });
                         }
                     });
                     addHoverEffectToLayers(venues, "ikony/pub.png");
 
-                    venueMarkers = L.markerClusterGroup();
+                    venueMarkers = createClusterGroup();
                     venueMarkers.addLayer(venues);
 
                     map.addLayer(venueMarkers);
@@ -1051,10 +1058,16 @@
         });
 
         // Check-in detail bottom sheet (small screens)
+        var contentBox = document.getElementById('contentBox');
+
+        // States of the bottom sheet: closed, half (class "open") and full screen (classes "open full")
         function setDetailOpen(open) {
-            var contentBox = document.getElementById('contentBox');
+            var wasOpen = contentBox.classList.contains('open');
             contentBox.classList.toggle('open', open && isSmallScreen());
-            if (!open || !isSmallScreen()) return;
+            if (!open) {
+                contentBox.classList.remove('full');
+            }
+            if (!open || wasOpen || !isSmallScreen()) return;
 
             // Once the panel has slid in, move the map so the open popup stays visible above it
             setTimeout(function () {
@@ -1071,6 +1084,50 @@
         document.getElementById('detail-close').addEventListener('click', function () {
             setDetailOpen(false);
         });
+
+        // Drag the handle up to expand the sheet to full screen, down to shrink or close it
+        (function initSheetDrag() {
+            var handle = document.getElementById('sheet-handle');
+            var startY = null;
+            var startHeight = 0;
+            var height = 0;
+
+            handle.addEventListener('pointerdown', function (e) {
+                if (e.target.closest('button')) return; // the close button is inside the handle
+                startY = e.clientY;
+                startHeight = height = contentBox.offsetHeight;
+                contentBox.classList.add('dragging');
+                handle.setPointerCapture(e.pointerId);
+            });
+
+            handle.addEventListener('pointermove', function (e) {
+                if (startY === null) return;
+                height = Math.max(0, Math.min(window.innerHeight, startHeight - (e.clientY - startY)));
+                contentBox.style.height = height + 'px';
+            });
+
+            function endDrag() {
+                if (startY === null) return;
+                var moved = Math.abs(height - startHeight);
+                startY = null;
+                contentBox.classList.remove('dragging');
+                contentBox.style.height = '';
+
+                if (moved < 5) {
+                    // A tap on the handle toggles half / full screen
+                    contentBox.classList.toggle('full');
+                } else if (height > window.innerHeight * 0.75) {
+                    contentBox.classList.add('full');
+                } else if (height < window.innerHeight * 0.3) {
+                    setDetailOpen(false);
+                } else {
+                    contentBox.classList.remove('full');
+                }
+            }
+
+            handle.addEventListener('pointerup', endDrag);
+            handle.addEventListener('pointercancel', endDrag);
+        })();
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
