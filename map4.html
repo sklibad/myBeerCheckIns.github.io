@@ -1055,74 +1055,23 @@
                 // hide the route (and bring back its places) before the layers change
                 prepareRoute(null);
                 selectedLayer = e.target.value;
-                var zoom, center;
-                resetFiltersQuietly();
 
-                if (selectedLayer === "Breweries") {
-                    if (map.hasLayer(venueMarkers)) {
-                        map.removeLayer(venueMarkers);
-                    }
-
-                    breweries = L.geoJSON(breweries_lst[0], {
-                        onEachFeature: function (feature, layer) {
-                            onEachLayer(feature, layer, selectedLayer)},
-                        pointToLayer: function (feature, latlng) {
-                            return L.marker(latlng, {
-                                icon: markerIcon('ikony/beer.png')
-                            });
-                        }
-                    });
-                    addHoverEffectToLayers(breweries, "ikony/beer.png");
-
-                    breweryMarkers = createClusterGroup();
-                    breweryMarkers.addLayer(breweries);
-
-                    map.addLayer(breweryMarkers);
-                    zoom = 2;
-                    center = [40, 0];
-                } else if (selectedLayer === "Venues") {
-                    if (map.hasLayer(breweryMarkers)) {
-                        map.removeLayer(breweryMarkers);
-                    }
-
-                    venues = L.geoJSON(venues_lst[0], {
-                        onEachFeature: function (feature, layer) {
-                            onEachLayer(feature, layer, selectedLayer)},
-                        pointToLayer: function (feature, latlng) {
-                            return L.marker(latlng, {
-                                icon: markerIcon('ikony/pub.png')
-                            });
-                        }
-                    });
-                    addHoverEffectToLayers(venues, "ikony/pub.png");
-
-                    venueMarkers = createClusterGroup();
-                    venueMarkers.addLayer(venues);
-
-                    map.addLayer(venueMarkers);
-                    zoom = 3;
-                    center = [50.19243907905966, -19.821782223466816];
-                }
-
-                // Update the map's view based on the selected layer
-                var markers = selectedLayer === "Venues" ? venueMarkers : breweryMarkers;
-                // When search switches the layer it moves the map itself; an (animated) view change
-                // here would finish later and throw the map back to this default view
-                if (!keepViewOnLayerSwitch && !fitMarkersOnSmallScreen(markers)) {
-                    map.setView(center, zoom);
-                }
-                updateResultCount(markers.getLayers().length);
-
-                // the timeline keeps showing only places up to its month
+                // The filters stay as they are: the new layer is built through them, exactly as
+                // after a filter change (this also refreshes counts, timeline, gallery and stats)
                 if (timeline.active) {
                     timeline.shownPlaces = null;
-                    renderTimelineStep(false);
                 }
-                if (isGalleryOpen()) {
-                    renderGallery();
-                }
-                if (isMiniStatsOpen()) {
-                    renderMiniStats();
+                runFilters();
+
+                // Default view of the layer. When search switches the layer it moves the map itself;
+                // an (animated) view change here would finish later and throw the map back
+                var markers = activeMarkers();
+                if (!keepViewOnLayerSwitch && !fitMarkersOnSmallScreen(markers)) {
+                    if (selectedLayer === "Venues") {
+                        map.setView([50.19243907905966, -19.821782223466816], 3);
+                    } else {
+                        map.setView([40, 0], 2);
+                    }
                 }
             });
 
