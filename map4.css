@@ -883,6 +883,55 @@ body {
   accent-color: rgb(87, 62, 62);
 }
 
+/* ---------- Attribution behind an "i" button ---------- */
+
+#map .attribution-toggle {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 6px;
+}
+
+#map .attribution-button {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(238, 231, 212);
+  color: rgb(87, 62, 62);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  font: italic bold 15px/26px Georgia, serif;
+  cursor: pointer;
+}
+
+#map .attribution-toggle.open .attribution-button {
+  background-color: rgb(87, 62, 62);
+  color: white;
+}
+
+#map .leaflet-bottom.leaflet-right .attribution-toggle .leaflet-control-attribution {
+  display: none;
+  max-width: calc(100vw - 90px);
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background-color: rgb(238, 231, 212);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  color: rgb(87, 62, 62);
+  font-size: 12px;
+  white-space: normal;
+}
+
+#map .leaflet-bottom.leaflet-right .attribution-toggle.open .leaflet-control-attribution {
+  display: block;
+}
+
+#map .leaflet-control-attribution a {
+  color: rgb(165, 42, 42);
+}
+
 /* ---------- Phones and tablets ---------- */
 
 @media (max-width: 1000px) {

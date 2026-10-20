@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=11" />
-    <link rel="stylesheet" href="map4.css?v=11" />
+    <link rel="stylesheet" href="common.css?v=12" />
+    <link rel="stylesheet" href="map4.css?v=12" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=11" type="text/javascript"></script>
+    <script src="data.js?v=12" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=11" defer></script>
+    <script src="nav.js?v=12" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -1035,6 +1035,38 @@
         // Breweries / Venues switch), top left / top right on larger screens
         L.control.zoom({ position: isSmallScreen() ? 'bottomright' : 'topleft' }).addTo(map);
         L.control.layers(baseLayers, null, { position: isSmallScreen() ? 'bottomright' : 'topright' }).addTo(map);
+
+        // Attribution (Leaflet, source of the active basemap, author) hidden behind an "i" button.
+        // Leaflet itself swaps the source text when another basemap is chosen.
+        var attributionToggle = L.control({ position: 'bottomright' });
+        attributionToggle.onAdd = function (map) {
+            var wrapper = L.DomUtil.create('div', 'attribution-toggle');
+            var button = L.DomUtil.create('button', 'attribution-button', wrapper);
+            button.type = 'button';
+            button.textContent = 'i';
+            button.setAttribute('aria-label', 'Map data sources');
+            button.setAttribute('aria-expanded', 'false');
+            wrapper.appendChild(map.attributionControl.getContainer());
+
+            L.DomEvent.disableClickPropagation(wrapper);
+            L.DomEvent.on(button, 'click', function () {
+                setAttributionOpen(!wrapper.classList.contains('open'));
+            });
+            return wrapper;
+        };
+
+        function setAttributionOpen(open) {
+            var wrapper = attributionToggle.getContainer();
+            wrapper.classList.toggle('open', open);
+            wrapper.querySelector('.attribution-button').setAttribute('aria-expanded', open);
+        }
+
+        attributionToggle.addTo(map);
+        // keep the "i" button at the very bottom of its corner, below the other buttons
+        attributionToggle.getContainer().parentNode.appendChild(attributionToggle.getContainer());
+        map.on('click', function () {
+            setAttributionOpen(false);
+        });
 
         // Move an opened popup to the middle of the free map area (between the map controls),
         // so that it is always fully visible
