@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=8" />
-    <link rel="stylesheet" href="map4.css?v=8" />
+    <link rel="stylesheet" href="common.css?v=9" />
+    <link rel="stylesheet" href="map4.css?v=9" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=8" type="text/javascript"></script>
+    <script src="data.js?v=9" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=8" defer></script>
+    <script src="nav.js?v=9" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -247,6 +247,14 @@
                         <span class="detail-label">Venue</span>
                         <span class="detail-place-name" id="venueName"></span>
                     </div>
+                </div>
+
+                <div class="detail-route" id="route-div">
+                    <button type="button" class="route-button" id="route-toggle" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="6" r="2.5"/><path d="M7 16.5C10 9 14 15 17 7.5" stroke-dasharray="3 3"/></svg>
+                        <span id="route-label">Show route from brewery</span>
+                    </button>
+                    <p class="route-note" id="route-note">Brewed right here at the venue</p>
                 </div>
 
                 <div class="detail-card detail-rating">
@@ -548,6 +556,9 @@
             $('#brewery-div').toggle(!!breweryName);
             $('#venueName').text(venueName || '');
             $('#venue-div').toggle(!!venueName);
+
+            // Venues layer: the beer's way from the brewery to the venue, drawn on request
+            prepareRoute(selectedLayer === "Venues" ? check_in : null);
 
             updateRatingCircles(check_in["Rating"]);
             $('#ratingValue').text(Number(check_in["Rating"]) + ' / 5');
@@ -951,6 +962,7 @@
                 selectedLayer = e.target.value;
                 var zoom, center;
                 resetFiltersQuietly();
+                prepareRoute(null);
 
                 if (selectedLayer === "Breweries") {
                     if (map.hasLayer(venueMarkers)) {
@@ -1062,6 +1074,143 @@
             });
         });
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // Route from the brewery to the venue (Venues layer, on request from the detail panel)
+        var routeLayer = null;
+        var routeCheckIn = null;
+        var routeDistance = 0;
+
+        // "50.08, 14.42" -> L.latLng
+        function parseLatLng(text) {
+            if (!text) return null;
+            var parts = String(text).split(',');
+            var latlng = L.latLng(parseFloat(parts[0]), parseFloat(parts[1]));
+            return isNaN(latlng.lat) || isNaN(latlng.lng) ? null : latlng;
+        }
+
+        function formatDistance(meters) {
+            var km = meters / 1000;
+            return (km < 10 ? km.toFixed(1) : Math.round(km).toLocaleString('en-GB')) + ' km';
+        }
+
+        // Points of a gentle arc between two places (a straight line would hide in the map)
+        function arcPoints(from, to) {
+            var dLat = to.lat - from.lat;
+            var dLng = to.lng - from.lng;
+            // bend sideways by a fifth of the distance
+            var control = L.latLng(from.lat + dLat / 2 - dLng * 0.2, from.lng + dLng / 2 + dLat * 0.2);
+            var points = [];
+            for (var i = 0; i <= 64; i++) {
+                var t = i / 64;
+                var a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+                points.push([
+                    a * from.lat + b * control.lat + c * to.lat,
+                    a * from.lng + b * control.lng + c * to.lng
+                ]);
+            }
+            return points;
+        }
+
+        // Called for every opened check-in: set up the button (or the "brewed here" note)
+        function prepareRoute(checkIn) {
+            clearRoute();
+            routeCheckIn = null;
+            $('#route-div').hide();
+            if (!checkIn) return;
+
+            var brewery = parseLatLng(checkIn["Brewery_location"]);
+            var venue = parseLatLng(checkIn["Venue_location"]);
+            if (!brewery || !venue) return;
+
+            $('#route-div').show();
+            var distance = map.distance(brewery, venue);
+            if (distance < 100) {
+                // brewpub: the beer did not travel anywhere
+                $('#route-toggle').hide();
+                $('#route-note').show();
+                return;
+            }
+            routeCheckIn = checkIn;
+            routeDistance = distance;
+            $('#route-note').hide();
+            $('#route-toggle').show();
+            updateRouteButton();
+        }
+
+        function updateRouteButton() {
+            var shown = !!routeLayer;
+            $('#route-toggle').attr('aria-pressed', shown).toggleClass('active', shown);
+            $('#route-label').text((shown ? 'Hide route' : 'Show route from brewery') +
+                (routeCheckIn ? ' \u00b7 ' + formatDistance(routeDistance) : ''));
+        }
+
+        function showRoute() {
+            if (!routeCheckIn) return;
+            var brewery = parseLatLng(routeCheckIn["Brewery_location"]);
+            var venue = parseLatLng(routeCheckIn["Venue_location"]);
+            var points = arcPoints(brewery, venue);
+
+            var breweryLabel = routeCheckIn["Brewery"] + (routeCheckIn["Brewery_country"] ? ' \u00b7 ' + routeCheckIn["Brewery_country"] : '');
+            routeLayer = L.layerGroup([
+                L.polyline(points, { color: 'white', weight: 7, opacity: 0.85, interactive: false }),
+                L.polyline(points, { color: 'rgb(165, 42, 42)', weight: 3, dashArray: '8 7', interactive: false }),
+                L.circleMarker(venue, { radius: 6, color: 'white', weight: 2, fillColor: 'rgb(165, 42, 42)', fillOpacity: 1, interactive: false }),
+                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false })
+                    .bindTooltip(breweryLabel, { permanent: true, direction: 'top', offset: [0, -(isSmallScreen() ? 66 : 50)], className: 'route-tooltip' })
+            ]).addTo(map);
+
+            // The popup would cover the route; the detail panel stays open
+            map.closePopup();
+            fitRoute(L.latLngBounds(points), labelWidth(breweryLabel));
+            updateRouteButton();
+        }
+
+        // Show the whole route in the free part of the map (above the detail sheet on phones)
+        // Width of the brewery label, so the map can leave room for it
+        function labelWidth(text) {
+            var label = L.DomUtil.create('div', 'leaflet-tooltip route-tooltip', document.body);
+            label.style.visibility = 'hidden';
+            label.textContent = text;
+            var width = label.offsetWidth;
+            document.body.removeChild(label);
+            return width;
+        }
+
+        // Fit the whole route, including the brewery icon with its label above it,
+        // into the free part of the map (above the detail sheet on phones)
+        function fitRoute(bounds, breweryLabelWidth) {
+            var sidePadding = Math.max(40, breweryLabelWidth / 2 + 12);
+            var topPadding = (isSmallScreen() ? 66 : 50) + 40 + 60; // icon + label + layer switch
+            var bottomPadding = 60;
+            if (isSmallScreen() && contentBox.classList.contains('open')) {
+                bottomPadding = contentBox.offsetHeight + 40;
+            }
+            map.fitBounds(bounds, {
+                paddingTopLeft: [sidePadding, topPadding],
+                paddingBottomRight: [sidePadding, bottomPadding],
+                maxZoom: 15
+            });
+        }
+
+        function clearRoute() {
+            if (routeLayer) {
+                map.removeLayer(routeLayer);
+                routeLayer = null;
+            }
+            updateRouteButton();
+        }
+
+        document.getElementById('route-toggle').addEventListener('click', function () {
+            if (routeLayer) {
+                clearRoute();
+            } else {
+                showRoute();
+            }
+        });
+
+        // Opening another place hides the route of the previous beer
+        map.on('popupopen', function () {
+            if (routeLayer) clearRoute();
+        });
         // Rating slider: two range inputs over one track, values shown as 0.25–5
         function initRatingSlider() {
             var slider = document.getElementById('slider-distance');

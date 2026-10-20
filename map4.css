@@ -487,6 +487,68 @@ body {
   font-weight: bold;
 }
 
+/* Route from the brewery (Venues layer) */
+.detail-route {
+  text-align: center;
+}
+
+.route-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid rgb(87, 62, 62);
+  border-radius: 999px;
+  background-color: transparent;
+  color: rgb(87, 62, 62);
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.route-button svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.route-button svg path {
+  fill: none;
+}
+
+.route-button:hover {
+  background-color: rgba(87, 62, 62, 0.08);
+}
+
+.route-button.active {
+  background-color: rgb(87, 62, 62);
+  color: white;
+}
+
+.route-note {
+  margin: 0;
+  font-style: italic;
+  color: rgba(50, 35, 35, 0.75);
+}
+
+.route-tooltip {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 999px;
+  background-color: rgb(87, 62, 62);
+  color: white;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.route-tooltip.leaflet-tooltip-top::before {
+  border-top-color: rgb(87, 62, 62);
+}
+
 /* Light cards on the cream panel */
 .detail-card {
   padding: 10px 8px;
@@ -1020,6 +1082,10 @@ body {
 
   .stat-value {
     font-size: 18px;
+  }
+
+  .route-button {
+    padding: 10px 16px;
   }
 
   .friend-picture {
