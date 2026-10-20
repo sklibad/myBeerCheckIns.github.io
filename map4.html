@@ -813,6 +813,10 @@
                 venueMarkers.addLayer(newLayer)
                 map.addLayer(venueMarkers);
             }
+            if (routeLayer) {
+                // a route is shown: only its venue and brewery stay visible
+                map.removeLayer(activeMarkers());
+            }
 
             return newLayer.getLayers().length;
         };
@@ -959,10 +963,11 @@
             L.DomEvent.disableClickPropagation(div);
             
             div.addEventListener('change', function (e) {
+                // hide the route (and bring back its places) before the layers change
+                prepareRoute(null);
                 selectedLayer = e.target.value;
                 var zoom, center;
                 resetFiltersQuietly();
-                prepareRoute(null);
 
                 if (selectedLayer === "Breweries") {
                     if (map.hasLayer(venueMarkers)) {
@@ -1162,12 +1167,13 @@
             var points = arcPoints(brewery, venue);
 
             var breweryLabel = routeCheckIn["Brewery"] + (routeCheckIn["Brewery_country"] ? ' \u00b7 ' + routeCheckIn["Brewery_country"] : '');
+            var venueLabel = venueOfRoute();
+            var labelOptions = { permanent: true, direction: 'top', offset: [0, -(isSmallScreen() ? 66 : 50)], className: 'route-tooltip' };
             routeLayer = L.layerGroup([
                 L.polyline(points, { color: 'white', weight: 7, opacity: 0.85, interactive: false }),
                 L.polyline(points, { color: 'rgb(165, 42, 42)', weight: 3, dashArray: '8 7', interactive: false }),
-                L.circleMarker(venue, { radius: 6, color: 'white', weight: 2, fillColor: 'rgb(165, 42, 42)', fillOpacity: 1, interactive: false }),
-                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false })
-                    .bindTooltip(breweryLabel, { permanent: true, direction: 'top', offset: [0, -(isSmallScreen() ? 66 : 50)], className: 'route-tooltip' })
+                L.marker(venue, { icon: markerIcon('ikony/pub.png'), interactive: false }).bindTooltip(venueLabel, labelOptions),
+                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
             ]).addTo(map);
 
             routeReturn = {
@@ -1177,14 +1183,24 @@
                 beerId: $('.box-content.active').attr('id')
             };
 
-            // The popup would cover the route; the detail panel stays open
+            // Only the venue and the brewery stay on the map; the popup would cover the route
             map.closePopup();
-            fitRoute(L.latLngBounds(points), labelWidth(breweryLabel));
+            map.removeLayer(activeMarkers());
+            fitRoute(L.latLngBounds(points), Math.max(labelWidth(breweryLabel), labelWidth(venueLabel)));
             updateRouteButton();
         }
 
-        // Show the whole route in the free part of the map (above the detail sheet on phones)
-        // Width of the brewery label, so the map can leave room for it
+        // Name of the venue whose detail is open
+        function venueOfRoute() {
+            return $('#venueName').text();
+        }
+
+        // Cluster group of the active layer (Breweries or Venues)
+        function activeMarkers() {
+            return selectedLayer === "Venues" ? venueMarkers : breweryMarkers;
+        }
+
+        // Width of a route label, so the map can leave room for it
         function labelWidth(text) {
             var label = L.DomUtil.create('div', 'leaflet-tooltip route-tooltip', document.body);
             label.style.visibility = 'hidden';
@@ -1214,6 +1230,10 @@
             if (routeLayer) {
                 map.removeLayer(routeLayer);
                 routeLayer = null;
+                // bring back the places hidden while the route was shown
+                if (!map.hasLayer(activeMarkers())) {
+                    map.addLayer(activeMarkers());
+                }
             }
             updateRouteButton();
         }
@@ -1228,10 +1248,21 @@
             map.setView(back.center, back.zoom, { animate: false });
             if (!back.marker) return;
 
-            var markers = selectedLayer === "Venues" ? venueMarkers : breweryMarkers;
-            markers.zoomToShowLayer(back.marker, function () {
+            // Filters changed meanwhile rebuild the markers: find the same place among the new ones
+            var markers = activeMarkers();
+            var marker = back.marker;
+            if (!markers.hasLayer(marker)) {
+                var key = selectedLayer === "Venues" ? "Venue" : "Brewery";
+                var name = marker.feature.properties[key];
+                marker = markers.getLayers().find(function (layer) {
+                    return layer.feature.properties[key] === name;
+                });
+                if (!marker) return;
+            }
+
+            markers.zoomToShowLayer(marker, function () {
                 keepViewOnNextPopup = true;
-                back.marker.openPopup();
+                marker.openPopup();
                 var beer = back.beerId ? document.getElementById(back.beerId) : null;
                 if (beer) {
                     beer.classList.add('active');
@@ -1332,6 +1363,11 @@
             contentBox.classList.toggle('open', open && isSmallScreen());
             if (!open) {
                 contentBox.classList.remove('full');
+                // closing the detail also hides its route and brings back all places
+                if (routeLayer) {
+                    clearRoute();
+                    routeReturn = null;
+                }
                 // The detail is gone, so the beer in the popup is no longer highlighted
                 if (isSmallScreen()) {
                     $('.box-content.active').removeClass('active');
