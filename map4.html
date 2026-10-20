@@ -981,8 +981,18 @@
             });
 
             var popupRect = popupElement.getBoundingClientRect();
+            var objectTop = popupRect.top;
+            var objectBottom = popupRect.bottom;
+
+            // Larger screens: centre the popup together with its marker icon below it
+            var marker = popup._source;
+            var icon = marker && marker.getElement ? marker.getElement() : null;
+            if (!isSmallScreen() && icon) {
+                objectBottom = Math.max(objectBottom, icon.getBoundingClientRect().bottom);
+            }
+
             var dx = (popupRect.left + popupRect.right) / 2 - (mapRect.left + mapRect.right) / 2;
-            var dy = (popupRect.top + popupRect.bottom) / 2 - (top + bottom) / 2;
+            var dy = (objectTop + objectBottom) / 2 - (top + bottom) / 2;
             if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
                 map.panBy([dx, dy]);
             }
@@ -1074,6 +1084,10 @@
             contentBox.classList.toggle('open', open && isSmallScreen());
             if (!open) {
                 contentBox.classList.remove('full');
+                // The detail is gone, so the beer in the popup is no longer highlighted
+                if (isSmallScreen()) {
+                    $('.box-content.active').removeClass('active');
+                }
             }
             if (!open || wasOpen || !isSmallScreen()) return;
 
