@@ -353,6 +353,7 @@
                 return { index: i, name: checkIn['Beer'] };
             });
 
+            layer.beerCount = beers.length;
             layer.bindPopup(buildPopupContent(layerId, beers), popupOptions());
         }
 
@@ -705,6 +706,7 @@
                 }
             }
 
+            layer.beerCount = beers.length;
             layer.bindPopup(buildPopupContent(layerId, beers), popupOptions());
         }
         var breweries = L.geoJSON();
@@ -827,8 +829,8 @@
                 venueMarkers.addLayer(newLayer)
                 map.addLayer(venueMarkers);
             }
-            if (routeLayer) {
-                // a route is shown: only its venue and brewery stay visible
+            if (routeLayer || timeline.active) {
+                // a route shows only its venue and brewery; the timeline draws dots instead
                 map.removeLayer(activeMarkers());
             }
 
@@ -1246,7 +1248,7 @@
 
             // Only the venue and the brewery stay on the map; the popup would cover the route
             map.closePopup();
-            map.removeLayer(activeMarkers());
+            hidePlaces();
             // Phones: the map gets almost the whole screen, the sheet waits at the bottom
             if (isSmallScreen() && contentBox.classList.contains('open')) {
                 setSheetState('peek');
@@ -1294,14 +1296,26 @@
             });
         }
 
+        // Places on the map are clusters, or plain dots while the timeline is open
+        function hidePlaces() {
+            map.removeLayer(activeMarkers());
+            map.removeLayer(timeline.dotLayer);
+        }
+
+        function showPlaces() {
+            if (timeline.active) {
+                map.addLayer(timeline.dotLayer);
+            } else if (!map.hasLayer(activeMarkers())) {
+                map.addLayer(activeMarkers());
+            }
+        }
+
         function clearRoute() {
             if (routeLayer) {
                 map.removeLayer(routeLayer);
                 routeLayer = null;
                 // bring back the places hidden while the route was shown
-                if (!map.hasLayer(activeMarkers())) {
-                    map.addLayer(activeMarkers());
-                }
+                showPlaces();
             }
             updateRouteButton();
         }
@@ -1316,6 +1330,21 @@
             map.setView(back.center, back.zoom, { animate: false });
             if (!back.marker) return;
 
+            function reopen(marker) {
+                keepViewOnNextPopup = true;
+                marker.openPopup();
+                var beer = back.beerId ? document.getElementById(back.beerId) : null;
+                if (beer) {
+                    beer.classList.add('active');
+                }
+            }
+
+            if (timeline.active) {
+                var dot = timeline.dotByName[placeName(back.marker)];
+                if (dot) reopen(dot);
+                return;
+            }
+
             // Filters changed meanwhile rebuild the markers: find the same place among the new ones
             var markers = activeMarkers();
             var marker = back.marker;
@@ -1329,12 +1358,7 @@
             }
 
             markers.zoomToShowLayer(marker, function () {
-                keepViewOnNextPopup = true;
-                marker.openPopup();
-                var beer = back.beerId ? document.getElementById(back.beerId) : null;
-                if (beer) {
-                    beer.classList.add('active');
-                }
+                reopen(marker);
             });
         }
 
@@ -1389,8 +1413,18 @@
             index: timelineMonths.length - 1,
             timer: null,
             shownPlaces: null,          // names shown in the previous step, to find the new ones
-            pulseLayer: L.layerGroup()  // short highlight of places added in the current month
+            pulseLayer: L.layerGroup(), // short highlight of places added in the current month
+            dotLayer: L.featureGroup(), // places as dots instead of clusters
+            dotByName: {}
         };
+
+        // Dots are drawn on a canvas; the tolerance makes small dots easy to tap
+        var timelineRenderer = L.canvas({ padding: 0.5, tolerance: 10 });
+
+        // Dot grows with the number of beers at the place up to the timeline month
+        function dotRadius(beerCount) {
+            return Math.min(18, 4 + 1.6 * Math.sqrt(beerCount || 1));
+        }
 
         function timelineMonthEnd(index) {
             var month = timelineMonths[index];
@@ -1428,6 +1462,7 @@
                 }
             });
             timeline.shownPlaces = names;
+            drawTimelineDots(highlightNew ? newPlaces : []);
 
             timeline.pulseLayer.clearLayers();
             if (highlightNew) {
@@ -1447,6 +1482,38 @@
             document.getElementById('timeline-count').textContent =
                 names.size + ' ' + noun + (highlightNew && newPlaces.length ? ' \u00b7 +' + newPlaces.length + ' new' : '');
             document.getElementById('timeline-range').value = timeline.index;
+        }
+
+        // Every place as a dot: brown, places new in this month red and slightly bigger
+        function drawTimelineDots(newPlaces) {
+            var isNew = new Set(newPlaces);
+            var markers = activeMarkers().getLayers().slice();
+            // big dots first, new ones last, so small and new dots stay on top
+            markers.sort(function (a, b) {
+                return (isNew.has(a) - isNew.has(b)) || ((b.beerCount || 1) - (a.beerCount || 1));
+            });
+
+            timeline.dotLayer.clearLayers();
+            timeline.dotByName = {};
+            markers.forEach(function (marker) {
+                var fresh = isNew.has(marker);
+                var dot = L.circleMarker(marker.getLatLng(), {
+                    renderer: timelineRenderer,
+                    radius: dotRadius(marker.beerCount) + (fresh ? 2 : 0),
+                    color: 'white',
+                    weight: 1.5,
+                    fillColor: fresh ? 'rgb(165, 42, 42)' : 'rgb(87, 62, 62)',
+                    fillOpacity: 0.9
+                });
+                dot.feature = marker.feature;
+                dot.bindPopup(marker.getPopup().getContent(), popupOptions());
+                dot.addTo(timeline.dotLayer);
+                timeline.dotByName[placeName(marker)] = dot;
+            });
+
+            if (!routeLayer && !map.hasLayer(timeline.dotLayer)) {
+                map.addLayer(timeline.dotLayer);
+            }
         }
 
         function setTimelinePlaying(playing) {
@@ -1495,6 +1562,16 @@
             timeline.shownPlaces = null;
             timeline.pulseLayer.clearLayers();
             map.removeLayer(timeline.pulseLayer);
+            timeline.dotLayer.clearLayers();
+            timeline.dotByName = {};
+            map.removeLayer(timeline.dotLayer);
+            if (routeLayer) {
+                // a route drawn over the dots ends with the timeline
+                map.removeLayer(routeLayer);
+                routeLayer = null;
+                routeReturn = null;
+                updateRouteButton();
+            }
             document.getElementById('timeline-bar').hidden = true;
             document.body.classList.remove('timeline-on');
             timelineControl.getContainer().classList.remove('active');
