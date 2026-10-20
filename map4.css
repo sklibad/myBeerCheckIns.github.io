@@ -11,116 +11,106 @@ body {
     background-color: #c4b494;
 }
 
+/* Desktop: filters | map | check-in detail, filling the space below the header */
 #container {
-  display: flex;
-  flex-direction: row;
-  height: 100vh; /* Use 100% of the viewport height */
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 12px;
+}
+
+#filter-panel,
+#contentBox {
+    background-color: rgb(238, 231, 212);
+    border-radius: 10px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow-y: auto;
 }
 
 #filter-panel {
-    width: 200px;
-    padding: 20px;
-    padding-top: 0px;
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    background-color: rgb(238, 231, 212);
-    text-align: center;
-    overflow-y: auto;
-    margin-left: 1%;
-    margin-right: 10px;
-    margin-bottom: 1%;
-    margin-top: 1%;
+    width: 230px;
+    flex-shrink: 0;
+    padding: 0 16px 16px;
     display: flex;
-    flex-direction: column; /* Make children stack vertically */
-    align-items: left; /* Center children horizontally */
+    flex-direction: column;
+}
+
+.panel-close {
+    display: none;
 }
 
 .checkbox-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    /* Add other styling if needed */
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    row-gap: 6px;
 }
 
 .checkbox-pair {
     display: flex;
     align-items: center;
-    margin-right: 10px; /* Optional: Add margin between filter groups */
-}
-
-.checkbox-pair input[type="checkbox"] {
-    /* Adjust margin as needed to control the left spacing */
-    margin-left: 5px;
-    margin-right: 5px; /* Optional: Add margin between checkbox and label */
-}
-
-/* Optional: Center labels vertically */
-.checkbox-pair label {
-    display: block;
-    text-align: left;
-}
-
-.date-filters {
-  display: flex;
-  align-items: left; /* Center items vertically */
-  margin: 0 20px 0 20px; /* Add margin for spacing between groups */
-  justify-content: space-between;
-  align-items: center;
-}
-
-.checkbox-pair label {
-    margin-top: 1.5px;
-
 }
 
 .checkbox-pair input {
+    margin: 0 5px 0 0;
     cursor: pointer;
 }
 
-#lager-checkbox {
-  margin-left: -13px;
-  margin-right: 36px;
-}
-
-#ale-checkbox {
-  margin-left: -32px;
-  margin-right: 14px;
-}
-
-#ipa-checkbox {
-  margin-left: 13px;
-}
-
-button#reset-filters {
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
-
-button#reset-filters, button#apply-filters {
-  margin-left: 40px;
-  margin-right: 40px;
+.checkbox-pair label {
+    cursor: pointer;
+    text-align: left;
 }
 
 .filter-group {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 4px;
+}
+
+.date-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.date-filters select {
+    flex: 1;
+    min-width: 0;
+}
+
+#reset-filters,
+#apply-filters {
+    margin: 0 auto 10px;
+    width: 80%;
+    padding: 6px;
+}
+
+#reset-filters {
+    margin-top: 15px;
 }
 
 #map-container {
     flex: 1;
+    min-width: 0;
+    position: relative;
     display: flex;
-    flex-direction: row;
-    margin-top: 0;
 }
 
 #map {
-  flex: 1;
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
-  margin: 17px;
-  margin-right: 10px;
-  margin-left: 10px;
-  border-radius: 1px;
-  z-index: 999;
+    flex: 1;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 1px;
+    z-index: 999;
+}
+
+/* Filters button, only shown on small screens */
+#filters-toggle {
+    display: none;
 }
 
 [slider] {
@@ -128,7 +118,7 @@ button#reset-filters, button#apply-filters {
     height: 14px;
     border-radius: 10px;
     text-align: left;
-    margin: 25px 0 25px 0;
+    margin: 48px 0 25px 0;
   }
   
   [slider] > div {
@@ -256,7 +246,7 @@ button#reset-filters, button#apply-filters {
   }
   
   [slider] > div > [sign] {
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     margin-left: -11px;
     top: -39px;
@@ -291,25 +281,20 @@ button#reset-filters, button#apply-filters {
     font-weight: 700;
     line-height: 28px;
   }
-  
-  [slider]:hover > div > [sign] {
-    opacity: 1;
-  }
 
 #contentBox {
-  max-height: calc(100vh - 88px); /* Adjust the padding values as needed */
-  overflow-y: auto;
   width: 320px;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  border-radius: 10px;
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
   padding: 20px;
-  background-color: rgb(238, 231, 212);
-  text-align: center;
   display: flex;
   flex-direction: column;
-  margin: 14px;
-  margin-left: 10px;
+}
+
+#friends {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
 .box-item.same-row {
@@ -423,4 +408,138 @@ a.box-content:hover {
 
 a.box-content:active {
   color: red;
+}
+/* ---------- Overlay switch (Breweries / Venues) ---------- */
+
+.overlay-switch {
+  background-color: white;
+  padding: 8px 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  line-height: 1.6;
+}
+
+.overlay-switch label {
+  cursor: pointer;
+}
+
+/* ---------- Phones and tablets ---------- */
+
+@media (max-width: 1000px) {
+  #container {
+    padding: 0;
+    gap: 0;
+  }
+
+  #map {
+    box-shadow: none;
+  }
+
+  /* Filters slide in from the left */
+  #filter-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3000;
+    width: min(320px, 88vw);
+    border-radius: 0 12px 12px 0;
+    transform: translateX(-105%);
+    transition: transform 0.25s ease;
+    font-size: 14px;
+  }
+
+  #filter-panel.open {
+    transform: translateX(0);
+  }
+
+  .panel-close {
+    display: block;
+    position: sticky;
+    top: 0;
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+    margin: 8px -8px -40px 0;
+    border: none;
+    background: none;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  #panel-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2900;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  #panel-backdrop[hidden] {
+    display: none;
+  }
+
+  #filters-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    left: 10px;
+    bottom: 24px;
+    z-index: 1000;
+    padding: 10px 16px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 22px;
+    background: rgb(87, 62, 62);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Check-in detail slides up from the bottom */
+  #contentBox {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2500;
+    width: auto;
+    max-height: 55vh;
+    max-height: 55dvh;
+    padding: 12px 20px 24px;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(105%);
+    transition: transform 0.25s ease;
+  }
+
+  #contentBox.open {
+    transform: translateY(0);
+  }
+
+  #bottle {
+    display: none;
+  }
+
+  #contentBox h2 {
+    font-size: 1.1em;
+    margin: 12px 0 4px;
+  }
+
+  /* Bigger tap targets in popups */
+  .popup-content li {
+    padding: 4px 0;
+  }
+
+  .popup-container,
+  .popup-content {
+    white-space: normal;
+  }
+
+  .overlay-switch {
+    font-size: 13px;
+  }
 }

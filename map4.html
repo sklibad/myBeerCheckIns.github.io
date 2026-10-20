@@ -50,7 +50,9 @@
         </div>
     </header>
     <div id="container">
+        <div id="panel-backdrop" hidden></div>
         <div id="filter-panel">
+            <button type="button" class="panel-close" id="filters-close" aria-label="Close filters">&times;</button>
             <h3>Beer style:</h3>
             <div class = "checkbox-group filter-group">
                 <div class="checkbox-pair" id = "lager-checkbox">
@@ -118,28 +120,14 @@
                         <span id="max-value">5</span>
                     </div>
                     </div>
-                    <input type="range" tabindex="0" value="25" max="500" min="25" step="25" oninput="
-                    this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
-                    var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                    var children = this.parentNode.childNodes[1].childNodes;
-                    children[1].style.width=value+'%';
-                    children[5].style.left=value+'%';
-                    children[7].style.left=value+'%';children[11].style.left=value+'%';
-                    children[11].childNodes[1].innerHTML=this.value/100;" />
+                    <input type="range" aria-label="Minimum rating" tabindex="0" value="25" max="500" min="25" step="25" />
                 
-                    <input type="range" tabindex="0" value="500" max="500" min="25" step="25" oninput="
-                    this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
-                    var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                    var children = this.parentNode.childNodes[1].childNodes;
-                    children[3].style.width=(100-value)+'%';
-                    children[5].style.right=(100-value)+'%';
-                    children[9].style.left=value+'%';children[13].style.left=value+'%';
-                    children[13].childNodes[1].innerHTML=this.value/100;" />
+                    <input type="range" aria-label="Maximum rating" tabindex="0" value="500" max="500" min="25" step="25" />
                 </div>
             </div>
 
             <div class = "filter-group">
-                <label for="filter-dropdown"><h3>Select a beer buddy:</h3></label>
+                <h3><label for="filter-dropdown">Select a beer buddy:</label></h3>
                 <select id="filter-dropdown">
                     <option value = "ALL">Anyone</option>
                     <option value = "AM">Anna Mlíková</option>
@@ -163,9 +151,9 @@
             </div>
 
             <div class = "filter-group">
-                <label for="filter-dropdown"><h3>From date:</h3></label>
+                <h3>From date:</h3>
                 <div class = "date-filters">
-                    <select id="from-month">
+                    <select id="from-month" aria-label="From month">
                         <option value = "month">Month</option>
                         <option value = "1">January</option>
                         <option value = "2">February</option>
@@ -181,7 +169,7 @@
                         <option value = "12">December</option>
                         <!-- Add more options as needed -->
                     </select>
-                    <select id="from-year">
+                    <select id="from-year" aria-label="From year">
                         <option value = "year">Year</option>
                         <option value = "2026">2026</option>
                         <option value = "2025">2025</option>
@@ -194,9 +182,9 @@
             </div>
 
             <div class = "filter-group">
-                <label for="filter-dropdown"><h3>To date:</h3></label>
+                <h3>To date:</h3>
                 <div class = "date-filters">
-                    <select id="to-month">
+                    <select id="to-month" aria-label="To month">
                         <option value = "month">Month</option>
                         <option value = "1">January</option>
                         <option value = "2">February</option>
@@ -212,7 +200,7 @@
                         <option value = "12">December</option>
                         <!-- Add more options as needed -->
                     </select>
-                    <select id="to-year">
+                    <select id="to-year" aria-label="To year">
                         <option value = "year">Year</option>
                         <option value = "2026">2026</option>
                         <option value = "2025">2025</option>
@@ -229,11 +217,13 @@
         <!-- Map container -->
         <div id="map-container">
             <div id="map"></div>
+            <button type="button" id="filters-toggle" aria-controls="filter-panel" aria-expanded="false">&#9776; Filters</button>
         </div>
 
         <!-- Content box -->
         <div id="contentBox">
-            <img id = "bottle" src="ikony/bottle.svg">
+            <button type="button" class="panel-close" id="detail-close" aria-label="Close detail">&times;</button>
+            <img id = "bottle" src="ikony/bottle.svg" alt="">
             <div class="box-item">
                 <h2>Beer</h2>
                 <p id="beerName"></p>
@@ -293,7 +283,7 @@
         
             <div class="box-item checkinPhoto">
                 <a href="#" data-lightbox="checkin" data-title="Check-in Photo">
-                    <img class="checkinPhoto" id="checkinPhoto">
+                    <img class="checkinPhoto" id="checkinPhoto" alt="Check-in photo">
                 </a>
             </div>
         </div>
@@ -361,10 +351,30 @@
             }
 
             // Bind the popup content to the layer
-            layer.bindPopup(popupContent);
+            layer.bindPopup(popupContent, popupOptions());
         }
         
+        // Devices without a mouse (phones, tablets) cannot hover
+        var isTouchDevice = window.matchMedia('(hover: none)').matches;
+
+        function isSmallScreen() {
+            return window.innerWidth <= 1000;
+        }
+
+        // Popups never get wider than the screen
+        function popupOptions() {
+            var maxWidth = Math.min(600, window.innerWidth - 60);
+            return {
+                maxWidth: maxWidth,
+                minWidth: Math.min(200, maxWidth),
+                autoPanPadding: [12, 12]
+            };
+        }
+
         function addHoverEffectToLayers(layers, iconUrl) {
+            // On touch screens a tap would leave the marker enlarged
+            if (isTouchDevice) return;
+
             layers.eachLayer(function (layer) {
                 layer.on('mouseover', function () {
                     this.setIcon(L.icon({
@@ -440,19 +450,9 @@
             // Clear previous friend icons
             $('#friends').empty();  // Use the correct selector
 
-            // Iterate through the list of friends and create icons
+            // Spacing and wrapping of the icons is handled by CSS (#friends)
             for (var i = 0; i < friendIcons.length; i++) {
-                // Create an image element for each friend
-                if (i+1 < friendIcons.length && i !== 3) {
-                    var friendIcon = $('<img class="friend-picture" style="margin-right: 15px;" src="' + friendIcons[i] + '" alt="Friend Icon">');
-                } else if (i > 3 && friendIcons.length == 5){
-                    $('<img class="friend-picture" style="margin-right: 15px; margin-top: 15px;" src="' + friendIcons[i] + '" alt="Friend Icon">');
-                } else {
-                    var friendIcon = $('<img class="friend-picture" style="margin-top: 10px;" src="' + friendIcons[i] + '" alt="Friend Icon">');
-                }
-                
-                // Append the friend icon to the #friends-div .friends element (use the correct selector)
-                $('#friends').append(friendIcon);
+                $('#friends').append($('<img class="friend-picture" alt="Friend Icon">').attr('src', friendIcons[i]));
             }
         }
 
@@ -574,6 +574,9 @@
 
             // Scroll to the top of the contentBox
             $('#contentBox').scrollTop(0);
+
+            // On small screens the detail slides up from the bottom
+            setDetailOpen(true);
         }
         
         // Assign the function to the click event
@@ -691,7 +694,7 @@
             }
 
             // Bind the popup content to the layer
-            layer.bindPopup(popupContent);
+            layer.bindPopup(popupContent, popupOptions());
         }
         var breweries = L.geoJSON();
 
@@ -871,6 +874,7 @@
             }
             
             applyFilters(selectedFilters, selectedLayer);
+            setFiltersOpen(false);
         });
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
         // Create a marker cluster group
@@ -891,13 +895,7 @@
         var overlayControl = L.control({ position: 'topright' });
 
         overlayControl.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'info legend');
-            
-            // Add a white background with padding and border
-            div.style.backgroundColor = 'white';
-            div.style.padding = '10px';
-            div.style.border = '2px solid #ccc';
-            div.style.borderRadius = '5px';
+            var div = L.DomUtil.create('div', 'info legend overlay-switch');
 
             for (var i = 0; i < Object.keys(overlayLayers).length; i++) {
                 var layerName = Object.keys(overlayLayers)[i];
@@ -980,6 +978,105 @@
         overlayControl.addTo(map);
 
         L.control.layers(baseLayers).addTo(map);
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // Rating slider: two range inputs over one track, values shown as 0.25–5
+        function initRatingSlider() {
+            var slider = document.getElementById('slider-distance');
+            var inputs = slider.querySelectorAll('input[type="range"]');
+            var minInput = inputs[0];
+            var maxInput = inputs[1];
+            var inverseLeft = slider.querySelector('[inverse-left]');
+            var inverseRight = slider.querySelector('[inverse-right]');
+            var range = slider.querySelector('[range]');
+            var thumbs = slider.querySelectorAll('[thumb]');
+            var signs = slider.querySelectorAll('[sign]');
+            var step = parseInt(minInput.step);
+
+            function toPercent(input) {
+                var min = parseInt(input.min);
+                var max = parseInt(input.max);
+                return (parseInt(input.value) - min) / (max - min) * 100;
+            }
+
+            function update(e) {
+                // Keep the minimum below the maximum
+                if (e && e.target === minInput) {
+                    minInput.value = Math.min(minInput.value, maxInput.value - step);
+                } else if (e && e.target === maxInput) {
+                    maxInput.value = Math.max(maxInput.value, parseInt(minInput.value) + step);
+                }
+
+                var left = toPercent(minInput);
+                var right = toPercent(maxInput);
+
+                inverseLeft.style.width = left + '%';
+                inverseRight.style.width = (100 - right) + '%';
+                range.style.left = left + '%';
+                range.style.right = (100 - right) + '%';
+                thumbs[0].style.left = left + '%';
+                thumbs[1].style.left = right + '%';
+                signs[0].style.left = left + '%';
+                signs[1].style.left = right + '%';
+                document.getElementById('min-value').textContent = minInput.value / 100;
+                document.getElementById('max-value').textContent = maxInput.value / 100;
+            }
+
+            minInput.addEventListener('input', update);
+            maxInput.addEventListener('input', update);
+            update();
+        }
+
+        initRatingSlider();
+
+        // Filters drawer (small screens)
+        var filterPanel = document.getElementById('filter-panel');
+        var filtersToggle = document.getElementById('filters-toggle');
+        var panelBackdrop = document.getElementById('panel-backdrop');
+
+        function setFiltersOpen(open) {
+            filterPanel.classList.toggle('open', open);
+            filtersToggle.setAttribute('aria-expanded', open);
+            panelBackdrop.hidden = !open;
+        }
+
+        filtersToggle.addEventListener('click', function () {
+            setFiltersOpen(true);
+        });
+        document.getElementById('filters-close').addEventListener('click', function () {
+            setFiltersOpen(false);
+        });
+        panelBackdrop.addEventListener('click', function () {
+            setFiltersOpen(false);
+        });
+
+        // Check-in detail bottom sheet (small screens)
+        function setDetailOpen(open) {
+            var contentBox = document.getElementById('contentBox');
+            contentBox.classList.toggle('open', open && isSmallScreen());
+            if (!open || !isSmallScreen()) return;
+
+            // Once the panel has slid in, move the map so the open popup stays visible above it
+            setTimeout(function () {
+                var popup = document.querySelector('.leaflet-popup');
+                if (!popup) return;
+                var panelTop = window.innerHeight - contentBox.offsetHeight;
+                var overlap = popup.getBoundingClientRect().bottom - panelTop + 10;
+                if (overlap > 0) {
+                    map.panBy([0, overlap]);
+                }
+            }, 300);
+        }
+
+        document.getElementById('detail-close').addEventListener('click', function () {
+            setDetailOpen(false);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                setFiltersOpen(false);
+                setDetailOpen(false);
+            }
+        });
     </script>
 </body>
 </html>
