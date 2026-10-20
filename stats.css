@@ -126,8 +126,10 @@ th {
     text-align: center
 }
 
+/* Same gap below the module header as the tables have (5px margin + 4px border-spacing) */
 .highcharts-figure {
     height: 80vh;
+    margin-top: 9px;
 }
 
 #container {
@@ -157,6 +159,7 @@ th {
 
 .chart-wrap {
     height: 280px;
+    margin-top: 9px;
 }
 
 /* Wide tables scroll sideways inside their own box instead of widening the page */
@@ -193,7 +196,7 @@ th {
        so there is no empty space above or below it */
     .highcharts-figure {
         height: auto;
-        margin: 0;
+        margin: 7px 0 0; /* tables here: 5px margin + 2px border-spacing */
     }
 
     #container {
@@ -204,5 +207,6 @@ th {
 
     .chart-wrap {
         height: 240px;
+        margin-top: 7px;
     }
 }
