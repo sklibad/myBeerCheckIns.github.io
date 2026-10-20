@@ -1358,8 +1358,9 @@
         var contentBox = document.getElementById('contentBox');
 
         // States of the bottom sheet: closed, half (class "open") and full screen (classes "open full")
+        // The map does not move when the sheet opens: the popup stays centred,
+        // so it is still in the middle of the screen after the sheet is closed
         function setDetailOpen(open) {
-            var wasOpen = contentBox.classList.contains('open');
             contentBox.classList.toggle('open', open && isSmallScreen());
             if (!open) {
                 contentBox.classList.remove('full');
@@ -1373,18 +1374,6 @@
                     $('.box-content.active').removeClass('active');
                 }
             }
-            if (!open || wasOpen || !isSmallScreen()) return;
-
-            // Once the panel has slid in, move the map so the open popup stays visible above it
-            setTimeout(function () {
-                var popup = document.querySelector('.leaflet-popup');
-                if (!popup) return;
-                var panelTop = window.innerHeight - contentBox.offsetHeight;
-                var overlap = popup.getBoundingClientRect().bottom - panelTop + 10;
-                if (overlap > 0) {
-                    map.panBy([0, overlap]);
-                }
-            }, 300);
         }
 
         document.getElementById('detail-close').addEventListener('click', function () {
