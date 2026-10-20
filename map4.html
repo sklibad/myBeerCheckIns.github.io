@@ -325,7 +325,7 @@
             opacity: 0.5
         });
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        var selectedLayer = "Breweries";
+        var selectedLayer = "Venues"; // default layer, first in the switch
         function onEachLayer(feature, layer, selectedLayer) {
             // Assuming brewery_check_ins is a dictionary with brewery IDs as keys
             if (selectedLayer === "Breweries"){
@@ -436,25 +436,28 @@
         var breweryMarkers = createClusterGroup();
         var venueMarkers = createClusterGroup();
 
-        // Create a GeoJSON layer with onEachFeature and pointToLayer
-        var breweries = L.geoJSON(breweries_lst[0], {
+        // Venues are shown first; breweries are built when the layer switch is used
+        var venues = L.geoJSON(venues_lst[0], {
             onEachFeature: function (feature, layer) {
                 onEachLayer(feature, layer, selectedLayer)},
             pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {
-                    icon: markerIcon('ikony/beer.png')
+                    icon: markerIcon('ikony/pub.png')
                 });
             }
         });
 
-        addHoverEffectToLayers(breweries, "ikony/beer.png");
+        addHoverEffectToLayers(venues, "ikony/pub.png");
 
         // Add the GeoJSON layer to the marker cluster group
-        breweryMarkers.addLayer(breweries);
+        venueMarkers.addLayer(venues);
 
         // Add the marker cluster group to the map
-        map.addLayer(breweryMarkers);
-        fitMarkersOnSmallScreen(breweryMarkers);
+        map.addLayer(venueMarkers);
+        if (!fitMarkersOnSmallScreen(venueMarkers)) {
+            // same view as after switching to Venues
+            map.setView([50.19243907905966, -19.821782223466816], 3);
+        }
 
         // Phones and tablets: zoom so that all markers / clusters are visible,
         // keeping clear of the layer switch at the top and the Filters button at the bottom
@@ -928,8 +931,6 @@
             setFiltersOpen(false);
         });
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
-        // Create a marker cluster group
-        var venues = L.geoJSON();
            
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         var baseLayers = {
@@ -938,9 +939,10 @@
             "TopoMap": TopoMap
         };
 
+        // The first entry is the default (checked) layer
         var overlayLayers = {
-            "Breweries": breweries,
-            "Venues": venues
+            "Venues": venues,
+            "Breweries": breweries
         };
 
         var overlayControl = L.control({ position: 'topright' });
@@ -1166,7 +1168,7 @@
             var venue = parseLatLng(routeCheckIn["Venue_location"]);
             var points = arcPoints(brewery, venue);
 
-            var breweryLabel = routeCheckIn["Brewery"] + (routeCheckIn["Brewery_country"] ? ' \u00b7 ' + routeCheckIn["Brewery_country"] : '');
+            var breweryLabel = routeCheckIn["Brewery"];
             var venueLabel = venueOfRoute();
             // Name labels centred above the icons
             var iconSize = isSmallScreen() ? 66 : 50;
@@ -1348,7 +1350,7 @@
         }
 
         initRatingSlider();
-        updateResultCount(breweryMarkers.getLayers().length);
+        updateResultCount(venueMarkers.getLayers().length);
 
         // Filters drawer (small screens)
         var filterPanel = document.getElementById('filter-panel');
