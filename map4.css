@@ -621,8 +621,12 @@ a.box-content:active {
     white-space: normal;
   }
 
-  /* Larger marker clusters */
-  .marker-cluster-touch div {
+  /* Larger marker clusters, still round */
+  .marker-cluster.marker-cluster-touch {
+    border-radius: 28px;
+  }
+
+  .marker-cluster.marker-cluster-touch div {
     width: 46px;
     height: 46px;
     margin-left: 5px;
@@ -632,7 +636,7 @@ a.box-content:active {
     font-weight: bold;
   }
 
-  .marker-cluster-touch span {
+  .marker-cluster.marker-cluster-touch span {
     line-height: 46px;
   }
 
