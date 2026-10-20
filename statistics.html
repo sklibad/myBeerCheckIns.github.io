@@ -13,7 +13,7 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="stats_data.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <title>MyBeerCheckIns - Homepage</title>
+    <title>MyBeerCheckIns - Statistics</title>
     <script src="nav.js" defer></script>
 </head>
 <body>
@@ -45,7 +45,7 @@
             <div class="header">
                 <span>Wind rose diagram by check-ins (venues)</span>
             </div>
-            <table id="freq" class = "pstable">
+            <div class="table-scroll"><table id="freq" class = "pstable">
                 <tr>
                     <th colspan="9" class="hdr">Table of Frequencies (percent)</th>
                 </tr>
@@ -202,14 +202,14 @@
                     <td id = "stout_NNW" class="data"></td>
                     <td id = "other_NNW" class="data"></td>
                 </tr>
-            </table>
+            </table></div>
         </div>
         </div>
         <div class="module">
             <div class="header">
                 <span>Best rated beers</span>
             </div>
-            <table class="friends-table">
+            <div class="table-scroll"><table class="friends-table">
                 <tbody>
                     <tr>
                         <th>Rating</th>
@@ -322,13 +322,13 @@
                         <td id = "venue_10" class="align-center"></td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
         </div>
         <div class="module">
             <div class="header">
                 <span>Worst rated beers</span>
             </div>
-            <table class="friends-table">
+            <div class="table-scroll"><table class="friends-table">
                 <tbody>
                     <tr>
                         <th>Rating</th>
@@ -441,14 +441,14 @@
                         <td id = "venue_10_worst" class="align-center"></td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
         </div>
         <div class="module">
             <div class="header">
                     <span>Venues</span>
             </div>
             <div class = "align-tables">
-                <table class="friends-table">
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <tr>
                             <th class = "table-headline" colspan="3" class="table-header">Number of check-ins</th>
@@ -509,8 +509,8 @@
                             <td id = "total-beers10" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
-                <table class="friends-table">
+                </table></div>
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
                         <tr>
@@ -569,7 +569,7 @@
                             <td id = "avg10" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
+                </table></div>
             </div>
         </div>
         <div class="module">
@@ -577,7 +577,7 @@
                 <span>Breweries</span>
             </div>
             <div class = "align-tables">
-                <table class="friends-table">
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Number of check-ins</th>
                         <tr>
@@ -636,8 +636,8 @@
                             <td id = "total-beers10A" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
-                <table class="friends-table">
+                </table></div>
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
                         <tr>
@@ -696,7 +696,7 @@
                             <td id = "avg10A" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
+                </table></div>
             </div>
         </div>
         <div class="module">
@@ -704,7 +704,7 @@
                 <span>Beer styles</span>
             </div>
             <div class = "align-tables">
-                <table class="friends-table">
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Number of check-ins</th>
                         <tr>
@@ -763,7 +763,8 @@
                             <td id = "total-beers10B" class="align-center"></td>
                         </tr>
                     </tbody>
-                    <table class="friends-table">
+                </table></div>
+                <div class="table-scroll"><table class="friends-table">
                         <tbody>
                             <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
                             <tr>
@@ -822,8 +823,7 @@
                                 <td id = "avg10B" class="align-center"></td>
                             </tr>
                         </tbody>
-                    </table>
-                </table>
+                </table></div>
             </div>
         </div>
         <div class="module">
@@ -831,7 +831,7 @@
                 <span>Friends</span>
             </div>
             <div class = "align-tables">
-                <table class="friends-table">
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Number of check-ins</th>
                         <tr>
@@ -920,8 +920,8 @@
                             <td id = "total16" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
-                <table class="friends-table">
+                </table></div>
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Average beer rating</th>
                         <tr>
@@ -1010,14 +1010,14 @@
                             <td id = "avg16C" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
+                </table></div>
             </div>
             <div class="module">
             <div class="header">
                 <span>Countries</span>
             </div>
             <div class = "align-tables">
-                <table class="friends-table">
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Number of check-ins</th>
                         <tr>
@@ -1076,8 +1076,8 @@
                             <td id = "total10A" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
-                <table class="friends-table">
+                </table></div>
+                <div class="table-scroll"><table class="friends-table">
                     <tbody>
                         <th class = "table-headline" colspan="3">Average beer rating (with at least 5 check-ins)</th>
                         <tr>
@@ -1136,7 +1136,7 @@
                             <td id = "avg10D" class="align-center"></td>
                         </tr>
                     </tbody>
-                </table>
+                </table></div>
             </div>
             <div class = "module">
                 <div class="header">
@@ -1149,7 +1149,7 @@
                 <div class="header">
                     <span>Beer style / Rating chart</span>
                 </div>
-                <table class="pstable">
+                <div class="table-scroll"><table class="pstable">
                     <tbody>
                         <tr>
                             <th colspan="2" rowspan="2"></th>
@@ -1347,13 +1347,13 @@
                             <th id = "5"></th>
                             <th></th>
                         </tr>
-                </table>
+                </table></div>
             </div>
             <div class="module">
                 <div class="header">
                     <span>Beers by check-in date</span>
                 </div>
-                <table class="pstable-small">
+                <div class="table-scroll"><table class="pstable-small">
                     <tbody>
                         <tr>
                             <th></th>
@@ -1846,7 +1846,7 @@
                             <td></td>
                         </tr>
                     </tbody>
-                </table>
+                </table></div>
             </div>
             <div class="module">
             <div class="header"><span>Monthly beer consumption historical trend</span></div>
@@ -2613,6 +2613,26 @@
 
         credits: {
             enabled: false
+        },
+
+        // Narrow screens: legend below the rose so the chart keeps its full width
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 600
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal',
+                        floating: true
+                    },
+                    pane: {
+                        size: '100%'
+                    }
+                }
+            }]
         }
     });
 
