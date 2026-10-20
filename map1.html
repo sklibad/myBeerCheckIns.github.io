@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <link rel="stylesheet" href="src/leaflet.legend.css" />
     <link rel="stylesheet" href="common.css" />
-    <link rel="stylesheet" href="map1.css" />
+    <link rel="stylesheet" href="cartogram.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <script src="Control.FullScreen.js"></script>
+    <script src="cartogram.js"></script>
     <script src="map1.js" type="text/javascript"></script>
     <script type="text/javascript" src="src/leaflet.legend.js"></script>
     <title>Prague Choropleth Map</title>
@@ -65,35 +66,9 @@
             opacity: 0.5
         });
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function hoverOverPragueCheckIns(layer) {
-            layer.on('mouseover', function () {
-                this.setStyle({
-                    fillColor: '#ff1601',
-                    color: '#881d00',
-                    weight: 5
-                });
-            });
-
-            layer.on('mouseout', function () {
-                    pragueCheckIns.resetStyle(this);
-            });
-        }
-
-        function hoverOverPragueBreweries(layer) {
-            layer.on('mouseover', function () {
-                this.setStyle({
-                    fillColor: '#ff1601',
-                    color: '#881d00',
-                    weight: 5
-                });
-            });
-
-            layer.on('mouseout', function () {
-                    pragueBreweries.resetStyle(this);
-            });
-        }
-
         function onEachFeature(feature, layer) {
+            if (isTouchDevice) return;
+
             var districtName = feature.properties.NAME_2;
             var timeoutId;
 
@@ -171,13 +146,11 @@
 
 
                 // Bind the popup to the layer
-                layer.bindPopup(popupContent);
+                layer.bindPopup(popupContent, popupOptions());
             },
         });
 
-        pragueCheckIns.eachLayer(function (layer) {
-            hoverOverPragueCheckIns(layer);
-        });
+        addHoverHighlight(pragueCheckIns, 5);
 
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         function defPragueBreweriesColor(value) {
@@ -237,13 +210,11 @@
                 }
 
                 // Bind the popup to the layer
-                layer.bindPopup(popupContent);
+                layer.bindPopup(popupContent, popupOptions());
             }
         });
 
-        pragueBreweries.eachLayer(function (layer) {
-            hoverOverPragueBreweries(layer);
-        });
+        addHoverHighlight(pragueBreweries, 5);
     
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         var baseLayers = {
@@ -259,6 +230,7 @@
 
         var checkInsLegendControl = L.control.Legend({
             position: "bottomright",
+            collapsed: isSmallScreen(),
             title: "Check-Ins/10 km²",
             legends: [{
                 label: "0.0",
@@ -304,6 +276,7 @@
 
         var breweriesLegendControl = L.control.Legend({
             position: "bottomright",
+            collapsed: isSmallScreen(),
             title: "Breweries/10 km²",
             legends: [{
                 label: "0.0",
@@ -366,13 +339,7 @@
         var overlayControl = L.control({ position: 'topright' });
 
         overlayControl.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'info legend');
-            
-            // Add a white background with padding and border
-            div.style.backgroundColor = 'white';
-            div.style.padding = '10px';
-            div.style.border = '2px solid #ccc';
-            div.style.borderRadius = '5px';
+            var div = L.DomUtil.create('div', 'info legend overlay-switch');
 
             for (var i = 0; i < Object.keys(overlayLayers).length; i++) {
                 var layerName = Object.keys(overlayLayers)[i];
@@ -415,6 +382,7 @@
 
         // Add the first overlay layer to the map initially
         pragueCheckIns.addTo(map);
+        fitMapOnSmallScreen(map, pragueCheckIns);
         checkInsLegendControl.addTo(map);
 
         L.control.layers(baseLayers).addTo(map);

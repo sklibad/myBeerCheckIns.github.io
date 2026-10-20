@@ -1,0 +1,148 @@
+/* Shared styles for the cartogram pages (map1–3.html) */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat-Black', sans-serif;
+    margin: 0;
+    background-color: #c4b494;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The map fills all space below the header */
+#map {
+    flex: 1;
+    min-height: 300px;
+    width: calc(100% - 24px);
+    max-width: 1400px;
+    margin: 12px auto;
+    border: solid 1px black;
+}
+
+@media (max-width: 760px) {
+    #map {
+        width: 100%;
+        margin: 0;
+        border: none;
+    }
+}
+
+/* ---------- Layer switch (custom radio control) ---------- */
+
+.overlay-switch {
+    background-color: white;
+    padding: 8px 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    line-height: 1.6;
+}
+
+.overlay-switch label {
+    cursor: pointer;
+}
+
+@media (max-width: 760px) {
+    .overlay-switch {
+        font-size: 12px;
+        padding: 6px 8px;
+        max-width: 60vw;
+    }
+}
+
+/* ---------- Popups ---------- */
+
+.popup-container {
+    max-width: 500px;
+    white-space: nowrap;
+}
+
+.popup-header,
+.popup-footer {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    min-height: 30px;
+}
+
+.popup-footer {
+    margin-top: 10px;
+}
+
+.popup-content {
+    max-height: min(200px, 40vh);
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+.left-aligned-list {
+    padding: 0;
+    margin-left: 20px;
+}
+
+/* On narrow screens long names wrap instead of overflowing the screen */
+@media (max-width: 760px) {
+    .popup-container,
+    .popup-content {
+        white-space: normal;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #959494;
+    border-radius: 10px;
+}
+
+/* ---------- Fullscreen control ---------- */
+
+.fullscreen-icon {
+    background-image: url(ikony/icon-fullscreen.svg);
+    background-size: 26px 52px;
+}
+
+.fullscreen-icon.leaflet-fullscreen-on {
+    background-position: 0 -26px;
+}
+
+.leaflet-touch .fullscreen-icon {
+    background-position: 2px 2px;
+}
+
+.leaflet-touch .fullscreen-icon.leaflet-fullscreen-on {
+    background-position: 2px -24px;
+}
+
+/* one selector per rule as explained here : http://www.sitepoint.com/html5-full-screen-api/ */
+.leaflet-container:-webkit-full-screen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-container:-ms-fullscreen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-container:full-screen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-container:fullscreen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-pseudo-fullscreen { position: fixed !important; width: 100% !important; height: 100% !important; top: 0px !important; left: 0px !important; z-index: 99999; }
+
+/* don't show up the minimum bounding rectangle around feature after clicking on them */
+path.leaflet-interactive:focus {
+    outline: none;
+}
+
+/* ---------- Legend ---------- */
+
+@media (max-width: 760px) {
+    .leaflet-legend {
+        font-size: 12px;
+    }
+
+    .leaflet-legend-toggle {
+        width: 34px;
+        height: 34px;
+    }
+}

@@ -300,6 +300,12 @@
                     },
                     this
                 );
+
+                // Touch screens have no hover: expand on tap of the toggle icon
+                L.DomEvent.on(this._link, "click", function (e) {
+                    L.DomEvent.preventDefault(e);
+                    this.expand();
+                }, this);
             } else {
                 this.expand();
             }
