@@ -971,6 +971,8 @@
             "Breweries": breweries
         };
 
+        var keepViewOnLayerSwitch = false;
+
         var overlayControl = L.control({ position: 'topright' });
 
         overlayControl.onAdd = function (map) {
@@ -1045,7 +1047,9 @@
 
                 // Update the map's view based on the selected layer
                 var markers = selectedLayer === "Venues" ? venueMarkers : breweryMarkers;
-                if (!fitMarkersOnSmallScreen(markers)) {
+                // When search switches the layer it moves the map itself; an (animated) view change
+                // here would finish later and throw the map back to this default view
+                if (!keepViewOnLayerSwitch && !fitMarkersOnSmallScreen(markers)) {
                     map.setView(center, zoom);
                 }
                 updateResultCount(markers.getLayers().length);
@@ -1655,7 +1659,9 @@
                 clearRoute();
             }
             if (selectedLayer !== layer) {
+                keepViewOnLayerSwitch = true;
                 document.querySelector('.overlay-switch input[value="' + layer + '"]').click();
+                keepViewOnLayerSwitch = false;
             }
             var marker = findPlaceMarker(place);
             if (!marker) {
