@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=19" />
-    <link rel="stylesheet" href="map4.css?v=19" />
+    <link rel="stylesheet" href="common.css?v=20" />
+    <link rel="stylesheet" href="map4.css?v=20" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=19" type="text/javascript"></script>
+    <script src="data.js?v=20" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=19" defer></script>
+    <script src="nav.js?v=20" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -389,13 +389,69 @@
             html += "<span class='popup-title'>" + layerId + "</span>";
             html += "<span class='popup-subtitle'>" + kind + " &middot; " + countText + "</span>";
             html += "</div>";
+
+            // sort switch (applied when the popup opens, see sortPopupList)
+            if (beers.length > 1) {
+                html += "<div class='popup-sort'><span>Sort</span>" +
+                    "<button type='button' data-sort='date'>Newest</button>" +
+                    "<button type='button' data-sort='rating'>Best rated</button></div>";
+            }
+
+            var lists = selectedLayer === "Venues" ? venue_check_ins : brewery_check_ins;
             html += "<ul class='popup-list'>";
             beers.forEach(function (beer) {
-                html += '<li><a href="#" class="box-content" id="' + placeName + ',' + beer.index + '">' + beer.name + '</a></li>';
+                var checkIn = lists[layerId][beer.index];
+                var rating = Number(checkIn["Rating"]);
+                html += '<li data-date="' + parseCheckinDate(checkIn["Date"]).getTime() + '" data-rating="' + rating + '">' +
+                    '<a href="#" class="box-content" id="' + placeName + ',' + beer.index + '">' +
+                    '<span class="beer-line">' +
+                    '<span class="beer-line-name">' + beer.name + '</span>' +
+                    '<span class="beer-line-meta">' + ratingDots(rating) +
+                    '<span class="beer-line-rating">' + rating + '</span>' +
+                    '<span class="beer-line-date">' + formatCheckinDate(checkIn["Date"]) + '</span></span>' +
+                    '</span></a></li>';
             });
             html += "</ul></div>";
             return html;
         }
+
+        // Five small circles like in the check-in detail, the last one partly filled
+        function ratingDots(rating) {
+            var html = '<span class="rating-dots" aria-hidden="true">';
+            for (var i = 1; i <= 5; i++) {
+                var fill = Math.max(0, Math.min(1, rating - (i - 1)));
+                html += fill >= 1 ? '<span class="dot filled"></span>' :
+                        fill > 0 ? '<span class="dot" style="background: conic-gradient(#FFD700 0 ' + (fill * 100) + '%, transparent 0)"></span>' :
+                        '<span class="dot"></span>';
+            }
+            return html + '</span>';
+        }
+
+        // Order of the beers in popups: "date" (newest first) or "rating" (best first, then newest)
+        var popupSort = 'date';
+
+        function sortPopupList(popupElement) {
+            var list = popupElement.querySelector('.popup-list');
+            if (!list) return;
+            var items = Array.from(list.children);
+            items.sort(function (a, b) {
+                var byDate = b.dataset.date - a.dataset.date;
+                return popupSort === 'rating' ? (b.dataset.rating - a.dataset.rating) || byDate : byDate;
+            });
+            items.forEach(function (item) {
+                list.appendChild(item);
+            });
+            popupElement.querySelectorAll('.popup-sort button').forEach(function (button) {
+                button.classList.toggle('active', button.dataset.sort === popupSort);
+            });
+        }
+
+        $(document).on('click', '.popup-sort button', function () {
+            popupSort = this.dataset.sort;
+            var popup = this.closest('.leaflet-popup');
+            sortPopupList(popup);
+            popup.querySelector('.popup-list').scrollTop = 0;
+        });
         
         // Devices without a mouse (phones, tablets) cannot hover
         var isTouchDevice = window.matchMedia('(hover: none)').matches;
@@ -1112,6 +1168,7 @@
 
         map.on('popupopen', function (e) {
             lastPopupMarker = e.popup._source;
+            sortPopupList(e.popup.getElement());
             if (keepViewOnNextPopup) {
                 // reopened by "Hide route": the restored view is already right
                 keepViewOnNextPopup = false;
