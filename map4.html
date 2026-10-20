@@ -1083,15 +1083,10 @@
                 }
                 runFilters();
 
-                // Default view of the layer. When search switches the layer it moves the map itself;
-                // an (animated) view change here would finish later and throw the map back
-                var markers = activeMarkers();
-                if (!keepViewOnLayerSwitch && !fitMarkersOnSmallScreen(markers)) {
-                    if (selectedLayer === "Venues") {
-                        map.setView([50.19243907905966, -19.821782223466816], 3);
-                    } else {
-                        map.setView([40, 0], 2);
-                    }
+                // Show the filtered places of the new layer. When search switches the layer it moves
+                // the map itself; an (animated) view change here would finish later and throw the map back
+                if (!keepViewOnLayerSwitch) {
+                    fitSelection();
                 }
             });
 
