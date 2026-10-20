@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=9" />
-    <link rel="stylesheet" href="map4.css?v=9" />
+    <link rel="stylesheet" href="common.css?v=10" />
+    <link rel="stylesheet" href="map4.css?v=10" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=9" type="text/javascript"></script>
+    <script src="data.js?v=10" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=9" defer></script>
+    <script src="nav.js?v=10" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -1168,12 +1168,26 @@
 
             var breweryLabel = routeCheckIn["Brewery"] + (routeCheckIn["Brewery_country"] ? ' \u00b7 ' + routeCheckIn["Brewery_country"] : '');
             var venueLabel = venueOfRoute();
-            var labelOptions = { permanent: true, direction: 'top', offset: [0, -(isSmallScreen() ? 66 : 50)], className: 'route-tooltip' };
+            // Labels above the icons lean towards the middle of the route, so the map only
+            // needs room for the icons at its edges and the route can span the whole width
+            var iconSize = isSmallScreen() ? 66 : 50;
+            function labelOptions(text, pointsEast) {
+                var shift = Math.max(0, labelWidth(text) / 2 - 24);
+                return {
+                    permanent: true,
+                    direction: 'top',
+                    offset: [pointsEast ? shift : -shift, -iconSize],
+                    className: 'route-tooltip'
+                };
+            }
+            var venueIsWest = venue.lng <= brewery.lng;
             routeLayer = L.layerGroup([
                 L.polyline(points, { color: 'white', weight: 7, opacity: 0.85, interactive: false }),
                 L.polyline(points, { color: 'rgb(165, 42, 42)', weight: 3, dashArray: '8 7', interactive: false }),
-                L.marker(venue, { icon: markerIcon('ikony/pub.png'), interactive: false }).bindTooltip(venueLabel, labelOptions),
-                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
+                L.marker(venue, { icon: markerIcon('ikony/pub.png'), interactive: false })
+                    .bindTooltip(venueLabel, labelOptions(venueLabel, venueIsWest)),
+                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false })
+                    .bindTooltip(breweryLabel, labelOptions(breweryLabel, !venueIsWest))
             ]).addTo(map);
 
             routeReturn = {
@@ -1186,7 +1200,11 @@
             // Only the venue and the brewery stay on the map; the popup would cover the route
             map.closePopup();
             map.removeLayer(activeMarkers());
-            fitRoute(L.latLngBounds(points), Math.max(labelWidth(breweryLabel), labelWidth(venueLabel)));
+            // Phones: the map gets almost the whole screen, the sheet waits at the bottom
+            if (isSmallScreen() && contentBox.classList.contains('open')) {
+                setSheetState('peek');
+            }
+            fitRoute(L.latLngBounds(points), iconSize);
             updateRouteButton();
         }
 
@@ -1210,14 +1228,16 @@
             return width;
         }
 
-        // Fit the whole route, including the brewery icon with its label above it,
+        // Fit the whole route, including the icons with their labels above them,
         // into the free part of the map (above the detail sheet on phones)
-        function fitRoute(bounds, breweryLabelWidth) {
-            var sidePadding = Math.max(40, breweryLabelWidth / 2 + 12);
-            var topPadding = (isSmallScreen() ? 66 : 50) + 40 + 60; // icon + label + layer switch
+        function fitRoute(bounds, iconSize) {
+            var sidePadding = iconSize / 2 + 16;
+            var topPadding = iconSize + 40 + 60; // icon + label + layer switch
             var bottomPadding = 60;
             if (isSmallScreen() && contentBox.classList.contains('open')) {
-                bottomPadding = contentBox.offsetHeight + 40;
+                // the sheet may still be sliding, so use its final height
+                var sheetHeight = contentBox.classList.contains('peek') ? SHEET_PEEK_HEIGHT : contentBox.offsetHeight;
+                bottomPadding = sheetHeight + 30;
             }
             map.fitBounds(bounds, {
                 paddingTopLeft: [sidePadding, topPadding],
@@ -1273,6 +1293,9 @@
         document.getElementById('route-toggle').addEventListener('click', function () {
             if (routeLayer) {
                 clearRoute();
+                if (contentBox.classList.contains('peek')) {
+                    setSheetState('half');
+                }
                 returnFromRoute();
             } else {
                 showRoute();
@@ -1358,12 +1381,27 @@
         var contentBox = document.getElementById('contentBox');
 
         // States of the bottom sheet: closed, half (class "open") and full screen (classes "open full")
+        // Height of the tucked-away sheet: the handle and the beer name stay visible
+        var SHEET_PEEK_HEIGHT = 92;
+
+        // Open sheet sizes on phones: 'peek' (tucked away), 'half' or 'full' screen
+        function setSheetState(state) {
+            contentBox.classList.toggle('peek', state === 'peek');
+            contentBox.classList.toggle('full', state === 'full');
+            // the map buttons at the bottom move up above the tucked-away sheet
+            document.body.classList.toggle('sheet-peek', state === 'peek');
+            if (state === 'peek') {
+                contentBox.scrollTop = 0;
+            }
+        }
+
         // The map does not move when the sheet opens: the popup stays centred,
         // so it is still in the middle of the screen after the sheet is closed
         function setDetailOpen(open) {
             contentBox.classList.toggle('open', open && isSmallScreen());
             if (!open) {
-                contentBox.classList.remove('full');
+                contentBox.classList.remove('full', 'peek');
+                document.body.classList.remove('sheet-peek');
                 // closing the detail also hides its route and brings back all places
                 if (routeLayer) {
                     clearRoute();
@@ -1409,14 +1447,21 @@
                 contentBox.style.height = '';
 
                 if (moved < 5) {
-                    // A tap on the handle toggles half / full screen
-                    contentBox.classList.toggle('full');
+                    // A tap on the handle: tucked away -> half, otherwise half <-> full screen
+                    if (contentBox.classList.contains('peek')) {
+                        setSheetState('half');
+                    } else {
+                        setSheetState(contentBox.classList.contains('full') ? 'half' : 'full');
+                    }
                 } else if (height > window.innerHeight * 0.75) {
-                    contentBox.classList.add('full');
-                } else if (height < window.innerHeight * 0.3) {
-                    setDetailOpen(false);
+                    setSheetState('full');
+                } else if (height > window.innerHeight * 0.3) {
+                    setSheetState('half');
+                } else if (routeLayer && height > SHEET_PEEK_HEIGHT * 0.6) {
+                    // while a route is shown the sheet can stay tucked away at the bottom
+                    setSheetState('peek');
                 } else {
-                    contentBox.classList.remove('full');
+                    setDetailOpen(false);
                 }
             }
 

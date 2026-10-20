@@ -1025,8 +1025,28 @@ body {
     border-radius: 0;
   }
 
+  /* Tucked away while a route is shown: only the handle and the beer name stay visible */
+  #contentBox.peek {
+    height: 92px;
+    overflow: hidden;
+  }
+
   #contentBox.dragging {
     transition: none;
+  }
+
+  /* Map buttons at the bottom stay reachable above the tucked-away sheet */
+  #map .leaflet-bottom,
+  #filters-toggle {
+    transition: bottom 0.25s ease;
+  }
+
+  body.sheet-peek #map .leaflet-bottom {
+    bottom: 92px;
+  }
+
+  body.sheet-peek #filters-toggle {
+    bottom: 116px;
   }
 
   .sheet-handle {
