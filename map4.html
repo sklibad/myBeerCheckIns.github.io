@@ -1067,7 +1067,16 @@
             }
         }
 
+        var lastPopupMarker = null;
+        var keepViewOnNextPopup = false;
+
         map.on('popupopen', function (e) {
+            lastPopupMarker = e.popup._source;
+            if (keepViewOnNextPopup) {
+                // reopened by "Hide route": the restored view is already right
+                keepViewOnNextPopup = false;
+                return;
+            }
             // wait until the popup is laid out
             requestAnimationFrame(function () {
                 centerPopup(e.popup);
@@ -1077,6 +1086,8 @@
         // Route from the brewery to the venue (Venues layer, on request from the detail panel)
         var routeLayer = null;
         var routeCheckIn = null;
+        // view, venue marker and highlighted beer from before the route was shown
+        var routeReturn = null;
         var routeDistance = 0;
 
         // "50.08, 14.42" -> L.latLng
@@ -1114,6 +1125,7 @@
         function prepareRoute(checkIn) {
             clearRoute();
             routeCheckIn = null;
+            routeReturn = null;
             $('#route-div').hide();
             if (!checkIn) return;
 
@@ -1158,6 +1170,13 @@
                     .bindTooltip(breweryLabel, { permanent: true, direction: 'top', offset: [0, -(isSmallScreen() ? 66 : 50)], className: 'route-tooltip' })
             ]).addTo(map);
 
+            routeReturn = {
+                center: map.getCenter(),
+                zoom: map.getZoom(),
+                marker: map.hasLayer(lastPopupMarker) && lastPopupMarker.isPopupOpen() ? lastPopupMarker : null,
+                beerId: $('.box-content.active').attr('id')
+            };
+
             // The popup would cover the route; the detail panel stays open
             map.closePopup();
             fitRoute(L.latLngBounds(points), labelWidth(breweryLabel));
@@ -1199,9 +1218,31 @@
             updateRouteButton();
         }
 
+        // "Hide route": back to the venue with its popup open and the beer still highlighted,
+        // so the next beer's route is one tap away
+        function returnFromRoute() {
+            var back = routeReturn;
+            routeReturn = null;
+            if (!back) return;
+
+            map.setView(back.center, back.zoom, { animate: false });
+            if (!back.marker) return;
+
+            var markers = selectedLayer === "Venues" ? venueMarkers : breweryMarkers;
+            markers.zoomToShowLayer(back.marker, function () {
+                keepViewOnNextPopup = true;
+                back.marker.openPopup();
+                var beer = back.beerId ? document.getElementById(back.beerId) : null;
+                if (beer) {
+                    beer.classList.add('active');
+                }
+            });
+        }
+
         document.getElementById('route-toggle').addEventListener('click', function () {
             if (routeLayer) {
                 clearRoute();
+                returnFromRoute();
             } else {
                 showRoute();
             }
