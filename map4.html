@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=14" />
-    <link rel="stylesheet" href="map4.css?v=14" />
+    <link rel="stylesheet" href="common.css?v=15" />
+    <link rel="stylesheet" href="map4.css?v=15" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=14" type="text/javascript"></script>
+    <script src="data.js?v=15" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=14" defer></script>
+    <script src="nav.js?v=15" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -232,6 +232,17 @@
                 <ul class="map-search-results" id="search-results" role="listbox" hidden></ul>
             </div>
             <div class="map-toast" id="map-toast" role="status" hidden></div>
+            <div class="photo-gallery" id="photo-gallery" hidden>
+                <div class="gallery-header">
+                    <span class="gallery-title" id="gallery-title">Photos</span>
+                    <label class="gallery-area">
+                        <input type="checkbox" id="gallery-area">
+                        Only this map area
+                    </label>
+                    <button type="button" class="gallery-close" id="gallery-close" aria-label="Back to the map">&times;</button>
+                </div>
+                <div class="gallery-grid" id="gallery-grid"></div>
+            </div>
             <div class="timeline-bar" id="timeline-bar" hidden>
                 <button type="button" class="timeline-play" id="timeline-play" aria-label="Play"></button>
                 <div class="timeline-main">
@@ -364,6 +375,7 @@
             });
 
             layer.beerCount = beers.length;
+            layer.beerIndices = beers.map(function (beer) { return beer.index; });
             layer.bindPopup(buildPopupContent(layerId, beers), popupOptions());
         }
 
@@ -717,6 +729,7 @@
             }
 
             layer.beerCount = beers.length;
+            layer.beerIndices = beers.map(function (beer) { return beer.index; });
             layer.bindPopup(buildPopupContent(layerId, beers), popupOptions());
         }
         var breweries = L.geoJSON();
@@ -915,6 +928,9 @@
             if (timeline.active) {
                 updateTimelineInfo(highlightNew === true);
             }
+            if (typeof isGalleryOpen === 'function' && isGalleryOpen()) {
+                renderGallery();
+            }
         }
 
         // "Show 33 breweries" on the phone button, "33 breweries" next to Reset on larger screens
@@ -1058,6 +1074,9 @@
                 if (timeline.active) {
                     timeline.shownPlaces = null;
                     renderTimelineStep(false);
+                }
+                if (isGalleryOpen()) {
+                    renderGallery();
                 }
             });
 
@@ -1650,6 +1669,12 @@
             var place = item.type === 'beer' ? (layer === 'Venues' ? item.venue : item.brewery) : item.name;
             var beerIndex = item.type === 'beer' ? (layer === 'Venues' ? item.venueIndex : item.breweryIndex) : null;
 
+            showPlaceOnMap(layer, place, beerIndex);
+        }
+
+        // Shared by search and the photo gallery: right layer, everything that could hide the place
+        // switched off, zoom in, open its popup and, with beerIndex, also the check-in detail
+        function showPlaceOnMap(layer, place, beerIndex) {
             var notes = [];
             if (timeline.active) {
                 closeTimeline();
@@ -1985,6 +2010,139 @@
             renderTimelineStep(false);
         });
         document.getElementById('timeline-close').addEventListener('click', closeTimeline);
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // Photo gallery: photos of all check-ins currently shown on the map (filters, active layer)
+        var PHOTOS_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-8 8"/></svg>';
+
+        // Older Untappd photos ("<hash>_raw.jpg") also come as square thumbnails ("_200x200", "_640x640").
+        // Newer ones ("<hash>_c_<number>_raw.jpg") are already 640 x 640 and have no thumbnails.
+        function hasThumbnails(url) {
+            return !/_c_\d+_raw\.jpg$/.test(url);
+        }
+
+        function photoVariant(url, size) {
+            return url.replace(/_raw\.jpg$/, '_' + size + '.jpg');
+        }
+
+        // Check-ins with a photo behind the markers of the active layer, newest first
+        function galleryCheckIns() {
+            var onlyMapArea = document.getElementById('gallery-area').checked;
+            var bounds = map.getBounds();
+            var lists = selectedLayer === "Venues" ? venue_check_ins : brewery_check_ins;
+            var items = [];
+            activeMarkers().getLayers().forEach(function (marker) {
+                if (onlyMapArea && !bounds.contains(marker.getLatLng())) return;
+                var place = placeName(marker);
+                (marker.beerIndices || []).forEach(function (index) {
+                    var checkIn = lists[place][index];
+                    if (checkIn["Photo_url"] && /_raw\.jpg$/.test(checkIn["Photo_url"])) {
+                        items.push({ place: place, index: index, checkIn: checkIn, date: parseCheckinDate(checkIn["Date"]) });
+                    }
+                });
+            });
+            items.sort(function (a, b) {
+                return b.date - a.date;
+            });
+            return items;
+        }
+
+        function renderGallery() {
+            var items = galleryCheckIns();
+            var grid = document.getElementById('gallery-grid');
+            grid.innerHTML = '';
+            document.getElementById('gallery-title').textContent = items.length + (items.length === 1 ? ' photo' : ' photos');
+
+            if (!items.length) {
+                var empty = document.createElement('p');
+                empty.className = 'gallery-empty';
+                empty.textContent = 'No photos for the current filters.';
+                grid.appendChild(empty);
+                return;
+            }
+
+            items.forEach(function (item) {
+                var url = item.checkIn["Photo_url"];
+                var tile = document.createElement('button');
+                tile.type = 'button';
+                tile.className = 'gallery-tile';
+                tile.setAttribute('aria-label', item.checkIn["Beer"] + ', ' + item.place);
+
+                var img = document.createElement('img');
+                img.loading = 'lazy';
+                img.alt = '';
+                if (hasThumbnails(url)) {
+                    img.src = photoVariant(url, '200x200');
+                    img.srcset = photoVariant(url, '200x200') + ' 200w, ' + photoVariant(url, '640x640') + ' 640w';
+                    img.sizes = '(max-width: 1000px) 33vw, 160px';
+                } else {
+                    img.src = url;
+                }
+                tile.appendChild(img);
+
+                var caption = document.createElement('span');
+                caption.className = 'gallery-caption';
+                var beer = document.createElement('span');
+                beer.className = 'gallery-beer';
+                beer.textContent = item.checkIn["Beer"];
+                var date = document.createElement('span');
+                date.className = 'gallery-date';
+                date.textContent = formatCheckinDate(item.checkIn["Date"]);
+                caption.appendChild(beer);
+                caption.appendChild(date);
+                tile.appendChild(caption);
+
+                tile.addEventListener('click', function () {
+                    closeGallery();
+                    showPlaceOnMap(selectedLayer, item.place, item.index);
+                });
+                grid.appendChild(tile);
+            });
+        }
+
+        function openGallery() {
+            if (timeline.active) closeTimeline();
+            if (routeLayer) clearRoute();
+            closeSearch();
+            map.closePopup();
+            setDetailOpen(false);
+            document.getElementById('photo-gallery').hidden = false;
+            document.body.classList.add('gallery-open');
+            galleryControl.getContainer().classList.add('active');
+            renderGallery();
+            document.getElementById('gallery-grid').scrollTop = 0;
+        }
+
+        function closeGallery() {
+            document.getElementById('photo-gallery').hidden = true;
+            document.body.classList.remove('gallery-open');
+            galleryControl.getContainer().classList.remove('active');
+        }
+
+        function isGalleryOpen() {
+            return !document.getElementById('photo-gallery').hidden;
+        }
+
+        // "Photos" button on the map (top left, below Timeline)
+        var galleryControl = L.control({ position: 'topleft' });
+        galleryControl.onAdd = function () {
+            var button = L.DomUtil.create('button', 'timeline-toggle gallery-toggle');
+            button.type = 'button';
+            button.innerHTML = PHOTOS_ICON + '<span>Photos</span>';
+            L.DomEvent.disableClickPropagation(button);
+            L.DomEvent.on(button, 'click', function () {
+                if (isGalleryOpen()) {
+                    closeGallery();
+                } else {
+                    openGallery();
+                }
+            });
+            return button;
+        };
+
+        galleryControl.addTo(map);
+        document.getElementById('gallery-close').addEventListener('click', closeGallery);
+        document.getElementById('gallery-area').addEventListener('change', renderGallery);
+
         // Rating slider: two range inputs over one track, values shown as 0.25–5
         function initRatingSlider() {
             var slider = document.getElementById('slider-distance');
