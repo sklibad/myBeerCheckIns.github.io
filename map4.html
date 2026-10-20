@@ -2153,8 +2153,11 @@
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         // My location (phones): venues near the user where a beer was already drunk, and which beers
         var LOCATE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7.5"/></svg>';
-        var NEARBY_RADIUS = 2000;   // metres
-        var NEARBY_MAX = 8;
+        // Growing search radius (metres): see nearbyVenues()
+        var NEARBY_STEP = 1000;
+        var NEARBY_MAX_RADIUS = 10000;
+        var NEARBY_ENOUGH_IN_FIRST_STEP = 3;
+        var NEARBY_EMPTY_GAP = 3000;
 
         var myLocation = {
             layer: L.layerGroup(),
@@ -2177,7 +2180,10 @@
             return parseFloat((meters / 1000).toFixed(meters < 10000 ? 1 : 0)) + ' km';
         }
 
-        // Venues within NEARBY_RADIUS, or the nearest ones anywhere when there are none
+        // Venues around the user. The radius grows by 1 km from 1 km and the search stops when
+        //  - the first kilometre already has at least 3 venues,
+        //  - there are 3 km without any venue beyond the farthest venue found so far, or
+        //  - the radius reaches 10 km (nothing found by then -> empty list).
         function nearbyVenues(latlng) {
             var venues = Object.keys(venue_check_ins).filter(function (venue) {
                 return venuePositions[venue];
@@ -2193,21 +2199,39 @@
             }).sort(function (a, b) {
                 return a.distance - b.distance;
             });
-            var close = venues.filter(function (venue) {
-                return venue.distance <= NEARBY_RADIUS;
-            });
-            return { within: close.length > 0, venues: (close.length ? close : venues).slice(0, close.length ? NEARBY_MAX : 5) };
+            var found = [];
+            for (var radius = NEARBY_STEP; radius <= NEARBY_MAX_RADIUS; radius += NEARBY_STEP) {
+                found = venues.filter(function (venue) {
+                    return venue.distance <= radius;
+                });
+                if (radius === NEARBY_STEP && found.length >= NEARBY_ENOUGH_IN_FIRST_STEP) {
+                    break;
+                }
+                if (found.length && radius - found[found.length - 1].distance >= NEARBY_EMPTY_GAP) {
+                    break;
+                }
+            }
+            return found;
         }
 
         function renderNearby(latlng) {
-            var result = nearbyVenues(latlng);
+            var venues = nearbyVenues(latlng);
             var list = document.getElementById('nearby-list');
             list.innerHTML = '';
-            document.getElementById('nearby-title').textContent = result.within ?
-                'Near you \u00b7 ' + result.venues.length + (result.venues.length === 1 ? ' venue' : ' venues') + ' within ' + formatMeters(NEARBY_RADIUS) :
-                'No venues within ' + formatMeters(NEARBY_RADIUS) + ' \u00b7 nearest';
+            if (venues.length) {
+                // the farthest listed venue, rounded up to whole kilometres
+                var reach = Math.ceil(venues[venues.length - 1].distance / 1000) * 1000;
+                document.getElementById('nearby-title').textContent = 'Near you \u00b7 ' + venues.length +
+                    (venues.length === 1 ? ' venue' : ' venues') + ' within ' + formatMeters(reach);
+            } else {
+                document.getElementById('nearby-title').textContent = 'Near you';
+                var empty = document.createElement('li');
+                empty.className = 'search-empty';
+                empty.textContent = 'No venues you have visited within ' + formatMeters(NEARBY_MAX_RADIUS) + '.';
+                list.appendChild(empty);
+            }
 
-            result.venues.forEach(function (venue) {
+            venues.forEach(function (venue) {
                 var row = document.createElement('li');
                 row.className = 'search-result nearby-result';
                 row.innerHTML = '<img src="ikony/pub.png" alt="">';
@@ -2245,7 +2269,7 @@
 
             // the user and the listed venues in view, below the panel
             var bounds = L.latLngBounds([latlng]);
-            result.venues.forEach(function (venue) {
+            venues.forEach(function (venue) {
                 bounds.extend(venuePositions[venue.name]);
             });
             var panelHeight = document.getElementById('nearby-panel').offsetHeight;
