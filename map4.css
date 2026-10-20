@@ -1380,6 +1380,98 @@ body {
   text-align: center;
 }
 
+/* ---------- My location ---------- */
+
+#map .locate-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background-color: rgb(238, 231, 212);
+  color: rgb(87, 62, 62);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+#map .locate-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* waiting for the position */
+#map .locate-toggle.locating svg {
+  animation: locate-pulse 1s ease-in-out infinite;
+}
+
+@keyframes locate-pulse {
+  50% { opacity: 0.3; }
+}
+
+.nearby-panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 1100;
+  font-family: Arial, sans-serif;
+}
+
+.nearby-panel[hidden] {
+  display: none;
+}
+
+.nearby-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 16px;
+  border-radius: 999px;
+  background-color: rgb(87, 62, 62);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  color: white;
+}
+
+.nearby-title {
+  flex: 1;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.nearby-header .map-search-close {
+  color: white;
+}
+
+.nearby-list {
+  max-height: 45vh;
+}
+
+.nearby-result {
+  align-items: flex-start;
+}
+
+.nearby-result img {
+  margin-top: 2px;
+}
+
+.nearby-beers {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-style: italic;
+  color: rgb(87, 62, 62);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* ---------- Phones and tablets ---------- */
 
 @media (max-width: 1000px) {

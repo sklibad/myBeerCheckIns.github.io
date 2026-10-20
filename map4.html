@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=15" />
-    <link rel="stylesheet" href="map4.css?v=15" />
+    <link rel="stylesheet" href="common.css?v=17" />
+    <link rel="stylesheet" href="map4.css?v=17" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=15" type="text/javascript"></script>
+    <script src="data.js?v=17" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=15" defer></script>
+    <script src="nav.js?v=17" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -232,6 +232,13 @@
                 <ul class="map-search-results" id="search-results" role="listbox" hidden></ul>
             </div>
             <div class="map-toast" id="map-toast" role="status" hidden></div>
+            <div class="nearby-panel" id="nearby-panel" hidden>
+                <div class="nearby-header">
+                    <span class="nearby-title" id="nearby-title">Near you</span>
+                    <button type="button" class="map-search-close" id="nearby-close" aria-label="Close">&times;</button>
+                </div>
+                <ul class="map-search-results nearby-list" id="nearby-list"></ul>
+            </div>
             <div class="photo-gallery" id="photo-gallery" hidden>
                 <div class="gallery-header">
                     <span class="gallery-title" id="gallery-title">Photos</span>
@@ -2142,6 +2149,168 @@
         galleryControl.addTo(map);
         document.getElementById('gallery-close').addEventListener('click', closeGallery);
         document.getElementById('gallery-area').addEventListener('change', renderGallery);
+
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // My location (phones): venues near the user where a beer was already drunk, and which beers
+        var LOCATE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7.5"/></svg>';
+        var NEARBY_RADIUS = 2000;   // metres
+        var NEARBY_MAX = 8;
+
+        var myLocation = {
+            layer: L.layerGroup(),
+            latlng: null
+        };
+
+        // Venue name -> position, from the venue points
+        var venuePositions = (function () {
+            var positions = {};
+            venues_lst[0].features.forEach(function (feature) {
+                var c = feature.geometry.coordinates;
+                positions[feature.properties.Venue] = L.latLng(c[1], c[0]);
+            });
+            return positions;
+        })();
+
+        function formatMeters(meters) {
+            if (meters < 1000) return Math.round(meters / 10) * 10 + ' m';
+            // 2 km, 2.5 km, 12 km
+            return parseFloat((meters / 1000).toFixed(meters < 10000 ? 1 : 0)) + ' km';
+        }
+
+        // Venues within NEARBY_RADIUS, or the nearest ones anywhere when there are none
+        function nearbyVenues(latlng) {
+            var venues = Object.keys(venue_check_ins).filter(function (venue) {
+                return venuePositions[venue];
+            }).map(function (venue) {
+                var checkIns = venue_check_ins[venue].slice().sort(function (a, b) {
+                    return parseCheckinDate(b["Date"]) - parseCheckinDate(a["Date"]);
+                });
+                return {
+                    name: venue,
+                    distance: map.distance(latlng, venuePositions[venue]),
+                    checkIns: checkIns
+                };
+            }).sort(function (a, b) {
+                return a.distance - b.distance;
+            });
+            var close = venues.filter(function (venue) {
+                return venue.distance <= NEARBY_RADIUS;
+            });
+            return { within: close.length > 0, venues: (close.length ? close : venues).slice(0, close.length ? NEARBY_MAX : 5) };
+        }
+
+        function renderNearby(latlng) {
+            var result = nearbyVenues(latlng);
+            var list = document.getElementById('nearby-list');
+            list.innerHTML = '';
+            document.getElementById('nearby-title').textContent = result.within ?
+                'Near you \u00b7 ' + result.venues.length + (result.venues.length === 1 ? ' venue' : ' venues') + ' within ' + formatMeters(NEARBY_RADIUS) :
+                'No venues within ' + formatMeters(NEARBY_RADIUS) + ' \u00b7 nearest';
+
+            result.venues.forEach(function (venue) {
+                var row = document.createElement('li');
+                row.className = 'search-result nearby-result';
+                row.innerHTML = '<img src="ikony/pub.png" alt="">';
+                var text = document.createElement('span');
+                text.className = 'search-result-text';
+
+                var name = document.createElement('span');
+                name.className = 'search-result-name';
+                name.textContent = venue.name;
+                var detail = document.createElement('span');
+                detail.className = 'search-result-detail';
+                detail.textContent = formatMeters(venue.distance) + ' \u00b7 ' + venue.checkIns.length +
+                    (venue.checkIns.length === 1 ? ' beer' : ' beers') + ' \u00b7 last ' + formatCheckinDate(venue.checkIns[0]["Date"]);
+                // what you had there, most recent first
+                var beers = document.createElement('span');
+                beers.className = 'nearby-beers';
+                var names = [];
+                venue.checkIns.forEach(function (checkIn) {
+                    if (names.indexOf(checkIn["Beer"]) < 0) names.push(checkIn["Beer"]);
+                });
+                beers.textContent = names.slice(0, 3).join(', ') + (names.length > 3 ? ' +' + (names.length - 3) + ' more' : '');
+
+                text.appendChild(name);
+                text.appendChild(detail);
+                text.appendChild(beers);
+                row.appendChild(text);
+                row.addEventListener('click', function () {
+                    closeNearby();
+                    showPlaceOnMap('Venues', venue.name, null);
+                });
+                list.appendChild(row);
+            });
+
+            document.getElementById('nearby-panel').hidden = false;
+
+            // the user and the listed venues in view, below the panel
+            var bounds = L.latLngBounds([latlng]);
+            result.venues.forEach(function (venue) {
+                bounds.extend(venuePositions[venue.name]);
+            });
+            var panelHeight = document.getElementById('nearby-panel').offsetHeight;
+            map.fitBounds(bounds, { paddingTopLeft: [40, panelHeight + 40], paddingBottomRight: [60, 60], maxZoom: 16 });
+        }
+
+        function closeNearby() {
+            document.getElementById('nearby-panel').hidden = true;
+        }
+
+        function showMyPosition(position) {
+            locateControl.getContainer().classList.remove('locating');
+            var latlng = L.latLng(position.coords.latitude, position.coords.longitude);
+            myLocation.latlng = latlng;
+            myLocation.layer.clearLayers();
+            if (position.coords.accuracy < 2000) {
+                L.circle(latlng, {
+                    radius: position.coords.accuracy, color: '#2a7ae2', weight: 1, fillColor: '#2a7ae2', fillOpacity: 0.12, interactive: false
+                }).addTo(myLocation.layer);
+            }
+            L.circleMarker(latlng, {
+                radius: 8, color: 'white', weight: 3, fillColor: '#2a7ae2', fillOpacity: 1, interactive: false
+            }).addTo(myLocation.layer);
+            myLocation.layer.addTo(map);
+            renderNearby(latlng);
+        }
+
+        function locationFailed(error) {
+            locateControl.getContainer().classList.remove('locating');
+            showMapToast(error && error.code === 1 ? 'Location access was denied' : 'Your location is not available');
+        }
+
+        function locateMe() {
+            if (!navigator.geolocation) {
+                locationFailed(null);
+                return;
+            }
+            closeSearch();
+            closeGallery();
+            setDetailOpen(false);
+            map.closePopup();
+            locateControl.getContainer().classList.add('locating');
+            navigator.geolocation.getCurrentPosition(showMyPosition, locationFailed, {
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 60000
+            });
+        }
+
+        // "My location" button: phones only, bottom right above the basemap button
+        var locateControl = L.control({ position: 'bottomright' });
+        locateControl.onAdd = function () {
+            var button = L.DomUtil.create('button', 'locate-toggle');
+            button.type = 'button';
+            button.innerHTML = LOCATE_ICON;
+            button.setAttribute('aria-label', 'Venues near my location');
+            L.DomEvent.disableClickPropagation(button);
+            L.DomEvent.on(button, 'click', locateMe);
+            return button;
+        };
+        if (isSmallScreen()) {
+            locateControl.addTo(map);
+        }
+        document.getElementById('nearby-close').addEventListener('click', closeNearby);
+        map.on('click', closeNearby);
 
         // Rating slider: two range inputs over one track, values shown as 0.25–5
         function initRatingSlider() {
