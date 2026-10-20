@@ -110,7 +110,7 @@
             }
         }
 
-        var pragueCheckIns = L.geoJSON(prague_cartogram, {
+        var pragueCheckInsLayer = L.geoJSON(prague_cartogram, {
             style: function (feature) {
                 return {
                 fillColor: defPragueCheckInsColor(feature.properties.cart_check),
@@ -150,7 +150,7 @@
             },
         });
 
-        addHoverHighlight(pragueCheckIns, 5);
+        addHoverHighlight(pragueCheckInsLayer, 5);
 
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         function defPragueBreweriesColor(value) {
@@ -181,7 +181,7 @@
             }
         }
     
-        var pragueBreweries = L.geoJSON(prague_cartogram, {
+        var pragueBreweriesLayer = L.geoJSON(prague_cartogram, {
             style: function (feature) {
                 return {
                 fillColor: defPragueBreweriesColor(feature.properties.cart_brew),
@@ -214,7 +214,7 @@
             }
         });
 
-        addHoverHighlight(pragueBreweries, 5);
+        addHoverHighlight(pragueBreweriesLayer, 5);
     
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         var baseLayers = {
@@ -224,8 +224,8 @@
         };
 
         var overlayLayers = {
-            "Check-Ins density": pragueCheckIns,
-            "Brewery density": pragueBreweries
+            "Check-Ins density": pragueCheckInsLayer,
+            "Brewery density": pragueBreweriesLayer
         };
 
         var checkInsLegendControl = L.control.Legend({
@@ -381,8 +381,8 @@
         overlayControl.addTo(map);
 
         // Add the first overlay layer to the map initially
-        pragueCheckIns.addTo(map);
-        fitMapOnSmallScreen(map, pragueCheckIns);
+        pragueCheckInsLayer.addTo(map);
+        fitMapOnSmallScreen(map, pragueCheckInsLayer);
         checkInsLegendControl.addTo(map);
 
         L.control.layers(baseLayers).addTo(map);

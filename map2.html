@@ -120,7 +120,7 @@
             }
         }
         
-        var okresyCheckIns = L.geoJSON(okresy, {
+        var okresyCheckInsLayer = L.geoJSON(okresy, {
             style: function (feature) {
                 return {
                 fillColor: defOkresyCheckInsColor(feature.properties.cart_check),
@@ -167,7 +167,7 @@
             },
         });
 
-        addHoverHighlight(okresyCheckIns, 5);
+        addHoverHighlight(okresyCheckInsLayer, 5);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         function defOkresyBreweriesColor(value) {
             // Convert the value to a numeric type if it's a string
@@ -197,7 +197,7 @@
             }
         }
 
-        var okresyBreweries = L.geoJSON(okresy, {
+        var okresyBreweriesLayer = L.geoJSON(okresy, {
             style: function (feature) {
                 return {
                 fillColor: defOkresyBreweriesColor(feature.properties.cart_brew),
@@ -215,10 +215,10 @@
                     // Create the popup content with list items
                     var popupContent = "<div class='popup-container'>";
                     if (districtName.includes('Praha')){
-                        popupContent += "<div class='popup-header'><b>" + districtName + " - discovered venues</b></div>";
+                        popupContent += "<div class='popup-header'><b>" + districtName + " - breweries</b></div>";
                     }
                     else{
-                        popupContent += "<div class='popup-header'><b>" + "Okres " + districtName + " - discovered venues</b></div>";
+                        popupContent += "<div class='popup-header'><b>" + "Okres " + districtName + " - breweries</b></div>";
                     }
                     popupContent += "<div class='popup-content'><ul class='left-aligned-list'>";
                     czechBreweries[districtName].forEach(function (brewery) {
@@ -236,7 +236,7 @@
             },
         })
 
-        addHoverHighlight(okresyBreweries, 5);
+        addHoverHighlight(okresyBreweriesLayer, 5);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         function defKrajeCheckInsColor(value) {
             // Convert the value to a numeric type if it's a string
@@ -266,7 +266,7 @@
             }
         }
 
-        var krajeCheckIns = L.geoJSON(kraje, {
+        var krajeCheckInsLayer = L.geoJSON(kraje, {
             style: function (feature) {
                 return {
                 fillColor: defKrajeCheckInsColor(feature.properties.cart_check),
@@ -308,7 +308,7 @@
             },
         })
 
-        addHoverHighlight(krajeCheckIns, 5);
+        addHoverHighlight(krajeCheckInsLayer, 5);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         function defKrajeBreweriesColor(value) {
             // Convert the value to a numeric type if it's a string
@@ -338,7 +338,7 @@
             }
         }
 
-        var krajeBreweries = L.geoJSON(kraje, {
+        var krajeBreweriesLayer = L.geoJSON(kraje, {
             style: function (feature) {
                 return {
                 fillColor: defKrajeBreweriesColor(feature.properties.cart_brew),
@@ -372,7 +372,7 @@
             },
         })
 
-        addHoverHighlight(krajeBreweries, 5);
+        addHoverHighlight(krajeBreweriesLayer, 5);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         var baseLayers = {
             "OS Map": OSmap,
@@ -381,10 +381,10 @@
         };
 
         var overlayLayers = {
-            "Check-Ins density (kraje)": krajeCheckIns,
-            "Brewery density (kraje)": krajeBreweries,
-            "Check-Ins density (okresy)": okresyCheckIns,
-            "Brewery density (okresy)": okresyBreweries
+            "Check-Ins density (kraje)": krajeCheckInsLayer,
+            "Brewery density (kraje)": krajeBreweriesLayer,
+            "Check-Ins density (okresy)": okresyCheckInsLayer,
+            "Brewery density (okresy)": okresyBreweriesLayer
         };
 
         var okresyCheckInsLegendControl = L.control.Legend({
@@ -690,8 +690,8 @@
         overlayControl.addTo(map);
 
         // Add the first overlay layer to the map initially
-        krajeCheckIns.addTo(map);
-        fitMapOnSmallScreen(map, krajeCheckIns);
+        krajeCheckInsLayer.addTo(map);
+        fitMapOnSmallScreen(map, krajeCheckInsLayer);
         krajeCheckInsLegendControl.addTo(map);
         var activeLegend = krajeCheckInsLegendControl;
 
