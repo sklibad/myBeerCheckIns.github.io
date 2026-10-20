@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <link rel="stylesheet" href="src/leaflet.legend.css" />
+    <link rel="stylesheet" href="common.css" />
     <link rel="stylesheet" href="map3.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <script src="Control.FullScreen.js"></script>
     <script src="map3.js" type="text/javascript"></script>
     <script type="text/javascript" src="src/leaflet.legend.js"></script>
     <title>World Choropleth Map</title>
+    <script src="nav.js" defer></script>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="header-content">
-            <div class="logo">
-                <span class="logo-text">MyBeerCheckIns</span>
-            </div>
-            <div class="panel">
+            <a class="logo-text" href="index.html">MyBeerCheckIns</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="panel" id="site-nav">
                 <a href="index.html">Home</a>
                 <a href="beer_terminology.html">Beerminology</a>
                 <a href="map4.html">Check-in Map</a>
                 <div class="dropdown">
-                    <button class="dropbtn">Cartograms</button>
+                    <button class="dropbtn" type="button" aria-expanded="false" aria-haspopup="true">Cartograms</button>
                     <div class="dropdown-content">
                         <a href="map1.html">Prague</a>
                         <a href="map2.html">Czech Republic</a>
@@ -31,7 +34,7 @@
                     </div>
                 </div>
                 <a href="statistics.html">Statistics</a>
-            </div>
+            </nav>
         </div>
     </header>
     <div id="map"></div>

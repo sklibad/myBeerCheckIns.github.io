@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="common.css" />
     <link rel="stylesheet" href="styles.css">
     <title>MyBeerCheckIns - Beerminology</title>
+    <script src="nav.js" defer></script>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="header-content">
-            <div class="logo">
-                <span class="logo-text">MyBeerCheckIns</span>
-            </div>
-            <div class="panel">
+            <a class="logo-text" href="index.html">MyBeerCheckIns</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="panel" id="site-nav">
                 <a href="index.html">Home</a>
                 <a href="beer_terminology.html">Beerminology</a>
                 <a href="map4.html">Check-in Map</a>
                 <div class="dropdown">
-                    <button class="dropbtn">Cartograms</button>
+                    <button class="dropbtn" type="button" aria-expanded="false" aria-haspopup="true">Cartograms</button>
                     <div class="dropdown-content">
                         <a href="map1.html">Prague</a>
                         <a href="map2.html">Czech Republic</a>
@@ -25,9 +28,10 @@
                     </div>
                 </div>
                 <a href="statistics.html">Statistics</a>
-            </div>
+            </nav>
         </div>
     </header>
+    <main>
     <section id = "frequent-terms">
         <h2>Frequently used terms</h2>
         <ul>
@@ -103,7 +107,6 @@
         </div>
 
     </section>
-
-
+    </main>
 </body>
 </html>

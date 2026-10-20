@@ -3,91 +3,27 @@ body {
     margin: 0;
     padding: 0;
     background-color: #c4b494;
+    line-height: 1.5;
 }
 
-header {
-    background-color: rgb(87, 62, 62);
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000; /* Make sure the header appears above other elements */
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 16px 0;
 }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo-text {
+section {
+    background-color: rgb(165, 42, 42);
+    border-radius: clamp(16px, 4vw, 50px);
     color: white;
-    font-weight: bold;
-    font-size: 18px;
-    padding-left: 60%;
+    margin-bottom: clamp(24px, 5vw, 50px);
+    outline: auto;
+    border-bottom: 1px solid #ccc;
+    padding: clamp(16px, 4vw, 20px) clamp(20px, 5vw, 40px);
 }
 
-.panel {
-    display: flex;
-    padding-right: 40%;
-}
-
-.panel a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin-right: 10px; /* Adjust the margin as needed */
-    font-size: 16px;
-}
-
-.panel a:hover {
-    background-color: rgb(84, 35, 35);
-}
-
-.panel a:last-child {
-    margin-right: 0; /* Remove margin from the last link */
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    color: white;
-    background-color: rgb(87, 62, 62);
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: rgb(87, 62, 62);
-    min-width: 150px;
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    margin-right: 0;
-}
-
-.dropdown-content a:hover {
-    background-color: rgb(84, 35, 35);
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-section.content {
-    margin-left: 100px;
-    margin-right: 100px;
+h2 {
+    font-size: clamp(1.3rem, 4vw, 1.5rem);
 }
 
 li {
@@ -96,12 +32,6 @@ li {
 
 li:last-child {
     margin-bottom: 0;
-}
-
-section#frequent-terms {
-    margin-top: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
 }
 
 #title-margin {
@@ -113,24 +43,15 @@ section#frequent-terms {
 }
 
 section#last {
-    margin-bottom: 300px;
+    margin-bottom: 80px;
 }
 
-section {
-    background-color: rgb(165, 42, 42);
-    border-radius: 50px;
-    color: white;
-    margin-bottom: 50px;
-    outline: auto;
-    border-bottom: 1px solid #ccc;
-    padding: 20px;
-}
 div#introduction {
     text-align: center;
     font-size: 13px;
-    margin-left: 8px;
-    margin-right: 8px;
-    padding-bottom: 10px;
+    margin: 0 auto;
+    padding: 0 16px 16px;
+    max-width: 960px;
     color: rgb(37, 27, 27);
     font-style: italic;
 }

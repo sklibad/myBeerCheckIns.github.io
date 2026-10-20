@@ -11,83 +11,6 @@ body {
     background-color: #c4b494;
 }
 
-header {
-  background-color: rgb(87, 62, 62);
-  padding: 10px;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo-text {
-  color: white;
-  font-weight: bold;
-  padding-left: 60%;
-  font-size: 18px;
-}
-
-.panel {
-  display: flex;
-  padding-right: 40%;
-}
-
-.panel a {
-  color: white;
-  text-decoration: none;
-  padding: 10px;
-  margin-right: 10px; /* Adjust the margin as needed */
-  font-size: 16px;
-}
-
-.panel a:hover {
-  background-color: rgb(84, 35, 35);
-}
-
-.panel a:last-child {
-  margin-right: 0; /* Remove margin from the last link */
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropbtn {
-  color: white;
-  background-color: rgb(87, 62, 62);
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgb(87, 62, 62);
-  min-width: 150px;
-  z-index: 1000;
-
-}
-
-.dropdown-content a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  margin-right: 0;
-}
-
-.dropdown-content a:hover {
-  background-color: rgb(84, 35, 35);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 #container {
   display: flex;
   flex-direction: row;
@@ -200,8 +123,7 @@ button#reset-filters, button#apply-filters {
   z-index: 999;
 }
 
-  
-  [slider] {
+[slider] {
     position: relative;
     height: 14px;
     border-radius: 10px;
@@ -390,29 +312,6 @@ button#reset-filters, button#apply-filters {
   margin-left: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .box-item.same-row {
     display: flex;
     justify-content: space-between;
@@ -507,7 +406,6 @@ button#reset-filters, button#apply-filters {
     background: #959494;
     border-radius: 10px;
 }
-
 
 a.box-content {
   outline-color: transparent;
