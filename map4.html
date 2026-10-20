@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=17" />
-    <link rel="stylesheet" href="map4.css?v=17" />
+    <link rel="stylesheet" href="common.css?v=18" />
+    <link rel="stylesheet" href="map4.css?v=18" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=17" type="text/javascript"></script>
+    <script src="data.js?v=18" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=17" defer></script>
+    <script src="nav.js?v=18" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -238,6 +238,39 @@
                     <button type="button" class="map-search-close" id="nearby-close" aria-label="Close">&times;</button>
                 </div>
                 <ul class="map-search-results nearby-list" id="nearby-list"></ul>
+            </div>
+            <div class="mini-stats" id="mini-stats" hidden>
+                <div class="mini-stats-header">
+                    <span class="mini-stats-title">Selection</span>
+                    <label class="mini-stats-area">
+                        <input type="checkbox" id="mini-stats-area">
+                        Only this map area
+                    </label>
+                    <button type="button" class="mini-stats-close" id="mini-stats-close" aria-label="Close statistics">&times;</button>
+                </div>
+                <div class="mini-stats-grid">
+                    <div class="mini-stat">
+                        <span class="detail-label">Check-ins</span>
+                        <span class="mini-stat-value" id="mini-checkins"></span>
+                        <span class="mini-stat-note" id="mini-places"></span>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="detail-label">Avg rating</span>
+                        <span class="mini-stat-value" id="mini-rating"></span>
+                        <span class="mini-stat-note">out of 5</span>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="detail-label">Top style</span>
+                        <span class="mini-stat-value mini-stat-text" id="mini-style"></span>
+                        <span class="mini-stat-note" id="mini-style-count"></span>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="detail-label">Best beer</span>
+                        <span class="mini-stat-value mini-stat-text" id="mini-best"></span>
+                        <span class="mini-stat-note" id="mini-best-rating"></span>
+                    </div>
+                </div>
+                <a class="mini-stats-link" href="statistics.html">All statistics &rarr;</a>
             </div>
             <div class="photo-gallery" id="photo-gallery" hidden>
                 <div class="gallery-header">
@@ -938,6 +971,9 @@
             if (typeof isGalleryOpen === 'function' && isGalleryOpen()) {
                 renderGallery();
             }
+            if (typeof isMiniStatsOpen === 'function' && isMiniStatsOpen()) {
+                renderMiniStats();
+            }
         }
 
         // "Show 33 breweries" on the phone button, "33 breweries" next to Reset on larger screens
@@ -1084,6 +1120,9 @@
                 }
                 if (isGalleryOpen()) {
                     renderGallery();
+                }
+                if (isMiniStatsOpen()) {
+                    renderMiniStats();
                 }
             });
 
@@ -2335,6 +2374,107 @@
         }
         document.getElementById('nearby-close').addEventListener('click', closeNearby);
         map.on('click', closeNearby);
+
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // Mini statistics of the current selection (filters, active layer, timeline, optionally the map view)
+        var STATS_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"/></svg>';
+
+        // Check-ins behind the markers of the active layer (each check-in belongs to one place)
+        function selectionCheckIns() {
+            var onlyMapArea = document.getElementById('mini-stats-area').checked;
+            var bounds = map.getBounds();
+            var lists = selectedLayer === "Venues" ? venue_check_ins : brewery_check_ins;
+            var places = 0;
+            var checkIns = [];
+            activeMarkers().getLayers().forEach(function (marker) {
+                if (onlyMapArea && !bounds.contains(marker.getLatLng())) return;
+                places++;
+                var list = lists[placeName(marker)];
+                (marker.beerIndices || []).forEach(function (index) {
+                    checkIns.push(list[index]);
+                });
+            });
+            return { places: places, checkIns: checkIns };
+        }
+
+        function renderMiniStats() {
+            var selection = selectionCheckIns();
+            var checkIns = selection.checkIns;
+            var count = checkIns.length;
+
+            document.getElementById('mini-checkins').textContent = count;
+            document.getElementById('mini-places').textContent = selection.places + ' ' +
+                (selectedLayer === "Venues" ? (selection.places === 1 ? 'venue' : 'venues') : (selection.places === 1 ? 'brewery' : 'breweries'));
+
+            if (!count) {
+                ['mini-rating', 'mini-style', 'mini-best'].forEach(function (id) {
+                    document.getElementById(id).textContent = '\u2013';
+                });
+                document.getElementById('mini-style-count').textContent = '';
+                document.getElementById('mini-best-rating').textContent = '';
+                return;
+            }
+
+            var ratingSum = 0;
+            var styles = {};
+            var best = null;
+            checkIns.forEach(function (checkIn) {
+                var rating = Number(checkIn["Rating"]);
+                ratingSum += rating;
+                styles[checkIn["Beer_style"]] = (styles[checkIn["Beer_style"]] || 0) + 1;
+                // best rating; on a tie the more recent check-in
+                if (!best || rating > Number(best["Rating"]) ||
+                    (rating === Number(best["Rating"]) && parseCheckinDate(checkIn["Date"]) > parseCheckinDate(best["Date"]))) {
+                    best = checkIn;
+                }
+            });
+            var topStyle = Object.keys(styles).sort(function (a, b) {
+                return styles[b] - styles[a];
+            })[0];
+
+            document.getElementById('mini-rating').textContent = (ratingSum / count).toFixed(2);
+            document.getElementById('mini-style').textContent = topStyle;
+            document.getElementById('mini-style').title = topStyle;
+            document.getElementById('mini-style-count').textContent = styles[topStyle] + '\u00d7';
+            document.getElementById('mini-best').textContent = best["Beer"];
+            document.getElementById('mini-best').title = best["Beer"];
+            document.getElementById('mini-best-rating').textContent = Number(best["Rating"]) + ' / 5';
+        }
+
+        function isMiniStatsOpen() {
+            return !document.getElementById('mini-stats').hidden;
+        }
+
+        function setMiniStatsOpen(open) {
+            document.getElementById('mini-stats').hidden = !open;
+            statsControl.getContainer().classList.toggle('active', open);
+            if (open) renderMiniStats();
+        }
+
+        // "Stats" button on the map (top left, below Photos)
+        var statsControl = L.control({ position: 'topleft' });
+        statsControl.onAdd = function () {
+            var button = L.DomUtil.create('button', 'timeline-toggle stats-toggle');
+            button.type = 'button';
+            button.innerHTML = STATS_ICON + '<span>Stats</span>';
+            L.DomEvent.disableClickPropagation(button);
+            L.DomEvent.on(button, 'click', function () {
+                setMiniStatsOpen(!isMiniStatsOpen());
+            });
+            return button;
+        };
+        statsControl.addTo(map);
+
+        document.getElementById('mini-stats-close').addEventListener('click', function () {
+            setMiniStatsOpen(false);
+        });
+        document.getElementById('mini-stats-area').addEventListener('change', renderMiniStats);
+        // with "Only this map area" the numbers follow panning and zooming
+        map.on('moveend', function () {
+            if (isMiniStatsOpen() && document.getElementById('mini-stats-area').checked) {
+                renderMiniStats();
+            }
+        });
 
         // Rating slider: two range inputs over one track, values shown as 0.25–5
         function initRatingSlider() {

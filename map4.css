@@ -1472,6 +1472,121 @@ body {
   white-space: nowrap;
 }
 
+/* ---------- Mini statistics ---------- */
+
+#map .stats-toggle svg {
+  fill: none;
+}
+
+.mini-stats {
+  position: absolute;
+  left: 10px;
+  bottom: 24px;
+  z-index: 1000;
+  width: 300px;
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: rgb(238, 231, 212);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  font-family: Arial, sans-serif;
+  color: rgb(50, 35, 35);
+}
+
+.mini-stats[hidden] {
+  display: none;
+}
+
+.mini-stats-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 12px;
+  background-color: rgb(87, 62, 62);
+  color: white;
+}
+
+.mini-stats-title {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.mini-stats-area {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mini-stats-area input {
+  margin: 0;
+  accent-color: rgb(238, 231, 212);
+}
+
+.mini-stats-close {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mini-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 8px;
+}
+
+.mini-stat {
+  min-width: 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.mini-stat-value {
+  display: block;
+  margin-top: 2px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(87, 62, 62);
+}
+
+/* style and beer names can be long */
+.mini-stat-text {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mini-stat-note {
+  display: block;
+  font-size: 11px;
+  color: rgba(50, 35, 35, 0.65);
+}
+
+.mini-stats-link {
+  display: block;
+  padding: 0 12px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(165, 42, 42);
+  text-align: right;
+  text-decoration: none;
+}
+
+/* above the timeline bar */
+body.timeline-on .mini-stats {
+  bottom: 100px;
+}
+
 /* ---------- Phones and tablets ---------- */
 
 @media (max-width: 1000px) {
@@ -1817,6 +1932,17 @@ body {
 
   body.gallery-open #filters-toggle {
     z-index: 1060;
+  }
+
+  /* Mini statistics above the Filters button, clear of the buttons on the right */
+  .mini-stats {
+    bottom: 80px;
+    width: auto;
+    right: 70px;
+  }
+
+  body.timeline-on .mini-stats {
+    bottom: 152px;
   }
 
   .overlay-switch {
