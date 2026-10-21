@@ -62,22 +62,46 @@ function naturalBreaks(values, k) {
     return { starts: starts, deviation: cost[k][n] };
 }
 
-// One number of decimals for the whole legend: 0 when all values are at least 10,
-// 1 from 0.1, otherwise 2; more only if rounding would make the smallest value 0
-// or merge the bounds of neighbouring classes
-function legendDecimals(classes) {
-    var round = function (v, d) { return Number(v.toFixed(d)); };
-    var smallest = classes[0].min;
-    var d = smallest >= 10 ? 0 : smallest >= 0.1 ? 1 : 2;
-    for (; d < 4; d++) {
-        var ok = round(smallest, d) > 0 && classes.every(function (cls, i) {
-            var next = classes[i + 1];
-            return (cls.min === cls.max || round(cls.min, d) < round(cls.max, d)) &&
-                (!next || round(cls.max, d) < round(next.min, d));
-        });
-        if (ok) break;
+// End of a class: its largest value rounded up to as few significant digits as
+// possible (9.64 -> 10, 43.3 -> 50, 1.02 -> 1.1) while the next class can still
+// start one step later, at most at its smallest value; null if nothing fits
+function roundBreak(low, high, decimals) {
+    var step = Math.pow(10, -decimals);
+    var limit = Math.floor(high / step + 1e-9);         // in steps
+    for (var digits = 1; ; digits++) {
+        var unit = Math.max(1, Math.round(Math.pow(10, Math.floor(Math.log10(low)) - digits + 1) / step));
+        var t = Math.ceil(low / step / unit - 1e-9) * unit;
+        if (t <= limit) return t * step;
+        if (unit === 1) return null;
     }
-    return d;
+}
+
+// Legend bounds that follow each other without gaps (9.6 is followed by 9.7) and
+// end on round numbers where the gap between two classes allows it. A break lies
+// between the largest value of one class and the smallest of the next, so the
+// classes keep their areas. All numbers get the same decimals: 0 when all values
+// are at least 10, 1 from 0.1, otherwise 2 – more if a break does not fit.
+function classBounds(classes, hasZero) {
+    var smallest = classes[0].min;
+    var largest = classes[classes.length - 1].max;
+    for (var d = smallest >= 10 ? 0 : smallest >= 0.1 ? 1 : 2; d <= 6; d++) {
+        var step = Math.pow(10, -d);
+        if (Number(smallest.toFixed(d)) < step) continue;   // the smallest value would show as 0
+        var breaks = [];
+        for (var i = 0; i < classes.length - 1; i++) {
+            // the next class starts one step above the break, at most at its smallest value
+            var t = roundBreak(classes[i].max, classes[i + 1].min - step, d);
+            if (t === null || (breaks.length && t <= breaks[breaks.length - 1])) break;
+            breaks.push(t);
+        }
+        if (breaks.length === classes.length - 1) {
+            // after the grey "0" the first class starts one step above zero
+            var first = hasZero ? step : Math.floor(smallest / step + 1e-9) * step;
+            var last = Math.ceil(largest / step - 1e-9) * step;
+            return { decimals: d, step: step, lower: first, breaks: breaks, upper: last };
+        }
+    }
+    return null;
 }
 
 // Colour scale computed from the data. The values are very skewed (a few
@@ -88,6 +112,7 @@ function legendDecimals(classes) {
 function choropleth(geojson, property) {
     var all = geojson[0].features.map(function (f) { return Number(f.properties[property]) || 0; });
     var values = all.filter(function (v) { return v > 0; }).sort(function (a, b) { return a - b; });
+    var hasZero = all.length > values.length;
     var logs = values.map(Math.log10);
     var distinct = new Set(values).size;
 
@@ -95,22 +120,23 @@ function choropleth(geojson, property) {
     var total = logs.reduce(function (a, v) { return a + (v - mean) * (v - mean); }, 0);
     var maxClasses = Math.min(6, distinct);
     var k = Math.min(3, maxClasses);
-    var breaks = naturalBreaks(logs, k);
-    while (k < maxClasses && total > 0 && 1 - breaks.deviation / total < 0.9) {
+    var natural = naturalBreaks(logs, k);
+    while (k < maxClasses && total > 0 && 1 - natural.deviation / total < 0.9) {
         k++;
-        breaks = naturalBreaks(logs, k);
+        natural = naturalBreaks(logs, k);
     }
 
     var colors = CLASS_COLORS[Math.max(2, k)].slice(-k);
-    var bounds = [0].concat(breaks.starts, [values.length]);
+    var starts = [0].concat(natural.starts, [values.length]);
     var classes = [];
     for (var c = 0; c < k; c++) {
         classes.push({
-            min: values[bounds[c]],
-            max: values[bounds[c + 1] - 1],
+            min: values[starts[c]],
+            max: values[starts[c + 1] - 1],
             color: colors[c]
         });
     }
+    var bounds = classes.length ? classBounds(classes, hasZero) : null;
 
     return {
         classes: classes,
@@ -118,19 +144,19 @@ function choropleth(geojson, property) {
             value = Number(value) || 0;
             if (value <= 0 || !classes.length) return NO_VALUE_COLOR;
             for (var i = 0; i < classes.length - 1; i++) {
-                // values between two classes go to the nearer one on the log scale
-                if (value <= Math.sqrt(classes[i].max * classes[i + 1].min)) return classes[i].color;
+                if (value <= bounds.breaks[i]) return classes[i].color;
             }
             return classes[classes.length - 1].color;
         },
-        // legend rows [{label, color}], all numbers with the same decimals
+        // legend rows [{label, color}]: "0", then classes that follow each other
         legendItems: function () {
-            var items = all.some(function (v) { return v <= 0; }) ? [{ label: '0', color: NO_VALUE_COLOR }] : [];
+            var items = hasZero ? [{ label: '0', color: NO_VALUE_COLOR }] : [];
             if (!classes.length) return items;
-            var d = legendDecimals(classes);
-            classes.forEach(function (cls) {
-                var min = cls.min.toFixed(d), max = cls.max.toFixed(d);
-                items.push({ label: min === max ? min : min + ' – ' + max, color: cls.color });
+            var d = bounds.decimals;
+            var edges = [bounds.lower].concat(bounds.breaks.map(function (t) { return t + bounds.step; }));
+            var ends = bounds.breaks.concat([bounds.upper]);
+            classes.forEach(function (cls, i) {
+                items.push({ label: edges[i].toFixed(d) + ' \u2013 ' + ends[i].toFixed(d), color: cls.color });
             });
             return items;
         }
