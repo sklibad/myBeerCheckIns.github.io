@@ -1814,7 +1814,7 @@
 
         // Dot grows with the number of beers at the place up to the timeline month
         function dotRadius(beerCount) {
-            return Math.min(18, 4 + 1.6 * Math.sqrt(beerCount || 1));
+            return Math.min(11, 2.5 + 1.1 * Math.sqrt(beerCount || 1));
         }
 
         // Index -1 is the month before the first check-in: the empty map the timeline starts from
@@ -1867,7 +1867,7 @@
             if (highlightNew) {
                 newPlaces.forEach(function (marker) {
                     L.marker(marker.getLatLng(), {
-                        icon: L.divIcon({ className: 'timeline-pulse', html: '<span></span>', iconSize: [28, 28] }),
+                        icon: L.divIcon({ className: 'timeline-pulse', html: '<span></span>', iconSize: [20, 20] }),
                         interactive: false,
                         keyboard: false,
                         zIndexOffset: 1000
@@ -1898,9 +1898,9 @@
                 var fresh = isNew.has(marker);
                 var dot = L.circleMarker(marker.getLatLng(), {
                     renderer: timelineRenderer,
-                    radius: dotRadius(marker.beerCount) + (fresh ? 2 : 0),
+                    radius: dotRadius(marker.beerCount) + (fresh ? 1.5 : 0),
                     color: 'white',
-                    weight: 1.5,
+                    weight: 1,
                     fillColor: fresh ? 'rgb(165, 42, 42)' : 'rgb(87, 62, 62)',
                     fillOpacity: 0.9
                 });
@@ -1952,7 +1952,8 @@
             timelineControl.getContainer().classList.add('active');
             timeline.pulseLayer.addTo(map);
             renderTimelineStep(false);
-            playTimeline();
+            // the playback starts only with the Play button
+            setTimelinePlaying(false);
         }
 
         function closeTimeline() {
