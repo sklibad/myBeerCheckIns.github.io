@@ -225,18 +225,23 @@ def build_cartograms(df, boundaries):
 
 # ---------------------------------------------------------------- proportional circles
 
-# Circles of the "Total" view of the cartograms (Prague and Czechia). One size scale for all
-# years (switching the years shows the growth), chosen for readability: the smallest non-zero
-# all-time count gets CIRCLE_MIN_PX at the reference zoom, area grows with the count (radius ~
-# sqrt). For every year separately, a circle sits on the pole of inaccessibility of its area
-# while it fits there without touching a border; once it outgrows the area it is placed in the
-# free space outside the shown territory, as close as possible, preferably where its leader
-# line crosses no other leader line or circle. There is a layout for desktops and one for phones
-# (half a zoom level lower, so the circles are larger against the areas) unless that pushes
-# too many circles out of their areas.
+# Circles of the "Total" view of the cartograms (Prague and Czechia), area ~ count. One size
+# scale for all years (switching the years shows the growth). The scale: as large as possible
+# while CIRCLE_INSIDE_SHARE of the all-time circles still fit their areas, but the smallest
+# circle at least CIRCLE_MIN_PX and the largest at most CIRCLE_MAX_PX (at the reference zoom).
+# Every area gets its pole of inaccessibility and the room around it; the page puts a circle on
+# the pole while it fits (decided for the shown year and zoom). For the circles that do not fit
+# all time, a spot outside the territory is chosen once, as close as possible and preferably
+# where the leader line crosses no other line or circle; in every year such a circle grows from
+# that same spot. A desktop layout and one for phones (half a zoom level lower, larger circles
+# against the areas) unless that pushes more than two extra circles out.
 # Everything is in Web Mercator metres, the units the map is drawn in.
 CIRCLE_MIN_PX = 3
-CIRCLE_GAP_PX = 3
+CIRCLE_MAX_PX = 70
+CIRCLE_INSIDE_SHARE = 0.75
+CIRCLE_MAX_OUTSIDE = 6       # and never more circles than this out of their areas (leader lines)
+CIRCLE_FIT_GAP_PX = 1      # a circle fits its area with this much room to the border
+CIRCLE_GAP_PX = 3          # circles outside keep this distance to the territory and each other
 WORLD_MERCATOR = 40075016.686
 
 
@@ -288,9 +293,23 @@ def place_outside(territory, fixed, outside, unit):
     return result
 
 
-def area_circles(polygons, places, years_of, year_keys, venue_metric, zooms):
-    """circles.js entry of one area set: {"poles": {name: [lat, lng]}, profile: {"zoom": z,
-    metric: {"scale": metres per sqrt(count), "outside": {year: {name: [lat, lng]}}}}}"""
+def circle_scale(counts, rooms, unit):
+    """Metres per sqrt(count): the largest scale with CIRCLE_INSIDE_SHARE of the circles fitting
+    (and at most CIRCLE_MAX_OUTSIDE not),
+    kept between the CIRCLE_MIN_PX smallest and CIRCLE_MAX_PX largest circle"""
+    gap = CIRCLE_FIT_GAP_PX * unit
+    ratios = sorted((rooms[name] - gap) / math.sqrt(count) for name, count in counts.items())
+    share = max(CIRCLE_INSIDE_SHARE, 1 - CIRCLE_MAX_OUTSIDE / len(ratios))
+    fit = ratios[min(len(ratios) - 1, int(len(ratios) * (1 - share)))]
+    smallest = CIRCLE_MIN_PX * unit / math.sqrt(min(counts.values()))
+    largest = CIRCLE_MAX_PX * unit / math.sqrt(max(counts.values()))
+    return max(smallest, min(fit, largest))
+
+
+def area_circles(polygons, places, years_of, zooms, min_scales=None):
+    """circles.js entry of one area set: {"poles": {name: [lat, lng, room in metres]},
+    profile: {"zoom": z, metric: {"scale": metres per sqrt(count), "outside": {name: [lat, lng]}}}}
+    min_scales: {profile: {metric: scale}} the scale must not go below (larger areas, larger circles)"""
     projected = polygons.to_crs('EPSG:3857')
     tolerance = mercator_per_pixel(max(zooms.values())) / 2
     poles, rooms = {}, {}
@@ -301,47 +320,48 @@ def area_circles(polygons, places, years_of, year_keys, venue_metric, zooms):
         rooms[row['NAME_2']] = polygon.boundary.distance(pole)
     territory = unary_union([make_valid(g) for g in projected.geometry])
 
-    def counts_until(metric, year):
+    def all_time_counts(metric):
         result = {}
         for name in poles:
             total = 0
             for place in places[metric].get(name, []):
-                n = sum(c for y, c in years_of[metric].get(place, {}).items() if year is None or int(y) <= year)
+                n = sum(years_of[metric].get(place, {}).values())
                 total += n if metric == 'checkIns' else (1 if n else 0)
             if total:
                 result[name] = total
         return result
 
     names = list(poles)
-    pole_list = to_lat_lng([poles[n] for n in names])
-    entry = {'poles': dict(zip(names, pole_list))}
+    entry = {'poles': {name: ll + [round(rooms[name])] for name, ll in zip(names, to_lat_lng([poles[n] for n in names]))}}
     for profile, zoom in zooms.items():
         unit = mercator_per_pixel(zoom)
-        gap = CIRCLE_GAP_PX * unit
         simple = territory.simplify(unit / 2)
         entry[profile] = {'zoom': zoom}
         for metric in ('checkIns', 'breweries'):
-            all_time = counts_until(metric, None)
-            scale = CIRCLE_MIN_PX * unit / math.sqrt(min(all_time.values())) if all_time else 0
-            outside_by_year = {}
-            for key in year_keys:
-                counts = counts_until(metric, None if key == 'all' else int(key))
-                fixed, outside = [], []
-                for name, count in counts.items():
-                    radius = scale * math.sqrt(count)
-                    if radius + gap <= rooms[name]:
-                        fixed.append((poles[name], radius))
-                    else:
-                        outside.append((radius, name, poles[name]))
-                spots = place_outside(simple, fixed, outside, unit)
-                ordered = sorted(spots)
-                outside_by_year[key] = dict(zip(ordered, to_lat_lng([spots[n] for n in ordered]))) if ordered else {}
-            entry[profile][metric] = {'scale': round(scale, 3), 'outside': outside_by_year}
+            counts = all_time_counts(metric)
+            if not counts:
+                entry[profile][metric] = {'scale': 0, 'outside': {}}
+                continue
+            scale = circle_scale(counts, rooms, unit)
+            if min_scales:
+                scale = max(scale, min_scales[profile][metric])
+            fixed, outside = [], []
+            for name, count in counts.items():
+                radius = scale * math.sqrt(count)
+                if radius + CIRCLE_FIT_GAP_PX * unit <= rooms[name]:
+                    fixed.append((poles[name], radius))
+                else:
+                    outside.append((radius, name, poles[name]))
+            spots = place_outside(simple, fixed, outside, unit)
+            ordered = sorted(spots)
+            entry[profile][metric] = {
+                'scale': round(scale, 3),
+                'outside': dict(zip(ordered, to_lat_lng([spots[n] for n in ordered]))) if ordered else {}
+            }
 
     # The larger phone circles only where they push at most two more circles out of their areas
     def most_outside(profile):
-        return max(len(spots) for metric in ('checkIns', 'breweries')
-                   for spots in entry[profile][metric]['outside'].values())
+        return max(len(entry[profile][metric]['outside']) for metric in ('checkIns', 'breweries'))
     if 'phone' in entry and most_outside('phone') > most_outside('desktop') + 2:
         entry['phone'] = entry['desktop']
     return entry
@@ -350,16 +370,22 @@ def area_circles(polygons, places, years_of, year_keys, venue_metric, zooms):
 def build_circles(geo, records):
     """areaCircles for circles.js, keyed by "<region>/<area set>"."""
     years_of = {'checkIns': place_years(records, 'Venue'), 'breweries': place_years(records, 'Brewery')}
-    years = sorted({record['Date'][-4:] for record in records})
-    year_keys = years[:-1] + ['all']   # the last year equals "all time"
     sets = {
         'prague/districts': (geo['prague_cartogram'], geo['pragueVenues'], geo['pragueBreweries'], 11),
-        'czechia/regions': (geo['kraje_cartogram'], geo['krajeCheckIns'], geo['krajeBreweries'], 7),
         'czechia/districts': (geo['okresy_cartogram'], geo['czechVenues'], geo['czechBreweries'], 7),
+        'czechia/regions': (geo['kraje_cartogram'], geo['krajeCheckIns'], geo['krajeBreweries'], 7),
     }
-    return {key: area_circles(polygons, {'checkIns': venues, 'breweries': breweries}, years_of,
-                              year_keys, None, {'desktop': zoom, 'phone': zoom - 0.5})
-            for key, (polygons, venues, breweries, zoom) in sets.items()}
+    result = {}
+    for key, (polygons, venues, breweries, zoom) in sets.items():
+        # the regions of Czechia never get smaller circles than its districts
+        minimum = None
+        if key == 'czechia/regions':
+            districts = result.get('czechia/districts')
+            minimum = {profile: {metric: districts[profile][metric]['scale'] for metric in ('checkIns', 'breweries')}
+                       for profile in ('desktop', 'phone')}
+        result[key] = area_circles(polygons, {'checkIns': venues, 'breweries': breweries}, years_of,
+                                   {'desktop': zoom, 'phone': zoom - 0.5}, minimum)
+    return result
 
 
 # ---------------------------------------------------------------- output

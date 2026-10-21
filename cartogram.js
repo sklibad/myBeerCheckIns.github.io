@@ -362,13 +362,23 @@ var CartogramLegend = L.Control.extend({
     // circles: [{value, radius}] from the largest
     updateCircles: function (title, unit, circles) {
         var size = circles.length ? Math.ceil(circles[0].radius * 2) + 2 : 0;
-        var svg = '<svg class="carto-legend-circles" width="' + (size + 70) + '" height="' + size + '" aria-hidden="true">' +
-            circles.map(function (c) {
-                var cy = size - 1 - c.radius;
-                var top = size - 1 - 2 * c.radius;
-                return '<circle cx="' + (size / 2) + '" cy="' + cy + '" r="' + c.radius + '"/>' +
-                    '<line x1="' + (size / 2) + '" y1="' + top + '" x2="' + (size + 6) + '" y2="' + top + '"/>' +
-                    '<text x="' + (size + 9) + '" y="' + (top + 4) + '">' + c.value + '</text>';
+        var padTop = 7;                     // half a label above the largest circle
+        var labelY = -Infinity;
+        var parts = circles.map(function (c) {
+            var top = padTop + size - 1 - 2 * c.radius;
+            // labels of small circles would overlap: each at least 13 px below the previous one
+            labelY = Math.max(top, labelY + 13);
+            return { c: c, top: top, labelY: labelY };
+        });
+        var height = Math.max(padTop + size, labelY + 6);
+        var svg = '<svg class="carto-legend-circles" width="' + (size + 60) + '" height="' + height + '" aria-hidden="true">' +
+            parts.map(function (part) {
+                return '<circle cx="' + (size / 2) + '" cy="' + (padTop + size - 1 - part.c.radius) + '" r="' + part.c.radius + '"/>';
+            }).join('') +
+            parts.map(function (part) {
+                return '<polyline points="' + (size / 2) + ',' + part.top + ' ' + (size + 2) + ',' + part.top + ' ' +
+                    (size + 8) + ',' + part.labelY + '"/>' +
+                    '<text x="' + (size + 11) + '" y="' + (part.labelY + 4) + '">' + part.c.value + '</text>';
             }).join('') + '</svg>';
         this._panel.innerHTML = '<div class="carto-legend-title">' + title + '</div>' +
             '<div class="carto-legend-unit">' + unit + '</div>' + svg;
@@ -508,9 +518,9 @@ function initCartograms(regions) {
         return refRadius * Math.pow(2, dz <= 0 ? dz : dz / 2);
     }
 
-    // Proportional circles of one area set and metric. One size scale for all years; in each
-    // year a circle sits on its area while it fits there, and moves out of the territory with a
-    // leader line once it outgrows the area (positions per year from circles.js)
+    // Proportional circles of one area set and metric. One size scale for all years. A circle
+    // sits on the pole of its area while it fits there (for the shown year and zoom); otherwise
+    // it grows from its spot outside the territory (the same spot in every year) with a leader line
     function buildCircles(config, areaSet, metricId, statsOf) {
         var key = state.region.id + '/' + areaSet.id;
         var poles = areaCircles[key].poles;
@@ -521,9 +531,10 @@ function initCartograms(regions) {
         var items = [];
         areaSet.geojson[0].features.forEach(function (feature) {
             var name = feature.properties[config.nameProperty];
-            var pole = poles[name];
-            if (!pole) return;
-            var item = { name: name, feature: feature, pole: pole, marker: L.circleMarker(pole, {
+            if (!poles[name]) return;
+            var pole = [poles[name][0], poles[name][1]];
+            var item = { name: name, feature: feature, pole: pole, room: poles[name][2], spot: data.outside[name],
+                marker: L.circleMarker(pole, {
                 color: 'white', weight: 1.5, fillColor: '#cc4c02', fillOpacity: 0.85
             }) };
             item.line = L.polyline([pole, pole], { color: '#3c2828', weight: 1.3, interactive: false });
@@ -549,13 +560,15 @@ function initCartograms(regions) {
             return metricId === 'checkIns' ? stats.checkIns : stats.places.length;
         }
 
-        // positions for the year, sizes for the current zoom; larger circles below smaller ones
+        // sizes and positions for the year and the current zoom; larger circles below smaller ones
         function update() {
-            var outside = data.outside[state.year === null ? 'all' : String(state.year)] || {};
+            var metresPerPixel = 40075016.686 / (256 * Math.pow(2, map.getZoom()));
             items.forEach(function (item) {
                 var value = count(item, state.year);
                 item.radius = value ? circleRadius(data.scale, profile.zoom, value) : 0;
-                var spot = outside[item.name];
+                // out of the area only when it does not fit (1 px from the border) and has a spot
+                var fits = item.radius + 1 <= item.room / metresPerPixel;
+                var spot = fits ? null : item.spot;
                 if (value) {
                     item.marker.setLatLng(spot || item.pole).setRadius(item.radius).addTo(group);
                 } else {
@@ -749,11 +762,9 @@ function initCartograms(regions) {
                 if (key.indexOf(state.region.id + '/') !== 0) return;
                 var profile = circleProfile(key);
                 ['checkIns', 'breweries'].forEach(function (metric) {
-                    var byYear = profile[metric].outside;
-                    Object.keys(byYear).forEach(function (year) {
-                        Object.keys(byYear[year]).forEach(function (name) {
-                            bounds.extend(byYear[year][name]);
-                        });
+                    var spots = profile[metric].outside;
+                    Object.keys(spots).forEach(function (name) {
+                        bounds.extend(spots[name]);
                     });
                 });
             });

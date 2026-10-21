@@ -313,7 +313,8 @@ path.leaflet-interactive:focus {
     stroke-width: 1.5;
 }
 
-.carto-legend-circles line {
+.carto-legend-circles polyline {
+    fill: none;
     stroke: rgba(87, 62, 62, 0.6);
     stroke-dasharray: 2 2;
 }
