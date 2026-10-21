@@ -297,6 +297,22 @@ var CartogramLegend = L.Control.extend({
         this._button.setAttribute('aria-expanded', open);
     },
 
+    // Proportional circles: nested circles of a few round counts, sized like on the map
+    // circles: [{value, radius}] from the largest
+    updateCircles: function (title, unit, circles) {
+        var size = circles.length ? Math.ceil(circles[0].radius * 2) + 2 : 0;
+        var svg = '<svg class="carto-legend-circles" width="' + (size + 70) + '" height="' + size + '" aria-hidden="true">' +
+            circles.map(function (c) {
+                var cy = size - 1 - c.radius;
+                var top = size - 1 - 2 * c.radius;
+                return '<circle cx="' + (size / 2) + '" cy="' + cy + '" r="' + c.radius + '"/>' +
+                    '<line x1="' + (size / 2) + '" y1="' + top + '" x2="' + (size + 6) + '" y2="' + top + '"/>' +
+                    '<text x="' + (size + 9) + '" y="' + (top + 4) + '">' + c.value + '</text>';
+            }).join('') + '</svg>';
+        this._panel.innerHTML = '<div class="carto-legend-title">' + title + '</div>' +
+            '<div class="carto-legend-unit">' + unit + '</div>' + svg;
+    },
+
     // title: "Check-ins", unit: "per 10 km²", items: [{label, color}]
     update: function (title, unit, items, fillOpacity) {
         this._panel.innerHTML = '<div class="carto-legend-title">' + title + '</div>' +
@@ -335,7 +351,11 @@ function loadScript(src, callback) {
 // The region comes from the URL hash (#prague, #czechia, #world) and is kept there.
 function initCartograms(regions) {
     var small = isSmallScreen();
-    var map = L.map('map', { zoomControl: false }).setView([49.8, 15.5], 4);
+    var map = L.map('map', {
+        zoomControl: false,
+        // finer steps on phones, so fitting a region does not round the zoom down a whole level
+        zoomSnap: small ? 0.25 : 1
+    }).setView([49.8, 15.5], 4);
 
     var basemaps = createBasemaps();
     basemaps["OS Map"].addTo(map);
@@ -346,7 +366,8 @@ function initCartograms(regions) {
     var startRegion = regionById(window.location.hash.slice(1)) || regions[0];
 
     // year: show check-ins until the end of that year (null = all time)
-    var state = { region: null, config: null, metric: 'checkIns', areaSet: null, year: null };
+    // mode: "density" (choropleth) or "total" (proportional circles, where circles.js has them)
+    var state = { region: null, config: null, metric: 'checkIns', areaSet: null, year: null, mode: 'density' };
     var configs = {};
     var layers = {};
     var currentLayer = null;
@@ -373,6 +394,9 @@ function initCartograms(regions) {
             return scales[key];
         };
         var style = function (feature) {
+            if (state.mode === 'total') {
+                return { fillColor: '#f4ecd8', fillOpacity: 0.55, color: '#232323', weight: 1.2 };
+            }
             return {
                 fillColor: scaleFor(state.year).color(statsOf(feature, state.year).density),
                 fillOpacity: config.fillOpacity,
@@ -398,7 +422,104 @@ function initCartograms(regions) {
             }
         });
         addHighlight(layer);
-        return { layer: layer, scaleFor: scaleFor };
+        return { layer: layer, scaleFor: scaleFor, statsOf: statsOf };
+    }
+
+    function circlesKey() {
+        return state.region.id + '/' + state.areaSet.id;
+    }
+
+    function hasCircles() {
+        return typeof areaCircles !== 'undefined' && !!state.areaSet && !!areaCircles[circlesKey()];
+    }
+
+    // Radius in pixels of a circle for `count` at the current zoom. At the reference zoom and
+    // below it scales exactly with the map, so circles keep fitting their areas when zoomed out;
+    // zoomed in they grow only half as fast (the areas grow faster, so they still fit)
+    function circleRadius(data, count) {
+        var refRadius = data.scale * Math.sqrt(count) / (40075016.686 / (256 * Math.pow(2, data.zoom)));
+        var dz = map.getZoom() - data.zoom;
+        return refRadius * Math.pow(2, dz <= 0 ? dz : dz / 2);
+    }
+
+    // Proportional circles of one area set and metric (positions from circles.js)
+    function buildCircles(config, areaSet, metricId, statsOf) {
+        var data = areaCircles[state.region.id + '/' + areaSet.id][metricId];
+        var group = L.layerGroup();
+        var leaders = L.layerGroup().addTo(group);
+        var items = [];
+        areaSet.geojson[0].features.forEach(function (feature) {
+            var name = feature.properties[config.nameProperty];
+            var pos = data.circles[name];
+            if (!pos) return;
+            var item = { feature: feature, marker: L.circleMarker([pos[0], pos[1]], {
+                color: 'white', weight: 1.5, fillColor: '#cc4c02', fillOpacity: 0.85
+            }) };
+            if (pos.length === 4) {
+                // placed outside the territory: leader line from the area to the circle
+                item.leader = L.layerGroup([
+                    L.polyline([[pos[2], pos[3]], [pos[0], pos[1]]], { color: '#3c2828', weight: 1.3, interactive: false }),
+                    L.circleMarker([pos[2], pos[3]], { radius: 2.5, color: '#3c2828', weight: 1, fillColor: '#3c2828', fillOpacity: 1, interactive: false })
+                ]);
+            }
+            item.marker.bindPopup(function () {
+                return areaPopup(areaTitle(areaSet, name), metricId, statsOf(feature, state.year));
+            }, {
+                className: 'carto-popup',
+                maxWidth: Math.min(320, window.innerWidth - 40),
+                minWidth: Math.min(220, window.innerWidth - 40),
+                autoPanPadding: [16, 16]
+            });
+            if (!isTouchDevice) {
+                item.marker.bindTooltip(escapeHtml(areaTitle(areaSet, name)), { sticky: true, className: 'carto-tooltip' });
+            }
+            items.push(item);
+        });
+
+        function count(item) {
+            var stats = statsOf(item.feature, state.year);
+            return metricId === 'checkIns' ? stats.checkIns : stats.places.length;
+        }
+
+        // sizes for the current zoom and year; larger circles below smaller ones
+        function update() {
+            items.forEach(function (item) {
+                var value = count(item);
+                item.radius = value ? circleRadius(data, value) : 0;
+                if (value) {
+                    item.marker.setRadius(item.radius).addTo(group);
+                    if (item.leader) item.leader.addTo(leaders);
+                } else {
+                    group.removeLayer(item.marker);
+                    if (item.leader) leaders.removeLayer(item.leader);
+                }
+            });
+            items.slice().sort(function (a, b) { return b.radius - a.radius; }).forEach(function (item) {
+                if (item.radius && map.hasLayer(item.marker)) item.marker.bringToFront();
+            });
+        }
+
+        // a few round counts for the legend (1, 2, 5 × 10^n), from the largest of all time
+        function legendCircles() {
+            var all = items.map(function (item) {
+                var stats = statsOf(item.feature, null);
+                return metricId === 'checkIns' ? stats.checkIns : stats.places.length;
+            });
+            var max = Math.max.apply(null, all);
+            var min = Math.min.apply(null, all.filter(function (v) { return v > 0; }));
+            var nice = function (v) {
+                var p = Math.pow(10, Math.floor(Math.log10(v)));
+                return [5, 2, 1].map(function (m) { return m * p; }).filter(function (n) { return n <= v; })[0];
+            };
+            var values = [];
+            for (var v = nice(max); v >= Math.max(1, min) && values.length < 3; v = nice(v / 4.5)) {
+                if (values.indexOf(v) < 0) values.push(v);
+                if (v === 1) break;
+            }
+            return values.map(function (value) { return { value: value, radius: circleRadius(data, value) }; });
+        }
+
+        return { layer: group, update: update, legendCircles: legendCircles };
     }
 
     // The area under the mouse, or with an open popup, gets a dark outline
@@ -428,15 +549,37 @@ function initCartograms(regions) {
 
     var legend = new CartogramLegend({ position: 'bottomleft', collapsed: small }).addTo(map);
 
+    var circleLayers = {};
+    var currentCircles = null;
+
     function show() {
         var key = state.region.id + ':' + state.areaSet.id + ':' + state.metric;
         if (!layers[key]) layers[key] = buildLayer(state.config, state.areaSet, state.metric);
         if (currentLayer) map.removeLayer(currentLayer);
+        if (currentCircles) map.removeLayer(currentCircles.layer);
+        currentCircles = null;
+        if (!hasCircles()) state.mode = 'density';
         currentLayer = layers[key].layer.addTo(map);
         currentLayer.resetStyle();
-        legend.update(METRICS[state.metric].label + (state.year ? ' until ' + state.year : ''),
-            state.areaSet.unit, layers[key].scaleFor(state.year).legendItems(), state.config.fillOpacity);
+        var title = METRICS[state.metric].label + (state.year ? ' until ' + state.year : '');
+        if (state.mode === 'total') {
+            if (!circleLayers[key]) circleLayers[key] = buildCircles(state.config, state.areaSet, state.metric, layers[key].statsOf);
+            currentCircles = circleLayers[key];
+            currentCircles.layer.addTo(map);
+            updateCircles();
+        } else {
+            legend.update(title, state.areaSet.unit, layers[key].scaleFor(state.year).legendItems(), state.config.fillOpacity);
+        }
     }
+
+    function updateCircles() {
+        if (!currentCircles) return;
+        currentCircles.update();
+        legend.updateCircles(METRICS[state.metric].label + (state.year ? ' until ' + state.year : ''),
+            state.metric === 'checkIns' ? 'number of check-ins' : 'number of breweries', currentCircles.legendCircles());
+    }
+
+    map.on('zoomend', updateCircles);
 
     // Years with check-ins; the last one equals "All time"
     var years = {};
@@ -462,12 +605,15 @@ function initCartograms(regions) {
             }
             if (e.target.name === 'metric') {
                 state.metric = e.target.value;
+            } else if (e.target.name === 'mode') {
+                state.mode = e.target.value;
             } else if (e.target.name === 'year') {
                 state.year = e.target.value === 'all' ? null : Number(e.target.value);
             } else {
                 state.areaSet = state.config.areaSets.filter(function (s) { return s.id === e.target.value; })[0];
             }
             show();
+            renderSwitches();
         });
         return div;
     };
@@ -490,6 +636,9 @@ function initCartograms(regions) {
         }), state.metric);
         if (state.config && state.config.areaSets.length > 1) {
             html += group('areas', 'Areas', state.config.areaSets, state.areaSet.id);
+        }
+        if (hasCircles()) {
+            html += group('mode', 'Show as', [{ id: 'density', label: 'Density' }, { id: 'total', label: 'Total' }], state.mode);
         }
         if (yearItems.length > 1) {
             html += group('year', 'Check-ins until the end of', yearItems, state.year === null ? 'all' : String(state.year), 'Until');
@@ -519,7 +668,20 @@ function initCartograms(regions) {
             return;
         }
         var bounds = view && view.bounds ? L.latLngBounds(view.bounds) : currentLayer.getBounds();
-        var top = small ? switchControl.getContainer().offsetHeight + 16 : 16;
+        // proportional circles placed outside the territory must stay in view as well
+        if (typeof areaCircles !== 'undefined') {
+            Object.keys(areaCircles).forEach(function (key) {
+                if (key.indexOf(state.region.id + '/') !== 0) return;
+                Object.keys(areaCircles[key]).forEach(function (metric) {
+                    var circles = areaCircles[key][metric].circles;
+                    Object.keys(circles).forEach(function (name) {
+                        if (circles[name].length === 4) bounds.extend([circles[name][0], circles[name][1]]);
+                    });
+                });
+            });
+        }
+        // nothing under the switches in the top right corner
+        var top = switchControl.getContainer().offsetHeight + 16;
         var options = { paddingTopLeft: [16, top], paddingBottomRight: small ? [60, 16] : [16, 16] };
         if (animate) {
             map.flyToBounds(bounds, L.extend({ duration: 1.2 }, options));

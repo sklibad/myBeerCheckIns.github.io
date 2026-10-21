@@ -10,7 +10,7 @@ Usage (from the repository root):
 
 Writes:
     data.js, stats_data.js, map1.js, map2.js, map3.js,
-    place_years.js                                        (read by the pages)
+    place_years.js, circles.js                            (read by the pages)
     check_ins.txt, venue_check_ins.txt, brewery_check_ins.txt,
     venues.geojson, breweries.geojson, *_cartogram.geojson  (intermediate outputs)
 and bumps the ?v=N asset version in the HTML pages when a JS file changed.
@@ -29,6 +29,9 @@ import warnings
 
 import geopandas as gpd
 import pandas as pd
+from shapely.geometry import Point
+from shapely.ops import polylabel, unary_union
+from shapely.validation import make_valid
 
 from round_coordinates import round_coordinates
 
@@ -220,6 +223,102 @@ def build_cartograms(df, boundaries):
     }
 
 
+# ---------------------------------------------------------------- proportional circles
+
+# Circles of the "Total" view of the cartograms (Prague and Czechia). The size scale is
+# chosen for readability: the smallest non-zero count gets CIRCLE_MIN_PX at the reference
+# zoom of the region, area grows with the count (radius ~ sqrt). A circle sits on the pole of
+# inaccessibility of its area when it fits there without touching a border; otherwise it is
+# placed in the free space outside the shown territory, as close as possible, and the page
+# draws a leader line to the area. Everything is computed in Web Mercator metres, the units
+# the map is drawn in, so the page only converts metres to pixels for the current zoom.
+CIRCLE_MIN_PX = 3
+CIRCLE_GAP_PX = 3
+WORLD_MERCATOR = 40075016.686
+
+
+def mercator_per_pixel(zoom):
+    return WORLD_MERCATOR / (256 * 2 ** zoom)
+
+
+def largest_polygon(geometry):
+    geometry = make_valid(geometry)
+    parts = [g for g in getattr(geometry, 'geoms', [geometry]) if g.geom_type == 'Polygon']
+    return max(parts, key=lambda g: g.area)
+
+
+def area_circles(polygons, name_column, count_column, zoom):
+    """{"zoom": reference zoom, "scale": metres per sqrt(count), "circles": {name: [lat, lng] or
+    [lat, lng, anchor_lat, anchor_lng]}} for the areas with a non-zero count"""
+    projected = polygons.to_crs('EPSG:3857')
+    unit = mercator_per_pixel(zoom)
+    gap = CIRCLE_GAP_PX * unit
+    counts = {row[name_column]: row[count_column] for _, row in projected.iterrows() if row[count_column] > 0}
+    if not counts:
+        return {'zoom': zoom, 'scale': 0, 'circles': {}}
+    scale = CIRCLE_MIN_PX * unit / math.sqrt(min(counts.values()))
+
+    territory = unary_union([make_valid(g) for g in projected.geometry])
+    inside, outside = {}, []
+    for _, row in projected.iterrows():
+        name = row[name_column]
+        if name not in counts:
+            continue
+        polygon = largest_polygon(row.geometry)
+        pole = polylabel(polygon, tolerance=unit / 2)
+        room = polygon.boundary.distance(pole)
+        radius = scale * math.sqrt(counts[name])
+        if radius + gap <= room:
+            inside[name] = pole
+        else:
+            outside.append((radius, name, pole))
+
+    # largest first; each one along the shortest ray from its pole into free space
+    placed, leaders = [], {}
+    for radius, name, pole in sorted(outside, reverse=True):
+        best = None
+        step = max(radius / 3, unit * 2)
+        for angle in range(0, 360, 5):
+            dx, dy = math.cos(math.radians(angle)), math.sin(math.radians(angle))
+            t = step
+            while t < 40 * radius + 200 * unit:
+                centre = Point(pole.x + dx * t, pole.y + dy * t)
+                if (centre.distance(territory) >= radius + gap and
+                        all(centre.distance(c) >= radius + r + gap for c, r in placed)):
+                    break
+                t += step
+            else:
+                continue
+            if best is None or t < best[0]:
+                best = (t, centre)
+        if best:
+            placed.append((best[1], radius))
+            leaders[name] = (best[1], pole)
+        else:
+            inside[name] = pole   # no free space found: stays on the area
+
+    def lat_lng(point):
+        lng, lat = gpd.GeoSeries([point], crs='EPSG:3857').to_crs('EPSG:4326').iloc[0].coords[0]
+        return [round(lat, 5), round(lng, 5)]
+
+    circles = {name: lat_lng(point) for name, point in inside.items()}
+    for name, (centre, pole) in leaders.items():
+        circles[name] = lat_lng(centre) + lat_lng(pole)
+    return {'zoom': zoom, 'scale': round(scale, 3), 'circles': circles}
+
+
+def build_circles(geo):
+    """areaCircles for circles.js: keyed by "<region>/<area set>", then by metric"""
+    sets = {
+        'prague/districts': (geo['prague_cartogram'], 11),
+        'czechia/regions': (geo['kraje_cartogram'], 7),
+        'czechia/districts': (geo['okresy_cartogram'], 7),
+    }
+    return {key: {'checkIns': area_circles(polygons, 'NAME_2', 'check_ins', zoom),
+                  'breweries': area_circles(polygons, 'NAME_2', 'breweries', zoom)}
+            for key, (polygons, zoom) in sets.items()}
+
+
 # ---------------------------------------------------------------- output
 
 def geojson_text(gdf, path):
@@ -333,6 +432,8 @@ def main():
         # check-ins per year of every place, for the year filter of the cartograms
         'place_years.js': [('venueYears', js_dict(place_years(records, 'Venue'))),
                            ('breweryYears', js_dict(place_years(records, 'Brewery')))],
+        # positions and size scale of the proportional circles ("Total" view of the cartograms)
+        'circles.js': [('areaCircles', json.dumps(build_circles(geo), ensure_ascii=False, indent=1))],
     }
     changed = []
     for name, variables in js_files.items():

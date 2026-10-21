@@ -301,6 +301,29 @@ path.leaflet-interactive:focus {
     border-radius: 3px;
 }
 
+/* Proportional circles of the "Total" view */
+.carto-legend-circles {
+    display: block;
+    margin-top: 2px;
+}
+
+.carto-legend-circles circle {
+    fill: rgba(204, 76, 2, 0.85);
+    stroke: white;
+    stroke-width: 1.5;
+}
+
+.carto-legend-circles line {
+    stroke: rgba(87, 62, 62, 0.6);
+    stroke-dasharray: 2 2;
+}
+
+.carto-legend-circles text {
+    fill: rgb(87, 62, 62);
+    font: 12px Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+}
+
 /* Phones: a button that opens the legend */
 .carto-legend.collapsed .carto-legend-panel {
     display: none;
