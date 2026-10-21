@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=24" />
-    <link rel="stylesheet" href="map4.css?v=24" />
+    <link rel="stylesheet" href="common.css?v=25" />
+    <link rel="stylesheet" href="map4.css?v=25" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=24" type="text/javascript"></script>
+    <script src="data.js?v=25" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=24" defer></script>
+    <script src="nav.js?v=25" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -2663,6 +2663,24 @@
                 setDetailOpen(false);
             }
         });
+
+        // Links from the cartograms: map4.html?venue=<name> or ?brewery=<name> opens that place
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var layer = params.has('venue') ? 'Venues' : params.has('brewery') ? 'Breweries' : null;
+            if (!layer) return;
+            var place = params.get(layer === 'Venues' ? 'venue' : 'brewery');
+            var places = layer === 'Venues' ? venues_lst : breweries_lst;
+            var property = layer === 'Venues' ? 'Venue' : 'Brewery';
+            var exists = places[0].features.some(function (feature) {
+                return feature.properties[property] === place;
+            });
+            if (exists) {
+                showPlaceOnMap(layer, place, null);
+            } else {
+                showMapToast('\u201c' + place + '\u201d is not on the map');
+            }
+        })();
     </script>
 </body>
 </html>

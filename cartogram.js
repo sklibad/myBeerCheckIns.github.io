@@ -225,8 +225,11 @@ function areaPopup(title, metricId, places, properties) {
     var html = "<div class='popup-header'><span class='popup-title'>" + escapeHtml(title) + "</span>" +
         (sorted.length ? "<span class='popup-subtitle'>" + subtitle + "</span>" : '') + "</div>";
     if (sorted.length) {
+        // every place opens on the check-in map (map4.html?venue=… / ?brewery=…)
+        var param = metricId === 'checkIns' ? 'venue' : 'brewery';
         html += "<ul class='popup-list'>" + sorted.map(function (place) {
-            return '<li>' + escapeHtml(place) + '</li>';
+            return '<li><a href="map4.html?' + param + '=' + encodeURIComponent(place) + '" title="Show on the check-in map">' +
+                escapeHtml(place) + '</a></li>';
         }).join('') + '</ul>';
     } else {
         html += "<p class='popup-empty'>" + metric.emptyText + "</p>";

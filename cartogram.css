@@ -364,9 +364,31 @@ path.leaflet-interactive:focus {
     overflow-y: auto;
 }
 
-.popup-list li {
+.popup-list a,
+.popup-list a:visited {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     padding: 7px 14px;
+    border-left: 3px solid transparent;
     color: rgb(60, 40, 40);
+    text-decoration: none;
+}
+
+/* Chevron hints that a place opens on the check-in map */
+.popup-list a::after {
+    content: "\203A";
+    font-size: 20px;
+    line-height: 1;
+    color: rgba(87, 62, 62, 0.45);
+}
+
+.popup-list a:hover,
+.popup-list a:focus-visible {
+    border-left-color: rgb(87, 62, 62);
+    background-color: rgba(87, 62, 62, 0.08);
+    outline: none;
 }
 
 .popup-list li + li {
@@ -465,7 +487,7 @@ path.leaflet-interactive:focus {
         font-size: 13px;
     }
 
-    .popup-list li {
-        padding: 9px 14px;
+    .popup-list a {
+        padding: 10px 14px;
     }
 }
