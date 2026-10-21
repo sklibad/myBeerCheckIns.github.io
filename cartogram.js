@@ -249,10 +249,11 @@ function areaPopup(title, metricId, stats) {
     var html = "<div class='popup-header'><span class='popup-title'>" + escapeHtml(title) + "</span>" +
         (sorted.length ? "<span class='popup-subtitle'>" + subtitle + "</span>" : '') + "</div>";
     if (sorted.length) {
-        // every place opens on the check-in map in a new tab, so the cartogram stays as it is
+        // every place opens the check-in map place view in a window over the cartogram
+        // (openPlaceWindow); with Ctrl / middle click in a new tab
         var param = metricId === 'checkIns' ? 'venue' : 'brewery';
         html += "<ul class='popup-list'>" + sorted.map(function (place) {
-            return '<li><a href="map4.html?' + param + '=' + encodeURIComponent(place) + '" target="_blank" rel="noopener" title="Show on the check-in map (new tab)">' +
+            return '<li><a href="map4.html?' + param + '=' + encodeURIComponent(place) + '" target="_blank" rel="noopener" title="Show on the check-in map">' +
                 escapeHtml(place) + '</a></li>';
         }).join('') + '</ul>';
     } else {
@@ -260,6 +261,66 @@ function areaPopup(title, metricId, stats) {
     }
     return html;
 }
+
+// ---------- Place window ----------
+
+// The check-in map place view (map4.html?venue=… / ?brewery=…) in a window over the cartogram;
+// closing it returns to the cartogram exactly as it was
+var placeWindow = null;
+
+function openPlaceWindow(url, title) {
+    if (!placeWindow) {
+        var backdrop = document.createElement('div');
+        backdrop.className = 'place-window-backdrop';
+        backdrop.hidden = true;
+        backdrop.innerHTML = '<div class="place-window" role="dialog" aria-modal="true" aria-labelledby="place-window-title">' +
+            '<div class="place-window-header"><span class="place-window-title" id="place-window-title"></span>' +
+            '<button type="button" class="place-window-close" aria-label="Close and return to the cartogram">&times;</button></div>' +
+            '<iframe class="place-window-frame" title="Check-in map"></iframe></div>';
+        document.body.appendChild(backdrop);
+        placeWindow = {
+            backdrop: backdrop,
+            title: backdrop.querySelector('.place-window-title'),
+            frame: backdrop.querySelector('iframe')
+        };
+        backdrop.querySelector('.place-window-close').addEventListener('click', closePlaceWindow);
+        backdrop.addEventListener('click', function (e) {
+            if (e.target === backdrop) closePlaceWindow();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closePlaceWindow();
+        });
+        // Escape pressed inside the check-in map closes the window too (same origin), unless it
+        // closes the check-in detail sheet there first (checked in the capture phase, before
+        // the check-in map handles the key)
+        placeWindow.frame.addEventListener('load', function () {
+            try {
+                var doc = placeWindow.frame.contentWindow.document;
+                doc.addEventListener('keydown', function (e) {
+                    var sheet = doc.getElementById('contentBox');
+                    if (e.key === 'Escape' && !(sheet && sheet.classList.contains('open'))) closePlaceWindow();
+                }, true);
+            } catch (err) { /* not reachable: Escape works outside the frame only */ }
+        });
+    }
+    placeWindow.title.textContent = title;
+    placeWindow.frame.src = url;
+    placeWindow.backdrop.hidden = false;
+    placeWindow.backdrop.querySelector('.place-window-close').focus();
+}
+
+function closePlaceWindow() {
+    if (!placeWindow || placeWindow.backdrop.hidden) return;
+    placeWindow.backdrop.hidden = true;
+    placeWindow.frame.src = 'about:blank';
+}
+
+document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('.carto-popup .popup-list a');
+    if (!link || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    openPlaceWindow(link.getAttribute('href'), link.textContent);
+});
 
 // ---------- Legend ----------
 

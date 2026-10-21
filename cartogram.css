@@ -454,6 +454,97 @@ path.leaflet-interactive:focus {
     color: rgba(60, 40, 40, 0.75);
 }
 
+/* ---------- Place window: the check-in map of one place over the cartogram ---------- */
+
+.place-window-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3vh 3vw;
+    background-color: rgba(40, 28, 28, 0.55);
+}
+
+.place-window-backdrop[hidden] {
+    display: none;
+}
+
+.place-window {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.place-window-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 8px 6px 16px;
+    background-color: rgb(87, 62, 62);
+    color: white;
+    font: bold 15px Arial, sans-serif;
+}
+
+.place-window-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.place-window-close {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: white;
+    font-size: 26px;
+    line-height: 36px;
+    cursor: pointer;
+}
+
+.place-window-close:hover,
+.place-window-close:focus-visible {
+    background-color: rgba(255, 255, 255, 0.15);
+    outline: none;
+}
+
+.place-window-frame {
+    flex: 1;
+    width: 100%;
+    border: none;
+}
+
+@media (max-width: 760px) {
+    /* phones: the whole screen */
+    .place-window-backdrop {
+        padding: 0;
+    }
+
+    .place-window {
+        border-radius: 0;
+    }
+
+    .place-window-close {
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+    }
+}
+
 /* Area name on hover */
 .carto-tooltip {
     padding: 4px 10px;
