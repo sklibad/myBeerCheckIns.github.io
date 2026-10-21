@@ -108,6 +108,156 @@ path.leaflet-interactive:focus {
     outline-offset: 2px;
 }
 
+/* ---------- Phones: summary, year stepper and the sheet with the switches ---------- */
+
+.carto-switches.compact {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 6px;
+    width: calc(100vw - 20px);
+}
+
+.carto-summary-button,
+.year-stepper {
+    display: flex;
+    align-items: center;
+    border-radius: 999px;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    color: rgb(87, 62, 62);
+    font: bold 13px Arial, sans-serif;
+}
+
+.carto-summary-button {
+    flex: 1;
+    min-width: 0;
+    gap: 4px;
+    padding: 10px 10px 10px 12px;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.carto-summary-text {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.carto-summary-button[aria-expanded="true"] {
+    background-color: rgb(87, 62, 62);
+    color: white;
+}
+
+.year-stepper {
+    flex-shrink: 0;
+    padding: 0 2px;
+}
+
+.year-stepper span {
+    min-width: 56px;
+    text-align: center;
+}
+
+.year-stepper button {
+    width: 30px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font: bold 22px Arial, sans-serif;
+    cursor: pointer;
+}
+
+.year-stepper button:disabled {
+    color: rgba(87, 62, 62, 0.3);
+    cursor: default;
+}
+
+.carto-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    max-height: 75%;
+    border-radius: 16px 16px 0 0;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
+    font-family: Arial, sans-serif;
+    color: rgb(87, 62, 62);
+    transition: transform 0.15s;
+}
+
+.carto-sheet[hidden] {
+    display: none;
+}
+
+.carto-sheet-header {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 12px 8px 18px;
+    border-bottom: 1px solid rgba(87, 62, 62, 0.2);
+    touch-action: none;
+}
+
+.carto-sheet-handle {
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 40px;
+    height: 4px;
+    margin-left: -20px;
+    border-radius: 2px;
+    background-color: rgba(87, 62, 62, 0.35);
+}
+
+.carto-sheet-title {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.carto-sheet-done {
+    padding: 7px 16px;
+    border: none;
+    border-radius: 999px;
+    background-color: rgb(87, 62, 62);
+    color: white;
+    font: bold 14px Arial, sans-serif;
+    cursor: pointer;
+}
+
+.carto-sheet-body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 12px 16px;
+    overflow-y: auto;
+}
+
+/* the pill groups fill the width of the sheet */
+.carto-sheet-body .overlay-switch {
+    box-shadow: none;
+    background-color: rgba(87, 62, 62, 0.08);
+}
+
+.carto-sheet-body .overlay-switch label {
+    flex: 1 1 auto;
+    justify-content: center;
+    white-space: nowrap;
+}
+
 /* ---------- Zoom, fullscreen and basemap buttons ---------- */
 
 #map .leaflet-bar,

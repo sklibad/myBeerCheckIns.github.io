@@ -680,32 +680,96 @@ function initCartograms(regions) {
         return { id: String(year), label: String(year) };
     }).concat([{ id: 'all', label: 'All time' }]);
 
-    // Switches: region, Check-ins / Breweries, Regions / Districts (Czechia only) and the year
+    // Switches: region, Check-ins / Breweries, Regions / Districts (Czechia only), Density /
+    // Total and the year. Larger screens show them all in the top right corner; phones show a
+    // one-line summary with a year stepper, and the switches in a sheet that slides up from it.
+    function onSwitchChange(e) {
+        map.closePopup();
+        if (e.target.name === 'region') {
+            selectRegion(regionById(e.target.value), true);
+            return;
+        }
+        if (e.target.name === 'metric') {
+            state.metric = e.target.value;
+        } else if (e.target.name === 'mode') {
+            state.mode = e.target.value;
+        } else if (e.target.name === 'year') {
+            state.year = e.target.value === 'all' ? null : Number(e.target.value);
+        } else {
+            state.areaSet = state.config.areaSets.filter(function (s) { return s.id === e.target.value; })[0];
+        }
+        show();
+        renderSwitches();
+        // Total needs room for the circles placed outside the territory, Density does not
+        if (e.target.name === 'mode') fitRegion(true);
+    }
+
     var switchControl = L.control({ position: 'topright' });
     switchControl.onAdd = function () {
-        var div = L.DomUtil.create('div', 'carto-switches');
+        var div = L.DomUtil.create('div', 'carto-switches' + (small ? ' compact' : ''));
         L.DomEvent.disableClickPropagation(div);
-        div.addEventListener('change', function (e) {
-            map.closePopup();
-            if (e.target.name === 'region') {
-                selectRegion(regionById(e.target.value), true);
-                return;
-            }
-            if (e.target.name === 'metric') {
-                state.metric = e.target.value;
-            } else if (e.target.name === 'mode') {
-                state.mode = e.target.value;
-            } else if (e.target.name === 'year') {
-                state.year = e.target.value === 'all' ? null : Number(e.target.value);
-            } else {
-                state.areaSet = state.config.areaSets.filter(function (s) { return s.id === e.target.value; })[0];
-            }
-            show();
-            renderSwitches();
-        });
+        div.addEventListener('change', onSwitchChange);
+        if (small) {
+            div.addEventListener('click', function (e) {
+                if (e.target.closest('.carto-summary-button')) setSheetOpen(sheet.hidden);
+                var step = e.target.closest('[data-year-step]');
+                if (step) stepYear(Number(step.dataset.yearStep));
+            });
+        }
         return div;
     };
     switchControl.addTo(map);
+
+    // Phones: the sheet with all the switches
+    var sheet = L.DomUtil.create('div', 'carto-sheet', map.getContainer());
+    sheet.hidden = true;
+    sheet.setAttribute('role', 'dialog');
+    sheet.setAttribute('aria-label', 'Map settings');
+    sheet.innerHTML = '<div class="carto-sheet-header"><span class="carto-sheet-handle" aria-hidden="true"></span>' +
+        '<span class="carto-sheet-title">Show on map</span>' +
+        '<button type="button" class="carto-sheet-done">Done</button></div><div class="carto-sheet-body"></div>';
+    var sheetBody = sheet.querySelector('.carto-sheet-body');
+    L.DomEvent.disableClickPropagation(sheet);
+    L.DomEvent.disableScrollPropagation(sheet);
+    sheet.addEventListener('change', onSwitchChange);
+    sheet.querySelector('.carto-sheet-done').addEventListener('click', function () { setSheetOpen(false); });
+    map.on('click', function () { setSheetOpen(false); });
+
+    // drag the header down to close
+    (function () {
+        var header = sheet.querySelector('.carto-sheet-header');
+        var startY = null;
+        header.addEventListener('touchstart', function (e) { startY = e.touches[0].clientY; }, { passive: true });
+        header.addEventListener('touchmove', function (e) {
+            if (startY === null) return;
+            var dy = Math.max(0, e.touches[0].clientY - startY);
+            sheet.style.transform = 'translateY(' + dy + 'px)';
+        }, { passive: true });
+        header.addEventListener('touchend', function (e) {
+            if (startY === null) return;
+            var dy = e.changedTouches[0].clientY - startY;
+            startY = null;
+            sheet.style.transform = '';
+            if (dy > 60) setSheetOpen(false);
+        });
+    })();
+
+    function setSheetOpen(open) {
+        sheet.hidden = !open;
+        var button = switchControl.getContainer().querySelector('.carto-summary-button');
+        if (button) button.setAttribute('aria-expanded', open);
+    }
+
+    // ‹ › next to the summary: previous / next year without opening the sheet
+    function stepYear(direction) {
+        var ids = yearItems.map(function (item) { return item.id; });
+        var index = ids.indexOf(state.year === null ? 'all' : String(state.year)) + direction;
+        if (index < 0 || index >= ids.length) return;
+        map.closePopup();
+        state.year = ids[index] === 'all' ? null : Number(ids[index]);
+        show();
+        renderSwitches();
+    }
 
     // caption: small text before the pills; checked: id of the selected item
     function group(name, label, items, checked, caption) {
@@ -731,7 +795,25 @@ function initCartograms(regions) {
         if (yearItems.length > 1) {
             html += group('year', 'Check-ins until the end of', yearItems, state.year === null ? 'all' : String(state.year), 'Until');
         }
-        switchControl.getContainer().innerHTML = html;
+        if (!small) {
+            switchControl.getContainer().innerHTML = html;
+            return;
+        }
+        sheetBody.innerHTML = html;
+
+        // summary of the choice: "Czechia · Breweries · Districts · Total"
+        var parts = [state.region.label, METRICS[state.metric].label];
+        if (state.config && state.config.areaSets.length > 1) parts.push(state.areaSet.label);
+        if (hasCircles()) parts.push(state.mode === 'total' ? 'Total' : 'Density');
+        var yearIds = yearItems.map(function (item) { return item.id; });
+        var yearIndex = yearIds.indexOf(state.year === null ? 'all' : String(state.year));
+        switchControl.getContainer().innerHTML =
+            '<button type="button" class="carto-summary-button" aria-expanded="' + !sheet.hidden + '">' +
+            '<span class="carto-summary-text">' + parts.join(' \u00b7 ') + '</span><span class="carto-summary-arrow" aria-hidden="true">\u25be</span></button>' +
+            (yearItems.length > 1 ? '<div class="year-stepper" role="group" aria-label="Year">' +
+                '<button type="button" data-year-step="-1" aria-label="Previous year"' + (yearIndex <= 0 ? ' disabled' : '') + '>\u2039</button>' +
+                '<span>' + yearItems[yearIndex].label + '</span>' +
+                '<button type="button" data-year-step="1" aria-label="Next year"' + (yearIndex >= yearIds.length - 1 ? ' disabled' : '') + '>\u203a</button></div>' : '');
     }
 
     // Zoom (+ fullscreen in the same bar) and basemaps: bottom right on phones, top on desktop
@@ -757,7 +839,7 @@ function initCartograms(regions) {
         }
         var bounds = view && view.bounds ? L.latLngBounds(view.bounds) : currentLayer.getBounds();
         // proportional circles placed outside the territory must stay in view as well
-        if (typeof areaCircles !== 'undefined') {
+        if (state.mode === 'total' && typeof areaCircles !== 'undefined') {
             Object.keys(areaCircles).forEach(function (key) {
                 if (key.indexOf(state.region.id + '/') !== 0) return;
                 var profile = circleProfile(key);
