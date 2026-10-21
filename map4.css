@@ -1336,6 +1336,50 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
+/* One place opened from a cartogram, with a way back to all places */
+.focus-chip {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 40px);
+  padding: 4px 4px 4px 14px;
+  border-radius: 999px;
+  background-color: rgb(87, 62, 62);
+  color: white;
+  font: bold 13px Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.focus-chip[hidden] {
+  display: none;
+}
+
+.focus-chip-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.focus-chip button {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 999px;
+  background-color: rgb(238, 231, 212);
+  color: rgb(87, 62, 62);
+  font: inherit;
+  cursor: pointer;
+}
+
+.focus-chip button:hover {
+  background-color: white;
+}
+
 /* ---------- Photo gallery ---------- */
 
 /* Same pill as the Timeline button, icon drawn with strokes */
@@ -2049,6 +2093,15 @@ body.timeline-on .mini-stats {
 
   body.timeline-on .mini-stats {
     bottom: 152px;
+  }
+
+  /* below the Venues / Breweries switch, clear of the buttons on the left */
+  .focus-chip {
+    top: 64px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    max-width: calc(100% - 150px);
   }
 
   .overlay-switch {
