@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="src/leaflet.legend.css?v=22" />
-    <link rel="stylesheet" href="common.css?v=22" />
-    <link rel="stylesheet" href="cartogram.css?v=22" />
+    <link rel="stylesheet" href="common.css?v=23" />
+    <link rel="stylesheet" href="cartogram.css?v=23" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="Control.FullScreen.js?v=22"></script>
-    <script src="cartogram.js?v=22"></script>
-    <script src="map2.js?v=22" type="text/javascript"></script>
-    <script type="text/javascript" src="src/leaflet.legend.js?v=22"></script>
+    <script src="Control.FullScreen.js?v=23"></script>
+    <script src="cartogram.js?v=23"></script>
+    <script src="map2.js?v=23" type="text/javascript"></script>
     <title>Czechia Choropleth Map</title>
-    <script src="nav.js?v=22" defer></script>
+    <script src="nav.js?v=23" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -41,342 +39,28 @@
     </header>
     <div id="map"></div>
     <script type="text/javascript">
-        var map = L.map('map', {
-            fullscreenControl: true,
-            fullscreenControlOptions: {
-                title: "Show me the fullscreen !",
-                titleCancel: "Exit fullscreen mode"
-            }
-        }).setView([49.891319771416015, 16.397319234639046], 7);
-    
-        var OSmap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | <a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>',
-            opacity: 1
-        }).addTo(map);
-
-        var Imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            maxZoom: 19,
-            attribution:'&copy; <a href="https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9" target="_blank">ESRI</a> | <a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>',
-            opacity: 1
+        initCartogram({
+            center: [49.891319771416015, 16.397319234639046],
+            zoom: 7,
+            nameProperty: 'NAME_2',
+            fillOpacity: 0.7,
+            areaSets: [{
+                id: 'regions',
+                label: 'Regions',
+                geojson: kraje,
+                unit: 'per 1 000 km²',
+                places: { checkIns: krajeCheckIns, breweries: krajeBreweries }
+            }, {
+                id: 'districts',
+                label: 'Districts',
+                geojson: okresy,
+                unit: 'per 1 000 km²',
+                places: { checkIns: czechVenues, breweries: czechBreweries },
+                title: function (name) {
+                    return name.indexOf('Praha') === 0 ? name : 'Okres ' + name;
+                }
+            }]
         });
-
-        var TopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution:'&copy; <a href = "https://opentopomap.org/credits" target = "_blank">OpenTopoMap</a> | <a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>',
-            opacity: 0.5
-        });
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        
-        function onEachFeature(feature, layer) {
-            if (isTouchDevice) return;
-
-            var districtName = feature.properties.NAME_2;
-            var timeoutId;
-
-            layer.on('mouseover', function () {
-                // Set a delay before showing the tooltip (e.g., 500 milliseconds)
-                timeoutId = setTimeout(function () {
-                    if (districtName.includes('kraj') || districtName.includes('Praha')){
-                        var tooltipContent = "<b>" + districtName + "</b>";
-                    } else {
-                        var tooltipContent = "<b>okres " + districtName + "</b>";
-                    }
-                    layer.bindTooltip(tooltipContent, { sticky: true }).openTooltip();
-                }, 500);
-            });
-
-            layer.on('mouseout', function () {
-                // Clear the timeout if the mouse leaves the feature before the delay
-                clearTimeout(timeoutId);
-                layer.closeTooltip();
-            });
-        }
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        // Classes and colours computed from the data (cartogram.js)
-        var okresyCheckInsScale = choropleth(okresy, 'cart_check');
-        
-        var okresyCheckInsLayer = L.geoJSON(okresy, {
-            style: function (feature) {
-                return {
-                fillColor: okresyCheckInsScale.color(feature.properties.cart_check),
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-                };
-            },
-            onEachFeature: function (feature, layer) {
-                onEachFeature(feature, layer);
-                var districtName = feature.properties.NAME_2;
-
-                // Check if the district name is a key in czechVenues dictionary
-                if (districtName in czechVenues) {
-                    // Create the popup content with list items
-                    var popupContent = "<div class='popup-container'>";
-                    if (districtName.includes('Praha')){
-                        popupContent += "<div class='popup-header'><b>" + districtName + " - discovered venues</b></div>";
-                    }
-                    else{
-                        popupContent += "<div class='popup-header'><b>" + "Okres " + districtName + " - discovered venues</b></div>";
-                    }
-                    popupContent += "<div class='popup-content'><ul class='left-aligned-list'>";
-                    czechVenues[districtName].forEach(function (venue) {
-                        popupContent += "<li>" + venue + "</li>";
-                    });
-                    popupContent += "</ul></div>";
-                } else {
-                    var popupContent = "<div class='popup-content'>";
-                    popupContent += "I haven't discovered any venue in okres " + districtName + " yet.";
-                }
-
-                let checkIns = feature.properties.check_ins;
-                const checkInCount = isNaN(checkIns) ? parseFloat(checkIns) : checkIns;
-                if (checkInCount != 0) {
-                    // Pin the total number of check-ins to the bottom
-                    popupContent += "<div class='popup-footer'><hr>Total number of check-ins: " + checkIns + "</div>";
-                }
-
-                popupContent += "</div>"; // Close the popup-container div
-
-                // Bind the popup to the layer
-                layer.bindPopup(popupContent, popupOptions());
-            },
-        });
-
-        addHoverHighlight(okresyCheckInsLayer, 5);
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        // Classes and colours computed from the data (cartogram.js)
-        var okresyBreweriesScale = choropleth(okresy, 'cart_brew');
-
-        var okresyBreweriesLayer = L.geoJSON(okresy, {
-            style: function (feature) {
-                return {
-                fillColor: okresyBreweriesScale.color(feature.properties.cart_brew),
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-                };
-            },
-            onEachFeature: function (feature, layer) {
-                onEachFeature(feature, layer);
-                var districtName = feature.properties.NAME_2;
-
-                // Check if the district name is a key in czechVenues dictionary
-                if (districtName in czechBreweries) {
-                    // Create the popup content with list items
-                    var popupContent = "<div class='popup-container'>";
-                    if (districtName.includes('Praha')){
-                        popupContent += "<div class='popup-header'><b>" + districtName + " - breweries</b></div>";
-                    }
-                    else{
-                        popupContent += "<div class='popup-header'><b>" + "Okres " + districtName + " - breweries</b></div>";
-                    }
-                    popupContent += "<div class='popup-content'><ul class='left-aligned-list'>";
-                    czechBreweries[districtName].forEach(function (brewery) {
-                        popupContent += "<li>" + brewery + "</li>";
-                    });
-                    popupContent += "</ul></div>";
-                } else {
-                    var popupContent = "<div class='popup-content'>";
-                    popupContent += "I haven't tried any beer brewed in okres " + districtName + " yet.";
-                }
-                popupContent += "</div>"; // Close the popup-container div
-
-                // Bind the popup to the layer
-                layer.bindPopup(popupContent, popupOptions());
-            },
-        })
-
-        addHoverHighlight(okresyBreweriesLayer, 5);
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        // Classes and colours computed from the data (cartogram.js)
-        var krajeCheckInsScale = choropleth(kraje, 'cart_check');
-
-        var krajeCheckInsLayer = L.geoJSON(kraje, {
-            style: function (feature) {
-                return {
-                fillColor: krajeCheckInsScale.color(feature.properties.cart_check),
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-                };
-            },
-            onEachFeature: function (feature, layer) {
-                onEachFeature(feature, layer);
-                var districtName = feature.properties.NAME_2;
-
-                // Check if the district name is a key in czechVenues dictionary
-                if (districtName in krajeCheckIns) {
-                    // Create the popup content with list items
-                    var popupContent = "<div class='popup-container'>";
-                    popupContent += "<div class='popup-header'><b>" + districtName + " - discovered venues</b></div>";
-                    popupContent += "<div class='popup-content'><ul class='left-aligned-list'>";
-                    krajeCheckIns[districtName].forEach(function (brewery) {
-                        popupContent += "<li>" + brewery + "</li>";
-                    });
-                    popupContent += "</ul></div>";
-                } else {
-                    var popupContent = "<div class='popup-content'>";
-                    popupContent += "I haven't discovered any venue in " + districtName + " yet.";
-                }
-
-                let checkIns = feature.properties.check_ins;
-                const checkInCount = isNaN(checkIns) ? parseFloat(checkIns) : checkIns;
-                if (checkInCount != 0) {
-                    // Pin the total number of check-ins to the bottom
-                    popupContent += "<div class='popup-footer'><hr>Total number of check-ins: " + checkIns + "</div>";
-                }
-
-                popupContent += "</div>"; // Close the popup-container div
-
-                // Bind the popup to the layer
-                layer.bindPopup(popupContent, popupOptions());
-            },
-        })
-
-        addHoverHighlight(krajeCheckInsLayer, 5);
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        // Classes and colours computed from the data (cartogram.js)
-        var krajeBreweriesScale = choropleth(kraje, 'cart_brew');
-
-        var krajeBreweriesLayer = L.geoJSON(kraje, {
-            style: function (feature) {
-                return {
-                fillColor: krajeBreweriesScale.color(feature.properties.cart_brew),
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-                };
-            },
-            onEachFeature: function (feature, layer) {
-                onEachFeature(feature, layer);
-                var districtName = feature.properties.NAME_2;
-
-                // Check if the district name is a key in czechVenues dictionary
-                if (districtName in krajeBreweries) {
-                    // Create the popup content with list items
-                    var popupContent = "<div class='popup-container'>";
-                    popupContent += "<div class='popup-header'><b>" + districtName + " - breweries</b></div>";
-                    popupContent += "<div class='popup-content'><ul class='left-aligned-list'>";
-                    krajeBreweries[districtName].forEach(function (brewery) {
-                        popupContent += "<li>" + brewery + "</li>";
-                    });
-                    popupContent += "</ul></div>";
-                } else {
-                    var popupContent = "<div class='popup-content'>";
-                    popupContent += "I haven't tried any beer brewed in " + districtName + " yet.";
-                }
-                popupContent += "</div>"; // Close the popup-container div
-
-                // Bind the popup to the layer
-                layer.bindPopup(popupContent, popupOptions());
-            },
-        })
-
-        addHoverHighlight(krajeBreweriesLayer, 5);
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        var baseLayers = {
-            "OS Map": OSmap,
-            "Imagery": Imagery,
-            "TopoMap": TopoMap
-        };
-
-        var overlayLayers = {
-            "Check-Ins density (kraje)": krajeCheckInsLayer,
-            "Brewery density (kraje)": krajeBreweriesLayer,
-            "Check-Ins density (okresy)": okresyCheckInsLayer,
-            "Brewery density (okresy)": okresyBreweriesLayer
-        };
-
-        var okresyCheckInsLegendControl = L.control.Legend({
-            position: "bottomright",
-            collapsed: isSmallScreen(),
-            title: "Check-ins/1 000 km²",
-            legends: okresyCheckInsScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
-        })
-
-        var okresyBreweriesLegendControl = L.control.Legend({
-            position: "bottomright",
-            collapsed: isSmallScreen(),
-            title: "Breweries/1 000 km²",
-            legends: okresyBreweriesScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
-        })
-
-        var krajeCheckInsLegendControl = L.control.Legend({
-            position: "bottomright",
-            collapsed: isSmallScreen(),
-            title: "Check-ins/1 000 km²",
-            legends: krajeCheckInsScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
-        })
-
-        var krajeBreweriesLegendControl = L.control.Legend({
-            position: "bottomright",
-            collapsed: isSmallScreen(),
-            title: "Breweries/1 000 km²",
-            legends: krajeBreweriesScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
-        })
-
-        var overlayControl = L.control({ position: 'topright' });
-
-        overlayControl.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'info legend overlay-switch');
-
-            for (var i = 0; i < Object.keys(overlayLayers).length; i++) {
-                var layerName = Object.keys(overlayLayers)[i];
-                var checkedAttribute = i === 0 ? 'checked' : '';  // Add 'checked' for the first layer
-
-                div.innerHTML +=
-                '<input type="radio" name="layer" value="' + layerName + '" id="' + layerName + '" ' + checkedAttribute +
-                ' title="Switch to' + layerName + '">' +
-                '<label for="' + layerName + '" title="Switch to ' + layerName + '">' + layerName + '</label><br>';
-            }
-            
-            div.addEventListener('change', function (e) {
-                var selectedLayer = e.target.value;
-
-                // Remove only overlay layers, not basemaps
-                for (var layerName in overlayLayers) {
-                    if (overlayLayers.hasOwnProperty(layerName) && layerName !== selectedLayer) {
-                        map.removeLayer(overlayLayers[layerName]);
-                    }
-                }
-
-                // Add the selected overlay layer to the map
-                overlayLayers[selectedLayer].addTo(map);
-
-                // Update the legends based on the selected layer
-                if (selectedLayer === "Check-Ins density (kraje)") {
-                    map.removeControl(activeLegend);
-                    activeLegend = krajeCheckInsLegendControl
-                    krajeCheckInsLegendControl.addTo(map);
-                } else if (selectedLayer === "Brewery density (kraje)") {
-                    map.removeControl(activeLegend);
-                    activeLegend = krajeBreweriesLegendControl
-                    krajeBreweriesLegendControl.addTo(map);
-                } else if (selectedLayer === "Check-Ins density (okresy)") {
-                    map.removeControl(activeLegend);
-                    activeLegend = okresyCheckInsLegendControl
-                    okresyCheckInsLegendControl.addTo(map);
-                } else if (selectedLayer === "Brewery density (okresy)") {
-                    map.removeControl(activeLegend);
-                    activeLegend = okresyBreweriesLegendControl
-                    okresyBreweriesLegendControl.addTo(map);
-                }
-            });
-
-            return div;
-        };
-
-        // Add the custom control to the map
-        overlayControl.addTo(map);
-
-        // Add the first overlay layer to the map initially
-        krajeCheckInsLayer.addTo(map);
-        fitMapOnSmallScreen(map, krajeCheckInsLayer);
-        krajeCheckInsLegendControl.addTo(map);
-        var activeLegend = krajeCheckInsLegendControl;
-
-        L.control.layers(baseLayers).addTo(map);
     </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-/* Shared styles for the cartogram pages (map1–3.html) */
+/* Shared styles for the cartogram pages (map1–3.html); the map controls and
+   popups follow the check-in map (map4.css) */
 
 html, body {
     height: 100%;
@@ -30,130 +31,441 @@ body {
     }
 }
 
-/* ---------- Layer switch (custom radio control) ---------- */
-
-.overlay-switch {
-    background-color: white;
-    padding: 8px 10px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    line-height: 1.6;
-}
-
-.overlay-switch label {
-    cursor: pointer;
-}
-
-@media (max-width: 760px) {
-    .overlay-switch {
-        font-size: 12px;
-        padding: 6px 8px;
-        max-width: 60vw;
-    }
-}
-
-/* ---------- Popups ---------- */
-
-.popup-container {
-    max-width: 500px;
-    white-space: nowrap;
-}
-
-.popup-header,
-.popup-footer {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    min-height: 30px;
-}
-
-.popup-footer {
-    margin-top: 10px;
-}
-
-.popup-content {
-    max-height: min(200px, 40vh);
-    overflow-y: auto;
-    white-space: nowrap;
-}
-
-.left-aligned-list {
-    padding: 0;
-    margin-left: 20px;
-}
-
-/* On narrow screens long names wrap instead of overflowing the screen */
-@media (max-width: 760px) {
-    .popup-container,
-    .popup-content {
-        white-space: normal;
-    }
-}
-
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-track {
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #959494;
-    border-radius: 10px;
-}
-
-/* ---------- Fullscreen control ---------- */
-
-.fullscreen-icon {
-    background-image: url(ikony/icon-fullscreen.svg);
-    background-size: 26px 52px;
-}
-
-.fullscreen-icon.leaflet-fullscreen-on {
-    background-position: 0 -26px;
-}
-
-.leaflet-touch .fullscreen-icon {
-    background-position: 2px 2px;
-}
-
-.leaflet-touch .fullscreen-icon.leaflet-fullscreen-on {
-    background-position: 2px -24px;
-}
-
-/* one selector per rule as explained here : http://www.sitepoint.com/html5-full-screen-api/ */
-.leaflet-container:-webkit-full-screen { width: 100% !important; height: 100% !important; z-index: 99999; }
-.leaflet-container:-ms-fullscreen { width: 100% !important; height: 100% !important; z-index: 99999; }
-.leaflet-container:full-screen { width: 100% !important; height: 100% !important; z-index: 99999; }
-.leaflet-container:fullscreen { width: 100% !important; height: 100% !important; z-index: 99999; }
-.leaflet-pseudo-fullscreen { position: fixed !important; width: 100% !important; height: 100% !important; top: 0px !important; left: 0px !important; z-index: 99999; }
-
 /* don't show up the minimum bounding rectangle around feature after clicking on them */
 path.leaflet-interactive:focus {
     outline: none;
 }
 
+/* ---------- Switches (Check-ins / Breweries, Regions / Districts) ---------- */
+
+.carto-switches {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.overlay-switch {
+    display: flex;
+    padding: 3px;
+    border-radius: 999px;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* The radio buttons stay for keyboard and screen readers, the labels are the visible pills */
+.overlay-switch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.overlay-switch label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    color: rgb(87, 62, 62);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.overlay-switch label:has(img) {
+    padding-left: 6px;
+}
+
+.overlay-switch label img {
+    width: 22px;
+    height: 22px;
+}
+
+.overlay-switch label:hover {
+    background-color: rgba(87, 62, 62, 0.1);
+}
+
+.overlay-switch input:checked + label {
+    background-color: rgb(87, 62, 62);
+    color: white;
+}
+
+.overlay-switch input:focus-visible + label {
+    outline: 2px solid rgb(87, 62, 62);
+    outline-offset: 2px;
+}
+
+/* ---------- Zoom, fullscreen and basemap buttons ---------- */
+
+#map .leaflet-bar,
+#map .leaflet-control-layers {
+    border: none;
+    border-radius: 12px;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+#map .leaflet-bar a {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid rgba(87, 62, 62, 0.2);
+    background-color: rgb(238, 231, 212);
+    color: rgb(87, 62, 62);
+    font-size: 20px;
+}
+
+#map .leaflet-bar a:last-child {
+    border-bottom: none;
+}
+
+#map .leaflet-bar a:hover {
+    background-color: rgb(226, 216, 190);
+}
+
+#map .leaflet-bar a.leaflet-disabled {
+    background-color: rgb(238, 231, 212);
+    color: rgba(87, 62, 62, 0.3);
+}
+
+/* Fullscreen: expand / collapse arrows in the site colour */
+#map .leaflet-bar a.fullscreen-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+
+#map .leaflet-bar a.fullscreen-icon.leaflet-fullscreen-on {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5'/%3E%3C/svg%3E");
+}
+
+#map .leaflet-control-layers-toggle {
+    width: 36px;
+    height: 36px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M12 3 2 8l10 5 10-5-10-5z'/%3E%3Cpath d='m2 12.5 10 5 10-5'/%3E%3Cpath d='m2 17 10 5 10-5'/%3E%3C/svg%3E");
+    background-size: 22px 22px;
+}
+
+#map .leaflet-control-layers-expanded {
+    padding: 8px 14px 8px 10px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: rgb(87, 62, 62);
+}
+
+#map .leaflet-control-layers-base label {
+    padding: 3px 0;
+    cursor: pointer;
+}
+
+#map .leaflet-control-layers-selector {
+    accent-color: rgb(87, 62, 62);
+}
+
+/* Fullscreen mode of the map element */
+.leaflet-container:-webkit-full-screen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-container:fullscreen { width: 100% !important; height: 100% !important; z-index: 99999; }
+.leaflet-pseudo-fullscreen { position: fixed !important; width: 100% !important; height: 100% !important; top: 0px !important; left: 0px !important; z-index: 99999; }
+
+/* ---------- Attribution behind an "i" button ---------- */
+
+#map .attribution-toggle {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 6px;
+}
+
+#map .attribution-button {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(238, 231, 212);
+    color: rgb(87, 62, 62);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    font: italic bold 15px/26px Georgia, serif;
+    cursor: pointer;
+}
+
+#map .attribution-toggle.open .attribution-button {
+    background-color: rgb(87, 62, 62);
+    color: white;
+}
+
+#map .leaflet-bottom.leaflet-right .attribution-toggle .leaflet-control-attribution {
+    display: none;
+    max-width: calc(100vw - 90px);
+    margin: 0;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    color: rgb(87, 62, 62);
+    font-size: 12px;
+    white-space: normal;
+}
+
+#map .leaflet-bottom.leaflet-right .attribution-toggle.open .leaflet-control-attribution {
+    display: block;
+}
+
+#map .leaflet-control-attribution a {
+    color: rgb(165, 42, 42);
+}
+
 /* ---------- Legend ---------- */
 
-/* The page sets border-box sizing, so the symbol's padding ate into its width
-   and the canvas overlapped the label; keep the padding outside and add a gap */
-.leaflet-legend-item i {
-    box-sizing: content-box;
-    padding: 0 0 0 2px;
+.carto-legend {
+    border-radius: 12px;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    font-family: Arial, sans-serif;
+    color: rgb(87, 62, 62);
+    overflow: hidden;
 }
 
-.leaflet-legend-item span {
-    padding-left: 8px;
+/* Desktop: always open, the button is not needed */
+.carto-legend-toggle {
+    display: none;
 }
+
+.carto-legend-panel {
+    padding: 10px 14px 10px 12px;
+}
+
+.carto-legend-title {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.carto-legend-unit {
+    margin: 1px 0 8px;
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.carto-legend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 0;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.carto-legend-swatch {
+    flex-shrink: 0;
+    width: 22px;
+    height: 14px;
+    border: 1px solid #232323;
+    border-radius: 3px;
+}
+
+/* Phones: a button that opens the legend */
+.carto-legend.collapsed .carto-legend-panel {
+    display: none;
+}
+
+.carto-legend.collapsed .carto-legend-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.carto-legend.collapsible {
+    cursor: pointer;
+}
+
+.carto-legend-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: rgb(87, 62, 62);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+/* ---------- Popups ---------- */
+
+.carto-popup .leaflet-popup-content-wrapper {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: rgb(238, 231, 212);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.carto-popup .leaflet-popup-tip {
+    background-color: rgb(238, 231, 212);
+}
+
+.carto-popup .leaflet-popup-content {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.carto-popup .popup-header {
+    padding: 10px 40px 10px 14px;
+    background-color: rgb(87, 62, 62);
+    color: white;
+}
+
+.popup-title {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.popup-subtitle {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.carto-popup a.leaflet-popup-close-button {
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    font-size: 22px;
+    line-height: 24px;
+    color: white;
+}
+
+.carto-popup a.leaflet-popup-close-button:hover,
+.carto-popup a.leaflet-popup-close-button:focus {
+    color: #f3d9a4;
+}
+
+.popup-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    max-height: min(240px, 40vh);
+    overflow-y: auto;
+}
+
+.popup-list li {
+    padding: 7px 14px;
+    color: rgb(60, 40, 40);
+}
+
+.popup-list li + li {
+    border-top: 1px solid rgba(87, 62, 62, 0.15);
+}
+
+.popup-empty {
+    margin: 0;
+    padding: 12px 14px;
+    color: rgba(60, 40, 40, 0.75);
+}
+
+/* Area name on hover */
+.carto-tooltip {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 999px;
+    background-color: rgb(87, 62, 62);
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.carto-tooltip::before {
+    display: none;
+}
+
+.popup-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup-list::-webkit-scrollbar-thumb {
+    background: rgba(87, 62, 62, 0.35);
+    border-radius: 10px;
+}
+
+/* ---------- Phones ---------- */
 
 @media (max-width: 760px) {
-    .leaflet-legend {
-        font-size: 12px;
+    .overlay-switch {
+        font-size: 14px;
     }
 
-    .leaflet-legend-toggle {
-        width: 34px;
-        height: 34px;
+    .overlay-switch label {
+        padding: 7px 14px;
+    }
+
+    .overlay-switch label:has(img) {
+        padding-left: 8px;
+    }
+
+    .overlay-switch label img {
+        width: 26px;
+        height: 26px;
+    }
+
+    /* Larger zoom and basemap buttons; the bottom right stack sits above the attribution */
+    #map .leaflet-bar a,
+    #map .leaflet-control-layers-toggle {
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+    }
+
+    #map .leaflet-bottom .leaflet-control {
+        margin-bottom: 10px;
+    }
+
+    #map .leaflet-bottom.leaflet-right .leaflet-control {
+        margin-right: 10px;
+    }
+
+    #map .leaflet-bottom.leaflet-left .leaflet-control {
+        margin-left: 10px;
+    }
+
+    #map .leaflet-control-layers-expanded {
+        font-size: 15px;
+    }
+
+    .carto-legend-row {
+        font-size: 14px;
+    }
+
+    .carto-popup .leaflet-popup-content {
+        font-size: 16px;
+    }
+
+    .popup-title {
+        font-size: 17px;
+    }
+
+    .popup-subtitle {
+        font-size: 13px;
+    }
+
+    .popup-list li {
+        padding: 9px 14px;
     }
 }
