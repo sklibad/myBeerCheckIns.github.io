@@ -586,24 +586,25 @@ function initCartograms(regions) {
             });
         }
 
-        // up to three round counts for the legend (1, 2, 5 × 10^n); the largest legend circle
-        // stays small enough (30 px) not to cover the map
+        // two or three round counts for the legend (1, 2, 5 × 10^n): the largest at most 40 px
+        // so it does not cover the map, each next one clearly smaller (≤ 65 % of the radius)
         function legendCircles() {
             var all = items.map(function (item) { return count(item, null); });
             var max = Math.max.apply(null, all);
-            var min = Math.min.apply(null, all.filter(function (v) { return v > 0; }));
             var nice = function (v) {
                 var p = Math.pow(10, Math.floor(Math.log10(v)));
                 return [5, 2, 1].map(function (m) { return m * p; }).filter(function (n) { return n <= v; })[0];
             };
             var radius = function (value) { return circleRadius(data.scale, profile.zoom, value); };
             var top = nice(max);
-            while (top > 1 && radius(top) > 30) top = nice(top / 2);
-            var values = [];
-            for (var v = top; v >= Math.max(1, min) && values.length < 3; v = nice(v / 4.5)) {
-                if (values.indexOf(v) < 0) values.push(v);
-                if (v === 1) break;
+            while (top > 1 && radius(top) > 40) top = nice(top / 2);
+            var values = [top];
+            for (var v = top; v > 1 && values.length < 3; ) {
+                v = nice(v / 2);   // the next smaller round number (5 → 2 → 1 → 0.5 …)
+                if (v >= 1 && radius(v) <= 0.65 * radius(values[values.length - 1])) values.push(v);
             }
+            // a second size even when the round numbers below are too close in size
+            if (values.length === 1 && top > 1) values.push(nice(top / 2));
             return values.map(function (value) { return { value: value, radius: radius(value) }; });
         }
 
