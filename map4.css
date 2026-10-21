@@ -1336,7 +1336,9 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
-/* Place view (map4.html?venue=... from the cartograms): only the map, popup and check-in detail */
+/* Place view (map4.html?venue=... from the cartograms): only the map, popup and check-in detail;
+   no site header either, it would mark the full Check-in Map as the current page */
+body.place-view .site-header,
 body.place-view #filter-panel,
 body.place-view #filters-toggle,
 body.place-view #route-div {
