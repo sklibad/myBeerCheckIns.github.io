@@ -81,7 +81,8 @@
     var lastDate = new Date(Math.max.apply(null, records.map(function (r) { return r.date; })));
 
     // year: null = all time
-    var state = { year: null, beers: 'best', rankings: {} };
+    // hidden: beer styles switched off in the legends of the rating chart and the wind rose
+    var state = { year: null, beers: 'best', rankings: {}, hidden: { ratings: {}, rose: {} } };
 
     function selection() {
         return state.year === null ? records : records.filter(function (r) { return r.date.getFullYear() === state.year; });
@@ -255,6 +256,8 @@
             maxBarThickness: 44
         }];
         charts.weekdays.update();
+        document.getElementById('weekday-note').textContent = max
+            ? 'Busiest: ' + WEEKDAYS[counts.indexOf(max)] + ' (' + plural(max, 'check-in') + ')' : '';
     }
 
     // ---------- Ratings by style ----------
@@ -269,6 +272,34 @@
                 (n !== null ? ' <b>' + n + '</b><span class="legend-share">' + (total ? Math.round(100 * n / total) : 0) + ' %</span>' : '') + '</span>';
         }).join('');
     }
+
+    // Legend whose styles can be switched off and on (chart: "ratings" or "rose")
+    function toggleLegend(id, chart) {
+        document.getElementById(id).innerHTML = STYLES.map(function (s) {
+            var off = !!state.hidden[chart][s.id];
+            return '<button type="button" class="legend-item legend-toggle' + (off ? ' off' : '') + '" data-chart="' + chart + '" data-style="' + s.id + '"' +
+                ' aria-pressed="' + !off + '" title="Show / hide ' + s.label + '">' +
+                '<span class="legend-swatch" style="background-color: ' + s.color + '"></span>' + s.label + '</button>';
+        }).join('');
+    }
+
+    document.addEventListener('click', function (e) {
+        var button = e.target.closest('.legend-toggle');
+        if (!button) return;
+        var chart = button.dataset.chart;
+        var style = button.dataset.style;
+        var off = !state.hidden[chart][style];
+        state.hidden[chart][style] = off;
+        button.classList.toggle('off', off);
+        button.setAttribute('aria-pressed', !off);
+        var index = STYLES.map(function (st) { return st.id; }).indexOf(style);
+        if (chart === 'ratings') {
+            charts.ratings.setDatasetVisibility(index, !off);
+            charts.ratings.update();
+        } else {
+            charts.rose.series[index].setVisible(!off);
+        }
+    });
 
     function renderRatings(list) {
         if (!charts.ratings) {
@@ -288,6 +319,7 @@
         charts.ratings.data.datasets = STYLES.map(function (s) {
             return {
                 label: s.label,
+                hidden: !!state.hidden.ratings[s.id],
                 backgroundColor: s.color,
                 data: RATINGS.map(function (value) {
                     return list.filter(function (r) { return r.style === s.id && r.Rating === value; }).length;
@@ -296,7 +328,7 @@
             };
         });
         charts.ratings.update();
-        styleLegend('rating-legend', null);
+        toggleLegend('rating-legend', 'ratings');
         var avg = list.length ? average(list.map(function (r) { return r.Rating; })) : 0;
         document.getElementById('rating-note').textContent = list.length ? 'Average ' + avg.toFixed(2) : '';
     }
@@ -448,6 +480,7 @@
             return {
                 name: s.label,
                 color: s.color,
+                visible: !state.hidden.rose[s.id],
                 data: DIRECTIONS.map(function (d) { return total ? Math.round(1000 * (counts[s.id + d] || 0) / total) / 10 : 0; })
             };
         });
@@ -479,7 +512,7 @@
             },
             series: series
         });
-        styleLegend('rose-legend', null);
+        toggleLegend('rose-legend', 'rose');
     }
 
     // ---------- All ----------
