@@ -498,16 +498,9 @@ path.leaflet-interactive:focus {
     background-color: #cc4c02;
 }
 
-.carto-coverage-toggle {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-}
-
-.carto-coverage-toggle input {
-    margin: 0;
-    accent-color: rgb(87, 62, 62);
+/* hatched like the areas without any check-in (SVG pattern #carto-unvisited) */
+.carto-legend-swatch.hatched {
+    background: repeating-linear-gradient(45deg, rgba(153, 52, 4, 0.6) 0 2px, rgba(255, 255, 255, 0.55) 2px 5px);
 }
 
 /* Phones: a button that opens the legend */

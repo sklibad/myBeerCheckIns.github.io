@@ -167,21 +167,16 @@ function choropleth(densities) {
 
 var AUTHOR_LINK = '<a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>';
 
-// "Light" (Esri World Light Gray: grey without colours, labels on top) is the default: the
-// class colours of the cartograms read much better on it than on the colourful OpenStreetMap
-var ESRI_GRAY = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_';
-
+// "Light" (Esri World Light Gray base: grey, no colours and no labels) is the default: the
+// class colours of the cartograms read much better on it than on the colourful OpenStreetMap,
+// and the area names come from the tooltips and popups
 function createBasemaps() {
     return {
-        "Light": L.layerGroup([
-            L.tileLayer(ESRI_GRAY + 'Base/MapServer/tile/{z}/{y}/{x}', {
-                maxZoom: 19,
-                maxNativeZoom: 16,
-                attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors | ' + AUTHOR_LINK
-            }),
-            // place names above the coloured areas (pane created by initCartograms)
-            L.tileLayer(ESRI_GRAY + 'Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 16, pane: 'cartoLabels' })
-        ]),
+        "Light": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 19,
+            maxNativeZoom: 16,
+            attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors | ' + AUTHOR_LINK
+        }),
         "OS Map": L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | ' + AUTHOR_LINK
@@ -424,8 +419,11 @@ var CartogramLegend = L.Control.extend({
         this._panel.innerHTML = '<div class="carto-legend-title">' + title + '</div>' +
             '<div class="carto-legend-unit">' + unit + '</div>' +
             items.map(function (item) {
-                return '<div class="carto-legend-row"><span class="carto-legend-swatch" style="background-color: ' +
-                    item.color + '; opacity: ' + fillOpacity + '"></span><span>' + item.label + '</span></div>';
+                // the "0" class: hatched like the areas without any check-in on the map
+                var swatch = item.color === NO_VALUE_COLOR
+                    ? '<span class="carto-legend-swatch hatched"></span>'
+                    : '<span class="carto-legend-swatch" style="background-color: ' + item.color + '; opacity: ' + fillOpacity + '"></span>';
+                return '<div class="carto-legend-row">' + swatch + '<span>' + item.label + '</span></div>';
             }).join('');
     }
 });
@@ -463,11 +461,6 @@ function initCartograms(regions) {
         zoomSnap: small ? 0.25 : 1
     }).setView([49.8, 15.5], 4);
 
-    // labels of the light basemap above the areas, not catching clicks
-    var labelPane = map.createPane('cartoLabels');
-    labelPane.style.zIndex = 450;
-    labelPane.style.pointerEvents = 'none';
-
     var basemaps = createBasemaps();
     basemaps["Light"].addTo(map);
 
@@ -478,8 +471,7 @@ function initCartograms(regions) {
 
     // year: show check-ins until the end of that year (null = all time)
     // mode: "density" (choropleth) or "total" (proportional circles, where circles.js has them)
-    // unvisited: hatch the areas without a check-in (brewery) in the selected time
-    var state = { region: null, config: null, metric: 'checkIns', areaSet: null, year: null, mode: 'density', unvisited: false };
+    var state = { region: null, config: null, metric: 'checkIns', areaSet: null, year: null, mode: 'density' };
     var configs = {};
     var layers = {};
     var currentLayer = null;
@@ -510,7 +502,8 @@ function initCartograms(regions) {
             return metricId === 'checkIns' ? stats.checkIns : stats.places.length;
         };
         var style = function (feature) {
-            if (state.unvisited && !countOf(feature, state.year)) {
+            // areas without a check-in (brewery) in the selected time are always hatched
+            if (!countOf(feature, state.year)) {
                 return { fillColor: 'url(#carto-unvisited)', fillOpacity: 1, color: '#232323', weight: 1.2 };
             }
             if (state.mode === 'total') {
@@ -728,7 +721,8 @@ function initCartograms(regions) {
         svg.insertBefore(defs, svg.firstChild);
     }
 
-    // "Visited 28 / 77 districts" with a bar, and the switch for hatching the rest
+    // "Visited 28 / 77 districts" with a bar; in the Total view also what the hatching means
+    // (the Density legend shows it as its "0" class)
     function showCoverage(key) {
         var features = state.areaSet.geojson[0].features;
         var visited = features.filter(function (f) { return layers[key].countOf(f, state.year) > 0; }).length;
@@ -738,15 +732,9 @@ function initCartograms(regions) {
             '<div class="carto-coverage-text">' + (checkIns ? 'Visited ' : 'Breweries in ') +
             '<b>' + visited + '</b> / ' + features.length + ' ' + noun + '</div>' +
             '<div class="carto-coverage-bar"><span style="width: ' + (100 * visited / features.length).toFixed(1) + '%"></span></div>' +
-            '<label class="carto-coverage-toggle"><input type="checkbox" class="carto-unvisited-toggle"' + (state.unvisited ? ' checked' : '') + '>' +
-            (checkIns ? 'Highlight unvisited ' + noun : 'Highlight ' + noun + ' without one') + '</label>');
+            (state.mode === 'total' ? '<div class="carto-legend-row"><span class="carto-legend-swatch hatched"></span><span>' +
+                (checkIns ? 'not visited yet' : 'no brewery yet') + '</span></div>' : ''));
     }
-
-    legend.getContainer().addEventListener('change', function (e) {
-        if (!e.target.classList.contains('carto-unvisited-toggle')) return;
-        state.unvisited = e.target.checked;
-        currentLayer.resetStyle();
-    });
 
     function show() {
         var key = state.region.id + ':' + state.areaSet.id + ':' + state.metric;
