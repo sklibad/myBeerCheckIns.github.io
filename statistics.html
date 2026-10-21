@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
-    <link rel="stylesheet" href="common.css?v=43" />
-    <link rel="stylesheet" href="stats.css?v=43">
+    <link rel="stylesheet" href="common.css?v=44" />
+    <link rel="stylesheet" href="stats.css?v=44">
     <script src="https://code.highcharts.com/13.1.1/highcharts.js"></script>
     <script src="https://code.highcharts.com/13.1.1/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/13.1.1/modules/data.js"></script>
     <script src="https://code.highcharts.com/13.1.1/modules/accessibility.js"></script>
-    <script src="stats_data.js?v=43" type="text/javascript"></script>
+    <script src="stats_data.js?v=44" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <title>MyBeerCheckIns - Statistics</title>
-    <script src="nav.js?v=43" defer></script>
+    <script src="nav.js?v=44" defer></script>
 </head>
 <body>
     <header class="site-header">
         <div class="header-content">
-            <a class="logo-text" href="index.html">MyBeerCheckIns</a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="panel" id="site-nav">
-                <a href="index.html">Home</a>
-                <a href="beer_terminology.html">Beerminology</a>
-                <a href="map4.html">Check-in Map</a>
+            <a class="logo" href="map4.html" aria-label="MyBeerCheckIns – Check-in Map">
+                <span class="logo-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M6 6h9v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M15 9h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/><path d="M6 6a2.5 2.5 0 0 1 4.5-1.5A2.5 2.5 0 0 1 15 6"/><path d="M9 10v7M12 10v7"/></svg>
+                </span>
+                <span class="logo-text">My<span class="logo-accent">Beer</span>CheckIns</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="map4.html"><span class="nav-long">Check-in Map</span><span class="nav-short">Map</span></a>
                 <a href="cartograms.html">Cartograms</a>
-                <a href="statistics.html">Statistics</a>
+                <a href="statistics.html"><span class="nav-long">Statistics</span><span class="nav-short">Stats</span></a>
             </nav>
         </div>
     </header>

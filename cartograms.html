@@ -5,29 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=43" />
-    <link rel="stylesheet" href="cartogram.css?v=43" />
+    <link rel="stylesheet" href="common.css?v=44" />
+    <link rel="stylesheet" href="cartogram.css?v=44" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="Control.FullScreen.js?v=43"></script>
-    <script src="cartogram.js?v=43"></script>
-    <script src="place_years.js?v=43"></script>
-    <script src="circles.js?v=43"></script>
+    <script src="Control.FullScreen.js?v=44"></script>
+    <script src="cartogram.js?v=44"></script>
+    <script src="place_years.js?v=44"></script>
+    <script src="circles.js?v=44"></script>
     <title>Cartograms</title>
-    <script src="nav.js?v=43" defer></script>
+    <script src="nav.js?v=44" defer></script>
 </head>
 <body>
     <header class="site-header">
         <div class="header-content">
-            <a class="logo-text" href="index.html">MyBeerCheckIns</a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="panel" id="site-nav">
-                <a href="index.html">Home</a>
-                <a href="beer_terminology.html">Beerminology</a>
-                <a href="map4.html">Check-in Map</a>
+            <a class="logo" href="map4.html" aria-label="MyBeerCheckIns – Check-in Map">
+                <span class="logo-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M6 6h9v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M15 9h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/><path d="M6 6a2.5 2.5 0 0 1 4.5-1.5A2.5 2.5 0 0 1 15 6"/><path d="M9 10v7M12 10v7"/></svg>
+                </span>
+                <span class="logo-text">My<span class="logo-accent">Beer</span>CheckIns</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="map4.html"><span class="nav-long">Check-in Map</span><span class="nav-short">Map</span></a>
                 <a href="cartograms.html">Cartograms</a>
-                <a href="statistics.html">Statistics</a>
+                <a href="statistics.html"><span class="nav-long">Statistics</span><span class="nav-short">Stats</span></a>
             </nav>
         </div>
     </header>
@@ -37,7 +37,7 @@
         initCartograms([{
             id: 'prague',
             label: 'Prague',
-            script: 'map1.js?v=43',
+            script: 'map1.js?v=44',
             setup: function () {
                 return {
                     nameProperty: 'NAME_2',
@@ -54,7 +54,7 @@
         }, {
             id: 'czechia',
             label: 'Czechia',
-            script: 'map2.js?v=43',
+            script: 'map2.js?v=44',
             setup: function () {
                 return {
                     nameProperty: 'NAME_2',
@@ -80,7 +80,7 @@
         }, {
             id: 'world',
             label: 'World',
-            script: 'map3.js?v=43',
+            script: 'map3.js?v=44',
             // the whole world on large screens; on phones it would be tiny, so Europe,
             // where most of the check-ins are
             view: function (small) {

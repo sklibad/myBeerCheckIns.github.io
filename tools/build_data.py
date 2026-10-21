@@ -36,8 +36,7 @@ from shapely.validation import make_valid
 from round_coordinates import round_coordinates
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HTML_PAGES = ['index.html', 'beer_terminology.html', 'cartograms.html', 'map4.html',
-              'statistics.html']
+HTML_PAGES = ['cartograms.html', 'map4.html', 'statistics.html']
 REQUIRED = ['ID', 'Beer', 'Brewery', 'Brewery_location', 'Venue', 'Venue_location', 'Date']
 
 

@@ -5,6 +5,7 @@
     --color-header-hover: rgb(84, 35, 35);
     --color-page: #c4b494;
     --color-section: rgb(165, 42, 42);
+    --color-accent: #f3b23a;
     --header-height: 56px;
 }
 
@@ -23,184 +24,120 @@ header.site-header {
     top: 0;
     z-index: 2000; /* above Leaflet controls (1000) */
     background-color: var(--color-header);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     font-family: Arial, sans-serif;
 }
 
+/* full width, so the logo lines up with the map below */
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    max-width: 1200px;
     min-height: var(--header-height);
-    margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 18px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    color: white;
+    text-decoration: none;
+}
+
+.logo-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+}
+
+.logo-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--color-header);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .logo-text {
-    color: white;
+    font-size: 19px;
     font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
+    letter-spacing: 0.2px;
     white-space: nowrap;
 }
 
-.panel {
+.logo-accent {
+    color: var(--color-accent);
+}
+
+/* ---------- Navigation: pills like the switches on the maps ---------- */
+
+.site-nav {
     display: flex;
-    align-items: center;
-    gap: 4px;
+    flex-shrink: 0;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.panel a,
-.dropbtn {
-    display: block;
-    color: white;
+.site-nav a {
+    padding: 7px 16px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    font-weight: bold;
     text-decoration: none;
-    font-family: inherit;
-    font-size: 16px;
-    line-height: 1.2;
-    padding: 10px 12px;
-    border-radius: 4px;
+    white-space: nowrap;
+    transition: background-color 0.15s, color 0.15s;
 }
 
-.panel a:hover,
-.panel a:focus-visible,
-.dropbtn:hover,
-.dropbtn:focus-visible {
-    background-color: var(--color-header-hover);
+.site-nav a:hover,
+.site-nav a:focus-visible {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: white;
+    outline: none;
 }
 
-.panel a[aria-current="page"],
-.dropbtn[aria-current="page"] {
-    box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.8);
+.site-nav a[aria-current="page"] {
+    background-color: rgb(238, 231, 212);
+    color: var(--color-header);
 }
 
-/* ---------- Cartograms dropdown ---------- */
-
-.dropdown {
-    position: relative;
-}
-
-.dropbtn {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn::after {
-    content: "";
-    display: inline-block;
-    margin-left: 6px;
-    vertical-align: middle;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 5px solid currentColor;
-}
-
-.dropdown-content {
+.nav-short {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 170px;
-    padding: 4px 0;
-    background-color: var(--color-header);
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.dropdown-content a {
-    border-radius: 0;
-}
-
-.dropdown.open .dropdown-content {
-    display: block;
-}
-
-@media (hover: hover) {
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-}
-
-/* ---------- Hamburger toggle (mobile only) ---------- */
-
-.nav-toggle {
-    display: none;
-    width: 44px;
-    height: 44px;
-    padding: 10px;
-    background: none;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.nav-toggle span {
-    display: block;
-    height: 3px;
-    margin: 4px 0;
-    background-color: white;
-    border-radius: 2px;
-    transition: transform 0.2s, opacity 0.2s;
-}
-
-.nav-toggle[aria-expanded="true"] span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-
-.nav-toggle[aria-expanded="true"] span:nth-child(2) {
-    opacity: 0;
-}
-
-.nav-toggle[aria-expanded="true"] span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
-
-@media (max-width: 760px) {
-    .nav-toggle {
-        display: block;
+/* Phones: the logo as an icon only, short labels, no menu button needed */
+@media (max-width: 560px) {
+    .header-content {
+        gap: 10px;
+        padding: 0 10px;
     }
 
-    .panel {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 8px 16px 16px;
-        background-color: var(--color-header);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        max-height: calc(100vh - var(--header-height));
-        overflow-y: auto;
-    }
-
-    .panel.open {
-        display: flex;
-    }
-
-    .panel a,
-    .dropbtn {
-        width: 100%;
-        text-align: left;
-        padding: 14px 12px;
-    }
-
-    /* On phones the submenu expands inline instead of floating */
-    .dropdown-content {
-        position: static;
-        box-shadow: none;
-        padding: 0 0 0 16px;
-    }
-
-    .dropdown:hover .dropdown-content {
+    .logo-text {
         display: none;
     }
 
-    .dropdown.open .dropdown-content {
-        display: block;
+    .site-nav a {
+        padding: 8px 13px;
+        font-size: 14px;
+    }
+
+    .nav-long {
+        display: none;
+    }
+
+    .nav-short {
+        display: inline;
     }
 }
