@@ -167,8 +167,21 @@ function choropleth(densities) {
 
 var AUTHOR_LINK = '<a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>';
 
+// "Light" (Esri World Light Gray: grey without colours, labels on top) is the default: the
+// class colours of the cartograms read much better on it than on the colourful OpenStreetMap
+var ESRI_GRAY = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_';
+
 function createBasemaps() {
     return {
+        "Light": L.layerGroup([
+            L.tileLayer(ESRI_GRAY + 'Base/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 19,
+                maxNativeZoom: 16,
+                attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors | ' + AUTHOR_LINK
+            }),
+            // place names above the coloured areas (pane created by initCartograms)
+            L.tileLayer(ESRI_GRAY + 'Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 16, pane: 'cartoLabels' })
+        ]),
         "OS Map": L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | ' + AUTHOR_LINK
@@ -236,9 +249,22 @@ function areaStats(metricId, places, properties, year) {
     return { places: shown, checkIns: checkIns, density: count / properties[areaKey] };
 }
 
+// "12.4" / "0.85" / "1366": about three significant digits
+function formatDensity(value) {
+    return value.toFixed(value >= 100 ? 0 : value >= 1 ? 1 : 2);
+}
+
+// 1st, 2nd, 3rd, 4th, 11th, 21st …
+function ordinal(n) {
+    var suffixes = ['th', 'st', 'nd', 'rd'];
+    var v = n % 100;
+    return n + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+}
+
 // Popup like the venue / brewery popups of the check-in map: dark header with the
-// area and counts, below it the list of places
-function areaPopup(title, metricId, stats) {
+// area and counts (rank: e.g. "12.4 check-ins / 1 000 km² · 5th of 77 districts"),
+// below it the list of places
+function areaPopup(title, metricId, stats, rank) {
     var metric = METRICS[metricId];
     var places = stats.places;
     var sorted = places.slice().sort(function (a, b) { return a.localeCompare(b, 'cs'); });
@@ -247,7 +273,8 @@ function areaPopup(title, metricId, stats) {
         : plural(places.length, 'brewery');
 
     var html = "<div class='popup-header'><span class='popup-title'>" + escapeHtml(title) + "</span>" +
-        (sorted.length ? "<span class='popup-subtitle'>" + subtitle + "</span>" : '') + "</div>";
+        (sorted.length ? "<span class='popup-subtitle'>" + subtitle + "</span>" : '') +
+        (rank ? "<span class='popup-subtitle popup-rank'>" + rank + "</span>" : '') + "</div>";
     if (sorted.length) {
         // every place opens the check-in map place view in a window over the cartogram
         // (openPlaceWindow); with Ctrl / middle click in a new tab
@@ -344,7 +371,8 @@ var CartogramLegend = L.Control.extend({
         // Phones: a tap on the button opens the legend, a tap on it or on the map closes it
         if (this.options.collapsed) {
             container.classList.add('collapsible');
-            L.DomEvent.on(container, 'click', function () {
+            L.DomEvent.on(container, 'click', function (e) {
+                if (e.target.closest('.carto-coverage')) return;
                 this.setOpen(container.classList.contains('collapsed'));
             }, this);
             map.on('click', function () { this.setOpen(false); }, this);
@@ -356,6 +384,13 @@ var CartogramLegend = L.Control.extend({
         if (!this.options.collapsed) return;
         this.getContainer().classList.toggle('collapsed', !open);
         this._button.setAttribute('aria-expanded', open);
+    },
+
+    // Footer below the legend (coverage of the areas), kept when the legend is redrawn
+    setCoverage: function (html) {
+        var footer = this._panel.querySelector('.carto-coverage');
+        if (!footer) footer = L.DomUtil.create('div', 'carto-coverage', this._panel);
+        footer.innerHTML = html;
     },
 
     // Proportional circles: nested circles of a few round counts, sized like on the map
@@ -428,8 +463,13 @@ function initCartograms(regions) {
         zoomSnap: small ? 0.25 : 1
     }).setView([49.8, 15.5], 4);
 
+    // labels of the light basemap above the areas, not catching clicks
+    var labelPane = map.createPane('cartoLabels');
+    labelPane.style.zIndex = 450;
+    labelPane.style.pointerEvents = 'none';
+
     var basemaps = createBasemaps();
-    basemaps["OS Map"].addTo(map);
+    basemaps["Light"].addTo(map);
 
     var regionById = function (id) {
         return regions.filter(function (r) { return r.id === id; })[0];
@@ -438,7 +478,8 @@ function initCartograms(regions) {
 
     // year: show check-ins until the end of that year (null = all time)
     // mode: "density" (choropleth) or "total" (proportional circles, where circles.js has them)
-    var state = { region: null, config: null, metric: 'checkIns', areaSet: null, year: null, mode: 'density' };
+    // unvisited: hatch the areas without a check-in (brewery) in the selected time
+    var state = { region: null, config: null, metric: 'checkIns', areaSet: null, year: null, mode: 'density', unvisited: false };
     var configs = {};
     var layers = {};
     var currentLayer = null;
@@ -464,7 +505,14 @@ function initCartograms(regions) {
             }
             return scales[key];
         };
+        var countOf = function (feature, year) {
+            var stats = statsOf(feature, year);
+            return metricId === 'checkIns' ? stats.checkIns : stats.places.length;
+        };
         var style = function (feature) {
+            if (state.unvisited && !countOf(feature, state.year)) {
+                return { fillColor: 'url(#carto-unvisited)', fillOpacity: 1, color: '#232323', weight: 1.2 };
+            }
             if (state.mode === 'total') {
                 return { fillColor: '#f4ecd8', fillOpacity: 0.55, color: '#232323', weight: 1.2 };
             }
@@ -475,12 +523,34 @@ function initCartograms(regions) {
                 weight: 1.2
             };
         };
+        // Rank among all areas of the set in the selected time: by density, in the Total view by
+        // the count ("5th of 77 districts"); areas with nothing get no rank
+        var features = areaSet.geojson[0].features;
+        var rankValues = {};
+        var rankText = function (feature) {
+            var total = state.mode === 'total';
+            var key = (state.year === null ? 'all' : state.year) + (total ? ':total' : ':density');
+            var valueOf = function (f) { return total ? countOf(f, state.year) : statsOf(f, state.year).density; };
+            if (!rankValues[key]) rankValues[key] = features.map(valueOf);
+            var value = valueOf(feature);
+            if (!value) return '';
+            var rank = 1 + rankValues[key].filter(function (v) { return v > value; }).length;
+            var place = ordinal(rank) + ' of ' + features.length + ' ' + areaSet.label.toLowerCase();
+            if (total) return place + ' by ' + (metricId === 'checkIns' ? 'check-ins' : 'breweries');
+            return formatDensity(value) + ' ' + (metricId === 'checkIns' ? 'check-ins' : 'breweries') + ' ' +
+                areaSet.unit.replace(/^per /, '/ ') + ' \u00b7 ' + place;
+        };
+        var popupHtml = function (feature) {
+            var name = feature.properties[config.nameProperty];
+            return areaPopup(areaTitle(areaSet, name), metricId, statsOf(feature, state.year), rankText(feature));
+        };
+
         var layer = L.geoJSON(areaSet.geojson, {
             style: style,
             onEachFeature: function (feature, featureLayer) {
                 var name = feature.properties[config.nameProperty];
                 featureLayer.bindPopup(function () {
-                    return areaPopup(areaTitle(areaSet, name), metricId, statsOf(feature, state.year));
+                    return popupHtml(feature);
                 }, {
                     className: 'carto-popup',
                     maxWidth: Math.min(320, window.innerWidth - 40),
@@ -493,7 +563,7 @@ function initCartograms(regions) {
             }
         });
         addHighlight(layer);
-        return { layer: layer, scaleFor: scaleFor, statsOf: statsOf };
+        return { layer: layer, scaleFor: scaleFor, statsOf: statsOf, countOf: countOf, popupHtml: popupHtml };
     }
 
     function circlesKey() {
@@ -521,7 +591,7 @@ function initCartograms(regions) {
     // Proportional circles of one area set and metric. One size scale for all years. A circle
     // sits on the pole of its area while it fits there (for the shown year and zoom); otherwise
     // it grows from its spot outside the territory (the same spot in every year) with a leader line
-    function buildCircles(config, areaSet, metricId, statsOf) {
+    function buildCircles(config, areaSet, metricId, statsOf, popupHtml) {
         var key = state.region.id + '/' + areaSet.id;
         var poles = areaCircles[key].poles;
         var profile = circleProfile(key);
@@ -542,7 +612,7 @@ function initCartograms(regions) {
                 L.circleMarker(pole, { radius: 2.5, color: '#3c2828', weight: 1, fillColor: '#3c2828', fillOpacity: 1, interactive: false })
             ]);
             item.marker.bindPopup(function () {
-                return areaPopup(areaTitle(areaSet, name), metricId, statsOf(feature, state.year));
+                return popupHtml(feature);
             }, {
                 className: 'carto-popup',
                 maxWidth: Math.min(320, window.innerWidth - 40),
@@ -550,7 +620,13 @@ function initCartograms(regions) {
                 autoPanPadding: [16, 16]
             });
             if (!isTouchDevice) {
-                item.marker.bindTooltip(escapeHtml(areaTitle(areaSet, name)), { sticky: true, className: 'carto-tooltip' });
+                var tooltip = escapeHtml(areaTitle(areaSet, name));
+                item.marker.bindTooltip(tooltip, { sticky: true, className: 'carto-tooltip' });
+                // the name would cover the popup
+                item.marker.on('popupopen', function () { item.marker.unbindTooltip(); });
+                item.marker.on('popupclose', function () {
+                    item.marker.bindTooltip(tooltip, { sticky: true, className: 'carto-tooltip' });
+                });
             }
             items.push(item);
         });
@@ -641,6 +717,37 @@ function initCartograms(regions) {
     var circleLayers = {};
     var currentCircles = null;
 
+    // Hatch pattern for the areas without a check-in, in the SVG the areas are drawn in
+    function ensureHatch() {
+        var svg = map.getPane('overlayPane').querySelector('svg');
+        if (!svg || svg.querySelector('#carto-unvisited')) return;
+        var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        defs.innerHTML = '<pattern id="carto-unvisited" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">' +
+            '<rect width="7" height="7" fill="rgba(255, 255, 255, 0.55)"/>' +
+            '<line x1="0" y1="0" x2="0" y2="7" stroke="#993404" stroke-width="2.4" stroke-opacity="0.6"/></pattern>';
+        svg.insertBefore(defs, svg.firstChild);
+    }
+
+    // "Visited 28 / 77 districts" with a bar, and the switch for hatching the rest
+    function showCoverage(key) {
+        var features = state.areaSet.geojson[0].features;
+        var visited = features.filter(function (f) { return layers[key].countOf(f, state.year) > 0; }).length;
+        var noun = state.areaSet.label.toLowerCase();
+        var checkIns = state.metric === 'checkIns';
+        legend.setCoverage(
+            '<div class="carto-coverage-text">' + (checkIns ? 'Visited ' : 'Breweries in ') +
+            '<b>' + visited + '</b> / ' + features.length + ' ' + noun + '</div>' +
+            '<div class="carto-coverage-bar"><span style="width: ' + (100 * visited / features.length).toFixed(1) + '%"></span></div>' +
+            '<label class="carto-coverage-toggle"><input type="checkbox" class="carto-unvisited-toggle"' + (state.unvisited ? ' checked' : '') + '>' +
+            (checkIns ? 'Highlight unvisited ' + noun : 'Highlight ' + noun + ' without one') + '</label>');
+    }
+
+    legend.getContainer().addEventListener('change', function (e) {
+        if (!e.target.classList.contains('carto-unvisited-toggle')) return;
+        state.unvisited = e.target.checked;
+        currentLayer.resetStyle();
+    });
+
     function show() {
         var key = state.region.id + ':' + state.areaSet.id + ':' + state.metric;
         if (!layers[key]) layers[key] = buildLayer(state.config, state.areaSet, state.metric);
@@ -649,15 +756,17 @@ function initCartograms(regions) {
         currentCircles = null;
         if (!hasCircles()) state.mode = 'density';
         currentLayer = layers[key].layer.addTo(map);
+        ensureHatch();
         currentLayer.resetStyle();
         var title = METRICS[state.metric].label + (state.year ? ' until ' + state.year : '');
         if (state.mode === 'total') {
-            if (!circleLayers[key]) circleLayers[key] = buildCircles(state.config, state.areaSet, state.metric, layers[key].statsOf);
+            if (!circleLayers[key]) circleLayers[key] = buildCircles(state.config, state.areaSet, state.metric, layers[key].statsOf, layers[key].popupHtml);
             currentCircles = circleLayers[key];
             currentCircles.layer.addTo(map);
             updateCircles();
         } else {
             legend.update(title, state.areaSet.unit, layers[key].scaleFor(state.year).legendItems(), state.config.fillOpacity);
+            showCoverage(key);
         }
     }
 
@@ -666,6 +775,7 @@ function initCartograms(regions) {
         currentCircles.update();
         legend.updateCircles(METRICS[state.metric].label + (state.year ? ' until ' + state.year : ''),
             state.metric === 'checkIns' ? 'number of check-ins' : 'number of breweries', currentCircles.legendCircles());
+        showCoverage(state.region.id + ':' + state.areaSet.id + ':' + state.metric);
     }
 
     map.on('zoomend', updateCircles);

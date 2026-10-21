@@ -475,6 +475,41 @@ path.leaflet-interactive:focus {
     font-variant-numeric: tabular-nums;
 }
 
+/* Coverage below the legend: "Visited 28 / 77 districts" */
+.carto-coverage {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(87, 62, 62, 0.2);
+    font-size: 12px;
+}
+
+.carto-coverage-bar {
+    height: 6px;
+    margin: 5px 0 7px;
+    border-radius: 3px;
+    background-color: rgba(87, 62, 62, 0.15);
+    overflow: hidden;
+}
+
+.carto-coverage-bar span {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+    background-color: #cc4c02;
+}
+
+.carto-coverage-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.carto-coverage-toggle input {
+    margin: 0;
+    accent-color: rgb(87, 62, 62);
+}
+
 /* Phones: a button that opens the legend */
 .carto-legend.collapsed .carto-legend-panel {
     display: none;
@@ -543,6 +578,12 @@ path.leaflet-interactive:focus {
     margin-top: 2px;
     font-size: 12px;
     opacity: 0.8;
+}
+
+/* density and rank of the area */
+.popup-rank {
+    opacity: 1;
+    color: #f3d9a4;
 }
 
 .carto-popup a.leaflet-popup-close-button {
