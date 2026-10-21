@@ -500,7 +500,8 @@ path.leaflet-interactive:focus {
 
 /* hatched like the areas without any check-in (SVG pattern #carto-unvisited) */
 .carto-legend-swatch.hatched {
-    background: repeating-linear-gradient(45deg, rgba(153, 52, 4, 0.6) 0 2px, rgba(255, 255, 255, 0.55) 2px 5px);
+    /* same as the map pattern: "/" lines, 1.2 px visible line every 7 px */
+    background: repeating-linear-gradient(135deg, rgba(153, 52, 4, 0.6) 0 1.2px, rgba(255, 255, 255, 0.55) 1.2px 7px);
 }
 
 /* Phones: a button that opens the legend */
