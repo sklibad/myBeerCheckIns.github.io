@@ -360,14 +360,21 @@ function initCartograms(regions) {
             var places = areaSet.places[metricId][feature.properties[config.nameProperty]] || [];
             return areaStats(metricId, places, feature.properties, year);
         };
-        // The classes come from all time and stay for every year, so the years can be compared
-        // and the map fills up as the years go by
-        var scale = choropleth(areaSet.geojson[0].features.map(function (feature) {
-            return statsOf(feature, null).density;
-        }));
+        // Classes of the data until the selected year, computed once per year: the legend shows
+        // the intervals of that time and an area changes colour as it grows against the others
+        var scales = {};
+        var scaleFor = function (year) {
+            var key = year === null ? 'all' : year;
+            if (!scales[key]) {
+                scales[key] = choropleth(areaSet.geojson[0].features.map(function (feature) {
+                    return statsOf(feature, year).density;
+                }));
+            }
+            return scales[key];
+        };
         var style = function (feature) {
             return {
-                fillColor: scale.color(statsOf(feature, state.year).density),
+                fillColor: scaleFor(state.year).color(statsOf(feature, state.year).density),
                 fillOpacity: config.fillOpacity,
                 color: '#232323',
                 weight: 1.2
@@ -391,7 +398,7 @@ function initCartograms(regions) {
             }
         });
         addHighlight(layer);
-        return { layer: layer, scale: scale };
+        return { layer: layer, scaleFor: scaleFor };
     }
 
     // The area under the mouse, or with an open popup, gets a dark outline
@@ -428,7 +435,7 @@ function initCartograms(regions) {
         currentLayer = layers[key].layer.addTo(map);
         currentLayer.resetStyle();
         legend.update(METRICS[state.metric].label + (state.year ? ' until ' + state.year : ''),
-            state.areaSet.unit, layers[key].scale.legendItems(), state.config.fillOpacity);
+            state.areaSet.unit, layers[key].scaleFor(state.year).legendItems(), state.config.fillOpacity);
     }
 
     // Years with check-ins; the last one equals "All time"
