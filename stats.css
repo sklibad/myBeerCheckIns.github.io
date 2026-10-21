@@ -1,212 +1,606 @@
+/* Statistics page: cards in the colours of the maps (beige panels, brown text, pills) */
+
+:root {
+    --card: rgb(238, 231, 212);
+    --brown: rgb(87, 62, 62);
+    --brown-soft: rgba(87, 62, 62, 0.65);
+    --line: rgba(87, 62, 62, 0.15);
+    --orange: #cc4c02;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding-top: 0;
-    background-color: #c4b494;
+    font-family: Arial, sans-serif;
+    color: var(--brown);
 }
 
-div#profilestatscontainer {
-    width: calc(100% - 24px);
-    max-width: 1400px;
-    margin: 12px auto;
-    box-sizing: border-box;
-    background-color: #d6cbc1;
-    border: solid 2px #e0d3c5;
-    font-family: FreeSans,helvetica neue,Helvetica,Arial,sans-serif;
-    font-size: 13px;
-    color: #0c0c0c
+.stats {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 20px 18px 40px;
 }
 
-div#profilestatscontainer div.module {
-    padding: 5px;
-    margin-bottom: 20px;
+/* ---------- Title, summary and the year ---------- */
+
+.stats-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-bottom: 16px;
 }
 
-div#profilestatscontainer .align-center {
-    text-align: center
+.stats-top h1 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--brown);
 }
 
-div#profilestatscontainer table.pstable th.align-left,
-table.friends-table {
-    text-align: left
+.stats-summary {
+    margin: 4px 0 0;
+    font-size: 15px;
+    color: var(--brown-soft);
 }
 
-div#profilestatscontainer table.pstable th.align-center,
-table.friends-table {
-    text-align: center
+.year-pills {
+    display: flex;
+    max-width: 100%;
+    padding: 3px;
+    overflow-x: auto;
+    border-radius: 999px;
+    background-color: var(--card);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    scrollbar-width: none;
 }
 
-div#profilestatscontainer table.pstable th.align-right,
-table.friends-table {
-    text-align: right
+.year-pills::-webkit-scrollbar {
+    display: none;
 }
 
-div#profilestatscontainer div.header {
-    background-color: #56521a;
-    border: solid 1px #000;
-    text-align: center
+.year-pills input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
 
-div#profilestatscontainer div.header span {
-    color: #fff;
-    font-weight: 700;
-    vertical-align: middle;
-    font-size: medium
-}
-
-div#profilestatscontainer table.pstable {
-    font-size: 13px;
-    border-spacing: 4px;
-    border-collapse: separate;
-    width: 100%;
-    margin-top: 5px;
-}
-
-div#profilestatscontainer table.friends-table {
+.year-pills label {
+    padding: 7px 14px;
+    border-radius: 999px;
     font-size: 14px;
-    border-spacing: 4px;
-    border-collapse: separate;
-    width: 100%;
-    margin-top: 5px;
-}
-
-div#profilestatscontainer table.pstable th,
-table.friends-table th {
-    text-align: center
-}
-
-div#profilestatscontainer table.pstable th,
-td,
-table.friends-table th,
-td {
-    background-color: #f0eae5;
+    font-weight: bold;
     white-space: nowrap;
-    vertical-align: center
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
 }
 
-div#profilestatscontainer table.pstable td,
-th {   
-    padding: 1px 3px;
+.year-pills label:hover {
+    background-color: rgba(87, 62, 62, 0.1);
 }
 
-div#profilestatscontainer table.friends-table th {
-    padding: auto; 
-    border: 2px solid rgb(87, 62, 62);
+.year-pills input:checked + label {
+    background-color: var(--brown);
+    color: white;
 }
 
-div#profilestatscontainer table.friends-table td,
-table.pstable td,
-th {
-    padding: auto;
-    border: 1px solid rgb(87, 62, 62);
+.year-pills input:focus-visible + label {
+    outline: 2px solid var(--brown);
+    outline-offset: 2px;
 }
 
-div#profilestatscontainer table.pstable-small {
-    border-spacing: 1px;
-    border-collapse: separate;
-    width: 100%;
-    font-size: 9px;
-    padding: 0;
-    margin-top: 5px;
+/* ---------- Key numbers ---------- */
+
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
 }
 
-div#profilestatscontainer table.pstable-small td,
-th {
-    background-color: #f0eae5;
-    padding: 0 1px;
-    margin-top: 5px;
-    white-space: nowrap;
-    vertical-align: center;
-    width: 19px;
-    height: 18px;
-    text-align: center;
-}
-
-.align-center {
-    text-align: center
-}
-
-/* Same gap below the module header as the tables have (5px margin + 4px border-spacing) */
-.highcharts-figure {
-    height: 80vh;
-    margin-top: 9px;
-}
-
-#container {
-    height: 100%;
-    background: url(ikony/europe_cut.svg) 0 0 no-repeat;
-    background-size: contain; /* Scale the image to fit within the container */
-    background-position: center; /* Center the image within the container */
+.kpi {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    padding-left: 7%;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background-color: var(--card);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.align-tables {
+.kpi-value {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.kpi-label {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--brown-soft);
+}
+
+/* ---------- Cards ---------- */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 16px;
+}
+
+.card {
     display: flex;
-    gap: 2%;
+    flex-direction: column;
+    min-width: 0;
+    padding: 16px 18px 18px;
+    border-radius: 14px;
+    background-color: var(--card);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.align-tables > .table-scroll {
+.card-wide {
+    grid-column: 1 / -1;
+}
+
+.card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-bottom: 12px;
+}
+
+.card-header h2 {
     flex: 1;
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.card-note,
+.card-text {
+    font-size: 13px;
+    color: var(--brown-soft);
+}
+
+.card-text {
+    margin: -4px 0 8px;
+}
+
+.sub-title {
+    margin: 16px 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+/* Most / Best rated, Best / Worst */
+.pill-toggle {
+    display: flex;
+    padding: 2px;
+    border-radius: 999px;
+    background-color: rgba(87, 62, 62, 0.1);
+}
+
+.pill-toggle button {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--brown);
+    font: bold 12px Arial, sans-serif;
+    cursor: pointer;
+}
+
+.pill-toggle button.active {
+    background-color: var(--brown);
+    color: white;
+}
+
+.empty {
+    padding: 16px 0;
+    color: var(--brown-soft);
+    list-style: none;
+}
+
+/* ---------- Charts ---------- */
+
+.chart-box {
+    position: relative;
+    height: 240px;
+}
+
+.chart-tall {
+    height: 280px;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-item b {
+    margin-left: 2px;
+}
+
+.legend-share {
+    color: var(--brown-soft);
+    font-size: 12px;
+}
+
+.legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+.styles-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.chart-doughnut {
+    height: 180px;
+}
+
+.legend-column {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 6px 8px;
+    align-items: center;
+    margin-top: 0;
+}
+
+/* swatch | name | count | share in columns */
+.legend-column .legend-item {
+    display: contents;
+}
+
+.legend-column .legend-item b {
+    margin-left: 0;
+    text-align: right;
+}
+
+.legend-column .legend-share {
+    min-width: 34px;
+    text-align: right;
+}
+
+.legend-center {
+    justify-content: center;
+}
+
+.serving-bar {
+    display: flex;
+    height: 14px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.serving-bar span {
+    height: 100%;
+}
+
+.rose {
+    height: 380px;
+}
+
+/* ---------- Calendar heatmap ---------- */
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cal-row {
+    display: grid;
+    grid-template-columns: 34px repeat(31, minmax(0, 1fr));
+    gap: 3px;
+    align-items: center;
+}
+
+.cal-head span {
+    font-size: 11px;
+    text-align: center;
+    color: var(--brown-soft);
+}
+
+.cal-month {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.cal-cell {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background-color: rgba(87, 62, 62, 0.08);
+}
+
+.cal-none {
+    background: none;
+}
+
+.cal-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--brown-soft);
+}
+
+.cal-legend .cal-cell {
+    width: 12px;
+}
+
+.cal-legend span:first-child {
+    margin-right: 4px;
+}
+
+.cal-legend span:last-child {
+    margin-left: 4px;
+}
+
+/* ---------- Beers ---------- */
+
+.beer-list,
+.ranking {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.beer-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+}
+
+.beer-row:first-child {
+    border-top: none;
+}
+
+/* the best / worst ten in two columns on wide screens */
+@media (min-width: 900px) {
+    .beer-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(5, auto);
+        column-gap: 32px;
+    }
+
+    .beer-row:nth-child(6) {
+        border-top: none;
+    }
+}
+
+.beer-score {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    width: 64px;
+    font-size: 16px;
+}
+
+.beer-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     min-width: 0;
 }
 
-.table-headline {
-    font-size: 15px;
-    font-style: italic;
+.beer-name {
+    font-weight: bold;
 }
 
-.chart-wrap {
-    height: 280px;
-    margin-top: 9px;
+.beer-sub {
+    font-size: 12px;
+    color: var(--brown-soft);
 }
 
-/* Wide tables scroll sideways inside their own box instead of widening the page */
-.table-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+.style-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    border-radius: 50%;
 }
 
-/* ---------- Phones and tablets ---------- */
+.beer-sub a,
+.rank-name a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+}
+
+.beer-sub a:hover,
+.rank-name a:hover {
+    color: var(--orange);
+}
+
+.rating-dots {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.rating-dots .dot {
+    width: 9px;
+    height: 9px;
+    border: 1px solid var(--brown);
+    border-radius: 50%;
+}
+
+.rating-dots .dot.filled {
+    background-color: #FFD700;
+}
+
+.kpi .rating-dots {
+    margin-top: 2px;
+}
+
+/* ---------- Rankings ---------- */
+
+.rank-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+}
+
+.rank-no {
+    flex-shrink: 0;
+    width: 22px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+    color: var(--brown-soft);
+}
+
+.rank-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.rank-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.rank-bar {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: rgba(87, 62, 62, 0.1);
+}
+
+.rank-bar span {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--orange);
+}
+
+.rank-value {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 44px;
+    font-variant-numeric: tabular-nums;
+}
+
+.rank-value small {
+    font-size: 11px;
+    color: var(--brown-soft);
+}
+
+.avatar {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ---------- Narrower screens ---------- */
+
+@media (max-width: 1000px) {
+    .kpis {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
 @media (max-width: 760px) {
-    div#profilestatscontainer {
-        width: 100%;
-        margin: 0;
-        border: none;
+    .stats {
+        padding: 14px 10px 28px;
     }
 
-    div#profilestatscontainer div.module {
-        margin-bottom: 12px;
+    .stats-top h1 {
+        font-size: 24px;
     }
 
-    div#profilestatscontainer table.friends-table {
-        font-size: 13px;
-        border-spacing: 2px;
+    .kpis {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 
-    /* Pairs of side-by-side tables go below each other */
-    .align-tables {
-        flex-direction: column;
+    .kpi {
+        padding: 12px 14px;
+    }
+
+    .kpi-value {
+        font-size: 24px;
+    }
+
+    .cards {
+        grid-template-columns: minmax(0, 1fr);
         gap: 12px;
     }
 
-    /* Wind rose: box has the same proportions as the map of Europe,
-       so there is no empty space above or below it */
-    .highcharts-figure {
-        height: auto;
-        margin: 7px 0 0; /* tables here: 5px margin + 2px border-spacing */
+    .card {
+        padding: 14px 14px 16px;
     }
 
-    #container {
-        height: auto;
-        aspect-ratio: 7335 / 5785; /* size of ikony/europe_cut.svg */
-        padding-left: 0;
+    .cal-row {
+        grid-template-columns: 28px repeat(31, minmax(0, 1fr));
+        gap: 2px;
     }
 
-    .chart-wrap {
-        height: 240px;
-        margin-top: 7px;
+    .calendar {
+        gap: 2px;
+    }
+
+    .cal-head span {
+        font-size: 9px;
+    }
+
+    .cal-month {
+        font-size: 11px;
+    }
+
+    .cal-cell {
+        border-radius: 2px;
+    }
+
+    .styles-layout {
+        grid-template-columns: 140px 1fr;
+        gap: 12px;
+    }
+
+    .chart-doughnut {
+        height: 140px;
+    }
+
+    .rose {
+        height: 320px;
     }
 }
