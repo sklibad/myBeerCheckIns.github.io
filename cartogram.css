@@ -83,6 +83,17 @@ path.leaflet-interactive:focus {
     height: 22px;
 }
 
+/* "Until" before the year pills, like "Sort" in the check-in map popups */
+.switch-caption {
+    align-self: center;
+    padding: 0 6px 0 10px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: rgb(87, 62, 62);
+}
+
 .overlay-switch label:hover {
     background-color: rgba(87, 62, 62, 0.1);
 }
@@ -440,6 +451,15 @@ path.leaflet-interactive:focus {
 
     .overlay-switch label:has(img) {
         padding-left: 8px;
+    }
+
+    /* the year pills stay in one row on narrow screens */
+    .switch-caption ~ label {
+        padding: 7px 9px;
+    }
+
+    .switch-caption {
+        padding: 0 2px 0 8px;
     }
 
     .overlay-switch label img {

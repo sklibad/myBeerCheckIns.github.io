@@ -109,8 +109,8 @@ function classBounds(classes, hasZero) {
 // natural breaks are searched on log10 of the non-zero values; the number of
 // classes is the smallest one explaining at least 90 % of the variance
 // (goodness of variance fit), 3–6 classes. Zero gets its own grey class.
-function choropleth(geojson, property) {
-    var all = geojson[0].features.map(function (f) { return Number(f.properties[property]) || 0; });
+function choropleth(densities) {
+    var all = densities.map(function (v) { return Number(v) || 0; });
     var values = all.filter(function (v) { return v > 0; }).sort(function (a, b) { return a - b; });
     var hasZero = all.length > values.length;
     var logs = values.map(Math.log10);
@@ -191,14 +191,15 @@ var METRICS = {
     checkIns: {
         label: 'Check-ins',
         icon: 'ikony/pub.png',
-        valueProperty: 'cart_check',
-        countProperty: 'check_ins',
+        // venues of an area; the density counts all their check-ins
+        years: function () { return venueYears; },
         emptyText: "I haven't discovered any venue here yet."
     },
     breweries: {
         label: 'Breweries',
         icon: 'ikony/beer.png',
-        valueProperty: 'cart_brew',
+        // breweries of an area; the density counts the breweries
+        years: function () { return breweryYears; },
         emptyText: "I haven't tried any beer brewed here yet."
     }
 };
@@ -213,13 +214,36 @@ function escapeHtml(text) {
     });
 }
 
+// Places of an area with a check-in until the end of `year` (null = all time), their number
+// of check-ins and the density: check-ins (or breweries) per area unit of the area set
+function areaStats(metricId, places, properties, year) {
+    var yearsOf = METRICS[metricId].years();
+    var shown = [];
+    var checkIns = 0;
+    places.forEach(function (place) {
+        var count = 0;
+        var years = yearsOf[place] || {};
+        Object.keys(years).forEach(function (y) {
+            if (year === null || Number(y) <= year) count += years[y];
+        });
+        if (count) {
+            shown.push(place);
+            checkIns += count;
+        }
+    });
+    var areaKey = Object.keys(properties).filter(function (key) { return key.indexOf('area_') === 0; })[0];
+    var count = metricId === 'checkIns' ? checkIns : shown.length;
+    return { places: shown, checkIns: checkIns, density: count / properties[areaKey] };
+}
+
 // Popup like the venue / brewery popups of the check-in map: dark header with the
 // area and counts, below it the list of places
-function areaPopup(title, metricId, places, properties) {
+function areaPopup(title, metricId, stats) {
     var metric = METRICS[metricId];
+    var places = stats.places;
     var sorted = places.slice().sort(function (a, b) { return a.localeCompare(b, 'cs'); });
     var subtitle = metricId === 'checkIns'
-        ? plural(places.length, 'venue') + ' · ' + plural(Number(properties[metric.countProperty]) || 0, 'check-in')
+        ? plural(places.length, 'venue') + ' · ' + plural(stats.checkIns, 'check-in')
         : plural(places.length, 'brewery');
 
     var html = "<div class='popup-header'><span class='popup-title'>" + escapeHtml(title) + "</span>" +
@@ -299,7 +323,8 @@ function initCartogram(options) {
     var basemaps = createBasemaps();
     basemaps["OS Map"].addTo(map);
 
-    var state = { metric: 'checkIns', areaSet: options.areaSets[0] };
+    // year: show check-ins until the end of that year (null = all time)
+    var state = { metric: 'checkIns', areaSet: options.areaSets[0], year: null };
     var layers = {};
     var currentLayer = null;
 
@@ -308,11 +333,18 @@ function initCartogram(options) {
     }
 
     function buildLayer(areaSet, metricId) {
-        var metric = METRICS[metricId];
-        var scale = choropleth(areaSet.geojson, metric.valueProperty);
+        var statsOf = function (feature, year) {
+            var places = areaSet.places[metricId][feature.properties[options.nameProperty]] || [];
+            return areaStats(metricId, places, feature.properties, year);
+        };
+        // The classes come from all time and stay for every year, so the years can be compared
+        // and the map fills up as the years go by
+        var scale = choropleth(areaSet.geojson[0].features.map(function (feature) {
+            return statsOf(feature, null).density;
+        }));
         var style = function (feature) {
             return {
-                fillColor: scale.color(feature.properties[metric.valueProperty]),
+                fillColor: scale.color(statsOf(feature, state.year).density),
                 fillOpacity: options.fillOpacity,
                 color: '#232323',
                 weight: 1.2
@@ -322,8 +354,9 @@ function initCartogram(options) {
             style: style,
             onEachFeature: function (feature, featureLayer) {
                 var name = feature.properties[options.nameProperty];
-                var places = areaSet.places[metricId][name] || [];
-                featureLayer.bindPopup(areaPopup(areaTitle(areaSet, name), metricId, places, feature.properties), {
+                featureLayer.bindPopup(function () {
+                    return areaPopup(areaTitle(areaSet, name), metricId, statsOf(feature, state.year));
+                }, {
                     className: 'carto-popup',
                     maxWidth: Math.min(320, window.innerWidth - 40),
                     minWidth: Math.min(220, window.innerWidth - 40),
@@ -370,17 +403,33 @@ function initCartogram(options) {
         if (!layers[key]) layers[key] = buildLayer(state.areaSet, state.metric);
         if (currentLayer) map.removeLayer(currentLayer);
         currentLayer = layers[key].layer.addTo(map);
-        legend.update(METRICS[state.metric].label, state.areaSet.unit, layers[key].scale.legendItems(), options.fillOpacity);
+        currentLayer.resetStyle();
+        legend.update(METRICS[state.metric].label + (state.year ? ' until ' + state.year : ''),
+            state.areaSet.unit, layers[key].scale.legendItems(), options.fillOpacity);
     }
+
+    // Years with check-ins; the last one equals "All time"
+    var years = {};
+    [venueYears, breweryYears].forEach(function (places) {
+        Object.keys(places).forEach(function (place) {
+            Object.keys(places[place]).forEach(function (year) { years[year] = true; });
+        });
+    });
+    var yearItems = Object.keys(years).map(Number).sort().slice(0, -1).map(function (year) {
+        return { id: String(year), label: String(year) };
+    }).concat([{ id: 'all', label: 'All time' }]);
 
     // Switch: Check-ins / Breweries pills (and Regions / Districts when there are two area sets)
     var switchControl = L.control({ position: 'topright' });
     switchControl.onAdd = function () {
         var div = L.DomUtil.create('div', 'carto-switches');
-        var group = function (name, label, items) {
-            return '<div class="overlay-switch" role="radiogroup" aria-label="' + label + '">' + items.map(function (item, i) {
+        // caption: small text before the pills; checked: id of the selected item (default the first)
+        var group = function (name, label, items, caption, checked) {
+            return '<div class="overlay-switch" role="radiogroup" aria-label="' + label + '">' +
+                (caption ? '<span class="switch-caption">' + caption + '</span>' : '') + items.map(function (item, i) {
                 var id = name + '-' + item.id;
-                return '<input type="radio" name="' + name + '" value="' + item.id + '" id="' + id + '"' + (i === 0 ? ' checked' : '') + '>' +
+                var isChecked = checked ? item.id === checked : i === 0;
+                return '<input type="radio" name="' + name + '" value="' + item.id + '" id="' + id + '"' + (isChecked ? ' checked' : '') + '>' +
                     '<label for="' + id + '">' + (item.icon ? '<img src="' + item.icon + '" alt="">' : '') + item.label + '</label>';
             }).join('') + '</div>';
         };
@@ -390,11 +439,16 @@ function initCartogram(options) {
         if (options.areaSets.length > 1) {
             div.innerHTML += group('areas', 'Areas', options.areaSets);
         }
+        if (yearItems.length > 1) {
+            div.innerHTML += group('year', 'Check-ins until the end of', yearItems, 'Until', 'all');
+        }
         L.DomEvent.disableClickPropagation(div);
         div.addEventListener('change', function (e) {
             map.closePopup();
             if (e.target.name === 'metric') {
                 state.metric = e.target.value;
+            } else if (e.target.name === 'year') {
+                state.year = e.target.value === 'all' ? null : Number(e.target.value);
             } else {
                 state.areaSet = options.areaSets.filter(function (s) { return s.id === e.target.value; })[0];
             }

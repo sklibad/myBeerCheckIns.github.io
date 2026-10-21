@@ -9,7 +9,8 @@ Usage (from the repository root):
     python tools/build_data.py --csv path/to/database.csv --boundaries C:/untappd_app
 
 Writes:
-    data.js, stats_data.js, map1.js, map2.js, map3.js    (read by the pages)
+    data.js, stats_data.js, map1.js, map2.js, map3.js,
+    place_years.js                                        (read by the pages)
     check_ins.txt, venue_check_ins.txt, brewery_check_ins.txt,
     venues.geojson, breweries.geojson, *_cartogram.geojson  (intermediate outputs)
 and bumps the ?v=N asset version in the HTML pages when a JS file changed.
@@ -94,6 +95,16 @@ def group_check_ins(records, key):
         groups.setdefault(record[key], []).append(rest)
     return {place: sorted(items, key=lambda x: str(x['Beer']).lower())
             for place, items in groups.items()}
+
+
+def place_years(records, key):
+    """{place: {year: number of check-ins}} with years in order"""
+    result = {}
+    for record in records:
+        years = result.setdefault(record[key], {})
+        year = record['Date'][-4:]
+        years[year] = years.get(year, 0) + 1
+    return {place: dict(sorted(years.items())) for place, years in sorted(result.items())}
 
 
 # ---------------------------------------------------------------- geography
@@ -318,6 +329,9 @@ def main():
         'map3.js': [('countries', collection('countries_cartogram')),
                     ('breweries', js_dict(geo['countryBreweries'])),
                     ('venues', js_dict(geo['countryVenues']))],
+        # check-ins per year of every place, for the year filter of the cartograms
+        'place_years.js': [('venueYears', js_dict(place_years(records, 'Venue'))),
+                           ('breweryYears', js_dict(place_years(records, 'Brewery')))],
     }
     changed = []
     for name, variables in js_files.items():
