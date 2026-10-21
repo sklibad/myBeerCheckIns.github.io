@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="src/leaflet.legend.css?v=21" />
-    <link rel="stylesheet" href="common.css?v=21" />
-    <link rel="stylesheet" href="cartogram.css?v=21" />
+    <link rel="stylesheet" href="src/leaflet.legend.css?v=22" />
+    <link rel="stylesheet" href="common.css?v=22" />
+    <link rel="stylesheet" href="cartogram.css?v=22" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="Control.FullScreen.js?v=21"></script>
-    <script src="cartogram.js?v=21"></script>
-    <script src="map3.js?v=21" type="text/javascript"></script>
-    <script type="text/javascript" src="src/leaflet.legend.js?v=21"></script>
+    <script src="Control.FullScreen.js?v=22"></script>
+    <script src="cartogram.js?v=22"></script>
+    <script src="map3.js?v=22" type="text/javascript"></script>
+    <script type="text/javascript" src="src/leaflet.legend.js?v=22"></script>
     <title>World Choropleth Map</title>
-    <script src="nav.js?v=21" defer></script>
+    <script src="nav.js?v=22" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -89,36 +89,13 @@
         }
 
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function defCountriesCheckInsColor(value) {
-            // Convert the value to a numeric type if it's a string
-            const numericValue = isNaN(value) ? parseFloat(value) : value;
-
-            // Check if the value is within the specified range
-            if (numericValue > 0.1 && numericValue <= 4.7) {
-                return '#fee19c';
-            }
-            else if (numericValue > 4.7 && numericValue <= 24.7) {
-                return '#feb351';
-            }
-            else if (numericValue > 24.7 && numericValue <= 66.3) {
-                return '#ef821e';
-            }
-            else if (numericValue > 66.3 && numericValue <= 386.2) {
-                return '#cc560c';
-            }
-            else if (numericValue > 386.2) {
-                return '#993404';
-            }
-
-            else {
-                return '#D9D9D9'; // Return a default color for values outside the specified range
-            }
-        }
+        // Classes and colours computed from the data (cartogram.js)
+        var countriesCheckInsScale = choropleth(countries, 'cart_check');
 
         var countriesCheckIns = L.geoJSON(countries, {
             style: function (feature) {
                 return {
-                fillColor: defCountriesCheckInsColor(feature.properties.cart_check),
+                fillColor: countriesCheckInsScale.color(feature.properties.cart_check),
                 fillOpacity: 1,
                 color: '#232323',
                 weight: 1.2
@@ -158,36 +135,13 @@
         addHoverHighlight(countriesCheckIns, 2);
 
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function defCountriesBreweriesColor(value) {
-            // Convert the value to a numeric type if it's a string
-            const numericValue = isNaN(value) ? parseFloat(value) : value;
-
-            // Check if the value is within the specified range
-            if (numericValue > 0.00 && numericValue <= 1.28) {
-                return '#ffffd4';
-            }
-            else if (numericValue > 1.28 && numericValue <= 7.91) {
-                return '#fed98e';
-            }
-            else if (numericValue > 7.91 && numericValue <= 18.54) {
-                return '#fe9929';
-            }
-            else if (numericValue > 18.54 && numericValue <= 38.46) {
-                return '#d95f0e';
-            }
-            else if (numericValue > 38.46) {
-                return '#993404';
-            }
-
-            else {
-                return '#D9D9D9'; // Return a default color for values outside the specified range
-            }
-        }
+        // Classes and colours computed from the data (cartogram.js)
+        var countriesBreweriesScale = choropleth(countries, 'cart_brew');
     
         var countriesBreweries = L.geoJSON(countries, {
             style: function (feature) {
                 return {
-                fillColor: defCountriesBreweriesColor(feature.properties.cart_brew),
+                fillColor: countriesBreweriesScale.color(feature.properties.cart_brew),
                 fillOpacity: 1,
                 color: '#232323',
                 weight: 1.2
@@ -244,85 +198,14 @@
             position: "bottomright",
             collapsed: isSmallScreen(),
             title: "Check-Ins/100 000 km²",
-            legends: [
-            {
-                label: "0.1–4.7",
-                type: "rectangle",
-                fillColor: "#fee19c",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "4.8–66.3",
-                type: "rectangle",
-                fillColor: "#feb351",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "66.4–386.1",
-                type: "rectangle",
-                fillColor: "#cc560c",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "386.2–386.3",
-                type: "rectangle",
-                fillColor: "#993404",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            }]
+            legends: countriesCheckInsScale.legends({ fillOpacity: 1, color: '#232323', weight: 1.2 })
         })
 
         var breweriesLegendControl = L.control.Legend({
             position: "bottomright",
             collapsed: isSmallScreen(),
             title: "Breweries/100 000 km²",
-            legends: [{
-                label: "0.1–1.3",
-                type: "rectangle",
-                fillColor: "#ffffd4",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "1.4–7.9",
-                type: "rectangle",
-                fillColor: "#fed98e",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "8.0–18.5",
-                type: "rectangle",
-                fillColor: "#fe9929",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "18.6–38.5",
-                type: "rectangle",
-                fillColor: "#d95f0e",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "38.6–130.9",
-                type: "rectangle",
-                fillColor: "#993404",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            }]
+            legends: countriesBreweriesScale.legends({ fillOpacity: 1, color: '#232323', weight: 1.2 })
         })
         
         var overlayControl = L.control({ position: 'topright' });

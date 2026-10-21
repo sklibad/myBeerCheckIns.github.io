@@ -136,6 +136,17 @@ path.leaflet-interactive:focus {
 
 /* ---------- Legend ---------- */
 
+/* The page sets border-box sizing, so the symbol's padding ate into its width
+   and the canvas overlapped the label; keep the padding outside and add a gap */
+.leaflet-legend-item i {
+    box-sizing: content-box;
+    padding: 0 0 0 2px;
+}
+
+.leaflet-legend-item span {
+    padding-left: 8px;
+}
+
 @media (max-width: 760px) {
     .leaflet-legend {
         font-size: 12px;

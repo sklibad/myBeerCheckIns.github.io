@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="src/leaflet.legend.css?v=21" />
-    <link rel="stylesheet" href="common.css?v=21" />
-    <link rel="stylesheet" href="cartogram.css?v=21" />
+    <link rel="stylesheet" href="src/leaflet.legend.css?v=22" />
+    <link rel="stylesheet" href="common.css?v=22" />
+    <link rel="stylesheet" href="cartogram.css?v=22" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="Control.FullScreen.js?v=21"></script>
-    <script src="cartogram.js?v=21"></script>
-    <script src="map2.js?v=21" type="text/javascript"></script>
-    <script type="text/javascript" src="src/leaflet.legend.js?v=21"></script>
+    <script src="Control.FullScreen.js?v=22"></script>
+    <script src="cartogram.js?v=22"></script>
+    <script src="map2.js?v=22" type="text/javascript"></script>
+    <script type="text/javascript" src="src/leaflet.legend.js?v=22"></script>
     <title>Czechia Choropleth Map</title>
-    <script src="nav.js?v=21" defer></script>
+    <script src="nav.js?v=22" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -93,38 +93,13 @@
             });
         }
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function defOkresyCheckInsColor(value) {
-            // Convert the value to a numeric type if it's a string
-            const numericValue = isNaN(value) ? parseFloat(value) : value;
-
-            // Check if the value is within the specified range
-            if (numericValue == 0) {
-                return '#d7d7d7';
-            }
-            else if (numericValue > 0 && numericValue <= 1.64) {
-                return '#fee6a5';
-            }
-            else if (numericValue > 1.64 && numericValue <= 4.38) {
-                return '#fec46c';
-            }
-            else if (numericValue > 4.38 && numericValue <= 6.06) {
-                return '#fe9929';
-            }
-            else if (numericValue > 6.06 && numericValue <= 9.69) {
-                return '#e57217';
-            }
-            else if (numericValue > 9.69 && numericValue <= 185.09) {
-                return '#c4510b';
-            }
-            else if (numericValue > 185.09) {
-                return '#993404';
-            }
-        }
+        // Classes and colours computed from the data (cartogram.js)
+        var okresyCheckInsScale = choropleth(okresy, 'cart_check');
         
         var okresyCheckInsLayer = L.geoJSON(okresy, {
             style: function (feature) {
                 return {
-                fillColor: defOkresyCheckInsColor(feature.properties.cart_check),
+                fillColor: okresyCheckInsScale.color(feature.properties.cart_check),
                 fillOpacity: 0.7,
                 color: '#232323',
                 weight: 1.2
@@ -170,38 +145,13 @@
 
         addHoverHighlight(okresyCheckInsLayer, 5);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function defOkresyBreweriesColor(value) {
-            // Convert the value to a numeric type if it's a string
-            const numericValue = isNaN(value) ? parseFloat(value) : value;
-
-            // Check if the value is within the specified range
-            if (numericValue == 0) {
-                return '#d7d7d7';
-            }
-            else if (numericValue > 0 && numericValue <= 1.1) {
-                return '#fee6a5';
-            }
-            else if (numericValue > 1.1 && numericValue <= 2.1) {
-                return '#fec46c';
-            }
-            else if (numericValue > 2.1 && numericValue <= 3.1) {
-                return '#fe9929';
-            }
-            else if (numericValue > 3.1 && numericValue <= 8.1) {
-                return '#e57217';
-            }
-            else if (numericValue > 8.1 && numericValue <= 30.1) {
-                return '#c4510b';
-            }
-            else if (numericValue > 30.1) {
-                return '#993404';
-            }
-        }
+        // Classes and colours computed from the data (cartogram.js)
+        var okresyBreweriesScale = choropleth(okresy, 'cart_brew');
 
         var okresyBreweriesLayer = L.geoJSON(okresy, {
             style: function (feature) {
                 return {
-                fillColor: defOkresyBreweriesColor(feature.properties.cart_brew),
+                fillColor: okresyBreweriesScale.color(feature.properties.cart_brew),
                 fillOpacity: 0.7,
                 color: '#232323',
                 weight: 1.2
@@ -239,38 +189,13 @@
 
         addHoverHighlight(okresyBreweriesLayer, 5);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function defKrajeCheckInsColor(value) {
-            // Convert the value to a numeric type if it's a string
-            const numericValue = isNaN(value) ? parseFloat(value) : value;
-
-            // Check if the value is within the specified range
-            if (numericValue == 0) {
-                return '#d7d7d7';
-            }
-            else if (numericValue > 0 && numericValue <= 0.10) {
-                return '#fee6a5';
-            }
-            else if (numericValue > 0.10 && numericValue <= 0.46) {
-                return '#fec46c';
-            }
-            else if (numericValue > 0.46 && numericValue <= 0.54) {
-                return '#fe9929';
-            }
-            else if (numericValue > 0.54 && numericValue <= 0.89) {
-                return '#e57217';
-            }
-            else if (numericValue > 0.89 && numericValue <= 8.05) {
-                return '#c4510b';
-            }
-            else if (numericValue > 8.05) {
-                return '#993404';
-            }
-        }
+        // Classes and colours computed from the data (cartogram.js)
+        var krajeCheckInsScale = choropleth(kraje, 'cart_check');
 
         var krajeCheckInsLayer = L.geoJSON(kraje, {
             style: function (feature) {
                 return {
-                fillColor: defKrajeCheckInsColor(feature.properties.cart_check),
+                fillColor: krajeCheckInsScale.color(feature.properties.cart_check),
                 fillOpacity: 0.7,
                 color: '#232323',
                 weight: 1.2
@@ -311,38 +236,13 @@
 
         addHoverHighlight(krajeCheckInsLayer, 5);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        function defKrajeBreweriesColor(value) {
-            // Convert the value to a numeric type if it's a string
-            const numericValue = isNaN(value) ? parseFloat(value) : value;
-
-            // Check if the value is within the specified range
-            if ( numericValue <= 0.69) {
-                return '#ffffd4';
-            }
-            else if (numericValue > 0.69 && numericValue <= 0.78) {
-                return '#fee6a5';
-            }
-            else if (numericValue > 0.78 && numericValue <= 0.88) {
-                return '#fec46c';
-            }
-            else if (numericValue > 0.88 && numericValue <= 1.05) {
-                return '#fe9929';
-            }
-            else if (numericValue > 1.05 && numericValue <= 1.27) {
-                return '#e57217';
-            }
-            else if (numericValue > 1.27 && numericValue <= 2.57) {
-                return '#c4510b';
-            }
-            else if (numericValue > 2.57) {
-                return '#993404';
-            }
-        }
+        // Classes and colours computed from the data (cartogram.js)
+        var krajeBreweriesScale = choropleth(kraje, 'cart_brew');
 
         var krajeBreweriesLayer = L.geoJSON(kraje, {
             style: function (feature) {
                 return {
-                fillColor: defKrajeBreweriesColor(feature.properties.cart_brew),
+                fillColor: krajeBreweriesScale.color(feature.properties.cart_brew),
                 fillOpacity: 0.7,
                 color: '#232323',
                 weight: 1.2
@@ -392,248 +292,28 @@
             position: "bottomright",
             collapsed: isSmallScreen(),
             title: "Check-ins/1 000 km²",
-            legends: [{
-                label: "0.0",
-                type: "rectangle",
-                fillColor: "#d7d7d7",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.1–1.6",
-                type: "rectangle",
-                fillColor: "#fee6a5",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "1.7–4.4",
-                type: "rectangle",
-                fillColor: "#fec46c",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "4.5–6.1",
-                type: "rectangle",
-                fillColor: "#fe9929",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "6.2–9.7",
-                type: "rectangle",
-                fillColor: "#e57217",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "9.8–185.1",
-                type: "rectangle",
-                fillColor: "#c4510b",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "185.2–329.3",
-                type: "rectangle",
-                fillColor: "#993404",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            }]
+            legends: okresyCheckInsScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
         })
 
         var okresyBreweriesLegendControl = L.control.Legend({
             position: "bottomright",
             collapsed: isSmallScreen(),
             title: "Breweries/1 000 km²",
-            legends: [{
-                label: "0.0",
-                type: "rectangle",
-                fillColor: "#d7d7d7",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.1–1.1",
-                type: "rectangle",
-                fillColor: "#fee6a5",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "1.2–2.1",
-                type: "rectangle",
-                fillColor: "#fec46c",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "2.2–3.1",
-                type: "rectangle",
-                fillColor: "#fe9929",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "3.2–8.1",
-                type: "rectangle",
-                fillColor: "#e57217",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "8.2–30.1",
-                type: "rectangle",
-                fillColor: "#c4510b",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "30.2–36.8",
-                type: "rectangle",
-                fillColor: "#993404",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            }]
+            legends: okresyBreweriesScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
         })
 
         var krajeCheckInsLegendControl = L.control.Legend({
             position: "bottomright",
             collapsed: isSmallScreen(),
             title: "Check-ins/1 000 km²",
-            legends: [{
-                label: "0.0",
-                type: "rectangle",
-                fillColor: "#d7d7d7",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.1–0.2",
-                type: "rectangle",
-                fillColor: "#fee6a5",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.3–0.4",
-                type: "rectangle",
-                fillColor: "#fec46c",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.5–0.6",
-                type: "rectangle",
-                fillColor: "#fe9929",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.7–0.9",
-                type: "rectangle",
-                fillColor: "#e57217",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "1.0–8.1",
-                type: "rectangle",
-                fillColor: "#c4510b",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "8.2–329.3",
-                type: "rectangle",
-                fillColor: "#993404",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            }]
+            legends: krajeCheckInsScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
         })
 
         var krajeBreweriesLegendControl = L.control.Legend({
             position: "bottomright",
             collapsed: isSmallScreen(),
             title: "Breweries/1 000 km²",
-            legends: [{
-                label: "0.2–0.5",
-                type: "rectangle",
-                fillColor: "#ffffd4",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.6–0.7",
-                type: "rectangle",
-                fillColor: "#fee6a5",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "0.8–0.9",
-                type: "rectangle",
-                fillColor: "#fec46c",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "1.0–1.1",
-                type: "rectangle",
-                fillColor: "#fe9929",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "1.2–1.3",
-                type: "rectangle",
-                fillColor: "#e57217",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "1.4–2.6",
-                type: "rectangle",
-                fillColor: "#c4510b",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            },
-            {
-                label: "2.7–36.8",
-                type: "rectangle",
-                fillColor: "#993404",
-                fillOpacity: 0.7,
-                color: '#232323',
-                weight: 1.2
-            }]
+            legends: krajeBreweriesScale.legends({ fillOpacity: 0.7, color: '#232323', weight: 1.2 })
         })
 
         var overlayControl = L.control({ position: 'topright' });
