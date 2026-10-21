@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="ikony/beer.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <link rel="stylesheet" href="common.css?v=31" />
+    <link rel="stylesheet" href="cartogram.css?v=31" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="Control.FullScreen.js?v=31"></script>
+    <script src="cartogram.js?v=31"></script>
+    <script src="place_years.js?v=31"></script>
+    <title>Cartograms</title>
+    <script src="nav.js?v=31" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a class="logo-text" href="index.html">MyBeerCheckIns</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="panel" id="site-nav">
+                <a href="index.html">Home</a>
+                <a href="beer_terminology.html">Beerminology</a>
+                <a href="map4.html">Check-in Map</a>
+                <a href="cartograms.html">Cartograms</a>
+                <a href="statistics.html">Statistics</a>
+            </nav>
+        </div>
+    </header>
+    <div id='map'></div>
+    <script type="text/javascript">
+        // map1–3.js are loaded when their region is shown first
+        initCartograms([{
+            id: 'prague',
+            label: 'Prague',
+            script: 'map1.js?v=31',
+            setup: function () {
+                return {
+                    nameProperty: 'NAME_2',
+                    fillOpacity: 0.7,
+                    areaSets: [{
+                        id: 'districts',
+                        label: 'Districts',
+                        geojson: prague_cartogram,
+                        unit: 'per 10 km²',
+                        places: { checkIns: pragueVenues, breweries: pragueBreweries }
+                    }]
+                };
+            }
+        }, {
+            id: 'czechia',
+            label: 'Czechia',
+            script: 'map2.js?v=31',
+            setup: function () {
+                return {
+                    nameProperty: 'NAME_2',
+                    fillOpacity: 0.7,
+                    areaSets: [{
+                        id: 'regions',
+                        label: 'Regions',
+                        geojson: kraje,
+                        unit: 'per 1 000 km²',
+                        places: { checkIns: krajeCheckIns, breweries: krajeBreweries }
+                    }, {
+                        id: 'districts',
+                        label: 'Districts',
+                        geojson: okresy,
+                        unit: 'per 1 000 km²',
+                        places: { checkIns: czechVenues, breweries: czechBreweries },
+                        title: function (name) {
+                            return name.indexOf('Praha') === 0 ? name : 'Okres ' + name;
+                        }
+                    }]
+                };
+            }
+        }, {
+            id: 'world',
+            label: 'World',
+            script: 'map3.js?v=31',
+            // the whole world on large screens; on phones it would be tiny, so Europe,
+            // where most of the check-ins are
+            view: function (small) {
+                return small ? { bounds: [[36, -10], [60, 30]] } : { center: [30, 25], zoom: 2 };
+            },
+            setup: function () {
+                return {
+                    nameProperty: 'ADMIN',
+                    fillOpacity: 1,
+                    areaSets: [{
+                        id: 'countries',
+                        label: 'Countries',
+                        geojson: countries,
+                        unit: 'per 100 000 km²',
+                        places: { checkIns: venues, breweries: breweries }
+                    }]
+                };
+            }
+        }]);
+    </script>
+</body>
+</html>

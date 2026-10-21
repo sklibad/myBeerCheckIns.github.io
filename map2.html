@@ -3,65 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="ikony/beer.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=30" />
-    <link rel="stylesheet" href="cartogram.css?v=30" />
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="Control.FullScreen.js?v=30"></script>
-    <script src="cartogram.js?v=30"></script>
-    <script src="place_years.js?v=30"></script>
-    <script src="map2.js?v=30" type="text/javascript"></script>
-    <title>Czechia Choropleth Map</title>
-    <script src="nav.js?v=30" defer></script>
+    <!-- The cartograms are one page now; old links and bookmarks land on its Czechia view -->
+    <meta http-equiv="refresh" content="0; url=cartograms.html#czechia">
+    <link rel="canonical" href="cartograms.html#czechia">
+    <title>Cartograms – Czechia</title>
+    <script>window.location.replace('cartograms.html#czechia');</script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-content">
-            <a class="logo-text" href="index.html">MyBeerCheckIns</a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="panel" id="site-nav">
-                <a href="index.html">Home</a>
-                <a href="beer_terminology.html">Beerminology</a>
-                <a href="map4.html">Check-in Map</a>
-                <div class="dropdown">
-                    <button class="dropbtn" type="button" aria-expanded="false" aria-haspopup="true">Cartograms</button>
-                    <div class="dropdown-content">
-                        <a href="map1.html">Prague</a>
-                        <a href="map2.html">Czech Republic</a>
-                        <a href="map3.html">World</a>
-                    </div>
-                </div>
-                <a href="statistics.html">Statistics</a>
-            </nav>
-        </div>
-    </header>
-    <div id="map"></div>
-    <script type="text/javascript">
-        initCartogram({
-            center: [49.891319771416015, 16.397319234639046],
-            zoom: 7,
-            nameProperty: 'NAME_2',
-            fillOpacity: 0.7,
-            areaSets: [{
-                id: 'regions',
-                label: 'Regions',
-                geojson: kraje,
-                unit: 'per 1 000 km²',
-                places: { checkIns: krajeCheckIns, breweries: krajeBreweries }
-            }, {
-                id: 'districts',
-                label: 'Districts',
-                geojson: okresy,
-                unit: 'per 1 000 km²',
-                places: { checkIns: czechVenues, breweries: czechBreweries },
-                title: function (name) {
-                    return name.indexOf('Praha') === 0 ? name : 'Okres ' + name;
-                }
-            }]
-        });
-    </script>
+    <p><a href="cartograms.html#czechia">Cartograms – Czechia</a></p>
 </body>
 </html>

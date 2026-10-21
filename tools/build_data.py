@@ -33,8 +33,8 @@ import pandas as pd
 from round_coordinates import round_coordinates
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HTML_PAGES = ['index.html', 'beer_terminology.html', 'map1.html', 'map2.html',
-              'map3.html', 'map4.html', 'statistics.html']
+HTML_PAGES = ['index.html', 'beer_terminology.html', 'cartograms.html', 'map4.html',
+              'statistics.html']
 REQUIRED = ['ID', 'Beer', 'Brewery', 'Brewery_location', 'Venue', 'Venue_location', 'Date']
 
 
@@ -261,16 +261,17 @@ def write_text(path, text):
 
 
 def bump_asset_version(repo):
-    pattern = re.compile(r'\?v=(\d+)"')
+    # "...css?v=31" in tags, 'map1.js?v=31' in the cartograms.html script
+    pattern = re.compile(r'\?v=(\d+)(["\'])')
     pages = [os.path.join(repo, p) for p in HTML_PAGES]
     texts = {}
     for page in pages:
         with open(page, encoding='utf-8', newline='') as f:
             texts[page] = f.read()
-    current = max(int(v) for t in texts.values() for v in pattern.findall(t))
+    current = max(int(m.group(1)) for t in texts.values() for m in pattern.finditer(t))
     for page, text in texts.items():
         with open(page, 'w', encoding='utf-8', newline='') as f:
-            f.write(pattern.sub(f'?v={current + 1}"', text))
+            f.write(pattern.sub(lambda m: f'?v={current + 1}' + m.group(2), text))
     return current + 1
 
 

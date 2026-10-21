@@ -3,56 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="ikony/beer.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=30" />
-    <link rel="stylesheet" href="cartogram.css?v=30" />
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="Control.FullScreen.js?v=30"></script>
-    <script src="cartogram.js?v=30"></script>
-    <script src="place_years.js?v=30"></script>
-    <script src="map1.js?v=30" type="text/javascript"></script>
-    <title>Prague Choropleth Map</title>
-    <script src="nav.js?v=30" defer></script>
+    <!-- The cartograms are one page now; old links and bookmarks land on its Prague view -->
+    <meta http-equiv="refresh" content="0; url=cartograms.html#prague">
+    <link rel="canonical" href="cartograms.html#prague">
+    <title>Cartograms – Prague</title>
+    <script>window.location.replace('cartograms.html#prague');</script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-content">
-            <a class="logo-text" href="index.html">MyBeerCheckIns</a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="panel" id="site-nav">
-                <a href="index.html">Home</a>
-                <a href="beer_terminology.html">Beerminology</a>
-                <a href="map4.html">Check-in Map</a>
-                <div class="dropdown">
-                    <button class="dropbtn" type="button" aria-expanded="false" aria-haspopup="true">Cartograms</button>
-                    <div class="dropdown-content">
-                        <a href="map1.html">Prague</a>
-                        <a href="map2.html">Czech Republic</a>
-                        <a href="map3.html">World</a>
-                    </div>
-                </div>
-                <a href="statistics.html">Statistics</a>
-            </nav>
-        </div>
-    </header>
-    <div id='map'></div>
-    <script type="text/javascript">
-        initCartogram({
-            center: [50.05583351549678, 14.466934482352398],
-            zoom: 11,
-            nameProperty: 'NAME_2',
-            fillOpacity: 0.7,
-            areaSets: [{
-                id: 'districts',
-                label: 'Districts',
-                geojson: prague_cartogram,
-                unit: 'per 10 km²',
-                places: { checkIns: pragueVenues, breweries: pragueBreweries }
-            }]
-        });
-    </script>
+    <p><a href="cartograms.html#prague">Cartograms – Prague</a></p>
 </body>
 </html>

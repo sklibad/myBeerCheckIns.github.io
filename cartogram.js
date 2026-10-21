@@ -310,21 +310,44 @@ var CartogramLegend = L.Control.extend({
 
 // ---------- Page ----------
 
-// options:
-//   center, zoom          initial view (phones fit the first area set instead)
-//   nameProperty          area name in the GeoJSON properties (NAME_2, ADMIN)
-//   fillOpacity           of the areas
-//   areaSets              [{ id, label, geojson, unit: 'per 10 km²', places: { checkIns: {...}, breweries: {...} },
-//                            title: function (name) }]; a second set adds a switch (regions / districts)
-function initCartogram(options) {
+// Loads a data script once (map1–3.js are large, so only the chosen region is loaded)
+var loadedScripts = {};
+function loadScript(src, callback) {
+    if (loadedScripts[src] === true) return callback();
+    if (loadedScripts[src]) return loadedScripts[src].push(callback);
+    loadedScripts[src] = [callback];
+    var script = document.createElement('script');
+    script.src = src;
+    script.onload = function () {
+        var callbacks = loadedScripts[src];
+        loadedScripts[src] = true;
+        callbacks.forEach(function (cb) { cb(); });
+    };
+    document.head.appendChild(script);
+}
+
+// One map for all cartograms; a switch chooses the region and the map flies there.
+// regions: [{ id, label, script,
+//             view: function (small) -> { bounds } or { center, zoom }   (optional, default: all areas)
+//             setup: function () -> { nameProperty, fillOpacity, areaSets } }]   (called after the script loaded)
+// areaSets: [{ id, label, geojson, unit: 'per 10 km²', places: { checkIns: {...}, breweries: {...} },
+//              title: function (name) }]; a second set adds a switch (regions / districts)
+// The region comes from the URL hash (#prague, #czechia, #world) and is kept there.
+function initCartograms(regions) {
     var small = isSmallScreen();
-    var map = L.map('map', { zoomControl: false }).setView(options.center, options.zoom);
+    var map = L.map('map', { zoomControl: false }).setView([49.8, 15.5], 4);
 
     var basemaps = createBasemaps();
     basemaps["OS Map"].addTo(map);
 
+    var regionById = function (id) {
+        return regions.filter(function (r) { return r.id === id; })[0];
+    };
+    var startRegion = regionById(window.location.hash.slice(1)) || regions[0];
+
     // year: show check-ins until the end of that year (null = all time)
-    var state = { metric: 'checkIns', areaSet: options.areaSets[0], year: null };
+    var state = { region: null, config: null, metric: 'checkIns', areaSet: null, year: null };
+    var configs = {};
     var layers = {};
     var currentLayer = null;
 
@@ -332,9 +355,9 @@ function initCartogram(options) {
         return areaSet.title ? areaSet.title(name) : name;
     }
 
-    function buildLayer(areaSet, metricId) {
+    function buildLayer(config, areaSet, metricId) {
         var statsOf = function (feature, year) {
-            var places = areaSet.places[metricId][feature.properties[options.nameProperty]] || [];
+            var places = areaSet.places[metricId][feature.properties[config.nameProperty]] || [];
             return areaStats(metricId, places, feature.properties, year);
         };
         // The classes come from all time and stay for every year, so the years can be compared
@@ -345,7 +368,7 @@ function initCartogram(options) {
         var style = function (feature) {
             return {
                 fillColor: scale.color(statsOf(feature, state.year).density),
-                fillOpacity: options.fillOpacity,
+                fillOpacity: config.fillOpacity,
                 color: '#232323',
                 weight: 1.2
             };
@@ -353,7 +376,7 @@ function initCartogram(options) {
         var layer = L.geoJSON(areaSet.geojson, {
             style: style,
             onEachFeature: function (feature, featureLayer) {
-                var name = feature.properties[options.nameProperty];
+                var name = feature.properties[config.nameProperty];
                 featureLayer.bindPopup(function () {
                     return areaPopup(areaTitle(areaSet, name), metricId, statsOf(feature, state.year));
                 }, {
@@ -399,13 +422,13 @@ function initCartogram(options) {
     var legend = new CartogramLegend({ position: 'bottomleft', collapsed: small }).addTo(map);
 
     function show() {
-        var key = state.areaSet.id + ':' + state.metric;
-        if (!layers[key]) layers[key] = buildLayer(state.areaSet, state.metric);
+        var key = state.region.id + ':' + state.areaSet.id + ':' + state.metric;
+        if (!layers[key]) layers[key] = buildLayer(state.config, state.areaSet, state.metric);
         if (currentLayer) map.removeLayer(currentLayer);
         currentLayer = layers[key].layer.addTo(map);
         currentLayer.resetStyle();
         legend.update(METRICS[state.metric].label + (state.year ? ' until ' + state.year : ''),
-            state.areaSet.unit, layers[key].scale.legendItems(), options.fillOpacity);
+            state.areaSet.unit, layers[key].scale.legendItems(), state.config.fillOpacity);
     }
 
     // Years with check-ins; the last one equals "All time"
@@ -419,44 +442,53 @@ function initCartogram(options) {
         return { id: String(year), label: String(year) };
     }).concat([{ id: 'all', label: 'All time' }]);
 
-    // Switch: Check-ins / Breweries pills (and Regions / Districts when there are two area sets)
+    // Switches: region, Check-ins / Breweries, Regions / Districts (Czechia only) and the year
     var switchControl = L.control({ position: 'topright' });
     switchControl.onAdd = function () {
         var div = L.DomUtil.create('div', 'carto-switches');
-        // caption: small text before the pills; checked: id of the selected item (default the first)
-        var group = function (name, label, items, caption, checked) {
-            return '<div class="overlay-switch" role="radiogroup" aria-label="' + label + '">' +
-                (caption ? '<span class="switch-caption">' + caption + '</span>' : '') + items.map(function (item, i) {
-                var id = name + '-' + item.id;
-                var isChecked = checked ? item.id === checked : i === 0;
-                return '<input type="radio" name="' + name + '" value="' + item.id + '" id="' + id + '"' + (isChecked ? ' checked' : '') + '>' +
-                    '<label for="' + id + '">' + (item.icon ? '<img src="' + item.icon + '" alt="">' : '') + item.label + '</label>';
-            }).join('') + '</div>';
-        };
-        div.innerHTML = group('metric', 'Show on map', Object.keys(METRICS).map(function (id) {
-            return { id: id, label: METRICS[id].label, icon: METRICS[id].icon };
-        }));
-        if (options.areaSets.length > 1) {
-            div.innerHTML += group('areas', 'Areas', options.areaSets);
-        }
-        if (yearItems.length > 1) {
-            div.innerHTML += group('year', 'Check-ins until the end of', yearItems, 'Until', 'all');
-        }
         L.DomEvent.disableClickPropagation(div);
         div.addEventListener('change', function (e) {
             map.closePopup();
+            if (e.target.name === 'region') {
+                selectRegion(regionById(e.target.value), true);
+                return;
+            }
             if (e.target.name === 'metric') {
                 state.metric = e.target.value;
             } else if (e.target.name === 'year') {
                 state.year = e.target.value === 'all' ? null : Number(e.target.value);
             } else {
-                state.areaSet = options.areaSets.filter(function (s) { return s.id === e.target.value; })[0];
+                state.areaSet = state.config.areaSets.filter(function (s) { return s.id === e.target.value; })[0];
             }
             show();
         });
         return div;
     };
     switchControl.addTo(map);
+
+    // caption: small text before the pills; checked: id of the selected item
+    function group(name, label, items, checked, caption) {
+        return '<div class="overlay-switch" role="radiogroup" aria-label="' + label + '">' +
+            (caption ? '<span class="switch-caption">' + caption + '</span>' : '') + items.map(function (item) {
+            var id = name + '-' + item.id;
+            return '<input type="radio" name="' + name + '" value="' + item.id + '" id="' + id + '"' + (item.id === checked ? ' checked' : '') + '>' +
+                '<label for="' + id + '">' + (item.icon ? '<img src="' + item.icon + '" alt="">' : '') + item.label + '</label>';
+        }).join('') + '</div>';
+    }
+
+    function renderSwitches() {
+        var html = group('region', 'Region', regions, state.region.id);
+        html += group('metric', 'Show on map', Object.keys(METRICS).map(function (id) {
+            return { id: id, label: METRICS[id].label, icon: METRICS[id].icon };
+        }), state.metric);
+        if (state.config && state.config.areaSets.length > 1) {
+            html += group('areas', 'Areas', state.config.areaSets, state.areaSet.id);
+        }
+        if (yearItems.length > 1) {
+            html += group('year', 'Check-ins until the end of', yearItems, state.year === null ? 'all' : String(state.year), 'Until');
+        }
+        switchControl.getContainer().innerHTML = html;
+    }
 
     // Zoom (+ fullscreen in the same bar) and basemaps: bottom right on phones, top on desktop
     map.zoomControl = L.control.zoom({ position: small ? 'bottomright' : 'topleft' }).addTo(map);
@@ -468,10 +500,52 @@ function initCartogram(options) {
     L.control.layers(basemaps, null, { position: small ? 'bottomright' : 'topright' }).addTo(map);
     addAttributionToggle(map);
 
-    show();
-    if (small) {
-        map.fitBounds(currentLayer.getBounds(), { padding: [8, 8], animate: false });
+    var loading = L.DomUtil.create('div', 'carto-loading', map.getContainer());
+    loading.textContent = 'Loading map\u2026';
+    loading.hidden = true;
+
+    // The view of a region: its own (world on phones: Europe) or all its areas, clear of the switches
+    function fitRegion(animate) {
+        var view = state.region.view ? state.region.view(small) : null;
+        if (view && view.center) {
+            map[animate ? 'flyTo' : 'setView'](view.center, view.zoom, animate ? { duration: 1.2 } : { animate: false });
+            return;
+        }
+        var bounds = view && view.bounds ? L.latLngBounds(view.bounds) : currentLayer.getBounds();
+        var top = small ? switchControl.getContainer().offsetHeight + 16 : 16;
+        var options = { paddingTopLeft: [16, top], paddingBottomRight: small ? [60, 16] : [16, 16] };
+        if (animate) {
+            map.flyToBounds(bounds, L.extend({ duration: 1.2 }, options));
+        } else {
+            map.fitBounds(bounds, L.extend({ animate: false }, options));
+        }
     }
+
+    function selectRegion(region, animate) {
+        state.region = region;
+        if (window.location.hash.slice(1) !== region.id) {
+            history.replaceState(null, '', '#' + region.id);
+        }
+        renderSwitches();
+        loading.hidden = false;
+        loadScript(region.script, function () {
+            loading.hidden = true;
+            if (state.region !== region) return;   // another region was chosen meanwhile
+            if (!configs[region.id]) configs[region.id] = region.setup();
+            state.config = configs[region.id];
+            state.areaSet = state.config.areaSets[0];
+            renderSwitches();
+            show();
+            fitRegion(animate);
+        });
+    }
+
+    window.addEventListener('hashchange', function () {
+        var region = regionById(window.location.hash.slice(1));
+        if (region && region !== state.region) selectRegion(region, true);
+    });
+
+    selectRegion(startRegion, false);
     return map;
 }
 
