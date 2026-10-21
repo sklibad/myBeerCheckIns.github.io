@@ -433,35 +433,42 @@ function initCartograms(regions) {
         return typeof areaCircles !== 'undefined' && !!state.areaSet && !!areaCircles[circlesKey()];
     }
 
+    // Circle layout of an area set for this device (circles.js: a desktop and a phone profile)
+    function circleProfile(key) {
+        return areaCircles[key][small ? 'phone' : 'desktop'];
+    }
+
     // Radius in pixels of a circle for `count` at the current zoom. At the reference zoom and
     // below it scales exactly with the map, so circles keep fitting their areas when zoomed out;
     // zoomed in they grow only half as fast (the areas grow faster, so they still fit)
-    function circleRadius(data, count) {
-        var refRadius = data.scale * Math.sqrt(count) / (40075016.686 / (256 * Math.pow(2, data.zoom)));
-        var dz = map.getZoom() - data.zoom;
+    function circleRadius(scale, zoom, count) {
+        var refRadius = scale * Math.sqrt(count) / (40075016.686 / (256 * Math.pow(2, zoom)));
+        var dz = map.getZoom() - zoom;
         return refRadius * Math.pow(2, dz <= 0 ? dz : dz / 2);
     }
 
-    // Proportional circles of one area set and metric (positions from circles.js)
+    // Proportional circles of one area set and metric. One size scale for all years; in each
+    // year a circle sits on its area while it fits there, and moves out of the territory with a
+    // leader line once it outgrows the area (positions per year from circles.js)
     function buildCircles(config, areaSet, metricId, statsOf) {
-        var data = areaCircles[state.region.id + '/' + areaSet.id][metricId];
+        var key = state.region.id + '/' + areaSet.id;
+        var poles = areaCircles[key].poles;
+        var profile = circleProfile(key);
+        var data = profile[metricId];
         var group = L.layerGroup();
         var leaders = L.layerGroup().addTo(group);
         var items = [];
         areaSet.geojson[0].features.forEach(function (feature) {
             var name = feature.properties[config.nameProperty];
-            var pos = data.circles[name];
-            if (!pos) return;
-            var item = { feature: feature, marker: L.circleMarker([pos[0], pos[1]], {
+            var pole = poles[name];
+            if (!pole) return;
+            var item = { name: name, feature: feature, pole: pole, marker: L.circleMarker(pole, {
                 color: 'white', weight: 1.5, fillColor: '#cc4c02', fillOpacity: 0.85
             }) };
-            if (pos.length === 4) {
-                // placed outside the territory: leader line from the area to the circle
-                item.leader = L.layerGroup([
-                    L.polyline([[pos[2], pos[3]], [pos[0], pos[1]]], { color: '#3c2828', weight: 1.3, interactive: false }),
-                    L.circleMarker([pos[2], pos[3]], { radius: 2.5, color: '#3c2828', weight: 1, fillColor: '#3c2828', fillOpacity: 1, interactive: false })
-                ]);
-            }
+            item.line = L.polyline([pole, pole], { color: '#3c2828', weight: 1.3, interactive: false });
+            item.leader = L.layerGroup([item.line,
+                L.circleMarker(pole, { radius: 2.5, color: '#3c2828', weight: 1, fillColor: '#3c2828', fillOpacity: 1, interactive: false })
+            ]);
             item.marker.bindPopup(function () {
                 return areaPopup(areaTitle(areaSet, name), metricId, statsOf(feature, state.year));
             }, {
@@ -476,22 +483,28 @@ function initCartograms(regions) {
             items.push(item);
         });
 
-        function count(item) {
-            var stats = statsOf(item.feature, state.year);
+        function count(item, year) {
+            var stats = statsOf(item.feature, year);
             return metricId === 'checkIns' ? stats.checkIns : stats.places.length;
         }
 
-        // sizes for the current zoom and year; larger circles below smaller ones
+        // positions for the year, sizes for the current zoom; larger circles below smaller ones
         function update() {
+            var outside = data.outside[state.year === null ? 'all' : String(state.year)] || {};
             items.forEach(function (item) {
-                var value = count(item);
-                item.radius = value ? circleRadius(data, value) : 0;
+                var value = count(item, state.year);
+                item.radius = value ? circleRadius(data.scale, profile.zoom, value) : 0;
+                var spot = outside[item.name];
                 if (value) {
-                    item.marker.setRadius(item.radius).addTo(group);
-                    if (item.leader) item.leader.addTo(leaders);
+                    item.marker.setLatLng(spot || item.pole).setRadius(item.radius).addTo(group);
                 } else {
                     group.removeLayer(item.marker);
-                    if (item.leader) leaders.removeLayer(item.leader);
+                }
+                if (value && spot) {
+                    item.line.setLatLngs([item.pole, spot]);
+                    item.leader.addTo(leaders);
+                } else {
+                    leaders.removeLayer(item.leader);
                 }
             });
             items.slice().sort(function (a, b) { return b.radius - a.radius; }).forEach(function (item) {
@@ -499,24 +512,25 @@ function initCartograms(regions) {
             });
         }
 
-        // a few round counts for the legend (1, 2, 5 × 10^n), from the largest of all time
+        // up to three round counts for the legend (1, 2, 5 × 10^n); the largest legend circle
+        // stays small enough (30 px) not to cover the map
         function legendCircles() {
-            var all = items.map(function (item) {
-                var stats = statsOf(item.feature, null);
-                return metricId === 'checkIns' ? stats.checkIns : stats.places.length;
-            });
+            var all = items.map(function (item) { return count(item, null); });
             var max = Math.max.apply(null, all);
             var min = Math.min.apply(null, all.filter(function (v) { return v > 0; }));
             var nice = function (v) {
                 var p = Math.pow(10, Math.floor(Math.log10(v)));
                 return [5, 2, 1].map(function (m) { return m * p; }).filter(function (n) { return n <= v; })[0];
             };
+            var radius = function (value) { return circleRadius(data.scale, profile.zoom, value); };
+            var top = nice(max);
+            while (top > 1 && radius(top) > 30) top = nice(top / 2);
             var values = [];
-            for (var v = nice(max); v >= Math.max(1, min) && values.length < 3; v = nice(v / 4.5)) {
+            for (var v = top; v >= Math.max(1, min) && values.length < 3; v = nice(v / 4.5)) {
                 if (values.indexOf(v) < 0) values.push(v);
                 if (v === 1) break;
             }
-            return values.map(function (value) { return { value: value, radius: circleRadius(data, value) }; });
+            return values.map(function (value) { return { value: value, radius: radius(value) }; });
         }
 
         return { layer: group, update: update, legendCircles: legendCircles };
@@ -672,10 +686,13 @@ function initCartograms(regions) {
         if (typeof areaCircles !== 'undefined') {
             Object.keys(areaCircles).forEach(function (key) {
                 if (key.indexOf(state.region.id + '/') !== 0) return;
-                Object.keys(areaCircles[key]).forEach(function (metric) {
-                    var circles = areaCircles[key][metric].circles;
-                    Object.keys(circles).forEach(function (name) {
-                        if (circles[name].length === 4) bounds.extend([circles[name][0], circles[name][1]]);
+                var profile = circleProfile(key);
+                ['checkIns', 'breweries'].forEach(function (metric) {
+                    var byYear = profile[metric].outside;
+                    Object.keys(byYear).forEach(function (year) {
+                        Object.keys(byYear[year]).forEach(function (name) {
+                            bounds.extend(byYear[year][name]);
+                        });
                     });
                 });
             });

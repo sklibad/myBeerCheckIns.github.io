@@ -29,7 +29,7 @@ import warnings
 
 import geopandas as gpd
 import pandas as pd
-from shapely.geometry import Point
+from shapely.geometry import LineString, Point
 from shapely.ops import polylabel, unary_union
 from shapely.validation import make_valid
 
@@ -225,13 +225,16 @@ def build_cartograms(df, boundaries):
 
 # ---------------------------------------------------------------- proportional circles
 
-# Circles of the "Total" view of the cartograms (Prague and Czechia). The size scale is
-# chosen for readability: the smallest non-zero count gets CIRCLE_MIN_PX at the reference
-# zoom of the region, area grows with the count (radius ~ sqrt). A circle sits on the pole of
-# inaccessibility of its area when it fits there without touching a border; otherwise it is
-# placed in the free space outside the shown territory, as close as possible, and the page
-# draws a leader line to the area. Everything is computed in Web Mercator metres, the units
-# the map is drawn in, so the page only converts metres to pixels for the current zoom.
+# Circles of the "Total" view of the cartograms (Prague and Czechia). One size scale for all
+# years (switching the years shows the growth), chosen for readability: the smallest non-zero
+# all-time count gets CIRCLE_MIN_PX at the reference zoom, area grows with the count (radius ~
+# sqrt). For every year separately, a circle sits on the pole of inaccessibility of its area
+# while it fits there without touching a border; once it outgrows the area it is placed in the
+# free space outside the shown territory, as close as possible, preferably where its leader
+# line crosses no other leader line or circle. There is a layout for desktops and one for phones
+# (half a zoom level lower, so the circles are larger against the areas) unless that pushes
+# too many circles out of their areas.
+# Everything is in Web Mercator metres, the units the map is drawn in.
 CIRCLE_MIN_PX = 3
 CIRCLE_GAP_PX = 3
 WORLD_MERCATOR = 40075016.686
@@ -247,34 +250,16 @@ def largest_polygon(geometry):
     return max(parts, key=lambda g: g.area)
 
 
-def area_circles(polygons, name_column, count_column, zoom):
-    """{"zoom": reference zoom, "scale": metres per sqrt(count), "circles": {name: [lat, lng] or
-    [lat, lng, anchor_lat, anchor_lng]}} for the areas with a non-zero count"""
-    projected = polygons.to_crs('EPSG:3857')
-    unit = mercator_per_pixel(zoom)
+def to_lat_lng(points):
+    series = gpd.GeoSeries(points, crs='EPSG:3857').to_crs('EPSG:4326')
+    return [[round(p.y, 5), round(p.x, 5)] for p in series]
+
+
+def place_outside(territory, fixed, outside, unit):
+    """Positions {name: point} outside the territory for [(radius, name, pole)], largest first.
+    fixed: [(centre, radius)] of the circles inside their areas"""
     gap = CIRCLE_GAP_PX * unit
-    counts = {row[name_column]: row[count_column] for _, row in projected.iterrows() if row[count_column] > 0}
-    if not counts:
-        return {'zoom': zoom, 'scale': 0, 'circles': {}}
-    scale = CIRCLE_MIN_PX * unit / math.sqrt(min(counts.values()))
-
-    territory = unary_union([make_valid(g) for g in projected.geometry])
-    inside, outside = {}, []
-    for _, row in projected.iterrows():
-        name = row[name_column]
-        if name not in counts:
-            continue
-        polygon = largest_polygon(row.geometry)
-        pole = polylabel(polygon, tolerance=unit / 2)
-        room = polygon.boundary.distance(pole)
-        radius = scale * math.sqrt(counts[name])
-        if radius + gap <= room:
-            inside[name] = pole
-        else:
-            outside.append((radius, name, pole))
-
-    # largest first; each one along the shortest ray from its pole into free space
-    placed, leaders = [], {}
+    placed, leaders, result = [], [], {}
     for radius, name, pole in sorted(outside, reverse=True):
         best = None
         step = max(radius / 3, unit * 2)
@@ -289,34 +274,92 @@ def area_circles(polygons, name_column, count_column, zoom):
                 t += step
             else:
                 continue
-            if best is None or t < best[0]:
-                best = (t, centre)
+            # leader lines crossing other leaders or running over other circles come last
+            leader = LineString([pole, centre])
+            conflicts = sum(1 for other in leaders if leader.crosses(other))
+            conflicts += sum(1 for c, r in placed + fixed if c.distance(pole) > 1 and leader.distance(c) < r)
+            score = (conflicts, t)
+            if best is None or score < best[0]:
+                best = (score, centre, leader)
         if best:
             placed.append((best[1], radius))
-            leaders[name] = (best[1], pole)
-        else:
-            inside[name] = pole   # no free space found: stays on the area
-
-    def lat_lng(point):
-        lng, lat = gpd.GeoSeries([point], crs='EPSG:3857').to_crs('EPSG:4326').iloc[0].coords[0]
-        return [round(lat, 5), round(lng, 5)]
-
-    circles = {name: lat_lng(point) for name, point in inside.items()}
-    for name, (centre, pole) in leaders.items():
-        circles[name] = lat_lng(centre) + lat_lng(pole)
-    return {'zoom': zoom, 'scale': round(scale, 3), 'circles': circles}
+            leaders.append(best[2])
+            result[name] = best[1]
+    return result
 
 
-def build_circles(geo):
-    """areaCircles for circles.js: keyed by "<region>/<area set>", then by metric"""
+def area_circles(polygons, places, years_of, year_keys, venue_metric, zooms):
+    """circles.js entry of one area set: {"poles": {name: [lat, lng]}, profile: {"zoom": z,
+    metric: {"scale": metres per sqrt(count), "outside": {year: {name: [lat, lng]}}}}}"""
+    projected = polygons.to_crs('EPSG:3857')
+    tolerance = mercator_per_pixel(max(zooms.values())) / 2
+    poles, rooms = {}, {}
+    for _, row in projected.iterrows():
+        polygon = largest_polygon(row.geometry)
+        pole = polylabel(polygon, tolerance=tolerance)
+        poles[row['NAME_2']] = pole
+        rooms[row['NAME_2']] = polygon.boundary.distance(pole)
+    territory = unary_union([make_valid(g) for g in projected.geometry])
+
+    def counts_until(metric, year):
+        result = {}
+        for name in poles:
+            total = 0
+            for place in places[metric].get(name, []):
+                n = sum(c for y, c in years_of[metric].get(place, {}).items() if year is None or int(y) <= year)
+                total += n if metric == 'checkIns' else (1 if n else 0)
+            if total:
+                result[name] = total
+        return result
+
+    names = list(poles)
+    pole_list = to_lat_lng([poles[n] for n in names])
+    entry = {'poles': dict(zip(names, pole_list))}
+    for profile, zoom in zooms.items():
+        unit = mercator_per_pixel(zoom)
+        gap = CIRCLE_GAP_PX * unit
+        simple = territory.simplify(unit / 2)
+        entry[profile] = {'zoom': zoom}
+        for metric in ('checkIns', 'breweries'):
+            all_time = counts_until(metric, None)
+            scale = CIRCLE_MIN_PX * unit / math.sqrt(min(all_time.values())) if all_time else 0
+            outside_by_year = {}
+            for key in year_keys:
+                counts = counts_until(metric, None if key == 'all' else int(key))
+                fixed, outside = [], []
+                for name, count in counts.items():
+                    radius = scale * math.sqrt(count)
+                    if radius + gap <= rooms[name]:
+                        fixed.append((poles[name], radius))
+                    else:
+                        outside.append((radius, name, poles[name]))
+                spots = place_outside(simple, fixed, outside, unit)
+                ordered = sorted(spots)
+                outside_by_year[key] = dict(zip(ordered, to_lat_lng([spots[n] for n in ordered]))) if ordered else {}
+            entry[profile][metric] = {'scale': round(scale, 3), 'outside': outside_by_year}
+
+    # The larger phone circles only where they push at most two more circles out of their areas
+    def most_outside(profile):
+        return max(len(spots) for metric in ('checkIns', 'breweries')
+                   for spots in entry[profile][metric]['outside'].values())
+    if 'phone' in entry and most_outside('phone') > most_outside('desktop') + 2:
+        entry['phone'] = entry['desktop']
+    return entry
+
+
+def build_circles(geo, records):
+    """areaCircles for circles.js, keyed by "<region>/<area set>"."""
+    years_of = {'checkIns': place_years(records, 'Venue'), 'breweries': place_years(records, 'Brewery')}
+    years = sorted({record['Date'][-4:] for record in records})
+    year_keys = years[:-1] + ['all']   # the last year equals "all time"
     sets = {
-        'prague/districts': (geo['prague_cartogram'], 11),
-        'czechia/regions': (geo['kraje_cartogram'], 7),
-        'czechia/districts': (geo['okresy_cartogram'], 7),
+        'prague/districts': (geo['prague_cartogram'], geo['pragueVenues'], geo['pragueBreweries'], 11),
+        'czechia/regions': (geo['kraje_cartogram'], geo['krajeCheckIns'], geo['krajeBreweries'], 7),
+        'czechia/districts': (geo['okresy_cartogram'], geo['czechVenues'], geo['czechBreweries'], 7),
     }
-    return {key: {'checkIns': area_circles(polygons, 'NAME_2', 'check_ins', zoom),
-                  'breweries': area_circles(polygons, 'NAME_2', 'breweries', zoom)}
-            for key, (polygons, zoom) in sets.items()}
+    return {key: area_circles(polygons, {'checkIns': venues, 'breweries': breweries}, years_of,
+                              year_keys, None, {'desktop': zoom, 'phone': zoom - 0.5})
+            for key, (polygons, venues, breweries, zoom) in sets.items()}
 
 
 # ---------------------------------------------------------------- output
@@ -433,7 +476,7 @@ def main():
         'place_years.js': [('venueYears', js_dict(place_years(records, 'Venue'))),
                            ('breweryYears', js_dict(place_years(records, 'Brewery')))],
         # positions and size scale of the proportional circles ("Total" view of the cartograms)
-        'circles.js': [('areaCircles', json.dumps(build_circles(geo), ensure_ascii=False, indent=1))],
+        'circles.js': [('areaCircles', json.dumps(build_circles(geo, records), ensure_ascii=False, indent=1))],
     }
     changed = []
     for name, variables in js_files.items():
