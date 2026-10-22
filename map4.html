@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=46" />
-    <link rel="stylesheet" href="map4.css?v=46" />
+    <link rel="stylesheet" href="common.css?v=47" />
+    <link rel="stylesheet" href="map4.css?v=47" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=46" type="text/javascript"></script>
+    <script src="data.js?v=47" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=46" defer></script>
+    <script src="nav.js?v=47" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -2696,11 +2696,13 @@
             }
         });
 
-        // Place view, opened from the cartograms in a new tab: map4.html?venue=<name> / ?brewery=<name>.
+        // Place view, opened from the cartograms and statistics: map4.html?venue=<name> / ?brewery=<name>
+        // (&checkin=<ID>: also that beer).
         // Only that place on the map, without filters, layer switch, timeline, photos, stats, search
         // and routes; it is shown in the context of the whole world first, then the map flies to it
         // and opens its popup. The check-ins open in the detail panel as usual.
-        function showPlaceView(layer, place) {
+        // checkinId (optional): after the popup opens, that beer is highlighted and its detail opened
+        function showPlaceView(layer, place, checkinId) {
             var places = layer === 'Venues' ? venues_lst : breweries_lst;
             var property = layer === 'Venues' ? 'Venue' : 'Brewery';
             var exists = places[0].features.some(function (feature) {
@@ -2733,6 +2735,12 @@
             setTimeout(function () {
                 map.once('moveend', function () {
                     marker.openPopup();
+                    if (checkinId) {
+                        var list = (layer === 'Venues' ? venue_check_ins : brewery_check_ins)[place] || [];
+                        var index = list.findIndex(function (record) { return String(record.ID) === checkinId; });
+                        var beer = index >= 0 ? document.getElementById(place.replace(/ /g, '_') + ',' + index) : null;
+                        if (beer) beer.click();
+                    }
                 });
                 map.flyTo(target, 16, { duration: 3 });
             }, 1000);
@@ -2744,7 +2752,7 @@
             var layer = params.has('venue') ? 'Venues' : params.has('brewery') ? 'Breweries' : null;
             if (!layer) return;
             var place = params.get(layer === 'Venues' ? 'venue' : 'brewery');
-            if (!showPlaceView(layer, place)) {
+            if (!showPlaceView(layer, place, params.get('checkin'))) {
                 showMapToast('\u201c' + place + '\u201d is not on the map');
             }
         })();

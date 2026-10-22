@@ -376,9 +376,11 @@
 
     // ---------- Best and worst beers ----------
 
-    function placeLink(kind, name) {
-        return '<a href="map4.html?' + kind + '=' + encodeURIComponent(name) + '" target="_blank" rel="noopener" title="Show on the check-in map">' +
-            escapeHtml(name) + '</a>';
+    // Opens the place on the check-in map in a window over this page (place-window.js);
+    // with a check-in ID also that beer's popup row and detail
+    function placeLink(kind, name, checkinId) {
+        return '<a href="map4.html?' + kind + '=' + encodeURIComponent(name) + (checkinId ? '&checkin=' + checkinId : '') +
+            '" target="_blank" rel="noopener" data-place-window title="Show on the check-in map">' + escapeHtml(name) + '</a>';
     }
 
     function renderBeers(list) {
@@ -390,8 +392,8 @@
                 '<span class="beer-score"><b>' + r.Rating.toFixed(2) + '</b>' + ratingDots(r.Rating) + '</span>' +
                 '<span class="beer-main"><span class="beer-name">' + escapeHtml(r.Beer) + '</span>' +
                 '<span class="beer-sub"><span class="style-dot" style="background-color: ' + STYLE_BY_ID[r.style].color + '"></span>' +
-                escapeHtml(r.Beer_style) + ' · ' + placeLink('brewery', r.Brewery) + ' (' + escapeHtml(r.Brewery_country) + ')</span>' +
-                '<span class="beer-sub">' + placeLink('venue', r.Venue) + ' · ' + r.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + '</span>' +
+                escapeHtml(r.Beer_style) + ' · ' + placeLink('brewery', r.Brewery, r.ID) + ' (' + escapeHtml(r.Brewery_country) + ')</span>' +
+                '<span class="beer-sub">' + placeLink('venue', r.Venue, r.ID) + ' · ' + r.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + '</span>' +
                 '</span></li>';
         }).join('') : '<li class="empty">No check-ins</li>';
     }
