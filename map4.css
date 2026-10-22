@@ -1841,30 +1841,31 @@ body.timeline-on .mini-stats {
     bottom: 0;
     z-index: 2500;
     width: auto;
-    height: 55vh;
-    height: 55dvh;
+    /* anchored to both edges: the states move the top edge, so the full-screen sheet always
+       reaches the top of the screen, also while the browser's address bar shows or hides */
+    top: 45vh;
+    top: 45dvh;
     padding: 0 20px 24px;
     border-radius: 16px 16px 0 0;
     box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
     font-size: 16px;
     transform: translateY(105%);
-    transition: transform 0.25s ease, height 0.25s ease, border-radius 0.25s ease;
+    transition: transform 0.25s ease, top 0.25s ease, border-radius 0.25s ease;
   }
 
   #contentBox.open {
     transform: translateY(0);
   }
 
-  /* full screen: the small viewport height does not change with the browser's address bar */
+  /* full screen: the site header stays hidden under the sheet */
   #contentBox.full {
-    height: 100vh;
-    height: 100svh;
+    top: 0;
     border-radius: 0;
   }
 
   /* Tucked away while a route is shown: only the handle and the beer name stay visible */
   #contentBox.peek {
-    height: 92px;
+    top: calc(100% - 92px);
     overflow: hidden;
   }
 
