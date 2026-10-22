@@ -1693,6 +1693,16 @@ body.timeline-on .mini-stats {
 /* ---------- Phones and tablets ---------- */
 
 @media (max-width: 1000px) {
+  /* The check-in sheet scrolls by touch without a scrollbar (like bottom sheets of map apps);
+     without the scrollbar its content is centred */
+  #contentBox {
+    scrollbar-width: none;
+  }
+
+  #contentBox::-webkit-scrollbar {
+    display: none;
+  }
+
   #container {
     padding: 0;
     gap: 0;
