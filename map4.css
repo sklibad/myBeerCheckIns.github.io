@@ -1885,9 +1885,11 @@ body.timeline-on .mini-stats {
     touch-action: none;
   }
 
-  /* date and beer name belong to the grip area of the sheet: no scrolling, no text selection */
-  #contentBox .detail-date,
-  #contentBox .detail-beer {
+  /* date, beer name and style (down to the first line) belong to the grip area of the sheet:
+     no scrolling, no text selection; the gap above the line is part of it too */
+  #contentBox .detail-head {
+    padding-bottom: 14px;
+    margin-bottom: -14px;
     touch-action: none;
     user-select: none;
     cursor: grab;

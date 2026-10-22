@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=51" />
-    <link rel="stylesheet" href="map4.css?v=51" />
+    <link rel="stylesheet" href="common.css?v=52" />
+    <link rel="stylesheet" href="map4.css?v=52" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=51" type="text/javascript"></script>
+    <script src="data.js?v=52" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=51" defer></script>
+    <script src="nav.js?v=52" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -2692,8 +2692,8 @@
         });
 
         // Drag the top of the sheet up to expand it to full screen, down to shrink or close it.
-        // The grip area reaches from the handle down to the beer name (included); below it a touch
-        // scrolls the content instead.
+        // The grip area reaches from the handle down to the first line (date, beer name and style);
+        // below it a touch scrolls the content instead.
         (function initSheetDrag() {
             var handle = document.getElementById('sheet-handle');
             var startY = null;
@@ -2702,9 +2702,9 @@
 
             function inGripArea(e) {
                 var bottom = handle.getBoundingClientRect().bottom;
-                var name = document.getElementById('beerName');
-                if (!document.getElementById('checkin-detail').hidden && name.offsetParent) {
-                    bottom = Math.max(bottom, name.getBoundingClientRect().bottom);
+                var line = document.querySelector('#checkin-detail .detail-places');
+                if (!document.getElementById('checkin-detail').hidden && line.offsetParent) {
+                    bottom = Math.max(bottom, line.getBoundingClientRect().top);
                 }
                 return e.clientY <= bottom;
             }
