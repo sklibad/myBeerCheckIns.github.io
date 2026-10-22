@@ -7,12 +7,12 @@
 
     // Beer styles grouped like the filters of the check-in map, one colour each on all charts
     var STYLES = [
-        { id: 'lager', label: 'Lager', color: '#e9a92a' },
-        { id: 'ale', label: 'Ale / APA', color: '#d95f0e' },
-        { id: 'ipa', label: 'IPA', color: '#7f9a2e' },
-        { id: 'sour', label: 'Sour', color: '#c2456b' },
-        { id: 'stout', label: 'Stout / Porter', color: '#3c2828' },
-        { id: 'other', label: 'Other', color: '#a39a86' }
+        { id: 'lager', label: 'Lager', color: '#ffc000' },
+        { id: 'ale', label: 'Ale / APA', color: '#e07400' },
+        { id: 'ipa', label: 'IPA', color: '#6e9a1e' },
+        { id: 'sour', label: 'Sour', color: '#c8326b' },
+        { id: 'stout', label: 'Stout / Porter', color: '#3b2a20' },
+        { id: 'other', label: 'Other', color: '#b8b8b8' }
     ];
     var STYLE_BY_ID = {};
     STYLES.forEach(function (s) { STYLE_BY_ID[s.id] = s; });
@@ -39,8 +39,14 @@
     var HOME = [50.0944850, 14.4806282];   // the wind rose is drawn around Prague
     var DIRECTIONS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
     var MIN_FOR_AVERAGE = 5;               // "Best rated" rankings: places with at least 5 check-ins
-    var BROWN = 'rgb(87, 62, 62)';
-    var ORANGE = '#cc4c02';
+    // Untappd look (see stats.css)
+    var FONT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Arial, sans-serif';
+    var TEXT = '#000000';
+    var TEXT_SOFT = '#595959';
+    var LINE = '#e2e2e2';
+    var YELLOW = '#ffc000';
+    var YELLOW_DARK = '#e0a800';
+    var AMBER = '#c77700';
 
     function parseDate(dmy) {
         var p = dmy.split('/').map(Number);
@@ -61,16 +67,15 @@
         return list.reduce(function (a, b) { return a + b; }, 0) / list.length;
     }
 
-    // Five circles, the last one partly filled (like in the check-in map)
-    function ratingDots(rating) {
-        var html = '<span class="rating-dots" aria-hidden="true">';
+    // Five rating caps like on Untappd, the last one partly filled; withNumber adds "(4.25)"
+    function ratingCaps(rating, withNumber) {
+        var html = '<span class="caps" aria-hidden="true">';
         for (var i = 1; i <= 5; i++) {
             var fill = Math.max(0, Math.min(1, rating - (i - 1)));
-            html += fill >= 1 ? '<span class="dot filled"></span>' :
-                fill > 0 ? '<span class="dot" style="background: conic-gradient(#FFD700 0 ' + (fill * 100) + '%, transparent 0)"></span>' :
-                '<span class="dot"></span>';
+            html += '<span class="cap" style="--fill: ' + Math.round(fill * 100) + '%"></span>';
         }
-        return html + '</span>';
+        html += '</span>';
+        return withNumber ? html + '<span class="caps-num">(' + rating.toFixed(2) + ')</span>' : html;
     }
 
     var records = data.map(function (r) {
@@ -94,12 +99,18 @@
 
     // ---------- Chart.js look ----------
 
-    Chart.defaults.font.family = 'Arial, sans-serif';
-    Chart.defaults.color = BROWN;
-    Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(60, 40, 40, 0.95)';
+    Chart.defaults.font.family = FONT;
+    Chart.defaults.font.size = 12;
+    Chart.defaults.color = TEXT_SOFT;
+    Chart.defaults.plugins.tooltip.backgroundColor = '#ffffff';
+    Chart.defaults.plugins.tooltip.titleColor = TEXT;
+    Chart.defaults.plugins.tooltip.bodyColor = TEXT_SOFT;
+    Chart.defaults.plugins.tooltip.borderColor = LINE;
+    Chart.defaults.plugins.tooltip.borderWidth = 1;
     Chart.defaults.plugins.tooltip.padding = 10;
-    Chart.defaults.plugins.tooltip.cornerRadius = 8;
-    var GRID = 'rgba(87, 62, 62, 0.12)';
+    Chart.defaults.plugins.tooltip.cornerRadius = 4;
+    Chart.defaults.plugins.tooltip.boxPadding = 4;
+    var GRID = '#ededed';
     var charts = {};
 
     function barChart(id, options) {
@@ -155,7 +166,7 @@
         document.getElementById('kpis').innerHTML = tiles.map(function (t) {
             return '<div class="kpi"><span class="kpi-value">' + t.value.toLocaleString('en-US') + '</span><span class="kpi-label">' + t.label + '</span></div>';
         }).join('') +
-            '<div class="kpi"><span class="kpi-value">' + avg.toFixed(2) + '</span><span class="kpi-label">Average rating</span>' + ratingDots(avg) + '</div>';
+            '<div class="kpi"><span class="kpi-value">' + avg.toFixed(2) + '</span><span class="kpi-label">Average rating</span>' + ratingCaps(avg) + '</div>';
     }
 
     // ---------- Check-ins over time ----------
@@ -190,7 +201,7 @@
             });
         }
         charts.monthly.data.labels = labels;
-        charts.monthly.data.datasets = [{ data: values, backgroundColor: ORANGE, hoverBackgroundColor: '#993404', borderRadius: 3, maxBarThickness: 36 }];
+        charts.monthly.data.datasets = [{ data: values, backgroundColor: YELLOW, hoverBackgroundColor: YELLOW_DARK, borderRadius: 2, maxBarThickness: 36 }];
         charts.monthly.update();
 
         var best = values.indexOf(Math.max.apply(null, values));
@@ -200,7 +211,7 @@
 
     // ---------- Calendar heatmap: months × days ----------
 
-    var HEAT = ['#fee391', '#fec44f', '#fe9929', '#d95f0e', '#993404'];
+    var HEAT = ['#ffeeb3', '#ffd966', '#ffc000', '#e08f00', '#a35a00'];
 
     function renderCalendar(list) {
         var counts = {};
@@ -251,8 +262,8 @@
         charts.weekdays.data.labels = WEEKDAYS;
         charts.weekdays.data.datasets = [{
             data: counts,
-            backgroundColor: counts.map(function (c) { return c === max ? '#993404' : ORANGE; }),
-            borderRadius: 4,
+            backgroundColor: counts.map(function (c) { return c === max ? AMBER : YELLOW; }),
+            borderRadius: 2,
             maxBarThickness: 44
         }];
         charts.weekdays.update();
@@ -354,7 +365,7 @@
         charts.styles.data.datasets = [{
             data: STYLES.map(function (s) { return counts[s.id] || 0; }),
             backgroundColor: STYLES.map(function (s) { return s.color; }),
-            borderColor: 'rgb(238, 231, 212)',
+            borderColor: '#ffffff',
             borderWidth: 2
         }];
         charts.styles.update();
@@ -363,13 +374,13 @@
         // Served as: one stacked bar
         var serving = {};
         list.forEach(function (r) { serving[r.Serving_style] = (serving[r.Serving_style] || 0) + 1; });
-        var colors = { Draft: '#d95f0e', Bottle: '#7f9a2e', Can: '#a39a86' };
+        var colors = { Draft: YELLOW, Bottle: '#8a4500', Can: '#b8b8b8' };
         var kinds = Object.keys(serving).sort(function (a, b) { return serving[b] - serving[a]; });
         document.getElementById('serving').innerHTML =
             '<div class="serving-bar">' + kinds.map(function (k) {
-                return '<span style="width: ' + (100 * serving[k] / list.length) + '%; background-color: ' + (colors[k] || BROWN) + '" title="' + k + ': ' + serving[k] + '"></span>';
+                return '<span style="width: ' + (100 * serving[k] / list.length) + '%; background-color: ' + (colors[k] || TEXT_SOFT) + '" title="' + k + ': ' + serving[k] + '"></span>';
             }).join('') + '</div><div class="legend">' + kinds.map(function (k) {
-                return '<span class="legend-item"><span class="legend-swatch" style="background-color: ' + (colors[k] || BROWN) + '"></span>' +
+                return '<span class="legend-item"><span class="legend-swatch" style="background-color: ' + (colors[k] || TEXT_SOFT) + '"></span>' +
                     k + ' <b>' + serving[k] + '</b><span class="legend-share">' + Math.round(100 * serving[k] / list.length) + ' %</span></span>';
             }).join('') + '</div>';
     }
@@ -387,13 +398,14 @@
         var sorted = list.slice().sort(function (a, b) {
             return (state.beers === 'best' ? b.Rating - a.Rating : a.Rating - b.Rating) || (b.date - a.date);
         }).slice(0, 10);
-        document.getElementById('top-beers').innerHTML = sorted.length ? sorted.map(function (r) {
+        document.getElementById('top-beers').innerHTML = sorted.length ? sorted.map(function (r, i) {
             return '<li class="beer-row">' +
-                '<span class="beer-score"><b>' + r.Rating.toFixed(2) + '</b>' + ratingDots(r.Rating) + '</span>' +
-                '<span class="beer-main"><span class="beer-name">' + escapeHtml(r.Beer) + '</span>' +
-                '<span class="beer-sub"><span class="style-dot" style="background-color: ' + STYLE_BY_ID[r.style].color + '"></span>' +
-                escapeHtml(r.Beer_style) + ' · ' + placeLink('brewery', r.Brewery, r.ID) + ' (' + escapeHtml(r.Brewery_country) + ')</span>' +
-                '<span class="beer-sub">' + placeLink('venue', r.Venue, r.ID) + ' · ' + r.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + '</span>' +
+                '<span class="beer-main"><span class="beer-name"><span class="beer-rank">' + (i + 1) + '</span>' + escapeHtml(r.Beer) + '</span>' +
+                '<span class="beer-sub">' + placeLink('brewery', r.Brewery, r.ID) + ' (' + escapeHtml(r.Brewery_country) + ')</span>' +
+                '<span class="beer-sub"><span class="style-dot" style="background-color: ' + STYLE_BY_ID[r.style].color + '"></span>' + escapeHtml(r.Beer_style) + '</span>' +
+                '</span><span class="beer-details"><span>' + ratingCaps(r.Rating, true) + '</span>' +
+                '<span>' + placeLink('venue', r.Venue, r.ID) + '</span>' +
+                '<span>' + r.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + '</span>' +
                 '</span></li>';
         }).join('') : '<li class="empty">No check-ins</li>';
     }
@@ -404,12 +416,14 @@
     var RANKINGS = [
         { id: 'venues', key: function (r) { return [r.Venue]; }, name: function (k) { return placeLink('venue', k); } },
         { id: 'breweries', key: function (r) { return [r.Brewery]; }, name: function (k) { return placeLink('brewery', k); } },
-        { id: 'countries', key: function (r) { return [r.Brewery_country]; }, name: escapeHtml },
+        { id: 'countries', key: function (r) { return [r.Brewery_country]; }, name: function (k) { return '<span>' + escapeHtml(k) + '</span>'; } },
         { id: 'friends', key: function (r) { return r.Friends; }, name: function (k) {
             return '<img class="avatar" src="ikony/' + encodeURIComponent(k) + '.jpg" alt="" onerror="this.style.visibility=\'hidden\'">' +
-                escapeHtml(FRIEND_NAMES[k] || k);
+                '<span>' + escapeHtml(FRIEND_NAMES[k] || k) + '</span>';
         } },
-        { id: 'beer-styles', key: function (r) { return [r.Beer_style]; }, name: escapeHtml }
+        { id: 'beer-styles', key: function (r) { return [r.Beer_style]; }, name: function (k) {
+            return '<span class="style-dot" style="background-color: ' + STYLE_BY_ID[styleGroup(k)].color + '"></span><span>' + escapeHtml(k) + '</span>';
+        } }
     ];
 
     function renderRanking(ranking, list) {
@@ -439,13 +453,13 @@
                 '<span class="rank-bar"><span style="width: ' + (100 * value / max) + '%"></span></span></span>' +
                 '<span class="rank-value">' + (mode === 'best'
                     ? '<b>' + row.avg.toFixed(2) + '</b><small>' + row.count + '×</small>'
-                    : '<b>' + row.count + '</b><small>' + row.avg.toFixed(2) + '</small>') + '</span></li>';
+                    : '<b>' + row.count + '</b><small>(' + row.avg.toFixed(2) + ')</small>') + '</span></li>';
         }).join('') : '<li class="empty">' + (mode === 'best' ? 'Nothing with at least ' + MIN_FOR_AVERAGE + ' check-ins' : 'No check-ins') + '</li>';
     }
 
-    // Most / Best rated switches of the rankings and Best / Worst of the beers
+    // Most / Best rated tabs of the rankings and Best / Worst of the beers
     document.addEventListener('click', function (e) {
-        var button = e.target.closest('.pill-toggle button');
+        var button = e.target.closest('.filter-tabs button');
         if (!button) return;
         var toggle = button.parentNode;
         toggle.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b === button); });
@@ -488,7 +502,7 @@
         });
         if (charts.rose) charts.rose.destroy();
         charts.rose = Highcharts.chart('wind-rose', {
-            chart: { polar: true, type: 'column', backgroundColor: 'transparent', style: { fontFamily: 'Arial, sans-serif' } },
+            chart: { polar: true, type: 'column', backgroundColor: 'transparent', style: { fontFamily: FONT } },
             title: { text: null },
             credits: { enabled: false },
             exporting: { enabled: false },
@@ -499,18 +513,18 @@
                 tickmarkPlacement: 'on',
                 lineWidth: 0,
                 gridLineColor: GRID,
-                labels: { style: { color: BROWN, fontWeight: 'bold', fontSize: '11px' } }
+                labels: { style: { color: TEXT, fontWeight: '600', fontSize: '12px' } }
             },
             yAxis: {
                 min: 0,
                 endOnTick: false,
                 gridLineColor: GRID,
-                labels: { format: '{value} %', style: { color: 'rgba(87, 62, 62, 0.6)', fontSize: '10px' } },
+                labels: { format: '{value} %', style: { color: TEXT_SOFT, fontSize: '10px' } },
                 reversedStacks: false
             },
-            tooltip: { shared: true, valueSuffix: ' %', backgroundColor: 'rgba(255, 255, 255, 0.95)', borderColor: BROWN },
+            tooltip: { shared: true, valueSuffix: ' %', backgroundColor: '#ffffff', borderColor: LINE, borderRadius: 4, shadow: false, style: { color: TEXT } },
             plotOptions: {
-                series: { stacking: 'normal', shadow: false, groupPadding: 0, pointPlacement: 'on', borderWidth: 1, borderColor: 'rgb(238, 231, 212)' }
+                series: { stacking: 'normal', shadow: false, groupPadding: 0, pointPlacement: 'on', borderWidth: 1, borderColor: '#ffffff' }
             },
             series: series
         });

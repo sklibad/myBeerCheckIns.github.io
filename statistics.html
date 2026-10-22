@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
-    <link rel="stylesheet" href="common.css?v=56" />
-    <link rel="stylesheet" href="stats.css?v=56">
+    <link rel="stylesheet" href="common.css?v=57" />
+    <link rel="stylesheet" href="stats.css?v=57">
     <script src="https://code.highcharts.com/13.1.1/highcharts.js"></script>
     <script src="https://code.highcharts.com/13.1.1/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/13.1.1/modules/accessibility.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="stats_data.js?v=56" type="text/javascript"></script>
+    <script src="stats_data.js?v=57" type="text/javascript"></script>
     <title>Statistics – MyBeerCheckIns</title>
-    <script src="nav.js?v=56" defer></script>
-    <script src="place-window.js?v=56" defer></script>
+    <script src="nav.js?v=57" defer></script>
+    <script src="place-window.js?v=57" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -32,119 +32,141 @@
         </div>
     </header>
     <main class="stats">
-        <section class="stats-top">
-            <div>
+        <section class="card stats-head">
+            <div class="card-head">
                 <h1>Statistics</h1>
                 <p class="stats-summary" id="stats-summary"></p>
             </div>
-            <div class="year-pills" id="year-pills" role="radiogroup" aria-label="Year"></div>
+            <div class="filter-tabs year-tabs" id="year-pills" role="radiogroup" aria-label="Year"></div>
+            <div class="kpis" id="kpis" aria-label="Key numbers"></div>
         </section>
-        <section class="kpis" id="kpis" aria-label="Key numbers"></section>
         <div class="cards">
             <article class="card card-wide" id="card-monthly">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Check-ins over time</h2>
                     <span class="card-note" id="monthly-note"></span>
                 </div>
-                <div class="chart-box chart-tall"><canvas id="monthly-chart"></canvas></div>
+                <div class="card-body">
+                    <div class="chart-box chart-tall"><canvas id="monthly-chart"></canvas></div>
+                </div>
             </article>
             <article class="card card-wide" id="card-calendar">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Calendar</h2>
                     <span class="card-note" id="calendar-note">check-ins per day of the year</span>
                 </div>
-                <div class="calendar" id="calendar"></div>
+                <div class="card-body">
+                    <div class="calendar" id="calendar"></div>
+                </div>
             </article>
             <article class="card" id="card-weekdays">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Days of the week</h2>
                     <span class="card-note" id="weekday-note"></span>
                 </div>
-                <div class="chart-box"><canvas id="weekday-chart"></canvas></div>
+                <div class="card-body">
+                    <div class="chart-box"><canvas id="weekday-chart"></canvas></div>
+                </div>
             </article>
             <article class="card" id="card-ratings">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Ratings by style</h2>
                     <span class="card-note" id="rating-note"></span>
                 </div>
-                <div class="chart-box"><canvas id="rating-chart"></canvas></div>
-                <div class="legend" id="rating-legend"></div>
+                <div class="card-body">
+                    <div class="chart-box"><canvas id="rating-chart"></canvas></div>
+                    <div class="legend" id="rating-legend"></div>
+                </div>
             </article>
             <article class="card" id="card-styles">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Beer styles</h2>
                 </div>
-                <div class="styles-layout">
-                    <div class="chart-box chart-doughnut"><canvas id="style-chart"></canvas></div>
-                    <div class="legend legend-column" id="style-legend"></div>
+                <div class="card-body">
+                    <div class="styles-layout">
+                        <div class="chart-box chart-doughnut"><canvas id="style-chart"></canvas></div>
+                        <div class="legend legend-column" id="style-legend"></div>
+                    </div>
+                    <h3 class="sub-title">Served as</h3>
+                    <div id="serving"></div>
                 </div>
-                <h3 class="sub-title">Served as</h3>
-                <div id="serving"></div>
             </article>
             <article class="card" id="card-beer-styles">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Beer styles in detail</h2>
-                    <div class="pill-toggle" data-for="beer-styles" role="group" aria-label="Order">
-                        <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
-                    </div>
                 </div>
-                <ol class="ranking" id="ranking-beer-styles"></ol>
+                <div class="filter-tabs" data-for="beer-styles" role="group" aria-label="Order">
+                    <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
+                </div>
+                <div class="card-body">
+                    <ol class="ranking" id="ranking-beer-styles"></ol>
+                </div>
             </article>
             <article class="card card-wide" id="card-beers">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Beers</h2>
-                    <div class="pill-toggle" data-for="beers" role="group" aria-label="Order">
-                        <button type="button" data-mode="best" class="active">Best</button><button type="button" data-mode="worst">Worst</button>
-                    </div>
+                </div>
+                <div class="filter-tabs" data-for="beers" role="group" aria-label="Order">
+                    <button type="button" data-mode="best" class="active">Best</button><button type="button" data-mode="worst">Worst</button>
                 </div>
                 <ol class="beer-list" id="top-beers"></ol>
             </article>
             <article class="card" id="card-venues">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Venues</h2>
-                    <div class="pill-toggle" data-for="venues" role="group" aria-label="Order">
-                        <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
-                    </div>
                 </div>
-                <ol class="ranking" id="ranking-venues"></ol>
+                <div class="filter-tabs" data-for="venues" role="group" aria-label="Order">
+                    <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
+                </div>
+                <div class="card-body">
+                    <ol class="ranking" id="ranking-venues"></ol>
+                </div>
             </article>
             <article class="card" id="card-breweries">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Breweries</h2>
-                    <div class="pill-toggle" data-for="breweries" role="group" aria-label="Order">
-                        <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
-                    </div>
                 </div>
-                <ol class="ranking" id="ranking-breweries"></ol>
+                <div class="filter-tabs" data-for="breweries" role="group" aria-label="Order">
+                    <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
+                </div>
+                <div class="card-body">
+                    <ol class="ranking" id="ranking-breweries"></ol>
+                </div>
             </article>
             <article class="card" id="card-countries">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Countries of origin</h2>
-                    <div class="pill-toggle" data-for="countries" role="group" aria-label="Order">
-                        <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
-                    </div>
                 </div>
-                <ol class="ranking" id="ranking-countries"></ol>
+                <div class="filter-tabs" data-for="countries" role="group" aria-label="Order">
+                    <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
+                </div>
+                <div class="card-body">
+                    <ol class="ranking" id="ranking-countries"></ol>
+                </div>
             </article>
             <article class="card" id="card-friends">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Beer buddies</h2>
-                    <div class="pill-toggle" data-for="friends" role="group" aria-label="Order">
-                        <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
-                    </div>
                 </div>
-                <ol class="ranking" id="ranking-friends"></ol>
+                <div class="filter-tabs" data-for="friends" role="group" aria-label="Order">
+                    <button type="button" data-mode="most" class="active">Most</button><button type="button" data-mode="best">Best rated</button>
+                </div>
+                <div class="card-body">
+                    <ol class="ranking" id="ranking-friends"></ol>
+                </div>
             </article>
             <article class="card card-wide" id="card-rose">
-                <div class="card-header">
+                <div class="card-head">
                     <h2>Directions from Prague</h2>
+                    <span class="card-note">share of check-ins per direction and style</span>
                 </div>
-                <p class="card-text">Where the venues lie as seen from home; share of check-ins per direction and style.</p>
-                <div class="rose" id="wind-rose"></div>
-                <div class="legend legend-center" id="rose-legend"></div>
+                <div class="card-body">
+                    <div class="rose" id="wind-rose"></div>
+                    <div class="legend legend-center" id="rose-legend"></div>
+                </div>
             </article>
         </div>
     </main>
-    <script src="stats.js?v=56"></script>
+    <script src="stats.js?v=57"></script>
 </body>
 </html>

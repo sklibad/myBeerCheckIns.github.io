@@ -1,210 +1,225 @@
-/* Statistics page: cards in the colours of the maps (beige panels, brown text, pills) */
+/* Statistics page in the look of Untappd: white boxes on a light page, grey title strips,
+   segmented filter tabs, brown links, Untappd yellow for charts and rating caps */
 
 :root {
-    --card: rgb(238, 231, 212);
-    --brown: rgb(87, 62, 62);
-    --brown-soft: rgba(87, 62, 62, 0.65);
-    --line: rgba(87, 62, 62, 0.15);
-    --orange: #cc4c02;
+    --page: #fbfbfb;
+    --box: #ffffff;
+    --strip: #f9f9f9;
+    --tab-off: #f2f2f2;
+    --text: #000000;
+    --text-soft: #595959;
+    --text-faint: #8c8c8c;
+    --line: #e2e2e2;
+    --line-soft: #e9e9e9;
+    --link: #8a4500;
+    --yellow: #ffc000;
+    --yellow-dark: #e0a800;
+    --cap-empty: #e3e3e3;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    color: var(--brown);
+    background-color: var(--page);
+    font-family: var(--font);
+    color: var(--text);
 }
 
 .stats {
-    max-width: 1240px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 20px 18px 40px;
+    padding: 24px 16px 48px;
 }
 
-/* ---------- Title, summary and the year ---------- */
+a {
+    color: var(--link);
+    text-decoration: none;
+}
 
-.stats-top {
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Boxes ---------- */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: var(--box);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.card-head {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 12px 24px;
-    margin-bottom: 16px;
+    align-items: baseline;
+    gap: 4px 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    background-color: var(--strip);
 }
 
-.stats-top h1 {
+.card-head h1,
+.card-head h2 {
+    flex: 1 1 auto;
     margin: 0;
-    font-size: 28px;
-    color: var(--brown);
+    font-weight: 600;
+    color: var(--text);
 }
 
-.stats-summary {
-    margin: 4px 0 0;
-    font-size: 15px;
-    color: var(--brown-soft);
+.card-head h1 {
+    font-size: 26px;
 }
 
-.year-pills {
+.card-head h2 {
+    font-size: 19px;
+}
+
+.card-note {
+    font-size: 14px;
+    color: var(--text-soft);
+}
+
+.card-body {
     display: flex;
-    max-width: 100%;
-    padding: 3px;
-    overflow-x: auto;
-    border-radius: 999px;
-    background-color: var(--card);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    scrollbar-width: none;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 16px 20px 20px;
 }
 
-.year-pills::-webkit-scrollbar {
-    display: none;
+.sub-title {
+    margin: 20px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+    font-size: 16px;
+    font-weight: 600;
 }
 
-.year-pills input {
+.empty {
+    padding: 16px 0;
+    color: var(--text-soft);
+    list-style: none;
+}
+
+/* ---------- Segmented filter tabs (Most / Best rated, years) ---------- */
+
+.filter-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--line);
+    background-color: var(--tab-off);
+}
+
+.filter-tabs button,
+.filter-tabs label {
+    flex: 1 1 0;
+    padding: 11px 8px;
+    border: none;
+    border-left: 1px solid var(--line);
+    background: none;
+    color: var(--text-soft);
+    font: 600 15px var(--font);
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.filter-tabs button:first-child,
+.filter-tabs input:first-child + label {
+    border-left: none;
+}
+
+.filter-tabs button:hover,
+.filter-tabs label:hover {
+    color: var(--text);
+}
+
+.filter-tabs button.active,
+.filter-tabs input:checked + label {
+    background-color: var(--box);
+    color: var(--text);
+    box-shadow: inset 0 -3px 0 var(--yellow);
+}
+
+.filter-tabs button:focus-visible,
+.filter-tabs input:focus-visible + label {
+    outline: 2px solid var(--link);
+    outline-offset: -2px;
+}
+
+.filter-tabs input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
-.year-pills label {
-    padding: 7px 14px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: background-color 0.15s, color 0.15s;
+/* ---------- Title box: summary, years and key numbers ---------- */
+
+.stats-head {
+    margin-bottom: 24px;
 }
 
-.year-pills label:hover {
-    background-color: rgba(87, 62, 62, 0.1);
+.stats-summary {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-soft);
 }
 
-.year-pills input:checked + label {
-    background-color: var(--brown);
-    color: white;
+.year-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
 }
 
-.year-pills input:focus-visible + label {
-    outline: 2px solid var(--brown);
-    outline-offset: 2px;
+.year-tabs::-webkit-scrollbar {
+    display: none;
 }
-
-/* ---------- Key numbers ---------- */
 
 .kpis {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .kpi {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 4px;
-    padding: 14px 16px;
-    border-radius: 14px;
-    background-color: var(--card);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 18px 8px;
+    border-left: 1px solid var(--line-soft);
+    text-align: center;
+}
+
+.kpi:first-child {
+    border-left: none;
 }
 
 .kpi-value {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 26px;
+    font-weight: 700;
     line-height: 1.1;
     font-variant-numeric: tabular-nums;
 }
 
 .kpi-label {
     font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
-    color: var(--brown-soft);
+    color: var(--text-soft);
 }
 
-/* ---------- Cards ---------- */
+/* ---------- Grid of boxes ---------- */
 
-/* cards of one row are equally high, their chart takes the extra space */
 .cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    padding: 16px 18px 18px;
-    border-radius: 14px;
-    background-color: var(--card);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    gap: 24px;
 }
 
 .card-wide {
     grid-column: 1 / -1;
-}
-
-.card-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px 12px;
-    margin-bottom: 12px;
-}
-
-.card-header h2 {
-    flex: 1;
-    margin: 0;
-    font-size: 13px;
-    letter-spacing: 0.7px;
-    text-transform: uppercase;
-}
-
-.card-note,
-.card-text {
-    font-size: 13px;
-    color: var(--brown-soft);
-}
-
-.card-text {
-    margin: -4px 0 8px;
-}
-
-.sub-title {
-    margin: 16px 0 8px;
-    font-size: 12px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-}
-
-/* Most / Best rated, Best / Worst */
-.pill-toggle {
-    display: flex;
-    padding: 2px;
-    border-radius: 999px;
-    background-color: rgba(87, 62, 62, 0.1);
-}
-
-.pill-toggle button {
-    padding: 5px 12px;
-    border: none;
-    border-radius: 999px;
-    background: none;
-    color: var(--brown);
-    font: bold 12px Arial, sans-serif;
-    cursor: pointer;
-}
-
-.pill-toggle button.active {
-    background-color: var(--brown);
-    color: white;
-}
-
-.empty {
-    padding: 16px 0;
-    color: var(--brown-soft);
-    list-style: none;
 }
 
 /* ---------- Charts ---------- */
@@ -224,8 +239,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 14px;
-    margin-top: 10px;
-    font-size: 13px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--text-soft);
 }
 
 .legend-item {
@@ -236,17 +252,20 @@ body {
 
 .legend-item b {
     margin-left: 2px;
+    color: var(--text);
+    font-weight: 600;
 }
 
 .legend-share {
-    color: var(--brown-soft);
-    font-size: 12px;
+    color: var(--text-faint);
+    font-size: 13px;
 }
 
 .legend-swatch {
+    flex-shrink: 0;
     width: 12px;
     height: 12px;
-    border-radius: 3px;
+    border-radius: 50%;
 }
 
 .styles-layout {
@@ -254,20 +273,21 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 180px) auto;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
 }
 
 .chart-doughnut {
     height: 180px;
+    min-height: 0;
 }
 
 .legend-column {
     display: grid;
     grid-template-columns: auto 1fr auto auto;
-    gap: 6px 8px;
-    white-space: nowrap;
+    gap: 7px 8px;
     align-items: center;
     margin-top: 0;
+    white-space: nowrap;
 }
 
 /* swatch | name | count | share in columns */
@@ -291,34 +311,36 @@ body {
 
 /* legend items that switch a style off and on */
 .legend-toggle {
-    padding: 3px 8px;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    background: none;
-    color: var(--brown);
-    font: 13px Arial, sans-serif;
+    padding: 5px 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background-color: var(--box);
+    color: var(--text);
+    font: 14px var(--font);
     cursor: pointer;
 }
 
 .legend-toggle:hover {
-    border-color: rgba(87, 62, 62, 0.3);
+    border-color: var(--text-faint);
 }
 
 .legend-toggle.off {
-    opacity: 0.4;
+    background-color: var(--tab-off);
+    color: var(--text-faint);
     text-decoration: line-through;
 }
 
 .legend-toggle.off .legend-swatch {
     background-color: transparent !important;
-    box-shadow: inset 0 0 0 1.5px var(--brown);
+    box-shadow: inset 0 0 0 1.5px var(--text-faint);
 }
 
 .serving-bar {
     display: flex;
-    height: 14px;
+    height: 12px;
     overflow: hidden;
-    border-radius: 7px;
+    border-radius: 6px;
+    gap: 2px;
 }
 
 .serving-bar span {
@@ -326,7 +348,7 @@ body {
 }
 
 .rose {
-    height: 380px;
+    height: 400px;
 }
 
 /* ---------- Calendar heatmap ---------- */
@@ -347,18 +369,19 @@ body {
 .cal-head span {
     font-size: 11px;
     text-align: center;
-    color: var(--brown-soft);
+    color: var(--text-faint);
 }
 
 .cal-month {
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--text-soft);
 }
 
 .cal-cell {
     aspect-ratio: 1;
     border-radius: 3px;
-    background-color: rgba(87, 62, 62, 0.08);
+    background-color: #f0f0f0;
 }
 
 .cal-none {
@@ -370,9 +393,9 @@ body {
     align-items: center;
     justify-content: flex-end;
     gap: 3px;
-    margin-top: 8px;
+    margin-top: 10px;
     font-size: 12px;
-    color: var(--brown-soft);
+    color: var(--text-soft);
 }
 
 .cal-legend .cal-cell {
@@ -387,7 +410,36 @@ body {
     margin-left: 4px;
 }
 
-/* ---------- Beers ---------- */
+/* ---------- Rating caps: five yellow bottle caps, the last one partly filled ---------- */
+
+.caps {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    vertical-align: middle;
+}
+
+.cap {
+    width: var(--cap, 16px);
+    height: var(--cap, 16px);
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--yellow) 0 var(--fill, 0%), var(--cap-empty) var(--fill, 0%));
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.06);
+}
+
+.caps-num {
+    margin-left: 4px;
+    font-size: 14px;
+    color: var(--text-soft);
+    font-variant-numeric: tabular-nums;
+}
+
+.kpi .caps {
+    --cap: 12px;
+    margin-top: 2px;
+}
+
+/* ---------- Beers: like the beer lists of Untappd ---------- */
 
 .beer-list,
 .ranking {
@@ -398,13 +450,63 @@ body {
 
 .beer-row {
     display: flex;
-    gap: 12px;
-    padding: 9px 0;
-    border-top: 1px solid var(--line);
+    flex-direction: column;
+    min-width: 0;
+    border-top: 1px solid var(--line-soft);
 }
 
 .beer-row:first-child {
     border-top: none;
+}
+
+.beer-main {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    padding: 14px 20px 10px;
+}
+
+.beer-name {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.beer-rank {
+    flex-shrink: 0;
+    min-width: 20px;
+    color: var(--text-faint);
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+}
+
+.beer-sub {
+    padding-left: 28px;
+    font-size: 14px;
+    color: var(--text-soft);
+}
+
+.beer-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 18px;
+    margin: 0 20px;
+    padding: 8px 0 12px 28px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 14px;
+    color: var(--text-soft);
+}
+
+.style-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+    border-radius: 50%;
 }
 
 /* the best / worst ten in two columns on wide screens */
@@ -414,7 +516,10 @@ body {
         grid-template-columns: 1fr 1fr;
         grid-auto-flow: column;
         grid-template-rows: repeat(5, auto);
-        column-gap: 32px;
+    }
+
+    .beer-row:nth-child(n + 6) {
+        border-left: 1px solid var(--line-soft);
     }
 
     .beer-row:nth-child(6) {
@@ -422,95 +527,35 @@ body {
     }
 }
 
-.beer-score {
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    width: 64px;
-    font-size: 16px;
-}
-
-.beer-main {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-}
-
-.beer-name {
-    font-weight: bold;
-}
-
-.beer-sub {
-    font-size: 12px;
-    color: var(--brown-soft);
-}
-
-.style-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-right: 5px;
-    border-radius: 50%;
-}
-
-.beer-sub a,
-.rank-name a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px dotted currentColor;
-}
-
-.beer-sub a:hover,
-.rank-name a:hover {
-    color: var(--orange);
-}
-
-.rating-dots {
-    display: inline-flex;
-    gap: 2px;
-}
-
-.rating-dots .dot {
-    width: 9px;
-    height: 9px;
-    border: 1px solid var(--brown);
-    border-radius: 50%;
-}
-
-.rating-dots .dot.filled {
-    background-color: #FFD700;
-}
-
-.kpi .rating-dots {
-    margin-top: 2px;
-}
-
 /* ---------- Rankings ---------- */
 
 .rank-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 6px 0;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--line-soft);
+}
+
+.rank-row:first-child {
+    border-top: none;
+    padding-top: 0;
 }
 
 .rank-no {
     flex-shrink: 0;
-    width: 22px;
-    font-size: 13px;
-    font-weight: bold;
+    width: 20px;
+    font-size: 14px;
     text-align: right;
-    color: var(--brown-soft);
+    color: var(--text-faint);
+    font-variant-numeric: tabular-nums;
 }
 
 .rank-main {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     min-width: 0;
 }
 
@@ -518,24 +563,29 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    min-width: 0;
+    font-size: 15px;
+}
+
+.rank-name a,
+.rank-name > span {
     overflow: hidden;
-    font-size: 14px;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
 .rank-bar {
-    height: 6px;
+    height: 4px;
     overflow: hidden;
-    border-radius: 3px;
-    background-color: rgba(87, 62, 62, 0.1);
+    border-radius: 2px;
+    background-color: #f0f0f0;
 }
 
 .rank-bar span {
     display: block;
     height: 100%;
-    border-radius: 3px;
-    background-color: var(--orange);
+    border-radius: 2px;
+    background-color: var(--yellow);
 }
 
 .rank-value {
@@ -543,19 +593,23 @@ body {
     flex-shrink: 0;
     flex-direction: column;
     align-items: flex-end;
-    min-width: 44px;
+    min-width: 48px;
     font-variant-numeric: tabular-nums;
 }
 
+.rank-value b {
+    font-weight: 600;
+}
+
 .rank-value small {
-    font-size: 11px;
-    color: var(--brown-soft);
+    font-size: 12px;
+    color: var(--text-faint);
 }
 
 .avatar {
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -564,30 +618,29 @@ body {
 
 @media (max-width: 1000px) {
     .kpis {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .kpi:nth-child(3n + 1) {
+        border-left: none;
+    }
+
+    .kpi:nth-child(n + 4) {
+        border-top: 1px solid var(--line-soft);
     }
 }
 
 @media (max-width: 760px) {
     .stats {
-        padding: 14px 10px 28px;
+        padding: 12px 0 28px;
     }
 
-    .stats-top h1 {
-        font-size: 24px;
+    .card {
+        border-radius: 0;
     }
 
-    .kpis {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-    }
-
-    .kpi {
-        padding: 12px 14px;
-    }
-
-    .kpi-value {
-        font-size: 24px;
+    .stats-head {
+        margin-bottom: 12px;
     }
 
     .cards {
@@ -595,8 +648,50 @@ body {
         gap: 12px;
     }
 
-    .card {
-        padding: 14px 14px 16px;
+    .card-head {
+        padding: 12px 16px;
+    }
+
+    .card-head h1 {
+        font-size: 22px;
+    }
+
+    .card-head h2 {
+        font-size: 17px;
+    }
+
+    .card-note {
+        font-size: 13px;
+    }
+
+    .card-body {
+        padding: 14px 16px 16px;
+    }
+
+    .filter-tabs button,
+    .filter-tabs label {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .kpi {
+        padding: 14px 4px;
+    }
+
+    .kpi-value {
+        font-size: 22px;
+    }
+
+    .kpi-label {
+        font-size: 11px;
+    }
+
+    .beer-main {
+        padding: 12px 16px 8px;
+    }
+
+    .beer-details {
+        margin: 0 16px;
     }
 
     .cal-row {
@@ -621,15 +716,15 @@ body {
     }
 
     .styles-layout {
-        grid-template-columns: minmax(0, 140px) auto;
-        gap: 12px;
+        grid-template-columns: minmax(0, 130px) auto;
+        gap: 14px;
     }
 
     .chart-doughnut {
-        height: 140px;
+        height: 130px;
     }
 
     .rose {
-        height: 320px;
+        height: 330px;
     }
 }
