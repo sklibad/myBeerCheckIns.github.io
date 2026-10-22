@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=50" />
-    <link rel="stylesheet" href="map4.css?v=50" />
+    <link rel="stylesheet" href="common.css?v=51" />
+    <link rel="stylesheet" href="map4.css?v=51" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=50" type="text/javascript"></script>
+    <script src="data.js?v=51" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=50" defer></script>
+    <script src="nav.js?v=51" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -2690,22 +2690,34 @@
             setDetailOpen(false);
         });
 
-        // Drag the handle up to expand the sheet to full screen, down to shrink or close it
+        // Drag the top of the sheet up to expand it to full screen, down to shrink or close it.
+        // The grip area reaches from the handle down to the beer name (included); below it a touch
+        // scrolls the content instead.
         (function initSheetDrag() {
             var handle = document.getElementById('sheet-handle');
             var startY = null;
             var startHeight = 0;
             var height = 0;
 
-            handle.addEventListener('pointerdown', function (e) {
+            function inGripArea(e) {
+                var bottom = handle.getBoundingClientRect().bottom;
+                var name = document.getElementById('beerName');
+                if (!document.getElementById('checkin-detail').hidden && name.offsetParent) {
+                    bottom = Math.max(bottom, name.getBoundingClientRect().bottom);
+                }
+                return e.clientY <= bottom;
+            }
+
+            contentBox.addEventListener('pointerdown', function (e) {
+                if (!isSmallScreen() || !inGripArea(e)) return;
                 if (e.target.closest('button')) return; // the close button is inside the handle
                 startY = e.clientY;
                 startHeight = height = contentBox.offsetHeight;
                 contentBox.classList.add('dragging');
-                handle.setPointerCapture(e.pointerId);
+                contentBox.setPointerCapture(e.pointerId);
             });
 
-            handle.addEventListener('pointermove', function (e) {
+            contentBox.addEventListener('pointermove', function (e) {
                 if (startY === null) return;
                 height = Math.max(0, Math.min(window.innerHeight, startHeight - (e.clientY - startY)));
                 contentBox.style.height = height + 'px';
@@ -2719,7 +2731,7 @@
                 contentBox.style.height = '';
 
                 if (moved < 5) {
-                    // A tap on the handle: tucked away -> half, otherwise half <-> full screen
+                    // A tap on the grip area: tucked away -> half, otherwise half <-> full screen
                     if (contentBox.classList.contains('peek')) {
                         setSheetState('half');
                     } else {
@@ -2737,8 +2749,8 @@
                 }
             }
 
-            handle.addEventListener('pointerup', endDrag);
-            handle.addEventListener('pointercancel', endDrag);
+            contentBox.addEventListener('pointerup', endDrag);
+            contentBox.addEventListener('pointercancel', endDrag);
         })();
 
         document.addEventListener('keydown', function (e) {
