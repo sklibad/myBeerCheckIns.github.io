@@ -1697,6 +1697,9 @@ body.timeline-on .mini-stats {
      without the scrollbar its content is centred */
   #contentBox {
     scrollbar-width: none;
+    /* scrolling stays inside the sheet: reaching its end must not scroll the page, which would
+       show / hide the browser's address bar and resize the sheet while scrolling */
+    overscroll-behavior: contain;
   }
 
   #contentBox::-webkit-scrollbar {
@@ -1852,9 +1855,10 @@ body.timeline-on .mini-stats {
     transform: translateY(0);
   }
 
+  /* full screen: the small viewport height does not change with the browser's address bar */
   #contentBox.full {
     height: 100vh;
-    height: 100dvh;
+    height: 100svh;
     border-radius: 0;
   }
 
