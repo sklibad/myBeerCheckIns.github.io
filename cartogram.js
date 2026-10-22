@@ -488,7 +488,7 @@ function initCartograms(regions) {
                     className: 'carto-popup',
                     maxWidth: Math.min(320, window.innerWidth - 40),
                     minWidth: Math.min(220, window.innerWidth - 40),
-                    autoPanPadding: [16, 16]
+                    autoPan: false   // keepPopupInView() pans, keeping clear of the switches
                 });
                 if (!isTouchDevice) {
                     featureLayer.bindTooltip(escapeHtml(areaTitle(areaSet, name)), { sticky: true, className: 'carto-tooltip' });
@@ -550,7 +550,7 @@ function initCartograms(regions) {
                 className: 'carto-popup',
                 maxWidth: Math.min(320, window.innerWidth - 40),
                 minWidth: Math.min(220, window.innerWidth - 40),
-                autoPanPadding: [16, 16]
+                autoPan: false   // keepPopupInView() pans, keeping clear of the switches
             });
             if (!isTouchDevice) {
                 var tooltip = escapeHtml(areaTitle(areaSet, name));
@@ -707,6 +707,31 @@ function initCartograms(regions) {
     }
 
     map.on('zoomend', updateCircles);
+
+    // An opened popup is moved into view: 16 px from the map edges, and below the switches where
+    // they cover it (on phones the summary line spans the whole width)
+    function keepPopupInView(popup) {
+        var element = popup.getElement();
+        if (!element) return;
+        var box = element.querySelector('.leaflet-popup-content-wrapper').getBoundingClientRect();
+        var mapBox = map.getContainer().getBoundingClientRect();
+        var switches = switchControl.getContainer().getBoundingClientRect();
+        var pad = 16;
+        var top = mapBox.top + pad;
+        if (box.right > switches.left && box.left < switches.right) {
+            top = Math.max(top, switches.bottom + 8);
+        }
+        var dx = 0, dy = 0;
+        if (box.left < mapBox.left + pad) dx = box.left - (mapBox.left + pad);
+        else if (box.right > mapBox.right - pad) dx = box.right - (mapBox.right - pad);
+        if (box.top < top) dy = box.top - top;
+        else if (box.bottom > mapBox.bottom - pad) dy = Math.min(box.bottom - (mapBox.bottom - pad), box.top - top);
+        if (dx || dy) map.panBy([dx, dy]);
+    }
+
+    map.on('popupopen', function (e) {
+        requestAnimationFrame(function () { keepPopupInView(e.popup); });
+    });
 
     // Years with check-ins; the last one equals "All time"
     var years = {};
