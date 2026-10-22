@@ -462,7 +462,7 @@
         if (!button) return;
         var toggle = button.parentNode;
         if (toggle.dataset.for === 'rose-scale') {
-            setRoseScale(button.dataset.mode);
+            setRoseScale(button.dataset.mode, true);
             return;
         }
         toggle.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b === button); });
@@ -485,7 +485,8 @@
     })();
     var ROSE_MARGIN = 28;                                   // chart margin, the same on all sides
     var ROSE_SCALES = { prague: 12, czechia: 250, europe: 2300 };   // map distance at the rim, km
-    var rose = { map: null, dots: null, scale: 'europe' };
+    // scale: the chosen preset (null after the user zooms by hand); auto: a zoom set by the code is running
+    var rose = { map: null, dots: null, scale: 'europe', auto: false };
 
     function azimuth(lat1, lon1, lat2, lon2) {
         var rad = Math.PI / 180;
@@ -508,19 +509,56 @@
     }
 
     function markScaleTab() {
-        var zoom = rose.map.getZoom();
-        var active = null;
-        Object.keys(ROSE_SCALES).forEach(function (s) {
-            if (Math.abs(zoom - rose.map._limitZoom(zoomForScale(s))) < 0.3) active = s;
-        });
         document.querySelectorAll('[data-for="rose-scale"] button').forEach(function (b) {
-            b.classList.toggle('active', b.dataset.mode === active);
+            b.classList.toggle('active', b.dataset.mode === rose.scale);
         });
     }
 
-    function setRoseScale(scale) {
+    function setRoseScale(scale, animate) {
+        var zoom = rose.map._limitZoom(zoomForScale(scale));
         rose.scale = scale;
-        rose.map.setView(HOME, zoomForScale(scale));
+        markScaleTab();
+        if (zoom === rose.map.getZoom()) return;
+        rose.auto = true;
+        rose.map.setView(HOME, zoom, { animate: !!animate });
+    }
+
+    // a zoom by hand (wheel, pinch, + / -) leaves the preset scales
+    function onRoseZoomEnd() {
+        if (rose.auto) {
+            rose.auto = false;
+            return;
+        }
+        rose.scale = null;
+        markScaleTab();
+    }
+
+    // Attribution (Leaflet, Esri, author) hidden behind an "i" button like on the other maps
+    function addAttributionToggle(map) {
+        var control = L.control({ position: 'bottomright' });
+        control.onAdd = function () {
+            var wrapper = L.DomUtil.create('div', 'attribution-toggle');
+            var button = L.DomUtil.create('button', 'attribution-button', wrapper);
+            button.type = 'button';
+            button.textContent = 'i';
+            button.setAttribute('aria-label', 'Map data sources');
+            button.setAttribute('aria-expanded', 'false');
+            wrapper.appendChild(map.attributionControl.getContainer());
+            L.DomEvent.disableClickPropagation(wrapper);
+            L.DomEvent.on(button, 'click', function () {
+                setOpen(!wrapper.classList.contains('open'));
+            });
+            return wrapper;
+        };
+        function setOpen(open) {
+            var wrapper = control.getContainer();
+            wrapper.classList.toggle('open', open);
+            wrapper.querySelector('.attribution-button').setAttribute('aria-expanded', open);
+        }
+        control.addTo(map);
+        // keep the "i" button at the very bottom of its corner, below the zoom buttons
+        control.getContainer().parentNode.appendChild(control.getContainer());
+        map.on('click', function () { setOpen(false); });
     }
 
     function initRoseMap() {
@@ -546,15 +584,17 @@
         var esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
         L.tileLayer(esri + 'World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
             maxNativeZoom: 16,
-            attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
+            attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors | ' +
+                '<a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David \u0160kl\u00edba</a>'
         }).addTo(rose.map);
         L.tileLayer(esri + 'World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxNativeZoom: 16, pane: 'labels' }).addTo(rose.map);
         rose.dots = L.layerGroup().addTo(rose.map);
-        rose.map.on('zoomend', markScaleTab);
+        addAttributionToggle(rose.map);
+        rose.map.on('zoomend', onRoseZoomEnd);
         // keep the rose centred on home and the chosen scale whenever the box changes size
         // (window resize, phone rotation, layout changes)
         rose.map.on('resize', function () {
-            if (document.querySelector('[data-for="rose-scale"] button.active')) setRoseScale(rose.scale);
+            if (rose.scale) setRoseScale(rose.scale, false);
         });
         if (window.ResizeObserver) {
             new ResizeObserver(function () {
@@ -562,7 +602,7 @@
                 if (charts.rose) charts.rose.reflow();
             }).observe(rose.map.getContainer());
         }
-        setRoseScale(rose.scale);
+        setRoseScale(rose.scale, false);
     }
 
     // venues of the selection as dots under the rose, area by the number of check-ins

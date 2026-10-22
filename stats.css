@@ -387,8 +387,54 @@ a:hover {
     box-shadow: none;
 }
 
-.rose-map .leaflet-bar a {
+.rose-map .leaflet-bar a,
+.rose-map .leaflet-bar a:hover {
     color: var(--text);
+    text-decoration: none;     /* no underline from the page's link hover */
+}
+
+/* attribution behind an "i" button, like on the other maps */
+.rose-map .attribution-toggle {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 6px;
+}
+
+.rose-map .attribution-button {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background-color: var(--box);
+    color: var(--text);
+    font: italic bold 15px/24px Georgia, serif;
+    cursor: pointer;
+}
+
+.rose-map .attribution-toggle.open .attribution-button {
+    border-color: var(--text);
+    background-color: var(--text);
+    color: #ffffff;
+}
+
+.rose-map .leaflet-bottom.leaflet-right .attribution-toggle .leaflet-control-attribution {
+    display: none;
+    max-width: calc(100vw - 90px);
+    margin: 0;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background-color: var(--box);
+    color: var(--text-soft);
+    font-size: 12px;
+    white-space: normal;
+}
+
+.rose-map .leaflet-bottom.leaflet-right .attribution-toggle.open .leaflet-control-attribution {
+    display: block;
 }
 
 .rose-map + .card-body {
