@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    font-family: 'Montserrat-Black', sans-serif;
+    font-family: var(--font-ui);
     margin: 0;
     background-color: #c4b494;
     display: flex;
@@ -51,7 +51,7 @@ path.leaflet-interactive:focus {
     border-radius: 999px;
     background-color: rgb(238, 231, 212);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-    font-family: Arial, sans-serif;
+    font-family: var(--font-ui);
     font-size: 13px;
 }
 
@@ -125,7 +125,7 @@ path.leaflet-interactive:focus {
     background-color: rgb(238, 231, 212);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
     color: rgb(87, 62, 62);
-    font: bold 13px Arial, sans-serif;
+    font: bold 13px var(--font-ui);
 }
 
 .carto-summary-button {
@@ -168,7 +168,7 @@ path.leaflet-interactive:focus {
     border: none;
     background: none;
     color: inherit;
-    font: bold 22px Arial, sans-serif;
+    font: bold 22px var(--font-ui);
     cursor: pointer;
 }
 
@@ -189,7 +189,7 @@ path.leaflet-interactive:focus {
     border-radius: 16px 16px 0 0;
     background-color: rgb(238, 231, 212);
     box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
-    font-family: Arial, sans-serif;
+    font-family: var(--font-ui);
     color: rgb(87, 62, 62);
     transition: transform 0.15s;
 }
@@ -233,7 +233,7 @@ path.leaflet-interactive:focus {
     border-radius: 999px;
     background-color: rgb(87, 62, 62);
     color: white;
-    font: bold 14px Arial, sans-serif;
+    font: bold 14px var(--font-ui);
     cursor: pointer;
 }
 
@@ -313,7 +313,7 @@ path.leaflet-interactive:focus {
 
 #map .leaflet-control-layers-expanded {
     padding: 8px 14px 8px 10px;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-ui);
     font-size: 13px;
     color: rgb(87, 62, 62);
 }
@@ -393,7 +393,7 @@ path.leaflet-interactive:focus {
     background-color: rgb(87, 62, 62);
     color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-    font: bold 13px Arial, sans-serif;
+    font: bold 13px var(--font-ui);
 }
 
 .carto-loading[hidden] {
@@ -406,7 +406,7 @@ path.leaflet-interactive:focus {
     border-radius: 12px;
     background-color: rgb(238, 231, 212);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-    font-family: Arial, sans-serif;
+    font-family: var(--font-ui);
     color: rgb(87, 62, 62);
     overflow: hidden;
 }
@@ -471,7 +471,7 @@ path.leaflet-interactive:focus {
 
 .carto-legend-circles text {
     fill: rgb(87, 62, 62);
-    font: 12px Arial, sans-serif;
+    font: 12px var(--font-ui);
     font-variant-numeric: tabular-nums;
 }
 
@@ -550,7 +550,7 @@ path.leaflet-interactive:focus {
 
 .carto-popup .leaflet-popup-content {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-ui);
     font-size: 14px;
     line-height: 1.35;
 }
@@ -648,7 +648,7 @@ path.leaflet-interactive:focus {
     background-color: rgb(87, 62, 62);
     color: white;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    font-family: Arial, sans-serif;
+    font-family: var(--font-ui);
     font-size: 13px;
     font-weight: bold;
 }

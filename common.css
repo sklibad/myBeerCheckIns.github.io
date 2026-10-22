@@ -1,6 +1,8 @@
 /* Shared styles for all pages: colors, header and navigation */
 
 :root {
+    /* the system font stack of Untappd: Segoe UI on Windows, San Francisco on Apple, Roboto on Android */
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Arial, sans-serif;
     --color-header: rgb(87, 62, 62);
     --color-header-hover: rgb(84, 35, 35);
     --color-page: #c4b494;
@@ -15,6 +17,13 @@
 
 body {
     background-color: var(--color-page);
+    font-family: var(--font-ui);
+}
+
+/* Leaflet and marker clusters bring their own fonts (Helvetica Neue, Arial) */
+body .leaflet-container,
+body .leaflet-container .marker-cluster div {
+    font-family: var(--font-ui);
 }
 
 /* ---------- Header ---------- */
@@ -25,7 +34,7 @@ header.site-header {
     z-index: 2000; /* above Leaflet controls (1000) */
     background-color: var(--color-header);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    font-family: Arial, sans-serif;
+    font-family: var(--font-ui);
 }
 
 /* full width, so the logo lines up with the map below */
@@ -179,7 +188,7 @@ header.site-header {
     padding: 6px 8px 6px 16px;
     background-color: rgb(87, 62, 62);
     color: white;
-    font: bold 15px Arial, sans-serif;
+    font: bold 15px var(--font-ui);
 }
 
 .place-window-title {
