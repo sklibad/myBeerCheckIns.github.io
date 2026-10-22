@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=47" />
-    <link rel="stylesheet" href="map4.css?v=47" />
+    <link rel="stylesheet" href="common.css?v=48" />
+    <link rel="stylesheet" href="map4.css?v=48" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=47" type="text/javascript"></script>
+    <script src="data.js?v=48" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=47" defer></script>
+    <script src="nav.js?v=48" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -2065,6 +2065,7 @@
             var button = L.DomUtil.create('button', 'timeline-toggle');
             button.type = 'button';
             button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Timeline</span>';
+            button.title = 'Timeline';
             L.DomEvent.disableClickPropagation(button);
             L.DomEvent.on(button, 'click', function () {
                 if (timeline.active) {
@@ -2210,6 +2211,7 @@
             var button = L.DomUtil.create('button', 'timeline-toggle gallery-toggle');
             button.type = 'button';
             button.innerHTML = PHOTOS_ICON + '<span>Photos</span>';
+            button.title = 'Photos';
             L.DomEvent.disableClickPropagation(button);
             L.DomEvent.on(button, 'click', function () {
                 if (isGalleryOpen()) {
@@ -2493,6 +2495,7 @@
             var button = L.DomUtil.create('button', 'timeline-toggle stats-toggle');
             button.type = 'button';
             button.innerHTML = STATS_ICON + '<span>Stats</span>';
+            button.title = 'Stats';
             L.DomEvent.disableClickPropagation(button);
             L.DomEvent.on(button, 'click', function () {
                 setMiniStatsOpen(!isMiniStatsOpen());

@@ -2011,9 +2011,27 @@ body.timeline-on .mini-stats {
     transform: none;
   }
 
+  /* Timeline, Photos, Stats: round icon buttons like the search, the label only for screen readers */
   #map .timeline-toggle {
-    padding: 8px 14px 8px 10px;
-    font-size: 14px;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  #map .timeline-toggle svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  #map .timeline-toggle span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   body.timeline-on #filters-toggle {
