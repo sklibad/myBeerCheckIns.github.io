@@ -1700,14 +1700,48 @@
                 showMapToast(notes.join(' and ') + ' to show \u201c' + place + '\u201d');
             }
 
-            map.setView(marker.getLatLng(), Math.max(map.getZoom(), 15), { animate: false });
-            activeMarkers().zoomToShowLayer(marker, function () {
+            revealMarker(marker, function () {
                 marker.openPopup();
                 if (beerIndex !== null) {
                     var beer = document.getElementById(place.replace(/ /g, '_') + ',' + beerIndex);
                     if (beer) beer.click();
                 }
             });
+        }
+
+        // Zoom to a marker until it leaves its cluster (a nearby place can keep it clustered at
+        // street level), spiderfying at the deepest zoom for places at the same spot; then done().
+        // markerClusterGroup.zoomToShowLayer missed this after the clusters were rebuilt.
+        function revealMarker(marker, done) {
+            var group = activeMarkers();
+            var zoom = Math.max(Math.round(map.getZoom()), 16);
+
+            function afterClusters(next) {
+                if (group._inZoomAnimation) {
+                    group.once('animationend', next);
+                } else {
+                    setTimeout(next, 0);
+                }
+            }
+
+            function step() {
+                map.setView(marker.getLatLng(), zoom, { animate: false });
+                afterClusters(function () {
+                    var parent = group.getVisibleParent(marker);
+                    if (parent === marker) {
+                        done();
+                    } else if (zoom < map.getMaxZoom()) {
+                        zoom++;
+                        step();
+                    } else if (parent && parent.spiderfy) {
+                        group.once('spiderfied', done);
+                        parent.spiderfy();
+                    } else {
+                        done();
+                    }
+                });
+            }
+            step();
         }
 
         function openSearch() {
