@@ -1010,9 +1010,10 @@
             });
         });
 
+        // Reset: all places drawn again, the map stays where it is
         document.getElementById("reset-filters").addEventListener("click", function() {
             resetFiltersQuietly();
-            runFiltersAndFit();
+            runFilters();
         });
 
         // Phones: the button only shows the result and closes the panel
