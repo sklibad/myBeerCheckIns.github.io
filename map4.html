@@ -1669,12 +1669,16 @@
             var place = item.type === 'beer' ? (layer === 'Venues' ? item.venue : item.brewery) : item.name;
             var beerIndex = item.type === 'beer' ? (layer === 'Venues' ? item.venueIndex : item.breweryIndex) : null;
 
-            showPlaceOnMap(layer, place, beerIndex);
+            showPlaceOnMap(layer, place, beerIndex, true);
         }
 
         // Shared by search and the photo gallery: right layer, everything that could hide the place
-        // switched off, zoom in, open its popup and, with beerIndex, also the check-in detail
-        function showPlaceOnMap(layer, place, beerIndex) {
+        // switched off, zoom in, open its popup and, with beerIndex, also the check-in detail.
+        // fly (search): animated – straight to a place in the current view, otherwise first out to
+        // a view with both the starting point and the place, then in to the place
+        function showPlaceOnMap(layer, place, beerIndex, fly) {
+            var start = map.getCenter();
+            var startView = map.getBounds();
             var notes = [];
             if (timeline.active) {
                 closeTimeline();
@@ -1700,13 +1704,44 @@
                 showMapToast(notes.join(' and ') + ' to show \u201c' + place + '\u201d');
             }
 
-            revealMarker(marker, function () {
-                marker.openPopup();
-                if (beerIndex !== null) {
-                    var beer = document.getElementById(place.replace(/ /g, '_') + ',' + beerIndex);
-                    if (beer) beer.click();
-                }
+            var open = function () {
+                revealMarker(marker, function () {
+                    marker.openPopup();
+                    if (beerIndex !== null) {
+                        var beer = document.getElementById(place.replace(/ /g, '_') + ',' + beerIndex);
+                        if (beer) beer.click();
+                    }
+                });
+            };
+            if (fly) {
+                flyToPlace(marker, start, startView, open);
+            } else {
+                open();
+            }
+        }
+
+        // Fly to the marker: directly when it is in the starting view, otherwise out to a view with
+        // the starting point and the marker first; then done() (which reveals the marker). The flight
+        // ends at the zoom where the marker leaves its cluster (its deepest cluster's zoom + 1), so
+        // nothing jumps afterwards.
+        function flyToPlace(marker, start, startView, done) {
+            map.closePopup();
+            var target = marker.getLatLng();
+            var cluster = marker.__parent;
+            var unclustered = cluster && typeof cluster._zoom === 'number' ? cluster._zoom + 1 : 0;
+            var zoom = Math.min(map.getMaxZoom(), Math.max(Math.round(map.getZoom()), 16, unclustered));
+            var flyIn = function () {
+                map.once('moveend', done);
+                map.flyTo(target, zoom, { duration: 1.8 });
+            };
+            if (startView.contains(target)) {
+                flyIn();
+                return;
+            }
+            map.once('moveend', function () {
+                setTimeout(flyIn, 250);   // a short pause with both places in view
             });
+            map.flyToBounds(L.latLngBounds([start, target]), { padding: [60, 60], duration: 1.5 });
         }
 
         // Zoom to a marker until it leaves its cluster (a nearby place can keep it clustered at
