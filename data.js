@@ -6794,27 +6794,6 @@ var venue_check_ins = {
             "Comment": "ty joo actually not bad, pšenice krásně obalená ve výborný IPE, gj!"
         },
         {
-            "ID": 938,
-            "Beer": "Krásně nachmelený, to je vončo",
-            "Beer_style": "IPA - Brut",
-            "IBU": null,
-            "ABV": 7.3,
-            "Brewery": "Pivovar Volt",
-            "Brewery_location": "50.73178067251658, 15.1699117999991",
-            "Brewery_country": "Czech Republic",
-            "Beer_region": "Liberecký kraj",
-            "Venue_location": "50.73178067251658, 15.1699117999991",
-            "Friends": [
-                "TS",
-                "WS"
-            ],
-            "Rating": 4.0,
-            "Serving_style": "Draft",
-            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2025_10_26/eca8dd32b031b74702754db325ed2d2a_c_1524156731_raw.jpg",
-            "Date": "26/10/2025",
-            "Comment": "Vypadá to že se Volt naučil vařit ejly, vskutku bombice"
-        },
-        {
             "ID": 267,
             "Beer": "Magnet",
             "Beer_style": "Lager - Amber / Red",
@@ -6977,6 +6956,27 @@ var venue_check_ins = {
             "Photo_url": "https://assets.untappd.com/photos/2023_07_20/7085734fee782e5b346e7b15caf2089c_raw.jpg",
             "Date": "20/07/2023",
             "Comment": "never have I ever had a 6° beer before this one, hoppy and refreshing, ideal for summer days hot af"
+        },
+        {
+            "ID": 938,
+            "Beer": "Reaktor",
+            "Beer_style": "IPA - Brut",
+            "IBU": null,
+            "ABV": 7.3,
+            "Brewery": "Pivovar Volt",
+            "Brewery_location": "50.73178067251658, 15.1699117999991",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue_location": "50.73178067251658, 15.1699117999991",
+            "Friends": [
+                "TS",
+                "WS"
+            ],
+            "Rating": 4.0,
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2025_10_26/eca8dd32b031b74702754db325ed2d2a_c_1524156731_raw.jpg",
+            "Date": "26/10/2025",
+            "Comment": "Vypadá to že se Volt naučil vařit ejly, vskutku bombice"
         },
         {
             "ID": 366,
@@ -30542,27 +30542,6 @@ var brewery_check_ins = {
             "Comment": "ty joo actually not bad, pšenice krásně obalená ve výborný IPE, gj!"
         },
         {
-            "ID": 938,
-            "Beer": "Krásně nachmelený, to je vončo",
-            "Beer_style": "IPA - Brut",
-            "IBU": null,
-            "ABV": 7.3,
-            "Brewery_location": "50.73178067251658, 15.1699117999991",
-            "Brewery_country": "Czech Republic",
-            "Beer_region": "Liberecký kraj",
-            "Venue": "Pivovar Volt",
-            "Venue_location": "50.73178067251658, 15.1699117999991",
-            "Friends": [
-                "TS",
-                "WS"
-            ],
-            "Rating": 4.0,
-            "Serving_style": "Draft",
-            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2025_10_26/eca8dd32b031b74702754db325ed2d2a_c_1524156731_raw.jpg",
-            "Date": "26/10/2025",
-            "Comment": "Vypadá to že se Volt naučil vařit ejly, vskutku bombice"
-        },
-        {
             "ID": 267,
             "Beer": "Magnet",
             "Beer_style": "Lager - Amber / Red",
@@ -30764,6 +30743,27 @@ var brewery_check_ins = {
             "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2024_10_26/4e706bcedf8d80f36022b44f6946a7a4_c_1428722982_raw.jpg",
             "Date": "26/10/2024",
             "Comment": "Solid honest Volt lager handwriting, Bitter as a Czech Pils should be,"
+        },
+        {
+            "ID": 938,
+            "Beer": "Reaktor",
+            "Beer_style": "IPA - Brut",
+            "IBU": null,
+            "ABV": 7.3,
+            "Brewery_location": "50.73178067251658, 15.1699117999991",
+            "Brewery_country": "Czech Republic",
+            "Beer_region": "Liberecký kraj",
+            "Venue": "Pivovar Volt",
+            "Venue_location": "50.73178067251658, 15.1699117999991",
+            "Friends": [
+                "TS",
+                "WS"
+            ],
+            "Rating": 4.0,
+            "Serving_style": "Draft",
+            "Photo_url": "https://images.untp.beer/crop?width=640&height=640&stripmeta=true&url=https://untappd.s3.amazonaws.com/photos/2025_10_26/eca8dd32b031b74702754db325ed2d2a_c_1524156731_raw.jpg",
+            "Date": "26/10/2025",
+            "Comment": "Vypadá to že se Volt naučil vařit ejly, vskutku bombice"
         },
         {
             "ID": 366,

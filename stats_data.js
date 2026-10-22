@@ -19782,7 +19782,7 @@ var data = [
     },
     {
         "ID": 938,
-        "Beer": "Krásně nachmelený, to je vončo",
+        "Beer": "Reaktor",
         "Beer_style": "IPA - Brut",
         "IBU": null,
         "ABV": 7.3,

@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=48" />
-    <link rel="stylesheet" href="cartogram.css?v=48" />
+    <link rel="stylesheet" href="common.css?v=49" />
+    <link rel="stylesheet" href="cartogram.css?v=49" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="Control.FullScreen.js?v=48"></script>
-    <script src="cartogram.js?v=48"></script>
-    <script src="place_years.js?v=48"></script>
-    <script src="circles.js?v=48"></script>
+    <script src="Control.FullScreen.js?v=49"></script>
+    <script src="cartogram.js?v=49"></script>
+    <script src="place_years.js?v=49"></script>
+    <script src="circles.js?v=49"></script>
     <title>Cartograms</title>
-    <script src="nav.js?v=48" defer></script>
-    <script src="place-window.js?v=48" defer></script>
+    <script src="nav.js?v=49" defer></script>
+    <script src="place-window.js?v=49" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -38,7 +38,7 @@
         initCartograms([{
             id: 'prague',
             label: 'Prague',
-            script: 'map1.js?v=48',
+            script: 'map1.js?v=49',
             setup: function () {
                 return {
                     nameProperty: 'NAME_2',
@@ -55,7 +55,7 @@
         }, {
             id: 'czechia',
             label: 'Czechia',
-            script: 'map2.js?v=48',
+            script: 'map2.js?v=49',
             setup: function () {
                 return {
                     nameProperty: 'NAME_2',
@@ -81,7 +81,7 @@
         }, {
             id: 'world',
             label: 'World',
-            script: 'map3.js?v=48',
+            script: 'map3.js?v=49',
             // the whole world on large screens; on phones it would be tiny, so Europe,
             // where most of the check-ins are
             view: function (small) {
