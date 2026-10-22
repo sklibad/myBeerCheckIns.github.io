@@ -669,6 +669,15 @@ path.leaflet-interactive:focus {
 /* ---------- Phones ---------- */
 
 @media (max-width: 760px) {
+    /* popup lists scroll by touch without a scrollbar */
+    .carto-popup .popup-list {
+        scrollbar-width: none;
+    }
+
+    .carto-popup .popup-list::-webkit-scrollbar {
+        display: none;
+    }
+
     .overlay-switch {
         font-size: 14px;
     }

@@ -1703,6 +1703,15 @@ body.timeline-on .mini-stats {
     display: none;
   }
 
+  /* the same for the lists inside popups */
+  .leaflet-popup .popup-list {
+    scrollbar-width: none;
+  }
+
+  .leaflet-popup .popup-list::-webkit-scrollbar {
+    display: none;
+  }
+
   #container {
     padding: 0;
     gap: 0;
