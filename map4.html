@@ -455,7 +455,9 @@
 
         // Popups never get wider than the screen
         function popupOptions() {
-            var maxWidth = Math.min(600, window.innerWidth - 60);
+            // phones: the popup (centred by centerPopup) fits between the button columns on both
+            // sides, 44 px buttons + 10 px margin + 8 px gap each
+            var maxWidth = Math.min(600, window.innerWidth - (isSmallScreen() ? 124 : 60));
             return {
                 maxWidth: maxWidth,
                 minWidth: Math.min(isSmallScreen() ? 260 : 200, maxWidth),
