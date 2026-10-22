@@ -1708,8 +1708,7 @@
                 revealMarker(marker, function () {
                     marker.openPopup();
                     if (beerIndex !== null) {
-                        var beer = document.getElementById(place.replace(/ /g, '_') + ',' + beerIndex);
-                        if (beer) beer.click();
+                        selectPopupBeer(document.getElementById(place.replace(/ /g, '_') + ',' + beerIndex));
                     }
                 });
             };
@@ -1742,6 +1741,19 @@
                 setTimeout(flyIn, 250);   // a short pause with both places in view
             });
             map.flyToBounds(L.latLngBounds([start, target]), { padding: [60, 60], duration: 1.5 });
+        }
+
+        // Open the detail of a beer link in the open popup and scroll the beer list so that the
+        // beer is its first visible row (a place can have many beers; on phones the detail sheet
+        // covers the lower part of the popup)
+        function selectPopupBeer(beer) {
+            if (!beer) return;
+            beer.click();
+            var list = beer.closest('.popup-list');
+            if (!list) return;
+            var row = beer.getBoundingClientRect();
+            var box = list.getBoundingClientRect();
+            list.scrollTop += row.top - box.top;
         }
 
         // Zoom to a marker until it leaves its cluster (a nearby place can keep it clustered at
@@ -2773,8 +2785,7 @@
                     if (checkinId) {
                         var list = (layer === 'Venues' ? venue_check_ins : brewery_check_ins)[place] || [];
                         var index = list.findIndex(function (record) { return String(record.ID) === checkinId; });
-                        var beer = index >= 0 ? document.getElementById(place.replace(/ /g, '_') + ',' + index) : null;
-                        if (beer) beer.click();
+                        selectPopupBeer(index >= 0 ? document.getElementById(place.replace(/ /g, '_') + ',' + index) : null);
                     }
                 });
                 map.flyTo(target, 16, { duration: 3 });
