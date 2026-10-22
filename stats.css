@@ -347,8 +347,56 @@ a:hover {
     height: 100%;
 }
 
-.rose {
-    height: 400px;
+/* wind rose over a map: the map keeps Home - Ipak in its centre, the rose (Highcharts) lies on top */
+.rose-map {
+    position: relative;
+    height: 480px;
+    background-color: #e9e9e9;
+    font-family: var(--font);
+}
+
+.rose-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 450;              /* above the map panes, below the zoom buttons and attribution */
+    pointer-events: none;      /* wheel and pinch go to the map ... */
+}
+
+.rose-overlay .highcharts-point,
+.rose-overlay .highcharts-tooltip {
+    pointer-events: auto;      /* ... the sectors still show their tooltip */
+}
+
+.rose-home {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 460;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    border-radius: 50%;
+    background-color: var(--text);
+    box-shadow: 0 0 0 2px #ffffff;
+    pointer-events: none;
+}
+
+.rose-map .leaflet-bar {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.rose-map .leaflet-bar a {
+    color: var(--text);
+}
+
+.rose-map + .card-body {
+    padding-top: 12px;
+}
+
+.rose-map + .card-body .legend {
+    margin-top: 0;
 }
 
 /* ---------- Calendar heatmap ---------- */
@@ -724,7 +772,7 @@ a:hover {
         height: 130px;
     }
 
-    .rose {
-        height: 330px;
+    .rose-map {
+        height: 400px;
     }
 }

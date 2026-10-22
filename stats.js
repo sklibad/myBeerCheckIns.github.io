@@ -36,7 +36,6 @@
 
     var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    var HOME = [50.0944850, 14.4806282];   // the wind rose is drawn around Prague
     var DIRECTIONS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
     var MIN_FOR_AVERAGE = 5;               // "Best rated" rankings: places with at least 5 check-ins
     // Untappd look (see stats.css)
@@ -462,6 +461,10 @@
         var button = e.target.closest('.filter-tabs button');
         if (!button) return;
         var toggle = button.parentNode;
+        if (toggle.dataset.for === 'rose-scale') {
+            setRoseScale(button.dataset.mode);
+            return;
+        }
         toggle.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b === button); });
         if (toggle.dataset.for === 'beers') {
             state.beers = button.dataset.mode;
@@ -472,7 +475,17 @@
         }
     });
 
-    // ---------- Wind rose: directions of the venues from Prague ----------
+    // ---------- Wind rose over a map: directions of the venues from home ----------
+
+    // The rose is centred on the venue "Home - Ipak". The map below always keeps that point in its
+    // centre (no dragging, zoom around the centre), so every sector points at the area it counts.
+    var HOME = (function () {
+        var home = records.filter(function (r) { return r.Venue === 'Home - Ipak' && r.Venue_location; })[0];
+        return home ? home.Venue_location.split(',').map(Number) : [50.0734821, 14.4282220];
+    })();
+    var ROSE_MARGIN = 28;                                   // chart margin, the same on all sides
+    var ROSE_SCALES = { prague: 12, czechia: 250, europe: 2300 };   // map distance at the rim, km
+    var rose = { map: null, dots: null, scale: 'europe' };
 
     function azimuth(lat1, lon1, lat2, lon2) {
         var rad = Math.PI / 180;
@@ -482,7 +495,97 @@
         return (Math.atan2(y, x) / rad + 360) % 360;
     }
 
+    // radius of the rose in pixels (pane size 88 % of the plot area)
+    function roseRadius() {
+        var size = rose.map.getSize();
+        return 0.44 * Math.max(50, Math.min(size.x, size.y) - 2 * ROSE_MARGIN);
+    }
+
+    // zoom at which the rim of the rose lies the scale's distance from home
+    function zoomForScale(scale) {
+        var metresPerPixel = 1000 * ROSE_SCALES[scale] / roseRadius();
+        return Math.log(156543.03392 * Math.cos(HOME[0] * Math.PI / 180) / metresPerPixel) / Math.LN2;
+    }
+
+    function markScaleTab() {
+        var zoom = rose.map.getZoom();
+        var active = null;
+        Object.keys(ROSE_SCALES).forEach(function (s) {
+            if (Math.abs(zoom - rose.map._limitZoom(zoomForScale(s))) < 0.3) active = s;
+        });
+        document.querySelectorAll('[data-for="rose-scale"] button').forEach(function (b) {
+            b.classList.toggle('active', b.dataset.mode === active);
+        });
+    }
+
+    function setRoseScale(scale) {
+        rose.scale = scale;
+        rose.map.setView(HOME, zoomForScale(scale));
+    }
+
+    function initRoseMap() {
+        rose.map = L.map('rose-map', {
+            center: HOME,
+            zoom: 5,
+            zoomSnap: 0.25,
+            zoomDelta: 0.5,
+            minZoom: 1,
+            maxZoom: 16,
+            dragging: false,
+            scrollWheelZoom: 'center',
+            doubleClickZoom: 'center',
+            touchZoom: 'center',
+            boxZoom: false,
+            keyboard: false,
+            zoomControl: false,
+            preferCanvas: true
+        });
+        L.control.zoom({ position: 'bottomright' }).addTo(rose.map);
+        rose.map.createPane('labels').style.zIndex = 410;
+        rose.map.getPane('labels').style.pointerEvents = 'none';
+        var esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+        L.tileLayer(esri + 'World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            maxNativeZoom: 16,
+            attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
+        }).addTo(rose.map);
+        L.tileLayer(esri + 'World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxNativeZoom: 16, pane: 'labels' }).addTo(rose.map);
+        rose.dots = L.layerGroup().addTo(rose.map);
+        rose.map.on('zoomend', markScaleTab);
+        // keep the rose centred on home and the chosen scale whenever the box changes size
+        // (window resize, phone rotation, layout changes)
+        rose.map.on('resize', function () {
+            if (document.querySelector('[data-for="rose-scale"] button.active')) setRoseScale(rose.scale);
+        });
+        if (window.ResizeObserver) {
+            new ResizeObserver(function () {
+                rose.map.invalidateSize(false);
+                if (charts.rose) charts.rose.reflow();
+            }).observe(rose.map.getContainer());
+        }
+        setRoseScale(rose.scale);
+    }
+
+    // venues of the selection as dots under the rose, area by the number of check-ins
+    function renderRoseDots(list) {
+        var venues = {};
+        list.forEach(function (r) {
+            if (r.Venue_location) venues[r.Venue_location] = (venues[r.Venue_location] || 0) + 1;
+        });
+        rose.dots.clearLayers();
+        Object.keys(venues).forEach(function (loc) {
+            L.circleMarker(loc.split(',').map(Number), {
+                radius: Math.min(9, 2 + Math.sqrt(venues[loc])),
+                stroke: false,
+                fillColor: '#8a4500',
+                fillOpacity: 0.55,
+                interactive: false
+            }).addTo(rose.dots);
+        });
+    }
+
     function renderWindRose(list) {
+        if (!rose.map) initRoseMap();
+        renderRoseDots(list);
         var counts = {};
         var total = 0;
         list.forEach(function (r) {
@@ -500,31 +603,32 @@
                 data: DIRECTIONS.map(function (d) { return total ? Math.round(1000 * (counts[s.id + d] || 0) / total) / 10 : 0; })
             };
         });
+        var halo = '3px #ffffff';
         if (charts.rose) charts.rose.destroy();
         charts.rose = Highcharts.chart('wind-rose', {
-            chart: { polar: true, type: 'column', backgroundColor: 'transparent', style: { fontFamily: FONT } },
+            chart: { polar: true, type: 'column', backgroundColor: 'transparent', margin: ROSE_MARGIN, style: { fontFamily: FONT } },
             title: { text: null },
             credits: { enabled: false },
             exporting: { enabled: false },
-            pane: { size: '88%' },
+            pane: { size: '88%', background: [{ backgroundColor: 'transparent', borderWidth: 0 }] },
             legend: { enabled: false },
             xAxis: {
                 categories: DIRECTIONS,
                 tickmarkPlacement: 'on',
                 lineWidth: 0,
-                gridLineColor: GRID,
-                labels: { style: { color: TEXT, fontWeight: '600', fontSize: '12px' } }
+                gridLineColor: 'rgba(0, 0, 0, 0.22)',
+                labels: { style: { color: TEXT, fontWeight: '600', fontSize: '12px', textOutline: halo } }
             },
             yAxis: {
                 min: 0,
                 endOnTick: false,
-                gridLineColor: GRID,
-                labels: { format: '{value} %', style: { color: TEXT_SOFT, fontSize: '10px' } },
+                gridLineColor: 'rgba(0, 0, 0, 0.14)',
+                labels: { format: '{value} %', style: { color: TEXT_SOFT, fontSize: '10px', textOutline: halo } },
                 reversedStacks: false
             },
-            tooltip: { shared: true, valueSuffix: ' %', backgroundColor: '#ffffff', borderColor: LINE, borderRadius: 4, shadow: false, style: { color: TEXT } },
+            tooltip: { shared: true, followTouchMove: false, valueSuffix: ' %', backgroundColor: '#ffffff', borderColor: LINE, borderRadius: 4, shadow: false, style: { color: TEXT } },
             plotOptions: {
-                series: { stacking: 'normal', shadow: false, groupPadding: 0, pointPlacement: 'on', borderWidth: 1, borderColor: '#ffffff' }
+                series: { stacking: 'normal', shadow: false, groupPadding: 0, pointPlacement: 'on', borderWidth: 1, borderColor: '#ffffff', opacity: 0.8 }
             },
             series: series
         });

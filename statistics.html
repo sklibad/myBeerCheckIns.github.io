@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
-    <link rel="stylesheet" href="common.css?v=57" />
-    <link rel="stylesheet" href="stats.css?v=57">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <link rel="stylesheet" href="common.css?v=58" />
+    <link rel="stylesheet" href="stats.css?v=58">
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <script src="https://code.highcharts.com/13.1.1/highcharts.js"></script>
     <script src="https://code.highcharts.com/13.1.1/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/13.1.1/modules/accessibility.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="stats_data.js?v=57" type="text/javascript"></script>
+    <script src="stats_data.js?v=58" type="text/javascript"></script>
     <title>Statistics – MyBeerCheckIns</title>
-    <script src="nav.js?v=57" defer></script>
-    <script src="place-window.js?v=57" defer></script>
+    <script src="nav.js?v=58" defer></script>
+    <script src="place-window.js?v=58" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -157,16 +159,22 @@
             </article>
             <article class="card card-wide" id="card-rose">
                 <div class="card-head">
-                    <h2>Directions from Prague</h2>
-                    <span class="card-note">share of check-ins per direction and style</span>
+                    <h2>Directions from home</h2>
+                    <span class="card-note">share of check-ins per direction from Home – Ipak, venues as dots</span>
+                </div>
+                <div class="filter-tabs" data-for="rose-scale" role="group" aria-label="Map scale">
+                    <button type="button" data-mode="prague">Prague</button><button type="button" data-mode="czechia">Czechia</button><button type="button" data-mode="europe" class="active">Europe</button>
+                </div>
+                <div class="rose-map" id="rose-map">
+                    <div class="rose-overlay" id="wind-rose"></div>
+                    <span class="rose-home" title="Home – Ipak"></span>
                 </div>
                 <div class="card-body">
-                    <div class="rose" id="wind-rose"></div>
                     <div class="legend legend-center" id="rose-legend"></div>
                 </div>
             </article>
         </div>
     </main>
-    <script src="stats.js?v=57"></script>
+    <script src="stats.js?v=58"></script>
 </body>
 </html>
