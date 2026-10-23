@@ -502,12 +502,13 @@
         return (typeof venueAreas !== 'undefined' && venueAreas[r.Venue]) || 'abroad';
     }
 
+    // direction of a venue as it lies on the (Web Mercator) map under the rose, so the sectors
+    // point at the dots; the great-circle bearing would differ far away (USA: WNW instead of W)
     function azimuth(lat1, lon1, lat2, lon2) {
         var rad = Math.PI / 180;
+        var mercY = function (lat) { return Math.log(Math.tan(Math.PI / 4 + lat * rad / 2)); };
         var dLon = (lon2 - lon1) * rad;
-        var y = Math.sin(dLon) * Math.cos(lat2 * rad);
-        var x = Math.cos(lat1 * rad) * Math.sin(lat2 * rad) - Math.sin(lat1 * rad) * Math.cos(lat2 * rad) * Math.cos(dLon);
-        return (Math.atan2(y, x) / rad + 360) % 360;
+        return (Math.atan2(dLon, mercY(lat2) - mercY(lat1)) / rad + 360) % 360;
     }
 
     // radius of the rose in pixels (pane size 88 % of the plot area)
