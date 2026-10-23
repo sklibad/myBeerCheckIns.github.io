@@ -22,9 +22,9 @@ body {
 }
 
 #contentBox {
-    background-color: rgb(238, 231, 212);
-    border-radius: 10px;
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+    background-color: var(--ut-box);
+    border-radius: var(--ut-radius);
+    box-shadow: var(--ut-shadow);
     text-align: center;
     overflow-y: auto;
 }
@@ -446,21 +446,22 @@ body {
   flex-direction: column;
   font-family: var(--font-ui);
   font-size: 14px;
-  color: rgb(50, 35, 35);
+  color: var(--ut-text);
 }
 
+/* empty state: a faint bottle until a beer is chosen */
 #bottle {
   max-height: 400px;
   margin-top: 130px;
-  filter: contrast(60%);
+  opacity: 0.12;
 }
 
-/* ---------- Check-in detail ---------- */
+/* ---------- Check-in detail: like a check-in on Untappd ---------- */
 
 #checkin-detail {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 #checkin-detail[hidden] {
@@ -469,12 +470,9 @@ body {
 
 .detail-label {
   display: block;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: rgb(87, 62, 62);
-  opacity: 0.85;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ut-text-soft);
 }
 
 .detail-head {
@@ -483,34 +481,32 @@ body {
 
 .detail-date {
   margin: 0 0 4px;
-  font-size: 12px;
-  color: rgba(50, 35, 35, 0.65);
+  font-size: 13px;
+  color: var(--ut-text-faint);
 }
 
 .detail-beer {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-size: 22px;
+  font-weight: 700;
   line-height: 1.2;
-  color: rgb(87, 62, 62);
+  color: var(--ut-text);
 }
 
+/* the style in grey under the name, as on Untappd */
 .detail-style {
   display: inline-block;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background-color: rgb(87, 62, 62);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
+  color: var(--ut-text-soft);
+  font-size: 15px;
 }
 
 .detail-places {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 10px 0;
-  border-top: 1px solid rgba(87, 62, 62, 0.15);
-  border-bottom: 1px solid rgba(87, 62, 62, 0.15);
+  padding: 12px 0;
+  border-top: 1px solid var(--ut-line-soft);
+  border-bottom: 1px solid var(--ut-line-soft);
 }
 
 .detail-place {
@@ -520,7 +516,8 @@ body {
 .detail-place-name {
   display: block;
   margin-top: 2px;
-  font-weight: bold;
+  color: var(--ut-link);
+  font-weight: 600;
 }
 
 /* Route from the brewery (Venues layer) */
@@ -528,17 +525,18 @@ body {
   text-align: center;
 }
 
+/* secondary button: outlined in black; on while the route is shown: yellow */
 .route-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  border: 1px solid rgb(87, 62, 62);
-  border-radius: 999px;
-  background-color: transparent;
-  color: rgb(87, 62, 62);
+  border: 1px solid var(--ut-text);
+  border-radius: 4px;
+  background-color: var(--ut-box);
+  color: var(--ut-text);
   font: inherit;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -556,47 +554,45 @@ body {
 }
 
 .route-button:hover {
-  background-color: rgba(87, 62, 62, 0.08);
+  background-color: var(--ut-tab-off);
 }
 
 .route-button.active {
-  background-color: rgb(87, 62, 62);
-  color: white;
+  border-color: var(--ut-yellow);
+  background-color: var(--ut-yellow);
+  color: var(--ut-text);
 }
 
 .route-note {
   margin: 0;
-  font-style: italic;
-  color: rgba(50, 35, 35, 0.75);
+  color: var(--ut-text-soft);
 }
 
-/* Long names wrap to a second line, so the labels stay narrow */
+/* Labels of the venue and brewery on the map. Long names wrap to a second line, so the labels
+   stay narrow */
 .route-tooltip {
   width: max-content; /* the tooltip pane has no width, so without this every word would wrap */
   max-width: 140px;
   padding: 4px 10px;
-  border: none;
-  border-radius: 12px;
+  border: 1px solid var(--ut-line);
+  border-radius: 4px;
   white-space: normal;
   text-align: center;
   line-height: 1.25;
-  background-color: rgb(87, 62, 62);
-  color: white;
+  background-color: var(--ut-box);
+  color: var(--ut-text);
   font-family: var(--font-ui);
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  font-weight: 600;
+  box-shadow: var(--ut-float);
 }
 
 .route-tooltip.leaflet-tooltip-top::before {
-  border-top-color: rgb(87, 62, 62);
+  border-top-color: var(--ut-box);
 }
 
-/* Light cards on the cream panel */
+/* No cards: plain rows divided by thin lines, like the stats of a beer on Untappd */
 .detail-card {
-  padding: 10px 8px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 1px 3px rgba(87, 62, 62, 0.15);
+  padding: 4px 8px;
   text-align: center;
 }
 
@@ -605,7 +601,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 #ratingCircles {
@@ -613,34 +609,38 @@ body {
   gap: 4px;
 }
 
+/* rating caps: yellow, the last one partly filled from the left (--fill, set in map4.html) */
 .rating-circle {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 2px solid rgb(87, 62, 62);
-}
-
-.filled {
-  background-color: #FFD700;
+  background: linear-gradient(90deg, var(--ut-yellow) 0 var(--fill, 0%), #e3e3e3 var(--fill, 0%));
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
 .rating-value {
   font-size: 16px;
-  font-weight: bold;
-  color: rgb(87, 62, 62);
+  color: var(--ut-text-soft);
+  font-variant-numeric: tabular-nums;
 }
 
 .detail-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  padding: 10px 0;
+  border-top: 1px solid var(--ut-line-soft);
+  border-bottom: 1px solid var(--ut-line-soft);
+}
+
+.detail-stats .detail-card + .detail-card {
+  border-left: 1px solid var(--ut-line-soft);
 }
 
 .stat-value {
   display: block;
   margin-top: 4px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .detail-section {
@@ -648,12 +648,11 @@ body {
 }
 
 .detail-comment {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   padding: 10px 12px;
-  border-left: 3px solid rgb(165, 42, 42);
-  border-radius: 0 8px 8px 0;
-  background-color: rgba(255, 255, 255, 0.6);
-  font-style: italic;
+  border-left: 3px solid var(--ut-yellow);
+  border-radius: 0 4px 4px 0;
+  background-color: var(--ut-strip);
   text-align: left;
 }
 
@@ -677,13 +676,13 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 2px solid white;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--ut-line);
   object-fit: cover;
 }
 
 .friend-name {
   font-size: 12px;
+  color: var(--ut-text-soft);
   overflow: hidden;
   max-width: 100%;
   text-overflow: ellipsis;
@@ -695,8 +694,7 @@ body {
   width: 100%;
   max-height: 360px;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: var(--ut-radius);
 }
 
 ::-webkit-scrollbar {
@@ -708,22 +706,22 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #959494;
+    background: #c8c8c8;
     border-radius: 10px;
 }
 
-/* ---------- Brewery / venue popups ---------- */
+/* ---------- Brewery / venue popups: an Untappd box with the beer list ---------- */
 
 .beer-popup .leaflet-popup-content-wrapper {
   padding: 0;
   overflow: hidden;
-  border-radius: 12px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
 .beer-popup .leaflet-popup-tip {
-  background-color: rgb(238, 231, 212);
+  background-color: var(--ut-box);
 }
 
 .beer-popup .leaflet-popup-content {
@@ -731,52 +729,54 @@ body {
   font-family: var(--font-ui);
   font-size: 14px;
   line-height: 1.35;
+  color: var(--ut-text);
 }
 
 .beer-popup .popup-header {
-  padding: 10px 40px 10px 14px;
-  background-color: rgb(87, 62, 62);
-  color: white;
+  padding: 12px 40px 12px 14px;
+  border-bottom: 1px solid var(--ut-line);
+  background-color: var(--ut-strip);
+  color: var(--ut-text);
 }
 
 .popup-title {
   display: block;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .popup-subtitle {
   display: block;
   margin-top: 2px;
   font-size: 12px;
-  opacity: 0.8;
+  color: var(--ut-text-soft);
 }
 
 .beer-popup a.leaflet-popup-close-button {
-  top: 8px;
+  top: 10px;
   right: 8px;
   width: 26px;
   height: 26px;
   font-size: 22px;
   line-height: 24px;
-  color: white;
+  color: var(--ut-text-soft);
 }
 
 .beer-popup a.leaflet-popup-close-button:hover,
 .beer-popup a.leaflet-popup-close-button:focus {
-  color: #f3d9a4;
+  color: var(--ut-text);
 }
 
 .popup-list {
   list-style: none;
   margin: 0;
-  padding: 4px 0;
+  padding: 0;
   max-height: 240px;
   overflow-y: auto;
 }
 
 .popup-list li + li {
-  border-top: 1px solid rgba(87, 62, 62, 0.15);
+  border-top: 1px solid var(--ut-line-soft);
 }
 
 .popup-list a.box-content,
@@ -787,7 +787,7 @@ body {
   gap: 12px;
   padding: 8px 14px;
   border-left: 3px solid transparent;
-  color: rgb(60, 40, 40);
+  color: var(--ut-text);
   text-decoration: none;
   outline: none;
 }
@@ -797,15 +797,15 @@ body {
   content: "\203A";
   font-size: 20px;
   line-height: 1;
-  color: rgba(87, 62, 62, 0.45);
+  color: var(--ut-text-faint);
 }
 
 .popup-list a.box-content:hover,
 .popup-list a.box-content:focus-visible {
-  background-color: rgba(87, 62, 62, 0.08);
+  background-color: var(--ut-strip);
 }
 
-/* Beer name with its rating and date below */
+/* Beer name (brown like the beer links on Untappd) with its rating and date below */
 .beer-line {
   flex: 1;
   min-width: 0;
@@ -813,6 +813,8 @@ body {
 
 .beer-line-name {
   display: block;
+  color: var(--ut-link);
+  font-weight: 600;
 }
 
 .beer-line-meta {
@@ -822,28 +824,24 @@ body {
   margin-top: 3px;
   font-size: 12px;
   font-weight: normal;
-  color: rgba(50, 35, 35, 0.65);
+  color: var(--ut-text-soft);
 }
 
+/* rating caps in the popup lists */
 .rating-dots {
   display: inline-flex;
   gap: 2px;
 }
 
 .rating-dots .dot {
-  width: 9px;
-  height: 9px;
-  border: 1px solid rgb(87, 62, 62);
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-}
-
-.rating-dots .dot.filled {
-  background-color: #FFD700;
+  background: linear-gradient(90deg, var(--ut-yellow) 0 var(--fill, 0%), #e3e3e3 var(--fill, 0%));
 }
 
 .beer-line-rating {
-  font-weight: bold;
-  color: rgb(87, 62, 62);
+  font-variant-numeric: tabular-nums;
 }
 
 .beer-line-date::before {
@@ -851,42 +849,45 @@ body {
   margin-right: 6px;
 }
 
-/* Newest / Best rated switch above the list */
+/* Newest / Best rated: text tabs, the chosen one with a yellow underline */
 .popup-sort {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 14px 4px;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: rgb(87, 62, 62);
+  gap: 4px;
+  padding: 6px 14px 0;
+  border-bottom: 1px solid var(--ut-line-soft);
+  font-size: 12px;
+  color: var(--ut-text-faint);
+}
+
+.popup-sort span {
+  margin-right: 4px;
 }
 
 .popup-sort button {
-  padding: 3px 10px;
-  border: 1px solid rgba(87, 62, 62, 0.4);
-  border-radius: 999px;
-  background-color: white;
-  color: rgb(87, 62, 62);
+  padding: 4px 6px 6px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  color: var(--ut-text-soft);
   font: inherit;
-  letter-spacing: normal;
-  text-transform: none;
+  font-weight: 600;
   cursor: pointer;
 }
 
+.popup-sort button:hover {
+  color: var(--ut-text);
+}
+
 .popup-sort button.active {
-  border-color: rgb(87, 62, 62);
-  background-color: rgb(87, 62, 62);
-  color: white;
+  border-bottom-color: var(--ut-yellow);
+  color: var(--ut-text);
 }
 
 /* Beer whose detail is shown */
 .popup-list a.box-content.active {
-  border-left-color: rgb(165, 42, 42);
-  background-color: rgba(165, 42, 42, 0.12);
-  font-weight: bold;
+  border-left-color: var(--ut-yellow);
+  background-color: #fff8e1;
 }
 
 /* ---------- Overlay switch (Breweries / Venues) ---------- */
@@ -1901,8 +1902,8 @@ body.timeline-on .mini-stats {
     top: 45vh;
     top: 45dvh;
     padding: 0 20px 24px;
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.22);
     font-size: 16px;
     transform: translateY(105%);
     transition: transform 0.25s ease, top 0.25s ease, border-radius 0.25s ease;
@@ -1949,7 +1950,7 @@ body.timeline-on .mini-stats {
     flex-shrink: 0;
     margin: 0 -20px;
     padding: 10px 0 14px;
-    background-color: rgb(238, 231, 212);
+    background-color: var(--ut-box);
     cursor: grab;
     touch-action: none;
   }
@@ -1970,7 +1971,7 @@ body.timeline-on .mini-stats {
     height: 5px;
     margin: 0 auto;
     border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   #contentBox .panel-close {
@@ -1989,7 +1990,7 @@ body.timeline-on .mini-stats {
   }
 
   .detail-label {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .detail-places {
@@ -2042,13 +2043,13 @@ body.timeline-on .mini-stats {
   }
 
   .rating-dots .dot {
-    width: 11px;
-    height: 11px;
+    width: 13px;
+    height: 13px;
   }
 
   .popup-sort button {
-    padding: 5px 12px;
-    font-size: 13px;
+    padding: 6px 8px 8px;
+    font-size: 14px;
   }
 
   .popup-list a.box-content,

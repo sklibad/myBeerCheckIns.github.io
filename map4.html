@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=63" />
-    <link rel="stylesheet" href="map4.css?v=63" />
+    <link rel="stylesheet" href="common.css?v=64" />
+    <link rel="stylesheet" href="map4.css?v=64" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=63" type="text/javascript"></script>
+    <script src="data.js?v=64" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=63" defer></script>
+    <script src="nav.js?v=64" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -379,7 +379,7 @@
             layer.bindPopup(buildPopupContent(layerId, beers), popupOptions());
         }
 
-        // Popup of a brewery / venue: brown header with the place name, list of beers below
+        // Popup of a brewery / venue: grey title strip with the place name, list of beers below
         function buildPopupContent(layerId, beers) {
             var placeName = layerId.replace(/ /g, "_").replace(/"/g, "&quot;");
             var kind = selectedLayer === "Venues" ? "Venue" : "Brewery";
@@ -408,7 +408,7 @@
                     '<span class="beer-line">' +
                     '<span class="beer-line-name">' + beer.name + '</span>' +
                     '<span class="beer-line-meta">' + ratingDots(rating) +
-                    '<span class="beer-line-rating">' + rating + '</span>' +
+                    '<span class="beer-line-rating">(' + rating.toFixed(2) + ')</span>' +
                     '<span class="beer-line-date">' + formatCheckinDate(checkIn["Date"]) + '</span></span>' +
                     '</span></a></li>';
             });
@@ -416,14 +416,13 @@
             return html;
         }
 
-        // Five small circles like in the check-in detail, the last one partly filled
+        // Five yellow rating caps like on Untappd (and in the check-in detail), the last one partly
+        // filled from the left (--fill, see map4.css)
         function ratingDots(rating) {
             var html = '<span class="rating-dots" aria-hidden="true">';
             for (var i = 1; i <= 5; i++) {
                 var fill = Math.max(0, Math.min(1, rating - (i - 1)));
-                html += fill >= 1 ? '<span class="dot filled"></span>' :
-                        fill > 0 ? '<span class="dot" style="background: conic-gradient(#FFD700 0 ' + (fill * 100) + '%, transparent 0)"></span>' :
-                        '<span class="dot"></span>';
+                html += '<span class="dot" style="--fill: ' + Math.round(fill * 100) + '%"></span>';
             }
             return html + '</span>';
         }
@@ -589,27 +588,12 @@
             });
         }
 
-        // Function to update the rating circles
+        // Five yellow rating caps in the check-in detail, the last one partly filled (--fill)
         function updateRatingCircles(rating) {
-            // Clear previous circles
             $('#ratingCircles').empty();
-
-            //rating = parseFloat(rating.replace(',', '.'));
-            // Define the total number of circles
-            var totalCircles = 5;
-
-            // Create and append the circles
-            for (var i = 1; i < totalCircles+1; i++) {
-                var circle = $('<div class="rating-circle"></div>');
-                if (i <= rating) {
-                    // Fill the circle
-                    circle.addClass('filled');
-                } else if (rating % 1 !== 0 && i-rating < 1) {
-                    // Partial fill for the last circle
-                    var percentage = (rating % 1)*100;
-                    circle.css('background', 'conic-gradient(from 180deg, #FFD700 0%, #FFD700 ' + percentage + '%, transparent ' + percentage + '%)');
-                }
-                $('#ratingCircles').append(circle);
+            for (var i = 1; i <= 5; i++) {
+                var fill = Math.max(0, Math.min(1, rating - (i - 1)));
+                $('#ratingCircles').append($('<div class="rating-circle"></div>').css('--fill', Math.round(fill * 100) + '%'));
             }
         }
         
@@ -649,7 +633,7 @@
             prepareRoute(selectedLayer === "Venues" ? check_in : null);
 
             updateRatingCircles(check_in["Rating"]);
-            $('#ratingValue').text(Number(check_in["Rating"]) + ' / 5');
+            $('#ratingValue').text('(' + Number(check_in["Rating"]).toFixed(2) + ')');
 
             $('#abvValue').text(check_in["ABV"] === null ? '\u2013' : check_in["ABV"] + ' %');
             $('#ibuValue').text(check_in["IBU"] === null ? '\u2013' : check_in["IBU"]);
@@ -1273,7 +1257,7 @@
             var labelOptions = { permanent: true, direction: 'top', offset: [0, -iconSize], className: 'route-tooltip' };
             routeLayer = L.layerGroup([
                 L.polyline(points, { color: 'white', weight: 7, opacity: 0.85, interactive: false }),
-                L.polyline(points, { color: 'rgb(165, 42, 42)', weight: 3, dashArray: '8 7', interactive: false }),
+                L.polyline(points, { color: '#8a4500', weight: 3, dashArray: '8 7', interactive: false }),
                 L.marker(venue, { icon: markerIcon('ikony/venue-pin.svg'), interactive: false }).bindTooltip(venueLabel, labelOptions),
                 L.marker(brewery, { icon: markerIcon('ikony/brewery-pin.svg'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
             ]).addTo(map);
