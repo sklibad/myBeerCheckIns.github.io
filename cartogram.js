@@ -764,8 +764,6 @@ function initCartograms(regions) {
         }
         show();
         renderSwitches();
-        // Total needs room for the circles placed outside the territory, Density does not
-        if (e.target.name === 'mode') fitRegion(true);
     }
 
     var switchControl = L.control({ position: 'topright' });
@@ -902,8 +900,9 @@ function initCartograms(regions) {
             return;
         }
         var bounds = view && view.bounds ? L.latLngBounds(view.bounds) : currentLayer.getBounds();
-        // proportional circles placed outside the territory must stay in view as well
-        if (state.mode === 'total' && typeof areaCircles !== 'undefined') {
+        // proportional circles placed outside the territory must stay in view as well; Density uses
+        // the same view as Total, so switching between them does not move the map
+        if (typeof areaCircles !== 'undefined') {
             Object.keys(areaCircles).forEach(function (key) {
                 if (key.indexOf(state.region.id + '/') !== 0) return;
                 var profile = circleProfile(key);
