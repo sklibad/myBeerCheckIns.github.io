@@ -447,7 +447,7 @@ function initCartograms(regions) {
                 return { fillColor: 'url(#carto-unvisited)', fillOpacity: 1, color: '#232323', weight: 1.2 };
             }
             if (state.mode === 'total') {
-                return { fillColor: '#f4ecd8', fillOpacity: 0.55, color: '#232323', weight: 1.2 };
+                return { fillColor: '#f2f2f2', fillOpacity: 0.6, color: '#232323', weight: 1.2 };
             }
             return {
                 fillColor: scaleFor(state.year).color(statsOf(feature, state.year).density),
@@ -538,11 +538,11 @@ function initCartograms(regions) {
             var pole = [poles[name][0], poles[name][1]];
             var item = { name: name, feature: feature, pole: pole, room: poles[name][2], spot: data.outside[name],
                 marker: L.circleMarker(pole, {
-                color: 'white', weight: 1.5, fillColor: '#cc4c02', fillOpacity: 0.85
+                color: '#8a4500', weight: 1.5, fillColor: '#ffc000', fillOpacity: 0.85
             }) };
-            item.line = L.polyline([pole, pole], { color: '#3c2828', weight: 1.3, interactive: false });
+            item.line = L.polyline([pole, pole], { color: '#595959', weight: 1.3, interactive: false });
             item.leader = L.layerGroup([item.line,
-                L.circleMarker(pole, { radius: 2.5, color: '#3c2828', weight: 1, fillColor: '#3c2828', fillOpacity: 1, interactive: false })
+                L.circleMarker(pole, { radius: 2.5, color: '#595959', weight: 1, fillColor: '#595959', fillOpacity: 1, interactive: false })
             ]);
             item.marker.bindPopup(function () {
                 return popupHtml(feature);
@@ -622,7 +622,7 @@ function initCartograms(regions) {
 
     // The area under the mouse, or with an open popup, gets a dark outline
     function addHighlight(geoJsonLayer) {
-        var outline = { color: '#3c2828', weight: 3.5 };
+        var outline = { color: '#000000', weight: 3.5 };
         geoJsonLayer.eachLayer(function (layer) {
             var tooltip = layer.getTooltip();
             layer.on('popupopen', function () {
