@@ -181,7 +181,7 @@ path.leaflet-interactive:focus {
 }
 
 .year-stepper button:disabled {
-    color: #c4c4c4;
+    color: var(--ut-disabled);
     cursor: default;
 }
 
@@ -294,7 +294,7 @@ path.leaflet-interactive:focus {
 
 #map .leaflet-bar a.leaflet-disabled {
     background-color: var(--ut-box);
-    color: #c4c4c4;
+    color: var(--ut-disabled);
 }
 
 /* Fullscreen: expand / collapse arrows in the site colour */
@@ -395,7 +395,7 @@ path.leaflet-interactive:focus {
     transform: translate(-50%, -50%);
     padding: 8px 16px;
     border-radius: 4px;
-    background-color: #222222;
+    background-color: var(--ut-dark);
     color: #ffffff;
     box-shadow: var(--ut-float);
     font: 600 13px var(--font-ui);
@@ -463,7 +463,7 @@ path.leaflet-interactive:focus {
 
 .carto-legend-circles circle {
     fill: rgba(255, 192, 0, 0.85);
-    stroke: #8a4500;
+    stroke: var(--ut-link);
     stroke-width: 1.5;
 }
 
@@ -635,7 +635,7 @@ path.leaflet-interactive:focus {
 .popup-list a:hover,
 .popup-list a:focus-visible {
     border-left-color: var(--ut-yellow);
-    background-color: #fff8e1;
+    background-color: var(--ut-highlight);
     outline: none;
 }
 
@@ -671,7 +671,7 @@ path.leaflet-interactive:focus {
 }
 
 .popup-list::-webkit-scrollbar-thumb {
-    background: #c8c8c8;
+    background: var(--ut-scrollbar);
     border-radius: 10px;
 }
 

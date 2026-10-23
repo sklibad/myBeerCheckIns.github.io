@@ -15,7 +15,7 @@
     --link: var(--ut-link);
     --yellow: var(--ut-yellow);
     --yellow-dark: var(--ut-yellow-dark);
-    --cap-empty: #e3e3e3;
+    --cap-empty: var(--ut-cap-empty);
     --font: var(--font-ui);
 }
 
@@ -352,7 +352,7 @@ a:hover {
 .rose-map {
     position: relative;
     height: 480px;
-    background-color: #e9e9e9;
+    background-color: var(--line-soft);
     font-family: var(--font);
 }
 
@@ -476,7 +476,7 @@ a:hover {
 .cal-cell {
     aspect-ratio: 1;
     border-radius: 3px;
-    background-color: #f0f0f0;
+    background-color: var(--ut-tab-off);
 }
 
 .cal-none {
@@ -673,7 +673,7 @@ a:hover {
     height: 4px;
     overflow: hidden;
     border-radius: 2px;
-    background-color: #f0f0f0;
+    background-color: var(--ut-tab-off);
 }
 
 .rank-bar span {

@@ -17,6 +17,12 @@
     --ut-link: #8a4500;            /* brown links */
     --ut-yellow: #ffc000;          /* Untappd yellow */
     --ut-yellow-dark: #e0a800;
+    --ut-amber: #e08f00;           /* between yellow and brown (medium clusters) */
+    --ut-highlight: #fff8e1;       /* light yellow: chosen or hovered rows */
+    --ut-cap-empty: #e3e3e3;       /* empty part of a rating cap */
+    --ut-disabled: #c4c4c4;        /* disabled buttons */
+    --ut-scrollbar: #c8c8c8;
+    --ut-dark: #222222;            /* dark notices (toasts, loading) */
     --ut-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     --ut-float: 0 1px 4px rgba(0, 0, 0, 0.22);   /* controls floating over a map */
     --ut-radius: 8px;

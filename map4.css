@@ -332,16 +332,7 @@ body {
     height: 14px;
     top: -4px;
     width: 100%;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    -moz-opacity: 0;
-    -khtml-opacity: 0;
     opacity: 0;
-  }
-  
-  div[slider] > input[type=range]::-ms-track {
-    background: transparent;
-    color: transparent;
   }
   
   div[slider] > input[type=range]::-moz-range-track {
@@ -357,15 +348,6 @@ body {
   
   div[slider] > input[type=range]:focus {
     outline: none;
-  }
-  
-  div[slider] > input[type=range]::-ms-thumb {
-    pointer-events: all;
-    width: 28px;
-    height: 28px;
-    border-radius: 0px;
-    border: 0 none;
-    background: red;
   }
   
   div[slider] > input[type=range]::-moz-range-thumb {
@@ -385,20 +367,6 @@ body {
     border: 0 none;
     background: red;
     -webkit-appearance: none;
-  }
-  
-  div[slider] > input[type=range]::-ms-fill-lower {
-    background: transparent;
-    border: 0 none;
-  }
-  
-  div[slider] > input[type=range]::-ms-fill-upper {
-    background: transparent;
-    border: 0 none;
-  }
-  
-  div[slider] > input[type=range]::-ms-tooltip {
-    display: none;
   }
   
   [slider] > div > [sign] {
@@ -614,7 +582,7 @@ body {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: linear-gradient(90deg, var(--ut-yellow) 0 var(--fill, 0%), #e3e3e3 var(--fill, 0%));
+  background: linear-gradient(90deg, var(--ut-yellow) 0 var(--fill, 0%), var(--ut-cap-empty) var(--fill, 0%));
   box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
@@ -706,7 +674,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #c8c8c8;
+    background: var(--ut-scrollbar);
     border-radius: 10px;
 }
 
@@ -837,7 +805,7 @@ body {
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: linear-gradient(90deg, var(--ut-yellow) 0 var(--fill, 0%), #e3e3e3 var(--fill, 0%));
+  background: linear-gradient(90deg, var(--ut-yellow) 0 var(--fill, 0%), var(--ut-cap-empty) var(--fill, 0%));
 }
 
 .beer-line-rating {
@@ -887,7 +855,7 @@ body {
 /* Beer whose detail is shown */
 .popup-list a.box-content.active {
   border-left-color: var(--ut-yellow);
-  background-color: #fff8e1;
+  background-color: var(--ut-highlight);
 }
 
 /* ---------- Overlay switch (Breweries / Venues) ---------- */
@@ -961,7 +929,7 @@ body {
 }
 
 #map .marker-cluster-medium div {
-  background-color: #e08f00;
+  background-color: var(--ut-amber);
   color: var(--ut-text);
 }
 
@@ -1005,7 +973,7 @@ body {
 
 #map .leaflet-bar a.leaflet-disabled {
   background-color: var(--ut-box);
-  color: #c4c4c4;
+  color: var(--ut-disabled);
 }
 
 #map .leaflet-control-layers-toggle {
@@ -1367,7 +1335,7 @@ body {
 
 .search-result:hover,
 .search-result.active {
-  background-color: #fff8e1;
+  background-color: var(--ut-highlight);
 }
 
 .search-result-text {
@@ -1415,7 +1383,7 @@ body {
   max-width: calc(100% - 40px);
   padding: 8px 14px;
   border-radius: 4px;
-  background-color: #222222;
+  background-color: var(--ut-dark);
   color: #ffffff;
   font: 600 13px var(--font-ui);
   text-align: center;
