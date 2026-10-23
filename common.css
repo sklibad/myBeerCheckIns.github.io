@@ -18,6 +18,7 @@
     --ut-yellow: #ffc000;          /* Untappd yellow */
     --ut-yellow-dark: #e0a800;
     --ut-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    --ut-float: 0 1px 4px rgba(0, 0, 0, 0.22);   /* controls floating over a map */
     --ut-radius: 8px;
 
     --header-height: 56px;         /* including the yellow stripe */

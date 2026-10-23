@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=61" />
-    <link rel="stylesheet" href="map4.css?v=61" />
+    <link rel="stylesheet" href="common.css?v=62" />
+    <link rel="stylesheet" href="map4.css?v=62" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=61" type="text/javascript"></script>
+    <script src="data.js?v=62" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=61" defer></script>
+    <script src="nav.js?v=62" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -331,11 +331,19 @@
             }
         ).setView([40, 0], 2);
 
+        // Default basemap: Esri World Street Map (a road map close to Google's, free without a key);
+        // OpenStreetMap stays in the basemap switch
+        var StreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 19,
+            attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, USGS, &copy; OpenStreetMap contributors | <a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>',
+            opacity: 0.85
+        }).addTo(map);
+
         var OSmap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | <a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>',
             opacity: 0.75
-        }).addTo(map);
+        });
 
         var Imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 18,
@@ -477,20 +485,19 @@
             });
         }
 
+        // Clusters in the Untappd colours (map4.css): yellow under 10, amber under 100, brown above;
+        // larger on phones and tablets so they are easy to tap
         function createClusterGroup() {
-            if (!isSmallScreen()) {
-                return L.markerClusterGroup();
-            }
-            // Same look as the default cluster icon, only larger
+            var touch = isSmallScreen();
             return L.markerClusterGroup({
-                maxClusterRadius: 60,
+                maxClusterRadius: touch ? 60 : 80,
                 iconCreateFunction: function (cluster) {
                     var count = cluster.getChildCount();
                     var size = count < 10 ? 'small' : count < 100 ? 'medium' : 'large';
                     return L.divIcon({
                         html: '<div><span>' + count + '</span></div>',
-                        className: 'marker-cluster marker-cluster-' + size + ' marker-cluster-touch',
-                        iconSize: L.point(56, 56)
+                        className: 'marker-cluster marker-cluster-' + size + (touch ? ' marker-cluster-touch' : ''),
+                        iconSize: touch ? L.point(56, 56) : L.point(40, 40)
                     });
                 }
             });
@@ -526,12 +533,12 @@
                 onEachLayer(feature, layer, selectedLayer)},
             pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {
-                    icon: markerIcon('ikony/pub.png')
+                    icon: markerIcon('ikony/venue-pin.svg')
                 });
             }
         });
 
-        addHoverEffectToLayers(venues, "ikony/pub.png");
+        addHoverEffectToLayers(venues, "ikony/venue-pin.svg");
 
         // Add the GeoJSON layer to the marker cluster group
         venueMarkers.addLayer(venues);
@@ -860,11 +867,11 @@
 
             if (selectedLayer === "Breweries"){
                 dataJsFile = breweries_lst;
-                icon = "ikony/beer.png";
+                icon = "ikony/brewery-pin.svg";
                 breweryMarkers = createClusterGroup();
             } else if (selectedLayer === "Venues"){
                 dataJsFile = venues_lst;
-                icon = "ikony/pub.png";
+                icon = "ikony/venue-pin.svg";
                 venueMarkers = createClusterGroup();
             }
             
@@ -883,11 +890,11 @@
             });
             
             if (selectedLayer === "Breweries"){
-                addHoverEffectToLayers(newLayer, "ikony/beer.png");
+                addHoverEffectToLayers(newLayer, "ikony/brewery-pin.svg");
                 breweryMarkers.addLayer(newLayer);
                 map.addLayer(breweryMarkers);
             } else if (selectedLayer === "Venues"){
-                addHoverEffectToLayers(newLayer, "ikony/pub.png");
+                addHoverEffectToLayers(newLayer, "ikony/venue-pin.svg");
                 venueMarkers.addLayer(newLayer)
                 map.addLayer(venueMarkers);
             }
@@ -1027,6 +1034,7 @@
            
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         var baseLayers = {
+            "Street Map": StreetMap,
             "OS Map": OSmap,
             "Imagery": Imagery,
             "TopoMap": TopoMap
@@ -1047,7 +1055,7 @@
             var div = L.DomUtil.create('div', 'overlay-switch');
             div.setAttribute('role', 'radiogroup');
             div.setAttribute('aria-label', 'Show on map');
-            var layerIcons = { "Breweries": "ikony/beer.png", "Venues": "ikony/pub.png" };
+            var layerIcons = { "Breweries": "ikony/brewery-pin.svg", "Venues": "ikony/venue-pin.svg" };
 
             for (var i = 0; i < Object.keys(overlayLayers).length; i++) {
                 var layerName = Object.keys(overlayLayers)[i];
@@ -1266,8 +1274,8 @@
             routeLayer = L.layerGroup([
                 L.polyline(points, { color: 'white', weight: 7, opacity: 0.85, interactive: false }),
                 L.polyline(points, { color: 'rgb(165, 42, 42)', weight: 3, dashArray: '8 7', interactive: false }),
-                L.marker(venue, { icon: markerIcon('ikony/pub.png'), interactive: false }).bindTooltip(venueLabel, labelOptions),
-                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
+                L.marker(venue, { icon: markerIcon('ikony/venue-pin.svg'), interactive: false }).bindTooltip(venueLabel, labelOptions),
+                L.marker(brewery, { icon: markerIcon('ikony/brewery-pin.svg'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
             ]).addTo(map);
 
             // Each map edge only needs room for half of the label of the place on that side
@@ -1613,8 +1621,8 @@
                 row.className = 'search-result' + (index === searchActive ? ' active' : '');
                 row.id = 'search-result-' + index;
                 row.setAttribute('role', 'option');
-                row.innerHTML = item.type === 'venue' ? '<img src="ikony/pub.png" alt="">' :
-                                item.type === 'brewery' ? '<img src="ikony/beer.png" alt="">' : BEER_ICON;
+                row.innerHTML = item.type === 'venue' ? '<img src="ikony/venue-pin.svg" alt="">' :
+                                item.type === 'brewery' ? '<img src="ikony/brewery-pin.svg" alt="">' : BEER_ICON;
                 var text = document.createElement('span');
                 text.className = 'search-result-text';
                 var name = document.createElement('span');
@@ -2314,7 +2322,7 @@
             venues.forEach(function (venue) {
                 var row = document.createElement('li');
                 row.className = 'search-result nearby-result';
-                row.innerHTML = '<img src="ikony/pub.png" alt="">';
+                row.innerHTML = '<img src="ikony/venue-pin.svg" alt="">';
                 var text = document.createElement('span');
                 text.className = 'search-result-text';
 

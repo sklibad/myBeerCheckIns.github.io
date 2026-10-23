@@ -47,31 +47,37 @@ path.leaflet-interactive:focus {
 
 .overlay-switch {
     display: flex;
-    padding: 3px;
-    border-radius: 999px;
-    background-color: rgb(238, 231, 212);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    border: 1px solid var(--ut-line);
+    border-radius: var(--ut-radius);
+    background-color: var(--ut-tab-off);
+    box-shadow: var(--ut-float);
     font-family: var(--font-ui);
     font-size: 13px;
 }
 
-/* The radio buttons stay for keyboard and screen readers, the labels are the visible pills */
+/* The radio buttons stay for keyboard and screen readers, the labels are the visible tabs */
 .overlay-switch input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
+/* segmented tabs like on Untappd: grey, the chosen one white with a yellow underline */
 .overlay-switch label {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 5px 12px;
-    border-radius: 999px;
-    color: rgb(87, 62, 62);
-    font-weight: bold;
+    padding: 6px 12px;
+    border-left: 1px solid var(--ut-line);
+    color: var(--ut-text-soft);
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.15s, color 0.15s;
+}
+
+.overlay-switch label:first-of-type {
+    border-left: none;
 }
 
 .overlay-switch label:has(img) {
@@ -91,21 +97,22 @@ path.leaflet-interactive:focus {
     font-weight: bold;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    color: rgb(87, 62, 62);
+    color: var(--ut-text-soft);
 }
 
 .overlay-switch label:hover {
-    background-color: rgba(87, 62, 62, 0.1);
+    color: var(--ut-text);
 }
 
 .overlay-switch input:checked + label {
-    background-color: rgb(87, 62, 62);
-    color: white;
+    background-color: var(--ut-box);
+    color: var(--ut-text);
+    box-shadow: inset 0 -3px 0 var(--ut-yellow);
 }
 
 .overlay-switch input:focus-visible + label {
-    outline: 2px solid rgb(87, 62, 62);
-    outline-offset: 2px;
+    outline: 2px solid var(--ut-link);
+    outline-offset: -2px;
 }
 
 /* ---------- Phones: summary, year stepper and the sheet with the switches ---------- */
@@ -121,11 +128,12 @@ path.leaflet-interactive:focus {
 .year-stepper {
     display: flex;
     align-items: center;
-    border-radius: 999px;
-    background-color: rgb(238, 231, 212);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-    color: rgb(87, 62, 62);
-    font: bold 13px var(--font-ui);
+    border-radius: var(--ut-radius);
+    background-color: var(--ut-box);
+    box-shadow: var(--ut-float);
+    color: var(--ut-text);
+    font: 600 13px var(--font-ui);
+    border: 1px solid var(--ut-line);
 }
 
 .carto-summary-button {
@@ -147,8 +155,8 @@ path.leaflet-interactive:focus {
 }
 
 .carto-summary-button[aria-expanded="true"] {
-    background-color: rgb(87, 62, 62);
-    color: white;
+    background-color: var(--ut-yellow);
+    color: var(--ut-text);
 }
 
 .year-stepper {
@@ -173,7 +181,7 @@ path.leaflet-interactive:focus {
 }
 
 .year-stepper button:disabled {
-    color: rgba(87, 62, 62, 0.3);
+    color: #c4c4c4;
     cursor: default;
 }
 
@@ -262,20 +270,20 @@ path.leaflet-interactive:focus {
 
 #map .leaflet-bar,
 #map .leaflet-control-layers {
-    border: none;
-    border-radius: 12px;
-    background-color: rgb(238, 231, 212);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    border-radius: var(--ut-radius);
+    background-color: var(--ut-box);
+    box-shadow: var(--ut-float);
     overflow: hidden;
+    border: 1px solid var(--ut-line);
 }
 
 #map .leaflet-bar a {
     width: 36px;
     height: 36px;
     line-height: 36px;
-    border-bottom: 1px solid rgba(87, 62, 62, 0.2);
-    background-color: rgb(238, 231, 212);
-    color: rgb(87, 62, 62);
+    border-bottom: 1px solid var(--ut-line);
+    background-color: var(--ut-box);
+    color: var(--ut-text);
     font-size: 20px;
 }
 
@@ -284,30 +292,30 @@ path.leaflet-interactive:focus {
 }
 
 #map .leaflet-bar a:hover {
-    background-color: rgb(226, 216, 190);
+    background-color: var(--ut-tab-off);
 }
 
 #map .leaflet-bar a.leaflet-disabled {
-    background-color: rgb(238, 231, 212);
-    color: rgba(87, 62, 62, 0.3);
+    background-color: var(--ut-box);
+    color: #c4c4c4;
 }
 
 /* Fullscreen: expand / collapse arrows in the site colour */
 #map .leaflet-bar a.fullscreen-icon {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'/%3E%3C/svg%3E");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 20px 20px;
 }
 
 #map .leaflet-bar a.fullscreen-icon.leaflet-fullscreen-on {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5'/%3E%3C/svg%3E");
 }
 
 #map .leaflet-control-layers-toggle {
     width: 36px;
     height: 36px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M12 3 2 8l10 5 10-5-10-5z'/%3E%3Cpath d='m2 12.5 10 5 10-5'/%3E%3Cpath d='m2 17 10 5 10-5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M12 3 2 8l10 5 10-5-10-5z'/%3E%3Cpath d='m2 12.5 10 5 10-5'/%3E%3Cpath d='m2 17 10 5 10-5'/%3E%3C/svg%3E");
     background-size: 22px 22px;
 }
 
@@ -315,7 +323,7 @@ path.leaflet-interactive:focus {
     padding: 8px 14px 8px 10px;
     font-family: var(--font-ui);
     font-size: 13px;
-    color: rgb(87, 62, 62);
+    color: var(--ut-text);
 }
 
 #map .leaflet-control-layers-base label {
@@ -324,7 +332,7 @@ path.leaflet-interactive:focus {
 }
 
 #map .leaflet-control-layers-selector {
-    accent-color: rgb(87, 62, 62);
+    accent-color: var(--ut-text);
 }
 
 /* Fullscreen mode of the map element */
@@ -346,18 +354,18 @@ path.leaflet-interactive:focus {
     width: 26px;
     height: 26px;
     padding: 0;
-    border: none;
     border-radius: 50%;
-    background-color: rgb(238, 231, 212);
-    color: rgb(87, 62, 62);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    background-color: var(--ut-box);
+    color: var(--ut-text);
+    box-shadow: var(--ut-float);
     font: italic bold 15px/26px Georgia, serif;
     cursor: pointer;
+    border: 1px solid var(--ut-line);
 }
 
 #map .attribution-toggle.open .attribution-button {
-    background-color: rgb(87, 62, 62);
-    color: white;
+    background-color: var(--ut-yellow);
+    color: var(--ut-text);
 }
 
 #map .leaflet-bottom.leaflet-right .attribution-toggle .leaflet-control-attribution {
@@ -365,10 +373,10 @@ path.leaflet-interactive:focus {
     max-width: calc(100vw - 90px);
     margin: 0;
     padding: 4px 10px;
-    border-radius: 12px;
-    background-color: rgb(238, 231, 212);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-    color: rgb(87, 62, 62);
+    border-radius: var(--ut-radius);
+    background-color: var(--ut-box);
+    box-shadow: var(--ut-float);
+    color: var(--ut-text);
     font-size: 12px;
     white-space: normal;
 }

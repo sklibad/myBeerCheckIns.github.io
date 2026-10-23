@@ -874,31 +874,37 @@ body {
 
 .overlay-switch {
   display: flex;
-  padding: 3px;
-  border-radius: 999px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  border: 1px solid var(--ut-line);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-tab-off);
+  box-shadow: var(--ut-float);
   font-family: var(--font-ui);
   font-size: 13px;
 }
 
-/* The radio buttons stay for keyboard and screen readers, the labels are the visible pills */
+/* The radio buttons stay for keyboard and screen readers, the labels are the visible tabs */
 .overlay-switch input {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
+/* segmented tabs like on Untappd: grey, the chosen one white with a yellow underline */
 .overlay-switch label {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px 5px 6px;
-  border-radius: 999px;
-  color: rgb(87, 62, 62);
-  font-weight: bold;
+  padding: 6px 12px;
+  border-left: 1px solid var(--ut-line);
+  color: var(--ut-text-soft);
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.15s, color 0.15s;
+}
+
+.overlay-switch label:first-of-type {
+  border-left: none;
 }
 
 .overlay-switch label img {
@@ -907,37 +913,65 @@ body {
 }
 
 .overlay-switch label:hover {
-  background-color: rgba(87, 62, 62, 0.1);
+  color: var(--ut-text);
 }
 
 .overlay-switch input:checked + label {
-  background-color: rgb(87, 62, 62);
-  color: white;
+  background-color: var(--ut-box);
+  color: var(--ut-text);
+  box-shadow: inset 0 -3px 0 var(--ut-yellow);
 }
 
 .overlay-switch input:focus-visible + label {
-  outline: 2px solid rgb(87, 62, 62);
-  outline-offset: 2px;
+  outline: 2px solid var(--ut-link);
+  outline-offset: -2px;
 }
 
-/* ---------- Zoom and basemap buttons in the site colours ---------- */
+/* ---------- Marker clusters in the Untappd colours: yellow, amber, brown on a grey halo ---------- */
+
+#map .marker-cluster-small,
+#map .marker-cluster-medium,
+#map .marker-cluster-large {
+  background-color: rgba(0, 0, 0, 0.14);
+}
+
+#map .marker-cluster-small div {
+  background-color: var(--ut-yellow);
+  color: var(--ut-text);
+}
+
+#map .marker-cluster-medium div {
+  background-color: #e08f00;
+  color: var(--ut-text);
+}
+
+#map .marker-cluster-large div {
+  background-color: var(--ut-link);
+  color: #ffffff;
+}
+
+#map .marker-cluster div {
+  font-weight: 700;
+}
+
+/* ---------- Zoom and basemap buttons in the Untappd look ---------- */
 
 #map .leaflet-bar,
 #map .leaflet-control-layers {
-  border: none;
-  border-radius: 12px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: var(--ut-float);
   overflow: hidden;
+  border: 1px solid var(--ut-line);
 }
 
 #map .leaflet-bar a {
   width: 36px;
   height: 36px;
   line-height: 36px;
-  border-bottom: 1px solid rgba(87, 62, 62, 0.2);
-  background-color: rgb(238, 231, 212);
-  color: rgb(87, 62, 62);
+  border-bottom: 1px solid var(--ut-line);
+  background-color: var(--ut-box);
+  color: var(--ut-text);
   font-size: 20px;
 }
 
@@ -946,18 +980,18 @@ body {
 }
 
 #map .leaflet-bar a:hover {
-  background-color: rgb(226, 216, 190);
+  background-color: var(--ut-tab-off);
 }
 
 #map .leaflet-bar a.leaflet-disabled {
-  background-color: rgb(238, 231, 212);
-  color: rgba(87, 62, 62, 0.3);
+  background-color: var(--ut-box);
+  color: #c4c4c4;
 }
 
 #map .leaflet-control-layers-toggle {
   width: 36px;
   height: 36px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23573e3e' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M12 3 2 8l10 5 10-5-10-5z'/%3E%3Cpath d='m2 12.5 10 5 10-5'/%3E%3Cpath d='m2 17 10 5 10-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M12 3 2 8l10 5 10-5-10-5z'/%3E%3Cpath d='m2 12.5 10 5 10-5'/%3E%3Cpath d='m2 17 10 5 10-5'/%3E%3C/svg%3E");
   background-size: 22px 22px;
 }
 
@@ -965,7 +999,7 @@ body {
   padding: 8px 14px 8px 10px;
   font-family: var(--font-ui);
   font-size: 13px;
-  color: rgb(87, 62, 62);
+  color: var(--ut-text);
 }
 
 #map .leaflet-control-layers-base label {
@@ -974,7 +1008,7 @@ body {
 }
 
 #map .leaflet-control-layers-selector {
-  accent-color: rgb(87, 62, 62);
+  accent-color: var(--ut-text);
 }
 
 /* ---------- Attribution behind an "i" button ---------- */
@@ -991,18 +1025,18 @@ body {
   width: 26px;
   height: 26px;
   padding: 0;
-  border: none;
   border-radius: 50%;
-  background-color: rgb(238, 231, 212);
-  color: rgb(87, 62, 62);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  background-color: var(--ut-box);
+  color: var(--ut-text);
+  box-shadow: var(--ut-float);
   font: italic bold 15px/26px Georgia, serif;
   cursor: pointer;
+  border: 1px solid var(--ut-line);
 }
 
 #map .attribution-toggle.open .attribution-button {
-  background-color: rgb(87, 62, 62);
-  color: white;
+  background-color: var(--ut-yellow);
+  color: var(--ut-text);
 }
 
 #map .leaflet-bottom.leaflet-right .attribution-toggle .leaflet-control-attribution {
@@ -1010,10 +1044,10 @@ body {
   max-width: calc(100vw - 90px);
   margin: 0;
   padding: 4px 10px;
-  border-radius: 12px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-  color: rgb(87, 62, 62);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: var(--ut-float);
+  color: var(--ut-text);
   font-size: 12px;
   white-space: normal;
 }
@@ -1033,13 +1067,13 @@ body {
   align-items: center;
   gap: 6px;
   padding: 6px 12px 6px 8px;
-  border: none;
-  border-radius: 999px;
-  background-color: rgb(238, 231, 212);
-  color: rgb(87, 62, 62);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-  font: bold 13px var(--font-ui);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  color: var(--ut-text);
+  box-shadow: var(--ut-float);
+  font: 600 13px var(--font-ui);
   cursor: pointer;
+  border: 1px solid var(--ut-line);
 }
 
 #map .timeline-toggle svg {
@@ -1052,8 +1086,8 @@ body {
 }
 
 #map .timeline-toggle.active {
-  background-color: rgb(87, 62, 62);
-  color: white;
+  background-color: var(--ut-yellow);
+  color: var(--ut-text);
 }
 
 .timeline-bar {
@@ -1161,17 +1195,17 @@ body {
   width: 36px;
   height: 36px;
   padding: 0;
-  border: none;
   border-radius: 50%;
-  background-color: rgb(238, 231, 212);
-  color: rgb(87, 62, 62);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  background-color: var(--ut-box);
+  color: var(--ut-text);
+  box-shadow: var(--ut-float);
   cursor: pointer;
+  border: 1px solid var(--ut-line);
 }
 
 #map .search-toggle.active {
-  background-color: rgb(87, 62, 62);
-  color: white;
+  background-color: var(--ut-yellow);
+  color: var(--ut-text);
 }
 
 #map .search-toggle svg,
@@ -1492,12 +1526,12 @@ body.place-view #route-div {
   width: 44px;
   height: 44px;
   padding: 0;
-  border: none;
-  border-radius: 12px;
-  background-color: rgb(238, 231, 212);
-  color: rgb(87, 62, 62);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  color: var(--ut-text);
+  box-shadow: var(--ut-float);
   cursor: pointer;
+  border: 1px solid var(--ut-line);
 }
 
 #map .locate-toggle svg {
@@ -1823,14 +1857,14 @@ body.timeline-on .mini-stats {
     bottom: 24px;
     z-index: 1000;
     padding: 10px 16px;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: none;
     border-radius: 22px;
-    background: rgb(87, 62, 62);
-    color: white;
+    background: var(--ut-yellow);
+    color: var(--ut-text);
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    box-shadow: var(--ut-float);
   }
 
   /* Check-in detail slides up from the bottom; drag the handle to go full screen */
