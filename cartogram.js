@@ -198,14 +198,14 @@ function createBasemaps() {
 var METRICS = {
     checkIns: {
         label: 'Check-ins',
-        icon: 'ikony/venue-pin.svg',
+        icon: 'ikony/pub.png',
         // venues of an area; the density counts all their check-ins
         years: function () { return venueYears; },
         emptyText: "I haven't discovered any venue here yet."
     },
     breweries: {
         label: 'Breweries',
-        icon: 'ikony/brewery-pin.svg',
+        icon: 'ikony/beer.png',
         // breweries of an area; the density counts the breweries
         years: function () { return breweryYears; },
         emptyText: "I haven't tried any beer brewed here yet."

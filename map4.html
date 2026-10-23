@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=71" />
-    <link rel="stylesheet" href="map4.css?v=71" />
+    <link rel="stylesheet" href="common.css?v=72" />
+    <link rel="stylesheet" href="map4.css?v=72" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=71" type="text/javascript"></script>
+    <script src="data.js?v=72" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=71" defer></script>
+    <script src="nav.js?v=72" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -532,12 +532,12 @@
                 onEachLayer(feature, layer, selectedLayer)},
             pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {
-                    icon: markerIcon('ikony/venue-pin.svg')
+                    icon: markerIcon('ikony/pub.png')
                 });
             }
         });
 
-        addHoverEffectToLayers(venues, "ikony/venue-pin.svg");
+        addHoverEffectToLayers(venues, "ikony/pub.png");
 
         // Add the GeoJSON layer to the marker cluster group
         venueMarkers.addLayer(venues);
@@ -851,11 +851,11 @@
 
             if (selectedLayer === "Breweries"){
                 dataJsFile = breweries_lst;
-                icon = "ikony/brewery-pin.svg";
+                icon = "ikony/beer.png";
                 breweryMarkers = createClusterGroup();
             } else if (selectedLayer === "Venues"){
                 dataJsFile = venues_lst;
-                icon = "ikony/venue-pin.svg";
+                icon = "ikony/pub.png";
                 venueMarkers = createClusterGroup();
             }
             
@@ -874,11 +874,11 @@
             });
             
             if (selectedLayer === "Breweries"){
-                addHoverEffectToLayers(newLayer, "ikony/brewery-pin.svg");
+                addHoverEffectToLayers(newLayer, "ikony/beer.png");
                 breweryMarkers.addLayer(newLayer);
                 map.addLayer(breweryMarkers);
             } else if (selectedLayer === "Venues"){
-                addHoverEffectToLayers(newLayer, "ikony/venue-pin.svg");
+                addHoverEffectToLayers(newLayer, "ikony/pub.png");
                 venueMarkers.addLayer(newLayer)
                 map.addLayer(venueMarkers);
             }
@@ -1039,7 +1039,7 @@
             var div = L.DomUtil.create('div', 'overlay-switch');
             div.setAttribute('role', 'radiogroup');
             div.setAttribute('aria-label', 'Show on map');
-            var layerIcons = { "Breweries": "ikony/brewery-pin.svg", "Venues": "ikony/venue-pin.svg" };
+            var layerIcons = { "Breweries": "ikony/beer.png", "Venues": "ikony/pub.png" };
 
             for (var i = 0; i < Object.keys(overlayLayers).length; i++) {
                 var layerName = Object.keys(overlayLayers)[i];
@@ -1258,8 +1258,8 @@
             routeLayer = L.layerGroup([
                 L.polyline(points, { color: 'white', weight: 7, opacity: 0.85, interactive: false }),
                 L.polyline(points, { color: '#8a4500', weight: 3, dashArray: '8 7', interactive: false }),
-                L.marker(venue, { icon: markerIcon('ikony/venue-pin.svg'), interactive: false }).bindTooltip(venueLabel, labelOptions),
-                L.marker(brewery, { icon: markerIcon('ikony/brewery-pin.svg'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
+                L.marker(venue, { icon: markerIcon('ikony/pub.png'), interactive: false }).bindTooltip(venueLabel, labelOptions),
+                L.marker(brewery, { icon: markerIcon('ikony/beer.png'), interactive: false }).bindTooltip(breweryLabel, labelOptions)
             ]).addTo(map);
 
             // Each map edge only needs room for half of the label of the place on that side
@@ -1605,8 +1605,8 @@
                 row.className = 'search-result' + (index === searchActive ? ' active' : '');
                 row.id = 'search-result-' + index;
                 row.setAttribute('role', 'option');
-                row.innerHTML = item.type === 'venue' ? '<img src="ikony/venue-pin.svg" alt="">' :
-                                item.type === 'brewery' ? '<img src="ikony/brewery-pin.svg" alt="">' : BEER_ICON;
+                row.innerHTML = item.type === 'venue' ? '<img src="ikony/pub.png" alt="">' :
+                                item.type === 'brewery' ? '<img src="ikony/beer.png" alt="">' : BEER_ICON;
                 var text = document.createElement('span');
                 text.className = 'search-result-text';
                 var name = document.createElement('span');
@@ -2306,7 +2306,7 @@
             venues.forEach(function (venue) {
                 var row = document.createElement('li');
                 row.className = 'search-result nearby-result';
-                row.innerHTML = '<img src="ikony/venue-pin.svg" alt="">';
+                row.innerHTML = '<img src="ikony/pub.png" alt="">';
                 var text = document.createElement('span');
                 text.className = 'search-result-text';
 
