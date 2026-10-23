@@ -176,6 +176,16 @@ def places_by_country(places, polygons, place_column):
             .groupby('ADMIN')[place_column].apply(list).to_dict())
 
 
+def venue_areas(prague_venues, kraje_venues, prague_kraj='Praha'):
+    """{venue: 'prague' | 'czechia'} for the wind rose of the statistics (Czechia without
+    Prague); venues missing here are abroad"""
+    prague = {v for places in prague_venues.values() for v in places} | set(kraje_venues.get(prague_kraj, []))
+    czech = {v for places in kraje_venues.values() for v in places} - prague
+    areas = {v: 'prague' for v in prague}
+    areas.update({v: 'czechia' for v in czech})
+    return dict(sorted(areas.items()))
+
+
 def build_cartograms(df, boundaries):
     breweries = points(df, 'Brewery_location').drop_duplicates(subset='Brewery')
     check_ins = points(df, 'Venue_location')
@@ -484,7 +494,9 @@ def main():
                     ('breweries_lst', collection('breweries')),
                     ('venue_check_ins', dump(venue_check_ins)),
                     ('brewery_check_ins', dump(brewery_check_ins))],
-        'stats_data.js': [('data', dump(records))],
+        'stats_data.js': [('data', dump(records)),
+                          # Prague / Czechia / abroad of every venue, for the wind rose
+                          ('venueAreas', js_dict(venue_areas(geo['pragueVenues'], geo['krajeCheckIns'])))],
         'map1.js': [('prague_cartogram', collection('prague_cartogram')),
                     ('pragueVenues', js_dict(geo['pragueVenues'])),
                     ('pragueBreweries', js_dict(geo['pragueBreweries']))],

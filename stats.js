@@ -461,8 +461,10 @@
         var button = e.target.closest('.filter-tabs button');
         if (!button) return;
         var toggle = button.parentNode;
-        if (toggle.dataset.for === 'rose-scale') {
-            setRoseScale(button.dataset.mode, true);
+        if (toggle.dataset.for === 'rose-area') {
+            rose.area = button.dataset.mode;
+            renderWindRose(selection());
+            setRoseScale(rose.area, true);
             return;
         }
         toggle.querySelectorAll('button').forEach(function (b) { b.classList.toggle('active', b === button); });
@@ -484,9 +486,21 @@
         return home ? home.Venue_location.split(',').map(Number) : [50.0734821, 14.4282220];
     })();
     var ROSE_MARGIN = 28;                                   // chart margin, the same on all sides
-    var ROSE_SCALES = { prague: 12, czechia: 250, europe: 2300 };   // map distance at the rim, km
-    // scale: the chosen preset (null after the user zooms by hand); auto: a zoom set by the code is running
-    var rose = { map: null, dots: null, scale: 'europe', auto: false };
+    // The tabs choose which check-ins the rose counts (by the venue: in Prague, in the rest of
+    // Czechia, abroad; venueAreas from stats_data.js, venues missing there are abroad) and the
+    // map scale for them: the distance from home at the rim of the rose
+    var ROSE_AREAS = {
+        prague: { km: 14, text: 'in Prague' },
+        czechia: { km: 300, text: 'in Czechia without Prague' },
+        abroad: { km: 2600, text: 'abroad' }
+    };
+    // area: the chosen tab; scale: its map scale (null after the user zooms by hand);
+    // auto: a zoom set by the code is running
+    var rose = { map: null, dots: null, area: 'prague', scale: 'prague', auto: false };
+
+    function venueArea(r) {
+        return (typeof venueAreas !== 'undefined' && venueAreas[r.Venue]) || 'abroad';
+    }
 
     function azimuth(lat1, lon1, lat2, lon2) {
         var rad = Math.PI / 180;
@@ -504,33 +518,31 @@
 
     // zoom at which the rim of the rose lies the scale's distance from home
     function zoomForScale(scale) {
-        var metresPerPixel = 1000 * ROSE_SCALES[scale] / roseRadius();
+        var metresPerPixel = 1000 * ROSE_AREAS[scale].km / roseRadius();
         return Math.log(156543.03392 * Math.cos(HOME[0] * Math.PI / 180) / metresPerPixel) / Math.LN2;
     }
 
-    function markScaleTab() {
-        document.querySelectorAll('[data-for="rose-scale"] button').forEach(function (b) {
-            b.classList.toggle('active', b.dataset.mode === rose.scale);
+    function markAreaTab() {
+        document.querySelectorAll('[data-for="rose-area"] button').forEach(function (b) {
+            b.classList.toggle('active', b.dataset.mode === rose.area);
         });
     }
 
     function setRoseScale(scale, animate) {
         var zoom = rose.map._limitZoom(zoomForScale(scale));
         rose.scale = scale;
-        markScaleTab();
         if (zoom === rose.map.getZoom()) return;
         rose.auto = true;
         rose.map.setView(HOME, zoom, { animate: !!animate });
     }
 
-    // a zoom by hand (wheel, pinch, + / -) leaves the preset scales
+    // a zoom by hand (wheel, pinch, + / -) leaves the preset scale (the chosen check-ins stay)
     function onRoseZoomEnd() {
         if (rose.auto) {
             rose.auto = false;
             return;
         }
         rose.scale = null;
-        markScaleTab();
     }
 
     // Attribution (Leaflet, Esri, author) hidden behind an "i" button like on the other maps
@@ -623,8 +635,12 @@
         });
     }
 
-    function renderWindRose(list) {
+    function renderWindRose(selected) {
         if (!rose.map) initRoseMap();
+        var list = selected.filter(function (r) { return venueArea(r) === rose.area; });
+        markAreaTab();
+        document.getElementById('rose-note').textContent = plural(list.length, 'check-in') + ' ' +
+            ROSE_AREAS[rose.area].text + ' \u00b7 share per direction from Home \u2013 Ipak';
         renderRoseDots(list);
         var counts = {};
         var total = 0;
