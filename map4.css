@@ -8,7 +8,7 @@ body {
     font-size: small;
     display: flex;
     flex-direction: column;
-    background-color: #c4b494;
+    background-color: var(--ut-page);
 }
 
 /* Desktop: filters | map | check-in detail, filling the space below the header */
