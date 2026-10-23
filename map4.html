@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="ikony/beer.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="common.css?v=64" />
-    <link rel="stylesheet" href="map4.css?v=64" />
+    <link rel="stylesheet" href="common.css?v=65" />
+    <link rel="stylesheet" href="map4.css?v=65" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     
     <!-- jQuery -->
@@ -23,9 +23,9 @@
     <!-- Leaflet.markercluster JS -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     
-    <script src="data.js?v=64" type="text/javascript"></script>
+    <script src="data.js?v=65" type="text/javascript"></script>
     <title>Check-in Map</title>
-    <script src="nav.js?v=64" defer></script>
+    <script src="nav.js?v=65" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -331,19 +331,19 @@
             }
         ).setView([40, 0], 2);
 
-        // Default basemap: Esri World Street Map (a road map close to Google's, free without a key);
-        // OpenStreetMap stays in the basemap switch
+        // Esri World Street Map: a road map close to Google's, free without a key (in the basemap switch)
         var StreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19,
             attribution: 'Tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &mdash; Esri, HERE, Garmin, USGS, &copy; OpenStreetMap contributors | <a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>',
             opacity: 0.85
-        }).addTo(map);
+        });
 
+        // Default basemap: OpenStreetMap
         var OSmap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> | <a href="https://www.linkedin.com/in/david-skliba/?locale=en_US" target="_blank">David Šklíba</a>',
             opacity: 0.75
-        });
+        }).addTo(map);
 
         var Imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 18,
@@ -1018,8 +1018,8 @@
            
         /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
         var baseLayers = {
-            "Street Map": StreetMap,
             "OS Map": OSmap,
+            "Street Map": StreetMap,
             "Imagery": Imagery,
             "TopoMap": TopoMap
         };
@@ -1959,7 +1959,7 @@
             document.getElementById('timeline-range').value = timeline.index;
         }
 
-        // Every place as a dot: brown, places new in this month red and slightly bigger
+        // Every place as a dot: brown, places new in this month Untappd yellow and slightly bigger
         function drawTimelineDots(newPlaces) {
             var isNew = new Set(newPlaces);
             var markers = activeMarkers().getLayers().slice();
@@ -1975,9 +1975,9 @@
                 var dot = L.circleMarker(marker.getLatLng(), {
                     renderer: timelineRenderer,
                     radius: dotRadius(marker.beerCount) + (fresh ? 1.5 : 0),
-                    color: 'white',
-                    weight: 1,
-                    fillColor: fresh ? 'rgb(165, 42, 42)' : 'rgb(87, 62, 62)',
+                    color: fresh ? '#000000' : '#ffffff',
+                    weight: fresh ? 1.5 : 1,
+                    fillColor: fresh ? '#ffc000' : '#8a4500',
                     fillOpacity: 0.9
                 });
                 dot.feature = marker.feature;

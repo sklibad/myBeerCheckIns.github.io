@@ -1077,7 +1077,7 @@ body {
 }
 
 #map .leaflet-control-attribution a {
-  color: rgb(165, 42, 42);
+  color: var(--ut-link);
 }
 
 /* ---------- Timeline ---------- */
@@ -1121,33 +1121,39 @@ body {
   align-items: center;
   gap: 10px;
   padding: 8px 10px 8px 8px;
-  border-radius: 16px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--ut-line);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: var(--ut-float);
   font-family: var(--font-ui);
-  color: rgb(87, 62, 62);
+  color: var(--ut-text);
 }
 
 .timeline-bar[hidden] {
   display: none;
 }
 
+/* Play / Pause: Untappd yellow with a black icon */
 .timeline-play {
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  padding: 9px;
+  padding: 10px;
   border: none;
   border-radius: 50%;
-  background-color: rgb(87, 62, 62);
+  background-color: var(--ut-yellow);
   cursor: pointer;
+}
+
+.timeline-play:hover {
+  background-color: var(--ut-yellow-dark);
 }
 
 .timeline-play svg {
   display: block;
   width: 100%;
   height: 100%;
-  fill: white;
+  fill: var(--ut-text);
 }
 
 .timeline-main {
@@ -1159,7 +1165,7 @@ body {
   display: block;
   width: 100%;
   margin: 0;
-  accent-color: rgb(87, 62, 62);
+  accent-color: var(--ut-yellow-dark);
   cursor: pointer;
 }
 
@@ -1170,11 +1176,13 @@ body {
   gap: 8px;
   margin-top: 2px;
   font-size: 12px;
+  color: var(--ut-text-soft);
 }
 
 .timeline-date {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
+  color: var(--ut-text);
 }
 
 .timeline-close {
@@ -1184,20 +1192,24 @@ body {
   padding: 0;
   border: none;
   background: none;
-  color: rgb(87, 62, 62);
+  color: var(--ut-text-soft);
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
 }
 
-/* Places added in the current month pulse once */
+.timeline-close:hover {
+  color: var(--ut-text);
+}
+
+/* Places added in the current month pulse once, in Untappd yellow */
 .timeline-pulse span {
   display: block;
   width: 100%;
   height: 100%;
-  border: 2px solid rgb(165, 42, 42);
+  border: 2px solid var(--ut-yellow-dark);
   border-radius: 50%;
-  background-color: rgba(165, 42, 42, 0.3);
+  background-color: rgba(255, 192, 0, 0.35);
   animation: timeline-pulse 1.2s ease-out forwards;
 }
 
@@ -1259,10 +1271,15 @@ body {
   align-items: center;
   gap: 8px;
   padding: 4px 4px 4px 14px;
-  border-radius: 999px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-  color: rgb(87, 62, 62);
+  border: 1px solid var(--ut-line);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: var(--ut-float);
+  color: var(--ut-text-soft);
+}
+
+.map-search-field:focus-within {
+  border-color: var(--ut-yellow);
 }
 
 .map-search-field svg {
@@ -1276,7 +1293,7 @@ body {
   border: none;
   outline: none;
   background: transparent;
-  color: rgb(50, 35, 35);
+  color: var(--ut-text);
   font: 16px var(--font-ui); /* 16px: phones do not zoom into the field */
 }
 
@@ -1291,30 +1308,41 @@ body {
   padding: 0;
   border: none;
   background: none;
-  color: rgb(87, 62, 62);
+  color: var(--ut-text-soft);
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
 }
 
+.map-search-close:hover {
+  color: var(--ut-text);
+}
+
 .map-search-results {
   max-height: min(60vh, 440px);
   margin: 6px 0 0;
-  padding: 4px 0 6px;
+  padding: 0 0 4px;
   overflow-y: auto;
-  border-radius: 14px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--ut-line);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: var(--ut-float);
   list-style: none;
 }
 
+/* Venues / Breweries / Beers: grey sub-headings */
 .search-group {
-  padding: 10px 14px 4px;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: rgb(87, 62, 62);
+  padding: 8px 14px 6px;
+  border-top: 1px solid var(--ut-line-soft);
+  border-bottom: 1px solid var(--ut-line-soft);
+  background-color: var(--ut-strip);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ut-text-soft);
+}
+
+.search-group:first-child {
+  border-top: none;
 }
 
 .search-result {
@@ -1334,12 +1362,12 @@ body {
 
 .search-result svg {
   padding: 3px;
-  fill: rgb(87, 62, 62);
+  fill: var(--ut-link);
 }
 
 .search-result:hover,
 .search-result.active {
-  background-color: rgba(87, 62, 62, 0.1);
+  background-color: #fff8e1;
 }
 
 .search-result-text {
@@ -1356,27 +1384,28 @@ body {
 
 .search-result-name {
   font-size: 14px;
-  color: rgb(50, 35, 35);
+  font-weight: 600;
+  color: var(--ut-link);
 }
 
 .search-result-name mark {
   border-radius: 2px;
-  background-color: rgba(255, 215, 0, 0.55);
+  background-color: rgba(255, 192, 0, 0.45);
   color: inherit;
 }
 
 .search-result-detail {
   font-size: 12px;
-  color: rgba(50, 35, 35, 0.65);
+  color: var(--ut-text-soft);
 }
 
 .search-empty {
   padding: 10px 14px;
-  font-style: italic;
-  color: rgba(50, 35, 35, 0.75);
+  color: var(--ut-text-soft);
 }
 
-/* Short notice, e.g. that filters were reset to show a search result */
+/* Short notice, e.g. that filters were reset to show a search result: dark, like the
+   notifications on Untappd */
 .map-toast {
   position: absolute;
   top: 70px;
@@ -1385,12 +1414,12 @@ body {
   z-index: 1100;
   max-width: calc(100% - 40px);
   padding: 8px 14px;
-  border-radius: 999px;
-  background-color: rgb(87, 62, 62);
-  color: white;
-  font: bold 13px var(--font-ui);
+  border-radius: 4px;
+  background-color: #222222;
+  color: #ffffff;
+  font: 600 13px var(--font-ui);
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--ut-float);
 }
 
 /* Place view (map4.html?venue=... from the cartograms): only the map, popup and check-in detail;
@@ -1415,28 +1444,31 @@ body.place-view #route-div {
   z-index: 1050;
   display: flex;
   flex-direction: column;
-  border-radius: 1px;
-  background-color: rgb(238, 231, 212);
+  border-radius: var(--ut-radius);
+  overflow: hidden;
+  background-color: var(--ut-box);
   font-family: var(--font-ui);
-  color: rgb(50, 35, 35);
+  color: var(--ut-text);
 }
 
 .photo-gallery[hidden] {
   display: none;
 }
 
+/* grey title strip like the Untappd boxes */
 .gallery-header {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 8px 8px 8px 16px;
-  background-color: rgb(87, 62, 62);
-  color: white;
+  border-bottom: 1px solid var(--ut-line);
+  background-color: var(--ut-strip);
+  color: var(--ut-text);
 }
 
 .gallery-title {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .gallery-area {
@@ -1445,6 +1477,7 @@ body.place-view #route-div {
   gap: 6px;
   margin-left: auto;
   font-size: 13px;
+  color: var(--ut-text-soft);
   cursor: pointer;
 }
 
@@ -1452,7 +1485,7 @@ body.place-view #route-div {
   width: 16px;
   height: 16px;
   margin: 0;
-  accent-color: rgb(238, 231, 212);
+  accent-color: var(--ut-yellow-dark);
   cursor: pointer;
 }
 
@@ -1462,10 +1495,14 @@ body.place-view #route-div {
   padding: 0;
   border: none;
   background: none;
-  color: white;
+  color: var(--ut-text-soft);
   font-size: 26px;
   line-height: 1;
   cursor: pointer;
+}
+
+.gallery-close:hover {
+  color: var(--ut-text);
 }
 
 .gallery-grid {
@@ -1484,8 +1521,8 @@ body.place-view #route-div {
   padding: 0;
   overflow: hidden;
   border: none;
-  border-radius: 8px;
-  background-color: rgba(87, 62, 62, 0.15);
+  border-radius: 4px;
+  background-color: var(--ut-tab-off);
   cursor: pointer;
 }
 
@@ -1522,7 +1559,7 @@ body.place-view #route-div {
 
 .gallery-beer {
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .gallery-date {
@@ -1533,7 +1570,7 @@ body.place-view #route-div {
 .gallery-empty {
   grid-column: 1 / -1;
   margin: 24px;
-  font-style: italic;
+  color: var(--ut-text-soft);
   text-align: center;
 }
 
@@ -1590,20 +1627,17 @@ body.place-view #route-div {
   align-items: center;
   gap: 8px;
   padding: 4px 4px 4px 16px;
-  border-radius: 999px;
-  background-color: rgb(87, 62, 62);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-  color: white;
+  border: 1px solid var(--ut-line);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: var(--ut-float);
+  color: var(--ut-text);
 }
 
 .nearby-title {
   flex: 1;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.nearby-header .map-search-close {
-  color: white;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .nearby-list {
@@ -1622,8 +1656,7 @@ body.place-view #route-div {
   display: block;
   margin-top: 2px;
   font-size: 12px;
-  font-style: italic;
-  color: rgb(87, 62, 62);
+  color: var(--ut-text-soft);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1642,11 +1675,12 @@ body.place-view #route-div {
   z-index: 1000;
   width: 300px;
   overflow: hidden;
-  border-radius: 14px;
-  background-color: rgb(238, 231, 212);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--ut-line);
+  border-radius: var(--ut-radius);
+  background-color: var(--ut-box);
+  box-shadow: var(--ut-float);
   font-family: var(--font-ui);
-  color: rgb(50, 35, 35);
+  color: var(--ut-text);
 }
 
 .mini-stats[hidden] {
@@ -1658,13 +1692,14 @@ body.place-view #route-div {
   align-items: center;
   gap: 8px;
   padding: 4px 4px 4px 12px;
-  background-color: rgb(87, 62, 62);
-  color: white;
+  border-bottom: 1px solid var(--ut-line);
+  background-color: var(--ut-strip);
+  color: var(--ut-text);
 }
 
 .mini-stats-title {
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .mini-stats-area {
@@ -1673,12 +1708,13 @@ body.place-view #route-div {
   gap: 5px;
   margin-left: auto;
   font-size: 12px;
+  color: var(--ut-text-soft);
   cursor: pointer;
 }
 
 .mini-stats-area input {
   margin: 0;
-  accent-color: rgb(238, 231, 212);
+  accent-color: var(--ut-yellow-dark);
 }
 
 .mini-stats-close {
@@ -1687,37 +1723,42 @@ body.place-view #route-div {
   padding: 0;
   border: none;
   background: none;
-  color: white;
+  color: var(--ut-text-soft);
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
 }
 
+.mini-stats-close:hover {
+  color: var(--ut-text);
+}
+
+/* numbers in a 2 x n grid divided by thin lines, like the stats on Untappd */
 .mini-stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  padding: 8px;
+  gap: 1px;
+  background-color: var(--ut-line-soft);
 }
 
 .mini-stat {
   min-width: 0;
-  padding: 6px 8px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.6);
+  padding: 8px 12px;
+  background-color: var(--ut-box);
 }
 
 .mini-stat-value {
   display: block;
   margin-top: 2px;
   font-size: 18px;
-  font-weight: bold;
-  color: rgb(87, 62, 62);
+  font-weight: 700;
+  color: var(--ut-text);
 }
 
 /* style and beer names can be long */
 .mini-stat-text {
   font-size: 13px;
+  font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1725,18 +1766,23 @@ body.place-view #route-div {
 
 .mini-stat-note {
   display: block;
-  font-size: 11px;
-  color: rgba(50, 35, 35, 0.65);
+  font-size: 12px;
+  color: var(--ut-text-soft);
 }
 
 .mini-stats-link {
   display: block;
-  padding: 0 12px 8px;
-  font-size: 12px;
-  font-weight: bold;
-  color: rgb(165, 42, 42);
+  padding: 8px 12px;
+  border-top: 1px solid var(--ut-line-soft);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ut-link);
   text-align: right;
   text-decoration: none;
+}
+
+.mini-stats-link:hover {
+  text-decoration: underline;
 }
 
 /* above the timeline bar */
